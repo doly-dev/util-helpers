@@ -16,9 +16,9 @@
   },
   "keywords": [
     "util",
-    "bs-util",
-    "util-helpers",
-    "bs-helpers"
+    "business-util",
+    "business-helpers",
+    "util-helpers"
   ],
   "author": "caijf",
   "license": "MIT",

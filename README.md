@@ -1,5 +1,8 @@
 # util-helpers
 
+![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
+[![Build Status](https://travis-ci.org/doly-dev/util-helpers.svg?branch=master)](https://travis-ci.org/doly-dev/util-helpers)
+
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库，支持 `umd` （即 `es6`、`amd`、`cmd` 等都可使用）。如果你需要的是基础工具方法，请使用 [Lodash](https://www.lodashjs.com/)、[Moment](http://momentjs.cn/)、[Dayjs](https://github.com/iamkun/dayjs)
 
 *使用前请阅读[文档](https://doly-dev.github.io/util-helpers/index.html)，注意是否符合你的业务逻辑。*
