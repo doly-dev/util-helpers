@@ -1,7 +1,7 @@
 {
   "name": "util-helpers",
   "version": "1.0.0",
-  "description": "常用工具方法集",
+  "description": "一个基于业务场景的工具方法库",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caijf/util-helpers.git"
+    "url": "git+https://github.com/doly-dev/util-helpers.git"
   },
   "keywords": [
     "util",
@@ -23,9 +23,9 @@
   "author": "caijf",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/caijf/util-helpers/issues"
+    "url": "https://github.com/doly-dev/util-helpers/issues"
   },
-  "homepage": "https://github.com/caijf/util-helpers#readme",
+  "homepage": "https://doly-dev.github.io/util-helpers/index.html",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
