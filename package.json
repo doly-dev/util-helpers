@@ -4,7 +4,7 @@
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx mocha --require @babel/register",
     "build": "npx babel src --out-dir lib",
     "build:source-maps": "npx babel src --out-dir lib --source-maps inline",
     "doc": "npx jsdoc src/ README.md -d docs -r",
@@ -30,27 +30,9 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-modules-umd": "^7.2.0",
-    "@babel/preset-env": "^7.4.5"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/env",
-        {
-          "targets": {
-            "browsers": [
-              "> 1%",
-              "last 4 versions",
-              "Firefox ESR",
-              "not ie < 9"
-            ]
-          },
-          "useBuiltIns": "usage"
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-transform-modules-umd"
-    ]
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
   }
 }

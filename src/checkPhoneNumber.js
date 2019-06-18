@@ -6,8 +6,8 @@ const reg = /^1[3456789]\d{9}$/;
  * 规则 /^1[3456789]\d{9}$/
  * 说明 1开头，第二位是3456789其中一个，后面再加9个数字
  * 
- * @param {String} phoneNumber 手机号码
- * @returns {Boolean} 是否正确的手机号码
+ * @param { String | Number } phoneNumber 手机号码
+ * @returns { Boolean } 是否正确的手机号码
  * @example
  * 
  * const phoneNumber = '13000000000';
@@ -17,6 +17,15 @@ const reg = /^1[3456789]\d{9}$/;
  * 
  */
 function checkPhoneNumber(phoneNumber){
+    if(typeof phoneNumber === 'number'){
+        phoneNumber = String(phoneNumber);
+    }
+
+    if(typeof phoneNumber !== 'string'){
+        // console.error('TypeError: phoneNumber type is a string or a number.');
+        return false;
+    }
+
     return reg.test(phoneNumber);
 }
 
