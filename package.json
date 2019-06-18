@@ -4,7 +4,11 @@
   "description": "常用工具方法集",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir lib",
+    "build:source-maps": "npx babel src --out-dir lib --source-maps inline",
+    "doc": "npx jsdoc src/ README.md -d docs -r",
+    "pub": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -21,5 +25,32 @@
   "bugs": {
     "url": "https://github.com/caijf/util-helpers/issues"
   },
-  "homepage": "https://github.com/caijf/util-helpers#readme"
+  "homepage": "https://github.com/caijf/util-helpers#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-modules-umd": "^7.2.0",
+    "@babel/preset-env": "^7.4.5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 4 versions",
+              "Firefox ESR",
+              "not ie < 9"
+            ]
+          },
+          "useBuiltIns": "usage"
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-modules-umd"
+    ]
+  }
 }
