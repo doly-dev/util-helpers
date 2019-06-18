@@ -1,40 +1,64 @@
 # util-helpers
 
-一个基于业务场景的工具方法库，使用时需注意是否符合你的业务逻辑。
+[util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库，支持 `umd` （即 `es6`、`amd`、`cmd` 等都可使用）。如果你需要的是基础工具方法，请使用 [Lodash](https://www.lodashjs.com/)、[Moment](http://momentjs.cn/)、[Dayjs](https://github.com/iamkun/dayjs)
 
-如果你需要的时基础工具，可以使用 [Lodash](https://www.lodashjs.com/)、[Moment](http://momentjs.cn/)、[Dayjs](https://github.com/iamkun/dayjs)
+*使用前请阅读[文档](https://doly-dev.github.io/util-helpers/index.html)，注意是否符合你的业务逻辑。*
 
-## 格式化
+## 使用
 
-- 日期时间
-- 金额
-- 银行卡
-- 数字转中文
-- 数字转罗马数字
+**安装依赖**
 
-## 正则校验
+```shell
+npm install util-helpers --save
+```
 
-- 手机号
-- 身份证
-- 邮箱
-- 银行卡
-- URL
-- 密码二级强度
-- 密码三级强度
+**引入依赖**
 
-## 解析
+```javascript
+import { checkPhoneNumber } from 'util-helpers'
+```
 
-- 身份证（地址、生日、性别、年龄）
-- URL
+**也可以按需引入**
 
-## 安全计算
+该方式只加载用到的方法
 
-- 加减乘除
+```javascript
+import checkPhoneNumber from 'util-helpers/lib/checkPhoneNumber'
+```
 
-## 其他
+## 文档
 
-- 脱敏
-- 缓存（cookie、localStore、sessionStore）
+### 格式化
+
+- 日期时间 `待开发`
+- 金额 `待开发`
+- 银行卡 `待开发`
+- 数字转中文 `待开发`
+- 数字转罗马数字 `待开发`
+
+### 正则校验
+
+- [checkPhoneNumber](https://doly-dev.github.io/util-helpers/global.html#checkPhoneNumber) 手机号校验
+- 身份证 `待开发`
+- 邮箱 `待开发`
+- 银行卡 `待开发`
+- URL `待开发`
+- 密码二级强度 `待开发`
+- 密码三级强度 `待开发`
+
+### 解析
+
+- 身份证（地址、生日、性别、年龄） `待开发`
+- URL `待开发`
+
+### 安全计算
+
+- 加减乘除 `待开发`
+
+### 其他
+
+- 脱敏 `待开发`
+- 缓存（cookie、localStore、sessionStore） `待开发`
 
 
 

@@ -2,7 +2,7 @@
   "name": "util-helpers",
   "version": "1.0.0",
   "description": "一个基于业务场景的工具方法库",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx babel src --out-dir lib",
