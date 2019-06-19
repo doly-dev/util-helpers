@@ -8,8 +8,13 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * 金额格式转换
  * 说明 将金额格式化输出
  *
- * @param { String | Number } num 需转换金额 (最大 9007199254740991 最小 -9007199254740991 )
- * @param { Number } digit 小数位数 （最高 10位）
+ * @since 1.1.0
+ * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
+ * @param { Object } options - 金额格式化配置
+ * @param {String | Number} options.precision - 保留位数 （最高：10位）
+ * @param { String } options.symbol - 货币符号
+ * @param { String } [options.thousand=,] - 千分位符号
+ * @param { String } [options.decimal=.] - 小数位符号
  * @returns { String }
  * @example
  *
@@ -20,7 +25,7 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  *
  */
 const formatMoney = (num, { precision, symbol, thousand = ',', decimal = '.' } = {} ) => {
-  if(!reg.test(num) || !((typeof num) === 'string' ||  (typeof num) === 'number')) {
+  if(!reg.test(num) || num === '' || !((typeof num) === 'string' ||  (typeof num) === 'number')) {
     return '';
   }
   if(+num > MAX_SAFE_INTEGER || +num < MIN_SAFE_INTEGER ) {
