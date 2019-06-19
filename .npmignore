@@ -4,6 +4,7 @@ node_modules
 .git
 .gitignore
 .Ds_Store
+.vscode
 package-lock.json
 webpack.config.js
 mocha.opts
@@ -11,6 +12,5 @@ conf.json
 .travis.yml
 test/
 src/
-dist/
 docs/
 examples/

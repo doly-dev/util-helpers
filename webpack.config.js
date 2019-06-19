@@ -18,9 +18,6 @@ const cmdArgs = parseArgs(process.argv.slice(2));
 // 标识生产环境
 const isProd = cmdArgs.mode === 'production';
 
-// cdn目录
-const cdnDir = `${pkg.name}/${pkg.version}/`;
-
 // umd全局变量名
 const libraryGlobalName = stringToCamelCase(pkg.name);
 
@@ -37,7 +34,7 @@ module.exports = {
         library: libraryGlobalName,
         libraryTarget: 'umd',
         path: join(cwd, 'dist'),
-        filename: cdnDir + outputFilename,
+        filename: outputFilename,
         umdNamedDefine: true
     },
     target: 'web',
