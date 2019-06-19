@@ -48,7 +48,7 @@ import isPhoneNumber from 'util-helpers/lib/isPhoneNumber'
 ### 格式化
 
 - 日期时间 `待开发`
-- 金额 `待开发`
+- [formatMoney](https://doly-dev.github.io/util-helpers/global.html#formatMoney) 金额格式化
 - 银行卡 `待开发`
 - 数字转中文 `待开发`
 - 数字转罗马数字 `待开发`
