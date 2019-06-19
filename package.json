@@ -4,7 +4,7 @@
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npx mocha --require @babel/register",
+    "test": "npx mocha --require @babel/register --recursive",
     "build": "npm run build:lib && npm run build:dist && npm run build:dist-development",
     "build:lib": "npx babel src --out-dir lib",
     "build:dist": "npx webpack --mode=production",
@@ -38,6 +38,7 @@
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "docdash": "^1.1.1",
+    "jsdoc": "^3.6.2",
     "minimist": "^1.2.0",
     "mocha": "^6.1.4",
     "webpack": "^4.34.0",
