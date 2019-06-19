@@ -5,4 +5,12 @@ node_modules
 .gitignore
 .Ds_Store
 package-lock.json
+webpack.config.js
+mocha.opts
+conf.json
+.travis.yml
+test/
 src/
+dist/
+docs/
+examples/
