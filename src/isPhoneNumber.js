@@ -6,6 +6,7 @@ const reg = /^1[3456789]\d{9}$/;
  * 规则 /^1[3456789]\d{9}$/
  * 说明 1开头，第二位是3456789其中一个，后面再加9个数字
  * 
+ * @since 1.1.0
  * @param { String | Number } value 手机号码
  * @returns { Boolean } 是否为11位有效手机号码
  * @example
