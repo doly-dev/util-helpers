@@ -22,7 +22,7 @@ const fmt3Ret = '00 15';
 
 const bjZoneOpts = {utcOffset: -8};
 
-describe('formatDate 格式化日期时间，ci构建机时间不是北京时间，测试用例除日期字符串外，统一设置东八区，即 utcOffset=-8', () => {
+describe('formatDate 格式化日期时间。由于不确定构建机本地时区，测试用例除日期字符串外，统一设置为东八区，即 utcOffset=-8', () => {
     it(`时间戳 ${timestamp} => ${timestring}`, () => {
         expect(formatDate(timestamp, fmt, bjZoneOpts)).to.be.equal(timestring);
     });

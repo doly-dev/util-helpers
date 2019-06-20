@@ -1,6 +1,6 @@
 import isType from './common/isType';
 
-// 当前时区
+// 本地时区
 const localeZone = new Date().getTimezoneOffset()/60;
 
 // 获取时区差值
@@ -19,14 +19,12 @@ function transformTimezone(date, zone){
 /**
  * 格式化日期时间
  * y-年 M-月 d-日 h-小时 m-分钟 s-秒 q-季度 S-毫秒
- * 1.关于时区处理，默认当地时区。可设置 utcOffset 为东八区utc偏移量({utcOffset=-8})
- * 2.如果日期字符串不带时间(如2019-06-20)，时间会自动处理为当地时区 2019-06-20 08:00:00
  * 
  * @since 1.1.0
- * @param { Date | String | Number } date 日期时间 字符串（2019-06-20 00:15:38）、数字（时间戳） 默认 当前时间
- * @param { String } format 日期时间格式 默认格式 yyyy-MM-dd hh:mm:ss
- * @param { Object } options 配置项
- * @param { String | Number } options.utcOffset UTC偏移量 默认当前时区 (new Date().getTimezoneOffset()/60)
+ * @param { Date | String | Number } [date=new Date()] 日期时间 字符串（2019-06-20 00:15:38）、数字（时间戳）
+ * @param { String } [format=yyyy-MM-dd hh:mm:ss] 日期时间格式
+ * @param { Object } [options] 配置项
+ * @param { String | Number } [options.utcOffset=new Date().getTimezoneOffset()/60] UTC偏移量，默认本地时区。如果要设置北京时间，即东八区 可设置为 -8
  * @return { String } 格式化的日期时间
  * @example
  * 

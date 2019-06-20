@@ -124,7 +124,7 @@
 
     
 
-    <h4 class="name" id="formatDate"><span class="type-signature"></span>formatDate<span class="signature">(date, format, options)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="formatDate"><span class="type-signature"></span>formatDate<span class="signature">(date<span class="signature-attributes">opt</span>, format<span class="signature-attributes">opt</span>, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formatDate.js.html">formatDate.js</a>, <a href="formatDate.js.html#line39">line 39</a>
+        <a href="formatDate.js.html">formatDate.js</a>, <a href="formatDate.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -181,8 +181,6 @@
 <div class="description">
     格式化日期时间
 y-年 M-月 d-日 h-小时 m-分钟 s-秒 q-季度 S-毫秒
-1.关于时区处理，默认当地时区。可设置 utcOffset 为东八区utc偏移量({utcOffset=-8})
-2.如果日期字符串不带时间(如2019-06-20)，时间会自动处理为当地时区 2019-06-20 08:00:00
 </div>
 
 
@@ -215,6 +213,8 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -249,14 +249,26 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
-            
-                <td class="default">
+                
+
                 
                 </td>
             
 
-            <td class="description last">日期时间 字符串（2019-06-20 00:15:38）、数字（时间戳） 默认 当前时间</td>
+            
+                <td class="default">
+                
+                    <code>new Date()</code>
+                
+                </td>
+            
+
+            <td class="description last">日期时间 字符串（2019-06-20 00:15:38）、数字（时间戳）</td>
         </tr>
 
     
@@ -276,6 +288,16 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
                 <td class="default">
@@ -285,7 +307,7 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
                 </td>
             
 
-            <td class="description last">日期时间格式 默认格式 yyyy-MM-dd hh:mm:ss</td>
+            <td class="description last">日期时间格式</td>
         </tr>
 
     
@@ -304,6 +326,16 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -326,7 +358,11 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -354,10 +390,26 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last">UTC偏移量 默认当前时区 (new Date().getTimezoneOffset()/60)</td>
+            
+                <td class="default">
+                
+                    <code>new Date().getTimezoneOffset()/60</code>
+                
+                </td>
+            
+
+            <td class="description last">UTC偏移量，默认本地时区。如果要设置北京时间，即东八区 可设置为 -8</td>
         </tr>
 
     
@@ -416,7 +468,7 @@ formatDate(d1, 'hh:mm'); // => 19:24</code></pre>
 
     
 
-    <h4 class="name" id="formatMoney"><span class="type-signature"></span>formatMoney<span class="signature">(num, options)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="formatMoney"><span class="type-signature"></span>formatMoney<span class="signature">(num, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -506,6 +558,8 @@ formatMoney(amount);
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -534,6 +588,14 @@ formatMoney(amount);
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -556,6 +618,16 @@ formatMoney(amount);
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -608,6 +680,8 @@ formatMoney(amount);
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -642,6 +716,8 @@ formatMoney(amount);
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -766,6 +842,10 @@ formatMoney(amount);
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    格式化的金额
+</div>
+
 
 
 <dl class="param-type">
@@ -978,7 +1058,7 @@ isPhoneNumber(phoneNum);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 13:16:16 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Thu Jun 20 2019 13:34:20 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

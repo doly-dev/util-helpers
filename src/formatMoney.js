@@ -10,12 +10,12 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  *
  * @since 1.1.0
  * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
- * @param { Object } options - 金额格式化配置
- * @param {String | Number} options.precision - 保留位数 （最高：10位）
- * @param { String } options.symbol - 货币符号
+ * @param { Object } [options] - 金额格式化配置
+ * @param {String | Number} [options.precision] - 保留位数 （最高：10位）
+ * @param { String } [options.symbol] - 货币符号
  * @param { String } [options.thousand=,] - 千分位符号
  * @param { String } [options.decimal=.] - 小数位符号
- * @returns { String }
+ * @returns { String } 格式化的金额
  * @example
  *
  * const amount = '1000';
