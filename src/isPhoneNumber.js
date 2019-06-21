@@ -1,24 +1,24 @@
-// 手机号码正则
+// 手机号码正则 
+// 1开头，第二位是3456789其中一个，后面再加9个数字
 const reg = /^1[3456789]\d{9}$/;
 
 /**
  * 检测值是否为11位有效手机号码
- * 规则 /^1[3456789]\d{9}$/
- * 说明 1开头，第二位是3456789其中一个，后面再加9个数字
  * 
  * @since 1.1.0
  * @param { String | Number } value 手机号码
  * @returns { Boolean } 是否为11位有效手机号码
  * @example 
  *
+ * isPhoneNumber('12000000000');
+ * // => false
+ * 
  * isPhoneNumber(13000000000);
  * // => true
  * 
  * isPhoneNumber('13000000000');
  * // => true
  * 
- * isPhoneNumber('12000000000');
- * // => false
  */
 function isPhoneNumber(value) {
     if (typeof value === 'number') {

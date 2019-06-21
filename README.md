@@ -57,7 +57,7 @@ import isPhoneNumber from 'util-helpers/lib/isPhoneNumber'
 
 #### 数据校验
 
-- [isPhoneNumber](https://doly-dev.github.io/util-helpers/global.html#isPhoneNumber) 检测值是否为11位有效手机号码
+- [isPhoneNumber](https://doly-dev.github.io/util-helpers/global.html#isPhoneNumber) 手机号码
 - 固定电话 `待开发`
 - 400电话 `待开发`
 - 邮政编码 `待开发`
@@ -70,7 +70,7 @@ import isPhoneNumber from 'util-helpers/lib/isPhoneNumber'
 - 护照 `待开发`
 - 港澳台通行证 `待开发`
 - 日期 `待开发`
-- QQ号 `待开发`
+- [isQQ](https://doly-dev.github.io/util-helpers/global.html#isQQ) QQ号
 - 微信号 `待开发`
 - 车牌号 `待开发`
 - 十六进制颜色 `待开发`
