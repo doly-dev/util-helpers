@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>type/index.js - util-helpers </title>
+    <title>type/isFunction.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">type/index.js</h1>
+    <h1 class="page-title">type/isFunction.js</h1>
     
 
     
@@ -56,28 +56,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 类型检测
- *
- * @module type
+            <pre class="prettyprint source linenums"><code>import isType from './isType';
+
+/**
+ * 检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy类型
+ * 
+ * @module type/isFunction
  * @since 1.1.0
- * @requires type/isArguments
- * @requires type/isDate
- * @requires type/isRegExp
- * @requires type/isFunction
-*/
+ * @param {*} value 检查值
+ * @returns {Boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy类型
+ * @example
+ *
+ * isFunction(()=>{}))
+ * // => true
+ *
+ * isFunction(/abc/)
+ * // => false
+ */
+function isFunction(value) {
+    return isType(value, 'Function') || isType(value, 'AsyncFunction') || isType(value, 'GeneratorFunction') || isType(value, 'Proxy');
+}
 
-import isArguments from './isArguments'
-import isDate from './isDate'
-import isRegExp from './isRegExp'
-import isFunction from './isFunction'
-
-export default {
-    isArguments,
-    isDate,
-    isRegExp,
-    isFunction
-}</code></pre>
+export default isFunction</code></pre>
         </article>
     </section>
 

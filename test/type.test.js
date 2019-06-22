@@ -31,4 +31,13 @@ describe('type 类型检测', () => {
             expect(type.isRegExp('/abc/')).to.be.equal(false);
         });
     })
+
+    describe('isFunction 检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy类型', () => {
+        it('()=>{} => true', () => {
+            expect(type.isFunction(() => { })).to.be.equal(true);
+        });
+        it('/abc/ => false', () => {
+            expect(type.isFunction(/abc/)).to.be.equal(false);
+        });
+    })
 })

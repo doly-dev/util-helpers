@@ -12,8 +12,8 @@ import check from './check'
  * isQQ('12345');
  * // => true
  *
- * isQQ(12345);
- * // => true
+ * isQQ('123');
+ * // => false
  * 
  */
 function isQQ(value) {

@@ -5,8 +5,6 @@
 
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库。
 
-*使用前请阅读[文档](https://doly-dev.github.io/util-helpers/index.html)，注意是否符合你的业务逻辑。*
-
 ## 使用
 
 **`npm` 或 `yarn` 安装**
@@ -25,7 +23,7 @@ yarn add util-helpers
 
 `npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 进行下载。
 
-> 强烈不推荐使用已构建文件，这样无法按需加载。
+*强烈不推荐使用已构建文件，这样无法按需加载。*
 
 **示例**
 
@@ -74,7 +72,8 @@ import pattern from 'util-helpers/lib/pattern'
 - [type](https://doly-dev.github.io/util-helpers/module-type.html) 类型检测
     - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html) Arguments
     - [isDate](https://doly-dev.github.io/util-helpers/module-type_isDate.html) Date
-    - [RegExp](https://doly-dev.github.io/util-helpers/module-type_RegExp.html) RegExp
+    - [isRegExp](https://doly-dev.github.io/util-helpers/module-type_isRegExp.html) RegExp
+    - [isFunction](https://doly-dev.github.io/util-helpers/module-type_isFunction.html) Function
 
 ## 精选第三方工具库
 

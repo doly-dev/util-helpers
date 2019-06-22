@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>type/index.js - util-helpers </title>
+    <title>type/isFunction - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,40 +46,219 @@
 
 <div id="main">
     
-    <h1 class="page-title">type/index.js</h1>
+    <h1 class="page-title">type/isFunction</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 类型检测
- *
- * @module type
- * @since 1.1.0
- * @requires type/isArguments
- * @requires type/isDate
- * @requires type/isRegExp
- * @requires type/isFunction
-*/
+        
+            
+        
+    
+</header>
 
-import isArguments from './isArguments'
-import isDate from './isDate'
-import isRegExp from './isRegExp'
-import isFunction from './isFunction'
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy类型</div>
+            
 
-export default {
-    isArguments,
-    isDate,
-    isRegExp,
-    isFunction
-}</code></pre>
-        </article>
-    </section>
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="type_isFunction.js.html">type/isFunction.js</a>, <a href="type_isFunction.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>isFunction(()=>{}))
+// => true
+
+isFunction(/abc/)
+// => false</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">检查值</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    是否为Function|AsyncFunction|GeneratorFunction|Proxy类型
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

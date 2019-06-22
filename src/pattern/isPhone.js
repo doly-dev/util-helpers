@@ -12,7 +12,7 @@ import check from './check'
  * isPhone('13000000000');
  * // => true
  *
- * isPhone(13000000000);
+ * isPhone('13000');
  * // => false
  * 
  */
