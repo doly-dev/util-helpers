@@ -70,10 +70,24 @@ import pattern from 'util-helpers/lib/pattern'
     - 十六进制颜色 `待开发`
     - IPv4地址 `待开发`
 - [type](https://doly-dev.github.io/util-helpers/module-type.html) 类型检测
-    - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html) Arguments
-    - [isDate](https://doly-dev.github.io/util-helpers/module-type_isDate.html) Date
-    - [isRegExp](https://doly-dev.github.io/util-helpers/module-type_isRegExp.html) RegExp
-    - [isFunction](https://doly-dev.github.io/util-helpers/module-type_isFunction.html) Function
+    - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html)
+    - [isArray](https://doly-dev.github.io/util-helpers/module-type_isArray.html)
+    - [isBoolean](https://doly-dev.github.io/util-helpers/module-type_isBoolean.html)
+    - [isDate](https://doly-dev.github.io/util-helpers/module-type_isDate.html)
+    - [isError](https://doly-dev.github.io/util-helpers/module-type_isError.html)
+    - [isFunction](https://doly-dev.github.io/util-helpers/module-type_isFunction.html)
+    - [isNaN](https://doly-dev.github.io/util-helpers/module-type_isNaN.html)
+    - [isNumber](https://doly-dev.github.io/util-helpers/module-type_isNumber.html)
+    - [isNull](https://doly-dev.github.io/util-helpers/module-type_isNull.html)
+    - [isObject](https://doly-dev.github.io/util-helpers/module-type_isObject.html)
+    - [isRegExp](https://doly-dev.github.io/util-helpers/module-type_isRegExp.html)
+    - [isString](https://doly-dev.github.io/util-helpers/module-type_isString.html)
+    - [isSymbol](https://doly-dev.github.io/util-helpers/module-type_isSymbol.html)
+    - [isMap](https://doly-dev.github.io/util-helpers/module-type_isMap.html)
+    - [isWeakMap](https://doly-dev.github.io/util-helpers/module-type_isWeakMap.html)
+    - [isSet](https://doly-dev.github.io/util-helpers/module-type_isSet.html)
+    - [isWeakSet](https://doly-dev.github.io/util-helpers/module-type_isWeakSet.html)
+    - [isUndefined](https://doly-dev.github.io/util-helpers/module-type_isUndefined.html)
 
 ## 精选第三方工具库
 

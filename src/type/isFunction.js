@@ -1,12 +1,12 @@
 import isType from './isType';
 
 /**
- * 检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy类型
+ * 检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy
  * 
  * @module type/isFunction
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy类型
+ * @returns {Boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy
  * @example
  *
  * isFunction(()=>{}))

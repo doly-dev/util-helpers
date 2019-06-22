@@ -1,12 +1,12 @@
 import isType from './isType';
 
 /**
- * 检查值是否为Arguments类型
+ * 检查值是否为Arguments
  * 
  * @module type/isArguments
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Arguments类型
+ * @returns {Boolean} 是否为Arguments
  * @example
  *
  * isArguments(function() { return arguments }())

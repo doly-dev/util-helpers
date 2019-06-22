@@ -1,12 +1,12 @@
 import isType from './isType';
 
 /**
- * 检查值是否为RegExp类型
+ * 检查值是否为RegExp
  * 
  * @module type/isRegExp
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为RegExp类型
+ * @returns {Boolean} 是否为RegExp
  * @example
  *
  * isRegExp(/abc/)
