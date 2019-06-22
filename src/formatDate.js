@@ -1,15 +1,15 @@
-import isType from './common/isType';
+import type from './type';
 
 // 本地时区
-const localeZone = new Date().getTimezoneOffset()/60;
+const localeZone = new Date().getTimezoneOffset() / 60;
 
 // 获取时区差值
-function getTimezoneOffset(zone){
+function getTimezoneOffset(zone) {
     return localeZone - zone;
 }
 
 // 转换时区时间戳
-function transformTimezone(date, zone){
+function transformTimezone(date, zone) {
     const d = new Date(date).getTime();
     const timezoneOffset = getTimezoneOffset(zone);
     const timezoneOffsetTimestamp = timezoneOffset * 60 * 60 * 1000;
@@ -20,11 +20,12 @@ function transformTimezone(date, zone){
  * 格式化日期时间
  * y-年 M-月 d-日 h-小时 m-分钟 s-秒 q-季度 S-毫秒
  * 
+ * @module
  * @since 1.1.0
  * @param { Date | String | Number } [date=new Date()] 日期时间 字符串（2019-06-20 00:15:38）、数字（时间戳）
  * @param { String } [format=yyyy-MM-dd hh:mm:ss] 日期时间格式
  * @param { Object } [options] 配置项
- * @param { String | Number } [options.utcOffset=new Date().getTimezoneOffset()/60] UTC偏移量，默认本地时区。如果要设置北京时间，即东八区 可设置为 -8
+ * @param { String | Number } options.utcOffset UTC偏移量，默认本地时区。如果要设置北京时间，即东八区 可设置为 -8
  * @return { String } 格式化的日期时间
  * @example
  * 
@@ -36,7 +37,7 @@ function transformTimezone(date, zone){
  */
 function formatDate(date = new Date(), format = 'yyyy-MM-dd hh:mm:ss', {
     utcOffset = localeZone
-}={}) {
+} = {}) {
 
     utcOffset = +utcOffset;
 
@@ -48,7 +49,7 @@ function formatDate(date = new Date(), format = 'yyyy-MM-dd hh:mm:ss', {
         date = new Date(date);
     }
 
-    if (!isType(date, 'Date')) {
+    if (!type.isDate(date)) {
         console.log('参数错误');
         return '';
     }
@@ -71,7 +72,7 @@ function formatDate(date = new Date(), format = 'yyyy-MM-dd hh:mm:ss', {
         if (new RegExp("(" + k + ")").test(format))
             format = format.replace(RegExp.$1,
                 RegExp.$1.length == 1 ? o[k] :
-                ("00" + o[k]).substr(("" + o[k]).length));
+                    ("00" + o[k]).substr(("" + o[k]).length));
     return format;
 }
 

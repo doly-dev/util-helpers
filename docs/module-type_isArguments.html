@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>formatMoney.js - util-helpers </title>
+    <title>type/isArguments - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,93 +46,219 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMoney.js</h1>
+    <h1 class="page-title">type/isArguments</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>const reg = /^[+-]?\d*\.?\d*$/;
+        
+            
+        
+    
+</header>
 
-const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">检查值是否为Arguments类型</div>
+            
 
-const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+            
+                
 
-/**
- * 格式化金额
- *
- * @module
- * @since 1.1.0
- * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
- * @param { Object } [options] - 金额格式化配置
- * @param {String | Number} [options.precision] - 保留位数 （最高：10位）
- * @param { String } [options.symbol] - 货币符号
- * @param { String } [options.thousand=,] - 千分位符号
- * @param { String } [options.decimal=.] - 小数位符号
- * @returns { String } 格式化的金额
- * @example
- *
- * const amount = '1000';
- *
- * formatMoney(amount);
- * // => 1000.00
- *
- */
-const formatMoney = (num, { precision, symbol, thousand = ',', decimal = '.' } = {}) => {
-  if (!reg.test(num) || num === '' || !((typeof num) === 'string' || (typeof num) === 'number')) {
-    return '';
-  }
-  if (+num > MAX_SAFE_INTEGER || +num &lt; MIN_SAFE_INTEGER) {
-    return '';
-  }
-  if (!precision || !((typeof precision) === 'string' || (typeof precision) === 'number')) {
-    precision = 2;
-  } else {
-    if (precision &lt;= 0) {
-      precision = 2;
-    }
 
-    if (precision >= 10) {
-      precision = 10;
-    }
-  }
 
-  num = parseFloat((num + '').replace(/[^\d\.-]/g, '')).toFixed(precision) + '';
-  const reArr = num.split('.')[0].split('').reverse();
-  let dot = num.split('.')[1];
-  dot = dot === null ? '' : (typeof decimal === 'string' ? decimal : '.') + dot;
-  let txt = '';
-  let res = '';
-  if (reArr[reArr.length - 1] === '-') {
-    for (let i = 0; i &lt; reArr.length; i++) {
-      if (reArr[i] === '-') {
-        txt += reArr[i] + '';
-        continue;
-      }
-      txt += reArr[i] + ((i + 1) % 3 === 0 &amp;&amp; i + 1 !== reArr.length - 1 ? (typeof thousand === 'string' ? thousand : ',') : '');
-    }
-  } else {
-    for (let i = 0; i &lt; reArr.length; i++) {
-      txt += reArr[i] + ((i + 1) % 3 === 0 &amp;&amp; i + 1 !== reArr.length ? (typeof thousand === 'string' ? thousand : ',') : '');
-    }
-  }
 
-  if (symbol &amp;&amp; (typeof symbol) === 'string') {
-    res = (symbol + txt.split('').reverse().join('') + dot);
-  } else {
-    res = (txt.split('').reverse().join('') + dot);
-  }
+<dl class="details">
 
-  return res;
-};
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="type_isArguments.js.html">type/isArguments.js</a>, <a href="type_isArguments.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
 
-export default formatMoney;</code></pre>
-        </article>
-    </section>
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>isArguments(function() { return arguments }())
+// => true
+
+isArguments([1, 2, 3])
+// => false</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">检查值</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    是否为Arguments类型
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

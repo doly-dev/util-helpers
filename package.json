@@ -10,7 +10,7 @@
     "build:dist": "npx webpack --mode=production",
     "build:dist-development": "npx webpack --mode=development",
     "build:lib-development": "npx babel src --out-dir lib --source-maps inline",
-    "doc": "npx jsdoc -c conf.json src/ README.md -d docs -r",
+    "doc": "rm -rf docs && npx jsdoc -c conf.json src/ README.md -d docs -r",
     "pub": "npm run build && npm publish"
   },
   "repository": {

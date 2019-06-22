@@ -30,9 +30,9 @@ yarn add util-helpers
 **示例**
 
 ```javascript
-import { isPhoneNumber } from 'util-helpers'
+import { pattern } from 'util-helpers'
 
-isPhoneNumber(13000000000) // => true
+pattern.isPhone("13000000000") // => true
 ```
 
 **按需引入**
@@ -40,42 +40,41 @@ isPhoneNumber(13000000000) // => true
 该方式只加载用到的方法。
 
 ```javascript
-import isPhoneNumber from 'util-helpers/lib/isPhoneNumber'
+import pattern from 'util-helpers/lib/pattern'
 ```
 
 ## 文档
 
-#### 数据处理
-
-- [formatDate](https://doly-dev.github.io/util-helpers/global.html#formatDate) 日期时间格式化
-- [formatMoney](https://doly-dev.github.io/util-helpers/global.html#formatMoney) 金额格式化
+- [formatDate](https://doly-dev.github.io/util-helpers/module-formatDate.html) 日期时间格式化
+- [formatMoney](https://doly-dev.github.io/util-helpers/module-formatMoney.html) 金额格式化
 - 银行卡格式化 `待开发`
 - 数字转中文 `待开发`
 - 数字转罗马数字 `待开发`
 - 身份证解析（地址、生日、性别、年龄） `待开发`
 - 脱敏 `待开发`
-
-#### 数据校验
-
-- [isPhoneNumber](https://doly-dev.github.io/util-helpers/global.html#isPhoneNumber) 手机号码
-- 固定电话 `待开发`
-- 400电话 `待开发`
-- 邮政编码 `待开发`
-- 中文 `待开发`
-- 身份证 `待开发`
-- 邮箱 `待开发`
-- 银行卡 `待开发`
-- URL `待开发`
-- 密码强度 `待开发`
-- 护照 `待开发`
-- 港澳台通行证 `待开发`
-- 日期 `待开发`
-- [isQQ](https://doly-dev.github.io/util-helpers/global.html#isQQ) QQ号
-- 微信号 `待开发`
-- 车牌号 `待开发`
-- 十六进制颜色 `待开发`
-- IPv4地址 `待开发`
-
+- [pattern](https://doly-dev.github.io/util-helpers/module-pattern.html) 正则匹配
+    - [isPhone](https://doly-dev.github.io/util-helpers/module-pattern_isPhone.html) 手机号码
+    - 固定电话 `待开发`
+    - 400电话 `待开发`
+    - 邮政编码 `待开发`
+    - 中文 `待开发`
+    - 身份证 `待开发`
+    - 邮箱 `待开发`
+    - 银行卡 `待开发`
+    - URL `待开发`
+    - 密码强度 `待开发`
+    - 护照 `待开发`
+    - 港澳台通行证 `待开发`
+    - 日期 `待开发`
+    - [isQQ](https://doly-dev.github.io/util-helpers/module-pattern_isQQ.html) QQ号
+    - 微信号 `待开发`
+    - 车牌号 `待开发`
+    - 十六进制颜色 `待开发`
+    - IPv4地址 `待开发`
+- [type](https://doly-dev.github.io/util-helpers/module-type.html) 类型检测
+    - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html) Arguments
+    - [isDate](https://doly-dev.github.io/util-helpers/module-type_isDate.html) Date
+    - [RegExp](https://doly-dev.github.io/util-helpers/module-type_RegExp.html) RegExp
 
 ## 精选第三方工具库
 
