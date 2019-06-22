@@ -65,7 +65,7 @@ import validator from 'util-helpers/lib/validator'
     - 日期 `待开发`
     - 中文 `待开发`
     - IPv4地址 `待开发`
-- [type](https://doly-dev.github.io/util-helpers/module-type.html) 类型检测
+- [type](https://doly-dev.github.io/util-helpers/module-type.html) - 类型检测
     - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html)
     - [isArray](https://doly-dev.github.io/util-helpers/module-type_isArray.html)
     - [isBoolean](https://doly-dev.github.io/util-helpers/module-type_isBoolean.html)

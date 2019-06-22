@@ -1,7 +1,7 @@
 import isEmail from './isEmail'
 import isIdCard from './isIdCard'
 import isMobile from './isMobile'
-import isPostcard from './isPostcode'
+import isPostcode from './isPostcode'
 import isQQ from './isQQ'
 import isTelephone from './isTelephone'
 import isVehicle from './isVehicle'
@@ -15,7 +15,7 @@ import isWX from './isWX'
  * @requires validator/isEmail
  * @requires validator/isIdCard
  * @requires validator/isMobile
- * @requires validator/isPostcard
+ * @requires validator/isPostcode
  * @requires validator/isQQ
  * @requires validator/isTelephone
  * @requires validator/isVehicle
@@ -25,7 +25,7 @@ export default {
     isEmail,
     isIdCard,
     isMobile,
-    isPostcard,
+    isPostcode,
     isQQ,
     isTelephone,
     isVehicle,
