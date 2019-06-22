@@ -95,8 +95,9 @@ import pattern from 'util-helpers/lib/pattern'
 - [query-string](https://www.npmjs.com/package/query-string) - URL解析、序列化
 - [js-cookie](https://www.npmjs.com/package/js-cookie) - 一个简单，轻量级的JavaScript API，用于处理cookie
 - [number-precision](https://www.npmjs.com/package/number-precision) - 使用javascript精确地执行加法，减法，乘法和除法运算
-- [moment](http://momentjs.cn/) - JavaScript 日期处理类库
-- [dayjs](https://github.com/iamkun/dayjs) - 一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样
+- [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期。
+- [dayjs](https://www.npmjs.com/package/dayjs) - 使用相同的现代API 快速2kB替代Moment.js
+- [axios](https://www.npmjs.com/package/axios) - 基于Promise的HTTP客户端，用于浏览器和node.js
 
 
 
