@@ -5,6 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npx mocha --require @babel/register --recursive",
+    "test:type": "npx mocha --require @babel/register --recursive test/type",
+    "test:validator": "npx mocha --require @babel/register --recursive test/validator",
+    "test:processor": "npx mocha --require @babel/register --recursive test/processor",
     "build": "npm run build:lib && npm run build:dist && npm run build:dist-development",
     "build:lib": "npx babel src --out-dir lib",
     "build:dist": "npx webpack --mode=production",

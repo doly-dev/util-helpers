@@ -28,9 +28,9 @@ yarn add util-helpers
 **示例**
 
 ```javascript
-import { pattern } from 'util-helpers'
+import { validator } from 'util-helpers'
 
-pattern.isPhone("13000000000") // => true
+validator.isMobile("13000000000") // => true
 ```
 
 **按需引入**
@@ -38,36 +38,32 @@ pattern.isPhone("13000000000") // => true
 该方式只加载用到的方法。
 
 ```javascript
-import pattern from 'util-helpers/lib/pattern'
+import validator from 'util-helpers/lib/validator'
 ```
 
 ## 文档
 
-- [formatDate](https://doly-dev.github.io/util-helpers/module-formatDate.html) 日期时间格式化
-- [formatMoney](https://doly-dev.github.io/util-helpers/module-formatMoney.html) 金额格式化
-- 银行卡格式化 `待开发`
-- 数字转中文 `待开发`
-- 数字转罗马数字 `待开发`
-- 身份证解析（地址、生日、性别、年龄） `待开发`
-- 脱敏 `待开发`
-- [pattern](https://doly-dev.github.io/util-helpers/module-pattern.html) 正则匹配
-    - [isPhone](https://doly-dev.github.io/util-helpers/module-pattern_isPhone.html) 手机号码
-    - 固定电话 `待开发`
-    - 400电话 `待开发`
-    - 邮政编码 `待开发`
-    - 中文 `待开发`
-    - 身份证 `待开发`
-    - 邮箱 `待开发`
+- [processor](https://doly-dev.github.io/util-helpers/module-processor.html) 数据处理
+    - [formatDate](https://doly-dev.github.io/util-helpers/module-formatDate.html) 日期时间格式化
+    - [formatMoney](https://doly-dev.github.io/util-helpers/module-formatMoney.html) 金额格式化
+    - 银行卡格式化 `待开发`
+    - 脱敏 `待开发`
+- [validator](https://doly-dev.github.io/util-helpers/module-validator.html) 数据验证
+    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) 手机号码
+    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) 固定电话
+    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator_isPostcode.html) 邮政编码
+    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator_isIdCard.html) 身份证号
+    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator_isEmail.html) 邮箱
+    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) QQ号
+    - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) 微信号
+    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) 车牌号
     - 银行卡 `待开发`
     - URL `待开发`
     - 密码强度 `待开发`
     - 护照 `待开发`
     - 港澳台通行证 `待开发`
     - 日期 `待开发`
-    - [isQQ](https://doly-dev.github.io/util-helpers/module-pattern_isQQ.html) QQ号
-    - 微信号 `待开发`
-    - 车牌号 `待开发`
-    - 十六进制颜色 `待开发`
+    - 中文 `待开发`
     - IPv4地址 `待开发`
 - [type](https://doly-dev.github.io/util-helpers/module-type.html) 类型检测
     - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html)
@@ -98,6 +94,8 @@ import pattern from 'util-helpers/lib/pattern'
 - [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期。
 - [dayjs](https://www.npmjs.com/package/dayjs) - 使用相同的现代API 快速2kB替代Moment.js
 - [axios](https://www.npmjs.com/package/axios) - 基于Promise的HTTP客户端，用于浏览器和node.js
+- [jsencrypt](https://www.npmjs.com/package/jsencrypt) - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库。
+- [crypto-js](https://www.npmjs.com/package/crypto-js) - 加密标准的JavaScript库。(AES/SHA256/MD5/SHA1...但没有RSA)
 
 
 
