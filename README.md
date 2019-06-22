@@ -43,20 +43,20 @@ import validator from 'util-helpers/lib/validator'
 
 ## 文档
 
-- [processor](https://doly-dev.github.io/util-helpers/module-processor.html) 数据处理
-    - [formatDate](https://doly-dev.github.io/util-helpers/module-formatDate.html) 日期时间格式化
-    - [formatMoney](https://doly-dev.github.io/util-helpers/module-formatMoney.html) 金额格式化
+- [processor](https://doly-dev.github.io/util-helpers/module-processor.html) - 数据处理
+    - [formatDate](https://doly-dev.github.io/util-helpers/module-processor_formatDate.html) - 日期时间格式化
+    - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor_formatMoney.html) - 金额格式化
     - 银行卡格式化 `待开发`
     - 脱敏 `待开发`
-- [validator](https://doly-dev.github.io/util-helpers/module-validator.html) 数据验证
-    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) 手机号码
-    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) 固定电话
-    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator_isPostcode.html) 邮政编码
-    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator_isIdCard.html) 身份证号
-    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator_isEmail.html) 邮箱
-    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) QQ号
-    - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) 微信号
-    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) 车牌号
+- [validator](https://doly-dev.github.io/util-helpers/module-validator.html) - 数据验证
+    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) - 手机号码
+    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) - 固定电话
+    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator_isPostcode.html) - 邮政编码
+    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator_isIdCard.html) - 身份证号
+    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator_isEmail.html) - 邮箱
+    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) - QQ号
+    - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) - 微信号
+    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
     - 银行卡 `待开发`
     - URL `待开发`
     - 密码强度 `待开发`
