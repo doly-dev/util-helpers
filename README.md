@@ -35,11 +35,37 @@ validator.isMobile("13000000000") // => true
 
 **按需引入**
 
-该方式只加载用到的方法。
+如果你使用 `babel`，可使用以下方式进行按需加载。
+
+方式一：指定模块文件
 
 ```javascript
 import validator from 'util-helpers/lib/validator'
 ```
+
+```javascript
+import isMobile from 'util-helpers/lib/validator/isMobile'
+```
+
+方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，目前只支持加载 `processor` `validator` 模块。
+
+如使用 [doly-cli](https://www.npmjs.com/package/doly-cli)，只需以下配置即可，
+
+```javascript
+extraBabelPlugins: [
+  ['import', { libraryName: 'util-helpers' }, 'util-helpers']
+]
+```
+
+然后跟示例一样写法
+
+```javascript
+import { validator } from 'util-helpers'
+
+validator.isMobile("13000000000") // => true
+```
+
+
 
 ## 文档
 

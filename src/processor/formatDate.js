@@ -30,9 +30,15 @@ function transformTimezone(date, zone) {
  * @example
  * 
  * const d1 = Date.now();
- * formatDate(d1); // => 2019-06-19 19:24:05
- * fotmatDate(d1, 'yyyy-MM-dd'); // => 2019-06-19
- * formatDate(d1, 'hh:mm'); // => 19:24
+ * 
+ * formatDate(d1);
+ * // => 2019-06-19 19:24:05
+ * 
+ * fotmatDate(d1, 'yyyy-MM-dd');
+ * // => 2019-06-19
+ * 
+ * formatDate(d1, 'hh:mm');
+ * // => 19:24
  * 
  */
 function formatDate(date = new Date(), format = 'yyyy-MM-dd hh:mm:ss', {
