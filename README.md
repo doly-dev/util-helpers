@@ -59,10 +59,9 @@ import validator from 'util-helpers/lib/validator'
     - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
     - URL `待开发`
     - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator_isBankCard.html) - 银行卡
-    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator_isSocialCreditCode.html) 统一社会信用代码
+    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator_isSocialCreditCode.html) - 统一社会信用代码
     - 密码强度 `待开发`
-    - 护照 `待开发`
-    - 港澳台通行证 `待开发`
+    - [isPassport](https://doly-dev.github.io/util-helpers/module-validator_isPassport.html) - 护照号
     - 日期 `待开发`
     - 中文 `待开发`
     - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4

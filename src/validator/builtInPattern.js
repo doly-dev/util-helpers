@@ -41,6 +41,9 @@ const patterns = {
 
     // 银行卡号正则 非0开头，15至19位数字
     bankCard: /^[1-9]\d{14,18}$/,
+
+    // 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
+    passport: /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i,
 }
 
 export default patterns;
