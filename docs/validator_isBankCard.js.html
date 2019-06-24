@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isMobile.js - util-helpers </title>
+    <title>validator/isBankCard.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isMobile.js</h1>
+    <h1 class="page-title">validator/isBankCard.js</h1>
     
 
     
@@ -59,26 +59,29 @@
             <pre class="prettyprint source linenums"><code>import check from './check'
 
 /**
- * 检测值是否为手机号码
+ * 检测值是否为银行卡号
  * 
- * @module validator/isMobile
+ * @module validator/isBankCard
  * @since 1.1.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为手机号码
- * @example 
+ * @returns {Boolean} 值是否为ipv4
+ * @example
  * 
- * isMobile('13000000000');
+ * isBankCard('6228480402564890018');
  * // => true
  *
- * isMobile('13000');
+ * isBankCard('6228480402564890');
+ * // => true
+ *
+ * isBankCard('123456789');
  * // => false
  * 
  */
-function isMobile(value) {
-    return check(value, 'mobile');
+function isBankCard(value) {
+    return check(value, 'bankCard');
 }
 
-export default isMobile;</code></pre>
+export default isBankCard;</code></pre>
         </article>
     </section>
 

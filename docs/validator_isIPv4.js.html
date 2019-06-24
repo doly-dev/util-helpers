@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isMobile.js - util-helpers </title>
+    <title>validator/isIPv4.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isMobile.js</h1>
+    <h1 class="page-title">validator/isIPv4.js</h1>
     
 
     
@@ -59,26 +59,32 @@
             <pre class="prettyprint source linenums"><code>import check from './check'
 
 /**
- * 检测值是否为手机号码
+ * 检测值是否为ipv4
  * 
- * @module validator/isMobile
+ * @module validator/isIPv4
  * @since 1.1.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为手机号码
- * @example 
+ * @returns {Boolean} 值是否为ipv4
+ * @example
  * 
- * isMobile('13000000000');
+ * isIPv4('192.168.1.1');
  * // => true
  *
- * isMobile('13000');
+ * isIPv4('255.255.255.255');
+ * // => true
+ *
+ * isIPv4('256.256.256.256');
+ * // => false
+ *
+ * isIPv4('0.0');
  * // => false
  * 
  */
-function isMobile(value) {
-    return check(value, 'mobile');
+function isIPv4(value) {
+    return check(value, 'ipv4');
 }
 
-export default isMobile;</code></pre>
+export default isIPv4;</code></pre>
         </article>
     </section>
 
