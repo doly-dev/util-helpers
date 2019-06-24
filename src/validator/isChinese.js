@@ -3,7 +3,6 @@
  * 检测值是否为中文
  * 
  * @module validator/isChinese
- * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国护照#个人资料页|中华人民共和国护照#个人资料页}
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
