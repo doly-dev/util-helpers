@@ -46,8 +46,8 @@ import validator from 'util-helpers/lib/validator'
 - [processor](https://doly-dev.github.io/util-helpers/module-processor.html) - 数据处理
     - [formatDate](https://doly-dev.github.io/util-helpers/module-processor_formatDate.html) - 日期时间格式化
     - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor_formatMoney.html) - 金额格式化
-    - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor_replaceChar.html) 替换字符，应用场景如：脱敏
-    - 银行卡格式化 `待开发`
+    - [formatBankCard](https://doly-dev.github.io/util-helpers/module-processor_formatBankCard.html) - 银行卡格式化
+    - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor_replaceChar.html) - 替换字符，应用场景如：脱敏
 - [validator](https://doly-dev.github.io/util-helpers/module-validator.html) - 数据验证
     - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) - 手机号码
     - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) - 固定电话
@@ -57,9 +57,9 @@ import validator from 'util-helpers/lib/validator'
     - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) - QQ号
     - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) - 微信号
     - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
+    - URL `待开发`
     - 银行卡 `待开发`
     - 统一社会信用代码 `待开发`
-    - URL `待开发`
     - 密码强度 `待开发`
     - 护照 `待开发`
     - 港澳台通行证 `待开发`

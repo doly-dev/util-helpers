@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isWX - util-helpers </title>
+    <title>processor/replaceChar - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isWX</h1>
+    <h1 class="page-title">processor/replaceChar</h1>
     
 
     
@@ -69,7 +69,7 @@
         <div class="container-overview">
         
             
-                <div class="description">检测值是否为微信号</div>
+                <div class="description">替换字符，应用场景如：脱敏</div>
             
 
             
@@ -83,7 +83,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="validator_isWX.js.html">validator/isWX.js</a>, <a href="validator_isWX.js.html#line3">line 3</a>
+        <a href="processor_replaceChar.js.html">processor/replaceChar.js</a>, <a href="processor_replaceChar.js.html#line2">line 2</a>
     </li></ul></dd>
     
 
@@ -135,11 +135,30 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isWX('a12345');
-// => true
+    <pre class="prettyprint"><code>// 手机号
+replaceChar('13000000000');
+// => 130****0000
 
-isWX('123');
-// => false</code></pre>
+// 身份证
+replaceChar('130701199310302288');
+// => 130***********2288
+
+// 邮箱
+const email = '12345@qq.com'
+replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4});
+// => 12****@qq.com
+
+// 银行卡号
+replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4});
+// => ****0018
+
+// 带格式的银行卡号
+replaceChar('6228 4804 0256 4890 018', {start: 4, end: -4, exclude: ' '});
+// => 6228 **** **** **** 018
+
+// 用户名
+replaceChar('林某某', {start: 1, end: -1, repeat: 1});
+// => 林*某</code></pre>
 
 
 
@@ -157,6 +176,8 @@ isWX('123');
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -169,7 +190,7 @@ isWX('123');
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>str</code></td>
             
 
             <td class="type">
@@ -182,10 +203,272 @@ isWX('123');
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">要检测的值</td>
+            <td class="description last">要处理的字符串</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">配置项
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>3</code>
+                
+                </td>
+            
+
+            <td class="description last">开始位置</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>end</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>-4</code>
+                
+                </td>
+            
+
+            <td class="description last">结束位置</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'*'</code>
+                
+                </td>
+            
+
+            <td class="description last">替换字符</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>repeat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">替换字符的重复次数，默认为替换内容长度，可设置为固定值</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>exclude</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">排除字符，如果指定排除项，repeat设置无效</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -207,28 +490,6 @@ isWX('123');
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    值是否为微信号
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 

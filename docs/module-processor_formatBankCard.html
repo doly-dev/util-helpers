@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>type/isObject - util-helpers </title>
+    <title>processor/formatBankCard - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">type/isObject</h1>
+    <h1 class="page-title">processor/formatBankCard</h1>
     
 
     
@@ -69,7 +69,7 @@
         <div class="container-overview">
         
             
-                <div class="description">检查值是否为Object</div>
+                <div class="description">格式化银行卡号</div>
             
 
             
@@ -83,7 +83,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="type_isObject.js.html">type/isObject.js</a>, <a href="type_isObject.js.html#line3">line 3</a>
+        <a href="processor_formatBankCard.js.html">processor/formatBankCard.js</a>, <a href="processor_formatBankCard.js.html#line2">line 2</a>
     </li></ul></dd>
     
 
@@ -135,14 +135,17 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isObject({})
-// => true
+    <pre class="prettyprint"><code>// 19位银行卡
+formatBankCard('6228480402564890018');
+// => 6228 4804 0256 4890 018
 
-isObject([1,2,3])
-// => true
+// 16位银行卡
+formatBankCard('6228480402564890');
+// => 6228 4804 0256 4890
 
-isObject(null)
-// => false</code></pre>
+// 16位银行卡，"-"间隔
+formatBankCard('6228480402564890', {char: '-'});
+// => 6228-4804-0256-4890</code></pre>
 
 
 
@@ -160,6 +163,8 @@ isObject(null)
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -172,23 +177,172 @@ isObject(null)
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>str</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">检查值</td>
+            <td class="description last">要处理的字符串</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">配置项
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>' '</code>
+                
+                </td>
+            
+
+            <td class="description last">间隔字符</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>length</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>4</code>
+                
+                </td>
+            
+
+            <td class="description last">间隔长度</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -210,28 +364,6 @@ isObject(null)
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    是否为Object
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 

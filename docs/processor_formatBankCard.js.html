@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isPostcode.js - util-helpers </title>
+    <title>processor/formatBankCard.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isPostcode.js</h1>
+    <h1 class="page-title">processor/formatBankCard.js</h1>
     
 
     
@@ -56,29 +56,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import check from './check'
-
+            <pre class="prettyprint source linenums"><code>
 /**
- * 检测值是否为邮政编码
+ * 格式化银行卡号
  * 
- * @module validator/isPostcode
+ * @module processor/formatBankCard
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为邮政编码
- * @example 
- * 
- * isPostcode('101111');
- * // => true
+ * @param {String} str 要处理的字符串
+ * @param {Object} [options] 配置项
+ * @param {Number} [options.char=' '] 间隔字符
+ * @param {Number} [options.length=4] 间隔长度
+ * @example
  *
- * isPostcode('123');
- * // => false
+ * // 19位银行卡
+ * formatBankCard('6228480402564890018');
+ * // => 6228 4804 0256 4890 018
+ * 
+ * // 16位银行卡
+ * formatBankCard('6228480402564890');
+ * // => 6228 4804 0256 4890
+ * 
+ * // 16位银行卡，"-"间隔
+ * formatBankCard('6228480402564890', {char: '-'});
+ * // => 6228-4804-0256-4890
  * 
  */
-function isPostcode(value) {
-    return check(value, 'postcode');
+function formatBankCard(bankCardNo = '', {
+    char = ' ',
+    length = 4
+} = {}) {
+    const reg = new RegExp(`(\\d{${length}})`, 'g');
+
+    const needRemoveLastChar = bankCardNo.length % length === 0;
+
+    const str = bankCardNo.replace(reg, `$1${char}`);
+
+    return needRemoveLastChar ? str.substr(0, str.length - 1) : str;
 }
 
-export default isPostcode;</code></pre>
+export default formatBankCard</code></pre>
         </article>
     </section>
 
