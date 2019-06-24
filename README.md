@@ -58,33 +58,14 @@ import validator from 'util-helpers/lib/validator'
     - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) - 微信号
     - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
     - URL `待开发`
-    - 银行卡 `待开发`
+    - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator_isBankCard.html) - 银行卡
     - 统一社会信用代码 `待开发`
     - 密码强度 `待开发`
     - 护照 `待开发`
     - 港澳台通行证 `待开发`
     - 日期 `待开发`
     - 中文 `待开发`
-    - IPv4地址 `待开发`
-- [type](https://doly-dev.github.io/util-helpers/module-type.html) - 类型检测
-    - [isArguments](https://doly-dev.github.io/util-helpers/module-type_isArguments.html)
-    - [isArray](https://doly-dev.github.io/util-helpers/module-type_isArray.html)
-    - [isBoolean](https://doly-dev.github.io/util-helpers/module-type_isBoolean.html)
-    - [isDate](https://doly-dev.github.io/util-helpers/module-type_isDate.html)
-    - [isError](https://doly-dev.github.io/util-helpers/module-type_isError.html)
-    - [isFunction](https://doly-dev.github.io/util-helpers/module-type_isFunction.html)
-    - [isNaN](https://doly-dev.github.io/util-helpers/module-type_isNaN.html)
-    - [isNumber](https://doly-dev.github.io/util-helpers/module-type_isNumber.html)
-    - [isNull](https://doly-dev.github.io/util-helpers/module-type_isNull.html)
-    - [isObject](https://doly-dev.github.io/util-helpers/module-type_isObject.html)
-    - [isRegExp](https://doly-dev.github.io/util-helpers/module-type_isRegExp.html)
-    - [isString](https://doly-dev.github.io/util-helpers/module-type_isString.html)
-    - [isSymbol](https://doly-dev.github.io/util-helpers/module-type_isSymbol.html)
-    - [isMap](https://doly-dev.github.io/util-helpers/module-type_isMap.html)
-    - [isWeakMap](https://doly-dev.github.io/util-helpers/module-type_isWeakMap.html)
-    - [isSet](https://doly-dev.github.io/util-helpers/module-type_isSet.html)
-    - [isWeakSet](https://doly-dev.github.io/util-helpers/module-type_isWeakSet.html)
-    - [isUndefined](https://doly-dev.github.io/util-helpers/module-type_isUndefined.html)
+    - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4
 
 ## 精选第三方工具库
 

@@ -6,6 +6,8 @@ import isQQ from './isQQ'
 import isTelephone from './isTelephone'
 import isVehicle from './isVehicle'
 import isWX from './isWX'
+import isIPv4 from './isIPv4'
+import isBankCard from './isBankCard'
 
 /**
  * 数据验证
@@ -20,6 +22,8 @@ import isWX from './isWX'
  * @requires validator/isTelephone
  * @requires validator/isVehicle
  * @requires validator/isWX
+ * @requires validator/isIPv4
+ * @requires validator/isBankCard
 */
 export default {
     isEmail,
@@ -29,5 +33,7 @@ export default {
     isQQ,
     isTelephone,
     isVehicle,
-    isWX
+    isWX,
+    isIPv4,
+    isBankCard
 };

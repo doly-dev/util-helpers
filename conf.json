@@ -3,7 +3,10 @@
         "allowUnknownTags": false
     },
     "source": {
-        "exclude": ["./src/common"],
+        "exclude": [
+            "./src/common",
+            "./src/type"
+        ],
         "includePattern": ".+\\.js(doc)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
