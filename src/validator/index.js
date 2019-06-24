@@ -9,6 +9,8 @@ import isWX from './isWX'
 import isIPv4 from './isIPv4'
 import isBankCard from './isBankCard'
 import isSocialCreditCode from './isSocialCreditCode'
+import isPassport from './isPassport'
+import isChinese from './isChinese'
 
 /**
  * 数据验证
@@ -26,6 +28,8 @@ import isSocialCreditCode from './isSocialCreditCode'
  * @requires validator/isIPv4
  * @requires validator/isBankCard
  * @requires validator/isSocialCreditCode
+ * @requires validator/isPassport
+ * @requires validator/isChinese
 */
 export default {
     isEmail,
@@ -38,5 +42,7 @@ export default {
     isWX,
     isIPv4,
     isBankCard,
-    isSocialCreditCode
+    isSocialCreditCode,
+    isPassport,
+    isChinese
 };

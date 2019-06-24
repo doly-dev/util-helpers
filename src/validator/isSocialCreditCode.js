@@ -57,7 +57,7 @@ function sumCheckCode(preCode) {
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 是否开启宽松模式。如果为true，不校验校验位
+ * @param {Boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
  * @returns {Boolean} 值是否为统一社会信用代码
  * @example
  * 

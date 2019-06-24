@@ -63,7 +63,7 @@ import validator from 'util-helpers/lib/validator'
     - 密码强度 `待开发`
     - [isPassport](https://doly-dev.github.io/util-helpers/module-validator_isPassport.html) - 护照号
     - 日期 `待开发`
-    - 中文 `待开发`
+    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator_isChinese.html) 中文
     - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4
 
 ## 精选第三方工具库
