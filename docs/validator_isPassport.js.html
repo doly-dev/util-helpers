@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isVehicle.js - util-helpers </title>
+    <title>validator/isPassport.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isVehicle.js</h1>
+    <h1 class="page-title">validator/isPassport.js</h1>
     
 
     
@@ -59,26 +59,28 @@
             <pre class="prettyprint source linenums"><code>import check from './check'
 
 /**
- * 检测值是否为车牌号
+ * 检测值是否为护照号
+ * 支持普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
  * 
- * @module validator/isVehicle
+ * @module validator/isPassport
+ * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国护照#个人资料页|中华人民共和国护照#个人资料页}
  * @since 1.1.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为车牌号
- * @example 
+ * @returns {Boolean} 值是否为护照号
+ * @example
  * 
- * isVehicle('京L88888');
+ * isPassport('E12345678');
  * // => true
  *
- * isVehicle('333333');
+ * isPassport('abc');
  * // => false
  * 
  */
-function isVehicle(value) {
-    return check(value, 'vehicle');
+function isPassport(value) {
+    return check(value, 'passport');
 }
 
-export default isVehicle;</code></pre>
+export default isPassport;</code></pre>
         </article>
     </section>
 

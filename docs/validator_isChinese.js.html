@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isVehicle.js - util-helpers </title>
+    <title>validator/isChinese.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isVehicle.js</h1>
+    <h1 class="page-title">validator/isChinese.js</h1>
     
 
     
@@ -56,29 +56,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import check from './check'
-
+            <pre class="prettyprint source linenums"><code>
 /**
- * 检测值是否为车牌号
+ * 检测值是否为中文
  * 
- * @module validator/isVehicle
+ * @module validator/isChinese
+ * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国护照#个人资料页|中华人民共和国护照#个人资料页}
  * @since 1.1.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为车牌号
- * @example 
+ * @param {Object} [options] 配置项
+ * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
+ * @returns {Boolean} 值是否为中文
+ * @example
  * 
- * isVehicle('京L88888');
+ * isChinese('林某某');
  * // => true
  *
- * isVehicle('333333');
+ * isChinese('林A');
  * // => false
+ *
+ * // 宽松模式，只要包含中文即为true
+ * isChinese('林A', {loose: true});
+ * // => true
  * 
  */
-function isVehicle(value) {
-    return check(value, 'vehicle');
+function isChinese(value, {
+    loose = false
+} = {}) {
+    const reg = new RegExp(`${loose ? '' : '^'}[\\u4e00-\\u9fa5]+${loose ? '' : '$'}`);
+
+    return reg.test(value);
 }
 
-export default isVehicle;</code></pre>
+export default isChinese;</code></pre>
         </article>
     </section>
 

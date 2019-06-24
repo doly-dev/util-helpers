@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isVehicle.js - util-helpers </title>
+    <title>validator/isPassport - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,41 +46,227 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isVehicle.js</h1>
+    <h1 class="page-title">validator/isPassport</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import check from './check'
+        
+            
+        
+    
+</header>
 
-/**
- * 检测值是否为车牌号
- * 
- * @module validator/isVehicle
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为车牌号
- * @example 
- * 
- * isVehicle('京L88888');
- * // => true
- *
- * isVehicle('333333');
- * // => false
- * 
- */
-function isVehicle(value) {
-    return check(value, 'vehicle');
-}
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">检测值是否为护照号
+支持普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)</div>
+            
 
-export default isVehicle;</code></pre>
-        </article>
-    </section>
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="validator_isPassport.js.html">validator/isPassport.js</a>, <a href="validator_isPassport.js.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E6%8A%A4%E7%85%A7#%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99%E9%A1%B5">中华人民共和国护照#个人资料页</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>isPassport('E12345678');
+// => true
+
+isPassport('abc');
+// => false</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">要检测的值</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    值是否为护照号
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

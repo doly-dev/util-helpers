@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>validator/isTelephone - util-helpers </title>
+    <title>validator/isChinese - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validator/isTelephone</h1>
+    <h1 class="page-title">validator/isChinese</h1>
     
 
     
@@ -69,7 +69,7 @@
         <div class="container-overview">
         
             
-                <div class="description">检测值是否为固定电话</div>
+                <div class="description">检测值是否为中文</div>
             
 
             
@@ -83,7 +83,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="validator_isTelephone.js.html">validator/isTelephone.js</a>, <a href="validator_isTelephone.js.html#line3">line 3</a>
+        <a href="validator_isChinese.js.html">validator/isChinese.js</a>, <a href="validator_isChinese.js.html#line2">line 2</a>
     </li></ul></dd>
     
 
@@ -117,6 +117,13 @@
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E6%8A%A4%E7%85%A7#%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%96%99%E9%A1%B5">中华人民共和国护照#个人资料页</a></li>
+        </ul>
+    </dd>
+    
 
     
 </dl>
@@ -135,17 +142,15 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isTelephone('22033212');
+    <pre class="prettyprint"><code>isChinese('林某某');
 // => true
 
-isTelephone('021-22033212');
-// => true
+isChinese('林A');
+// => false
 
-isTelephone('021-22033212-123');
-// => true
-
-isTelephone('13000000000');
-// => false</code></pre>
+// 宽松模式，只要包含中文即为true
+isChinese('林A', {loose: true});
+// => true</code></pre>
 
 
 
@@ -162,6 +167,8 @@ isTelephone('13000000000');
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -188,10 +195,120 @@ isTelephone('13000000000');
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last">要检测的值</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">配置项
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>loose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">宽松模式。如果为true，只要包含中文即为true</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -217,7 +334,7 @@ isTelephone('13000000000');
 
         
 <div class="param-desc">
-    值是否为固定电话
+    值是否为中文
 </div>
 
 
