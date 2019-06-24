@@ -57,12 +57,10 @@ import validator from 'util-helpers/lib/validator'
     - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) - QQ号
     - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) - 微信号
     - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
-    - URL `待开发`
     - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator_isBankCard.html) - 银行卡
     - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator_isSocialCreditCode.html) - 统一社会信用代码
     - [isPassword](https://doly-dev.github.io/util-helpers/module-validator_isPassword.html) 密码强度
     - [isPassport](https://doly-dev.github.io/util-helpers/module-validator_isPassport.html) - 护照号
-    - 日期 `待开发`
     - [isChinese](https://doly-dev.github.io/util-helpers/module-validator_isChinese.html) - 中文
     - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4
 
