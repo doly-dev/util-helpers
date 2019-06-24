@@ -19,7 +19,7 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * @example
  *
  * // 整数
- * formatMoney('1000');  // => 1000.00
+ * formatMoney('1000');  // => 1,000.00
  *
  * // 小数（默认保留2位小数）
  * formatMoney('3000.03');  // => 3,000.03
