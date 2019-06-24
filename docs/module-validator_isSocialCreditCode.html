@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>processor/formatMoney - util-helpers </title>
+    <title>validator/isSocialCreditCode - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">processor/formatMoney</h1>
+    <h1 class="page-title">validator/isSocialCreditCode</h1>
     
 
     
@@ -69,7 +69,7 @@
         <div class="container-overview">
         
             
-                <div class="description">格式化金额</div>
+                <div class="description">检测值是否为统一社会信用代码</div>
             
 
             
@@ -83,7 +83,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="processor_formatMoney.js.html">processor/formatMoney.js</a>, <a href="processor_formatMoney.js.html#line7">line 7</a>
+        <a href="validator_isSocialCreditCode.js.html">validator/isSocialCreditCode.js</a>, <a href="validator_isSocialCreditCode.js.html#line52">line 52</a>
     </li></ul></dd>
     
 
@@ -117,6 +117,13 @@
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://zh.wikisource.org/zh-hans/GB_32100-2015_%E6%B3%95%E4%BA%BA%E5%92%8C%E5%85%B6%E4%BB%96%E7%BB%84%E7%BB%87%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A0%81%E8%A7%84%E5%88%99">GB 32100-2015 法人和其他组织统一社会信用代码编码规则</a></li>
+        </ul>
+    </dd>
+    
 
     
 </dl>
@@ -135,10 +142,15 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const amount = '1000';
+    <pre class="prettyprint"><code>isSocialCreditCode('91350100M000100Y4A3');
+// => true
 
-formatMoney(amount);
-// => 1000.00</code></pre>
+isSocialCreditCode('91350100M000100Y4AB');
+// => false
+
+// 宽松模式，不校验校验位。所以也可以通过
+isSocialCreditCode('91350100M000100Y4AB', {loose: true});
+// => true</code></pre>
 
 
 
@@ -170,16 +182,13 @@ formatMoney(amount);
 
         <tr>
             
-                <td class="name"><code>num</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">String</span>
-|
-
-<span class="param-type">Number</span>
 
 
             
@@ -197,7 +206,7 @@ formatMoney(amount);
 
             
 
-            <td class="description last">需转换金额 (最大：9007199254740991 最小： -9007199254740991 )</td>
+            <td class="description last">要检测的值</td>
         </tr>
 
     
@@ -230,7 +239,7 @@ formatMoney(amount);
 
             
 
-            <td class="description last">金额格式化配置
+            <td class="description last">配置项
                 <h6>Properties</h6>
                 
 
@@ -260,16 +269,13 @@ formatMoney(amount);
 
         <tr>
             
-                <td class="name"><code>precision</code></td>
+                <td class="name"><code>loose</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Number</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -290,125 +296,12 @@ formatMoney(amount);
             
                 <td class="default">
                 
-                </td>
-            
-
-            <td class="description last">保留位数 （最高：10位）</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>symbol</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
+                    <code>false</code>
                 
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">货币符号</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>thousand</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>,</code>
-                
-                </td>
-            
-
-            <td class="description last">千分位符号</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>decimal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>.</code>
-                
-                </td>
-            
-
-            <td class="description last">小数位符号</td>
+            <td class="description last">是否开启宽松模式。如果为true，不校验校验位</td>
         </tr>
 
     
@@ -441,7 +334,7 @@ formatMoney(amount);
 
         
 <div class="param-desc">
-    格式化的金额
+    值是否为统一社会信用代码
 </div>
 
 
@@ -452,7 +345,7 @@ formatMoney(amount);
     </dt>
     <dd>
         
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
     </dd>
