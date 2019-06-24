@@ -11,6 +11,7 @@ import isBankCard from './isBankCard'
 import isSocialCreditCode from './isSocialCreditCode'
 import isPassport from './isPassport'
 import isChinese from './isChinese'
+import isPassword from './isPassword'
 
 /**
  * 数据验证
@@ -30,6 +31,7 @@ import isChinese from './isChinese'
  * @requires validator/isSocialCreditCode
  * @requires validator/isPassport
  * @requires validator/isChinese
+ * @requires validator/isPassword
 */
 export default {
     isEmail,
@@ -44,5 +46,6 @@ export default {
     isBankCard,
     isSocialCreditCode,
     isPassport,
-    isChinese
+    isChinese,
+    isPassword
 };

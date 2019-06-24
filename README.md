@@ -60,10 +60,10 @@ import validator from 'util-helpers/lib/validator'
     - URL `待开发`
     - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator_isBankCard.html) - 银行卡
     - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator_isSocialCreditCode.html) - 统一社会信用代码
-    - 密码强度 `待开发`
+    - [isPassword](https://doly-dev.github.io/util-helpers/module-validator_isPassword.html) 密码强度
     - [isPassport](https://doly-dev.github.io/util-helpers/module-validator_isPassport.html) - 护照号
     - 日期 `待开发`
-    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator_isChinese.html) 中文
+    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator_isChinese.html) - 中文
     - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4
 
 ## 精选第三方工具库
