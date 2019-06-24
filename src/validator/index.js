@@ -8,6 +8,7 @@ import isVehicle from './isVehicle'
 import isWX from './isWX'
 import isIPv4 from './isIPv4'
 import isBankCard from './isBankCard'
+import isSocialCreditCode from './isSocialCreditCode'
 
 /**
  * 数据验证
@@ -24,6 +25,7 @@ import isBankCard from './isBankCard'
  * @requires validator/isWX
  * @requires validator/isIPv4
  * @requires validator/isBankCard
+ * @requires validator/isSocialCreditCode
 */
 export default {
     isEmail,
@@ -35,5 +37,6 @@ export default {
     isVehicle,
     isWX,
     isIPv4,
-    isBankCard
+    isBankCard,
+    isSocialCreditCode
 };

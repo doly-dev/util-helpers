@@ -6,7 +6,7 @@ import check from './check'
  * @module validator/isBankCard
  * @since 1.1.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为ipv4
+ * @returns {Boolean} 值是否为银行卡号
  * @example
  * 
  * isBankCard('6228480402564890018');
