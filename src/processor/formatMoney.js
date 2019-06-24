@@ -18,10 +18,29 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * @returns { String } 格式化的金额
  * @example
  *
- * const amount = '1000';
+ * // 整数
+ * formatMoney('1000');  // => 1000.00
  *
- * formatMoney(amount);
- * // => 1000.00
+ * // 小数（默认保留2位小数）
+ * formatMoney('3000.03');  // => 3,000.03
+ *
+ * // 保留4位小数
+ * formatMoney('3000.0300', { precision: 4 });  // => 3,000.03
+ *
+ * // 保留10位小数
+ * formatMoney('1500.2', { precision: 10 });  // => 1,500.2000000000
+ *
+ * // 保留10位小数
+ * formatMoney('1500.2');  // => 1,500.2000000000
+ *
+ * // 单位符号
+ * formatMoney(1000.00, { symbol: '$' }); // => $1,000.00
+ *
+ * // 千位分割符
+ * formatMoney(1000.00, { thousand: '|' }); // => 1|000.00
+ *
+ * // 小数位分割符
+ * formatMoney(1000.00, { thousand: '&' }); // => 1,000&00
  *
  */
 const formatMoney = (num, { precision, symbol, thousand = ',', decimal = '.' } = {}) => {
