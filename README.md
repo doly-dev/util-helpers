@@ -53,7 +53,7 @@ import isMobile from 'util-helpers/lib/validator/isMobile'
 
 ```javascript
 extraBabelPlugins: [
-  ['import', { libraryName: 'util-helpers' }, 'util-helpers']
+  ['import', { libraryName: 'util-helpers', camel2DashComponentName: false }, 'util-helpers']
 ]
 ```
 
