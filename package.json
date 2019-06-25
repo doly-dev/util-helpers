@@ -1,6 +1,6 @@
 {
   "name": "util-helpers",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "build:dist-development": "npx webpack --mode=development",
     "build:lib-development": "rm -rf lib && npx babel src --out-dir lib --source-maps inline",
     "doc": "rm -rf docs && npx jsdoc -c conf.json src/ README.md -d docs -r",
-    "pub": "npm run build && npm publish"
+    "pub": "npm run build && npm run generate && npm publish",
+    "generate": "node generate.js"
   },
   "repository": {
     "type": "git",

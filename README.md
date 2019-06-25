@@ -41,28 +41,26 @@ validator.isMobile("13000000000") // => true
 
 ```javascript
 import validator from 'util-helpers/lib/validator'
-```
-
-```javascript
 import isMobile from 'util-helpers/lib/validator/isMobile'
 ```
 
-方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，目前只支持加载 `processor` `validator` 模块。
-
-如使用 [doly-cli](https://www.npmjs.com/package/doly-cli)，只需以下配置即可，
+方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` 的 `plugin` 中添加以下配置
 
 ```javascript
-extraBabelPlugins: [
-  ['import', { libraryName: 'util-helpers', camel2DashComponentName: false }, 'util-helpers']
-]
+['import', { 
+  libraryName: 'util-helpers', 
+  camel2DashComponentName: false,
+  customName: require('path').join(__dirname, './node_modules/util-helpers/module-config.js')
+}, 'util-helpers']
 ```
 
 然后跟示例一样写法
 
 ```javascript
-import { validator } from 'util-helpers'
+import { isMobile, formatMoney } from 'util-helpers'
 
-validator.isMobile("13000000000") // => true
+isMobile("13000000000") // => true
+formatMoney('1000') // => 1,000.00
 ```
 
 

@@ -14,3 +14,4 @@ test/
 src/
 docs/
 examples/
+generate.js

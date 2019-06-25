@@ -3,3 +3,4 @@ lib/
 .idea
 dist/
 .vscode
+module-config.js
