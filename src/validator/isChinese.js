@@ -21,11 +21,70 @@
  * // => true
  * 
  */
+const chineseDictionary = {
+  // 基本汉字
+  chineseBasic: '[\u4e00-\u9fa5]',
+
+  // 基本汉字补充
+
+  chineseExtend: '[\u9ea6-\u9fef]',
+
+  // 汉字扩展A
+
+  chineseExtendA: '[\u3400-\u4DB5]',
+
+  // 汉字扩展B
+
+  chineseExtendB: '[\u{20000}-\u{2A6D6}]',
+
+  // 汉字扩展C
+
+  chineseExtendC: '[\u{2A700}-\u{2B734}]',
+
+  // 汉字扩展D
+
+  chineseExtendD: '[\u{2B740}-\u{2B81D}]',
+
+  // 汉字扩展E
+
+  chineseExtendE: '[\u{2B820}-\u{2CEA1}]',
+
+  // 汉字扩展F
+
+  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]',
+};
+
+let looseChineseRegExp = chineseDictionary.chineseBasic + '+';
+
+let chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
+
+const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
+
+if(supportRegExpUnicode){
+  looseChineseRegExp = '(?:'+
+                        chineseDictionary.chineseBasic + '|' +
+                        chineseDictionary.chineseExtend + '|' +
+                        chineseDictionary.chineseExtendA + '|' +
+                        chineseDictionary.chineseExtendB + '|' +
+                        chineseDictionary.chineseExtendC + '|' +
+                        chineseDictionary.chineseExtendD + '|' +
+                        chineseDictionary.chineseExtendE + '|' +
+                        chineseDictionary.chineseExtendF + ')+';
+  chineseRegExp = '^(?:'+
+                    chineseDictionary.chineseBasic + '|' +
+                    chineseDictionary.chineseExtend + '|' +
+                    chineseDictionary.chineseExtendA + '|' +
+                    chineseDictionary.chineseExtendB + '|' +
+                    chineseDictionary.chineseExtendC + '|' +
+                    chineseDictionary.chineseExtendD + '|' +
+                    chineseDictionary.chineseExtendE + '|' +
+                    chineseDictionary.chineseExtendF + ')+$';
+}
+
 function isChinese(value, {
     loose = false
 } = {}) {
-    const reg = new RegExp(`${loose ? '' : '^'}[\\u4e00-\\u9fa5]+${loose ? '' : '$'}`);
-
+    const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : null);
     return reg.test(value);
 }
 
