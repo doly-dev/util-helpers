@@ -2,6 +2,7 @@ import formatDate from './formatDate'
 import formatMoney from './formatMoney'
 import replaceChar from './replaceChar'
 import formatBankCard from './formatBankCard'
+import numberToChinese from './numberToChinese'
 
 /**
  * 数据处理
@@ -12,10 +13,12 @@ import formatBankCard from './formatBankCard'
  * @requires processor/formatMoney
  * @requires processor/formatBankCard
  * @requires processor/replaceChar
+ * @requires processor/numberToChinese
 */
 export default {
     formatDate,
     formatMoney,
     formatBankCard,
-    replaceChar
+    replaceChar,
+    numberToChinese
 };
