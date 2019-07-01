@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a></li><li><a href="module-processor_formatBankCard.html">processor/formatBankCard</a></li><li><a href="module-processor_formatDate.html">processor/formatDate</a></li><li><a href="module-processor_formatMoney.html">processor/formatMoney</a></li><li><a href="module-processor_replaceChar.html">processor/replaceChar</a></li><li><a href="module-validator.html">validator</a></li><li><a href="module-validator_isBankCard.html">validator/isBankCard</a></li><li><a href="module-validator_isChinese.html">validator/isChinese</a></li><li><a href="module-validator_isEmail.html">validator/isEmail</a></li><li><a href="module-validator_isIdCard.html">validator/isIdCard</a></li><li><a href="module-validator_isIPv4.html">validator/isIPv4</a></li><li><a href="module-validator_isMobile.html">validator/isMobile</a></li><li><a href="module-validator_isPassport.html">validator/isPassport</a></li><li><a href="module-validator_isPassword.html">validator/isPassword</a></li><li><a href="module-validator_isPostcode.html">validator/isPostcode</a></li><li><a href="module-validator_isQQ.html">validator/isQQ</a></li><li><a href="module-validator_isSocialCreditCode.html">validator/isSocialCreditCode</a></li><li><a href="module-validator_isTelephone.html">validator/isTelephone</a></li><li><a href="module-validator_isVehicle.html">validator/isVehicle</a></li><li><a href="module-validator_isWX.html">validator/isWX</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a></li><li><a href="module-processor_formatBankCard.html">processor/formatBankCard</a></li><li><a href="module-processor_formatDate.html">processor/formatDate</a></li><li><a href="module-processor_formatMoney.html">processor/formatMoney</a></li><li><a href="module-processor_numberToChinese.html">processor/numberToChinese</a></li><li><a href="module-processor_replaceChar.html">processor/replaceChar</a></li><li><a href="module-validator.html">validator</a></li><li><a href="module-validator_isBankCard.html">validator/isBankCard</a></li><li><a href="module-validator_isChinese.html">validator/isChinese</a></li><li><a href="module-validator_isEmail.html">validator/isEmail</a></li><li><a href="module-validator_isIdCard.html">validator/isIdCard</a></li><li><a href="module-validator_isIPv4.html">validator/isIPv4</a></li><li><a href="module-validator_isMobile.html">validator/isMobile</a></li><li><a href="module-validator_isPassport.html">validator/isPassport</a></li><li><a href="module-validator_isPassword.html">validator/isPassword</a></li><li><a href="module-validator_isPostcode.html">validator/isPostcode</a></li><li><a href="module-validator_isQQ.html">validator/isQQ</a></li><li><a href="module-validator_isSocialCreditCode.html">validator/isSocialCreditCode</a></li><li><a href="module-validator_isTelephone.html">validator/isTelephone</a></li><li><a href="module-validator_isVehicle.html">validator/isVehicle</a></li><li><a href="module-validator_isWX.html">validator/isWX</a></li></ul>
 </nav>
 
 <div id="main">
@@ -61,6 +61,7 @@
  * 检测值是否为中文
  * 
  * @module validator/isChinese
+ * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
@@ -77,13 +78,68 @@
  * // 宽松模式，只要包含中文即为true
  * isChinese('林A', {loose: true});
  * // => true
+ *
+ * isChinese('A林A', {loose: true});
+ * // => true
  * 
  */
+const chineseDictionary = {
+  // 基本汉字
+  chineseBasic: '[\u4e00-\u9fa5]',
+
+  // 基本汉字补充
+  chineseExtend: '[\u9ea6-\u9fef]',
+
+  // 汉字扩展A
+  chineseExtendA: '[\u3400-\u4DB5]',
+
+  // 汉字扩展B
+  chineseExtendB: '[\u{20000}-\u{2A6D6}]',
+
+  // 汉字扩展C
+  chineseExtendC: '[\u{2A700}-\u{2B734}]',
+
+  // 汉字扩展D
+  chineseExtendD: '[\u{2B740}-\u{2B81D}]',
+
+  // 汉字扩展E
+  chineseExtendE: '[\u{2B820}-\u{2CEA1}]',
+
+  // 汉字扩展F
+  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]',
+};
+
+let looseChineseRegExp = chineseDictionary.chineseBasic + '+';
+
+let chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
+
+const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
+
+if(supportRegExpUnicode){
+  looseChineseRegExp = '(?:'+
+                        chineseDictionary.chineseBasic + '|' +
+                        chineseDictionary.chineseExtend + '|' +
+                        chineseDictionary.chineseExtendA + '|' +
+                        chineseDictionary.chineseExtendB + '|' +
+                        chineseDictionary.chineseExtendC + '|' +
+                        chineseDictionary.chineseExtendD + '|' +
+                        chineseDictionary.chineseExtendE + '|' +
+                        chineseDictionary.chineseExtendF + ')+';
+  chineseRegExp = '^(?:'+
+                    chineseDictionary.chineseBasic + '|' +
+                    chineseDictionary.chineseExtend + '|' +
+                    chineseDictionary.chineseExtendA + '|' +
+                    chineseDictionary.chineseExtendB + '|' +
+                    chineseDictionary.chineseExtendC + '|' +
+                    chineseDictionary.chineseExtendD + '|' +
+                    chineseDictionary.chineseExtendE + '|' +
+                    chineseDictionary.chineseExtendF + ')+$';
+}
+
 function isChinese(value, {
     loose = false
 } = {}) {
-    const reg = new RegExp(`${loose ? '' : '^'}[\\u4e00-\\u9fa5]+${loose ? '' : '$'}`);
-
+    const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : null);
     return reg.test(value);
 }
 
@@ -101,7 +157,7 @@ export default isChinese;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Tue Jun 25 2019 17:54:27 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Mon Jul 01 2019 16:35:04 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
