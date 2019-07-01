@@ -5,6 +5,7 @@ node_modules
 .gitignore
 .Ds_Store
 .vscode
+yarn.lock
 package-lock.json
 webpack.config.js
 mocha.opts

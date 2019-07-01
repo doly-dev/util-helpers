@@ -4,3 +4,5 @@ lib/
 dist/
 .vscode
 module-config.js
+yarn.lock
+package-lock.json
