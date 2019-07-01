@@ -72,6 +72,7 @@ formatMoney('1000') // => 1,000.00
     - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor_formatMoney.html) - 金额格式化
     - [formatBankCard](https://doly-dev.github.io/util-helpers/module-processor_formatBankCard.html) - 银行卡格式化
     - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor_replaceChar.html) - 替换字符，应用场景如：脱敏
+    - [numberToChinese](https://doly-dev.github.io/util-helpers/module-processor_numberToChinese.html) - 数字转中文数字
 - [validator](https://doly-dev.github.io/util-helpers/module-validator.html) - 数据验证
     - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) - 手机号码
     - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) - 固定电话

@@ -3,7 +3,7 @@
  * 检测值是否为中文
  * 
  * @module validator/isChinese
- * @see {@link http://www.unicode.org/reports/tr38/#CategoryListing}
+ * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
@@ -20,6 +20,9 @@
  * // 宽松模式，只要包含中文即为true
  * isChinese('林A', {loose: true});
  * // => true
+ *
+ * isChinese('A林A', {loose: true});
+ * // => true
  * 
  */
 const chineseDictionary = {
@@ -27,31 +30,24 @@ const chineseDictionary = {
   chineseBasic: '[\u4e00-\u9fa5]',
 
   // 基本汉字补充
-
   chineseExtend: '[\u9ea6-\u9fef]',
 
   // 汉字扩展A
-
   chineseExtendA: '[\u3400-\u4DB5]',
 
   // 汉字扩展B
-
   chineseExtendB: '[\u{20000}-\u{2A6D6}]',
 
   // 汉字扩展C
-
   chineseExtendC: '[\u{2A700}-\u{2B734}]',
 
   // 汉字扩展D
-
   chineseExtendD: '[\u{2B740}-\u{2B81D}]',
 
   // 汉字扩展E
-
   chineseExtendE: '[\u{2B820}-\u{2CEA1}]',
 
   // 汉字扩展F
-
   chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]',
 };
 

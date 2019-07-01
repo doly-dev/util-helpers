@@ -8,7 +8,7 @@
  * @param {Object} [options] 配置项
  * @param {Number} [options.start=3] 开始位置
  * @param {Number} [options.end=-4] 结束位置
- * @param {String} [options.char='*'] 替换字符
+ * @param {String} [options.char=*] 替换字符
  * @param {Number} [options.repeat] 替换字符的重复次数，默认为替换内容长度，可设置为固定值
  * @param {String} [options.exclude] 排除字符，如果指定排除项，repeat设置无效
  * @example
