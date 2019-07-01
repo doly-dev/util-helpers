@@ -13,8 +13,7 @@ const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
 // 数字字符、计数单位
-let numberChar, unitChar;
-const unitSection = ["", "万", "亿", "万亿"];
+let numberChar, unitChar, unitSection;
 
 /**
  * 每个小节的内部进行转化
@@ -54,7 +53,7 @@ function sectionToChinese(section) {
 }
 
 /**
- * 转换整数数字
+ * 转换整数
  * 
  * @private
  * @param {Number} num 要转换的数字
@@ -134,41 +133,49 @@ function mapNumberChar(num) {
  * @param {Boolean} [options.big5=false] 繁体
  * @param {String} [options.unit=true] 计数单位
  * @param {String} [options.decomal=点] 中文小数点
+ * @param {String} [options.zero=零] 设置0。常用配置 〇
+ * @param {String} [options.negative=负] 负数前面的字
+ * @param {Object} [options.unitConfig] 节点单位配置
+ * @param {Object} [options.unitConfig.w=万] 设置万。常用配置 萬
+ * @param {Object} [options.unitConfig.y=亿] 设置亿。常用配置 億
  * @returns {String} 中文数字
  * @example
  *
- * // 繁体
- * numberToChinese(1234567890, {big5: true});
- * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
- * 
  * numberToChinese(100);
  * // => 一百
+ *
+ * numberToChinese(100.3);
+ * // => 一百点三
  *
  * // 繁体
  * numberToChinese(100, {big5: true});
  * // => 壹佰
+ * 
+ * numberToChinese(1234567890, {big5: true});
+ * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
  *
- * // 繁体，不带计数单位
- * numberToChinese(100, {big5: true, unit: false});
- * // => 壹佰
- *
- * // 小数点
- * numberToChinese(100.3);
- * // => 一百点三
- *
- * // 小数点，繁体
  * numberToChinese(100.3, {big5: true});
  * // => 壹佰点叁
  *
  * // 不带计数单位
- * numberToChinese(100.3, {unit: false});
- * // => 一零零点三
+ * numberToChinese(1990, {unit: false});
+ * // => 一九九零
+ *
+ * // 不带计数单位，修改0
+ * numberToChinese(1990, {unit: false, zero:'〇'});
+ * // => 一九九〇
  * 
  */
 function numberToChinese(num, {
     big5 = false,
     unit = true,
-    decimal = '点'
+    decimal = '点',
+    zero = '',
+    negative = '负',
+    unitConfig = {
+        w: '万', // '萬'
+        y: '亿' // '億'
+    }
 } = {}) {
     // 非数字 或 NaN 不处理
     if (typeof num !== 'number' || isNaN(num)) {
@@ -176,22 +183,32 @@ function numberToChinese(num, {
         return '';
     }
 
-    // 超过安全数字不处理
+    // 超过安全数字提示
     if (num > MAX_SAFE_INTEGER || num < MIN_SAFE_INTEGER) {
         console.error(`${num} 参数不在安全数字内，会有异常`);
     }
 
     // 设置数字字符和计数单位
     if (big5) {
-        numberChar = big5NumberChar;
-        unitChar = big5UnitChar;
+        numberChar = big5NumberChar.slice();
+        unitChar = big5UnitChar.slice();
     } else {
-        numberChar = chnNumberChar;
-        unitChar = chnUnitChar;
+        numberChar = chnNumberChar.slice();
+        unitChar = chnUnitChar.slice();
     }
 
-    const preStr = num < 0 ? '负' : '';
+    // 设置节点计数单位，万、亿、万亿
+    unitSection = ['', unitConfig.w, unitConfig.y, unitConfig.w + unitConfig.y];
 
+    // 设置0
+    if (zero) {
+        numberChar[0] = zero;
+    }
+
+    // 前置字符，负数处理
+    const preStr = num < 0 ? negative : '';
+
+    // 整数和小数
     let chnInteger, chnDecimal;
 
     // 处理整数
