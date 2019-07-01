@@ -3,6 +3,7 @@
  * 检测值是否为中文
  * 
  * @module validator/isChinese
+ * @see {@link http://www.unicode.org/reports/tr38/#CategoryListing}
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
