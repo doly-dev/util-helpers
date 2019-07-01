@@ -18,6 +18,9 @@ describe('isChinese', () => {
     it('宽松模式，"林A" => true', () => {
         expect(isChinese('林A', { loose: true })).to.be.equal(true);
     });
+    it('宽松模式，"A林A" => true', () => {
+        expect(isChinese('A林A', { loose: true })).to.be.equal(true);
+    });
     it('"基本汉字补充: "龦龧龨龩龪龫龬龭龮龯" => true', () => {
         expect(isChinese('龦龧龨龩龪龫龬龭龮龯')).to.be.equal(true);
     });

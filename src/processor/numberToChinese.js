@@ -150,12 +150,12 @@ function mapNumberChar(num) {
  * // 繁体
  * numberToChinese(100, {big5: true});
  * // => 壹佰
- * 
- * numberToChinese(1234567890, {big5: true});
- * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
  *
  * numberToChinese(100.3, {big5: true});
  * // => 壹佰点叁
+ * 
+ * numberToChinese(1234567890, {big5: true});
+ * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
  *
  * // 不带计数单位
  * numberToChinese(1990, {unit: false});
