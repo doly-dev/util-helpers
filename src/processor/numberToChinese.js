@@ -136,8 +136,8 @@ function mapNumberChar(num) {
  * @param {String} [options.zero=零] 设置0。常用配置 〇
  * @param {String} [options.negative=负] 负数前面的字
  * @param {Object} [options.unitConfig] 节点单位配置
- * @param {Object} [options.unitConfig.w=万] 设置万。常用配置 萬
- * @param {Object} [options.unitConfig.y=亿] 设置亿。常用配置 億
+ * @param {String} [options.unitConfig.w=万] 设置计数单位万。常用配置 萬
+ * @param {String} [options.unitConfig.y=亿] 设置计数单位亿。常用配置 億
  * @returns {String} 中文数字
  * @example
  *
