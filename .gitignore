@@ -6,3 +6,4 @@ dist/
 module-config.js
 yarn.lock
 package-lock.json
+example

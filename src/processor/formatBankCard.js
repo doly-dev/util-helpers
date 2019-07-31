@@ -6,7 +6,7 @@
  * @since 1.1.0
  * @param {String} str 要处理的字符串
  * @param {Object} [options] 配置项
- * @param {Number} [options.char=' '] 间隔字符
+ * @param {String} [options.char=' '] 间隔字符
  * @param {Number} [options.length=4] 间隔长度
  * @example
  *

@@ -25,7 +25,7 @@ yarn add util-helpers
 
 *强烈不推荐使用已构建文件，这样无法按需加载。*
 
-**示例**
+## 示例
 
 ```javascript
 import { validator } from 'util-helpers'

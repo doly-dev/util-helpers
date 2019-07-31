@@ -131,7 +131,7 @@ function mapNumberChar(num) {
  * @param {Number} num 数字
  * @param {Object} [options] 配置项
  * @param {Boolean} [options.big5=false] 繁体
- * @param {String} [options.unit=true] 计数单位
+ * @param {Boolean} [options.unit=true] 计数单位
  * @param {String} [options.decomal=点] 中文小数点
  * @param {String} [options.zero=零] 设置0。常用配置 〇
  * @param {String} [options.negative=负] 负数前面的字
