@@ -3,6 +3,7 @@
         "allowUnknownTags": false
     },
     "source": {
+        "include": ["src", "README.md"],
         "exclude": [
             "./src/common",
             "./src/type"
