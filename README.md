@@ -28,14 +28,15 @@ yarn add util-helpers
 ## 示例
 
 ```javascript
-import { validator } from 'util-helpers'
+import { isMobile, formatMoney } from 'util-helpers'
 
-validator.isMobile("13000000000") // => true
+isMobile("13000000000") // => true
+formatMoney('1000') // => 1,000.00
 ```
 
 **按需引入**
 
-如果你使用 `babel`，可使用以下方式进行按需加载。
+如果你使用 `babel`，推荐使用以下方式进行按需加载。
 
 方式一：指定模块文件
 
@@ -54,15 +55,7 @@ import isMobile from 'util-helpers/lib/validator/isMobile'
 }, 'util-helpers']
 ```
 
-然后跟示例一样写法
-
-```javascript
-import { isMobile, formatMoney } from 'util-helpers'
-
-isMobile("13000000000") // => true
-formatMoney('1000') // => 1,000.00
-```
-
+然后跟上面示例一样写法
 
 
 ## 文档
@@ -93,6 +86,7 @@ formatMoney('1000') // => 1,000.00
 
 - [lodash](https://www.npmjs.com/package/lodash) - 封装了诸多对字符串、数组、对象等常见数据类型的处理函数
 - [query-string](https://www.npmjs.com/package/query-string) - URL解析、序列化
+- [qs](https://www.npmjs.com/package/qs) - URL查询字符串解析和序列化库
 - [js-cookie](https://www.npmjs.com/package/js-cookie) - 一个简单，轻量级的JavaScript API，用于处理cookie
 - [number-precision](https://www.npmjs.com/package/number-precision) - 使用javascript精确地执行加法，减法，乘法和除法运算
 - [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期。

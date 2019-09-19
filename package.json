@@ -1,6 +1,6 @@
 {
   "name": "util-helpers",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test:type": "mocha --require @babel/register --recursive test/type",
     "test:validator": "mocha --require @babel/register --recursive test/validator",
     "test:processor": "mocha --require @babel/register --recursive test/processor",
-    "build": "npm run build:lib && rm -rf dist &&  npm run build:dist && npm run build:dist-development",
+    "build": "npm run build:lib && rm -rf dist && npm run build:dist && npm run build:dist-development",
     "build:lib": "rm -rf lib && babel src --out-dir lib",
     "build:dist": "webpack --mode=production",
     "build:dist-development": "webpack --mode=development",
