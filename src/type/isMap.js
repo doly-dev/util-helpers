@@ -3,11 +3,13 @@ import isType from './isType';
 /**
  * 检查值是否为Map
  * 
- * @module type/isMap
+ * @alias module:type.isMap
  * @since 1.1.0
  * @param {*} value 检查值
  * @returns {Boolean} 是否为Map
  * @example
+ * 
+ * import { isMap } from "util-helpers";
  *
  * isMap(new Map)
  * // => true

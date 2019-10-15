@@ -1,4 +1,3 @@
-// 数据类型
 export { default as type } from './type';
 export { default as isArguments } from './type/isArguments';
 export { default as isBoolean } from './type/isBoolean';
@@ -34,10 +33,10 @@ export { default as isPassword } from './validator/isPassword';
 export { default as isPassport } from './validator/isPassport';
 export { default as isChinese } from './validator/isChinese';
 export { default as isIPv4 } from './validator/isIPv4';
+export { default as isIPv6 } from './validator/isIPv6';
 
 // 数据处理
 export { default as processor } from './processor';
-export { default as formatDate } from './processor/formatDate';
 export { default as formatMoney } from './processor/formatMoney';
 export { default as formatBankCard } from './processor/formatBankCard';
 export { default as replaceChar } from './processor/replaceChar';

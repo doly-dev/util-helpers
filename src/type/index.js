@@ -3,24 +3,24 @@
  *
  * @module type
  * @since 1.1.0
- * @requires type/isArguments
- * @requires type/isArray
- * @requires type/isBoolean
- * @requires type/isDate
- * @requires type/isError
- * @requires type/isFunction
- * @requires type/isObject
- * @requires type/isNull
- * @requires type/isNaN
- * @requires type/isNumber
- * @requires type/isRegExp
- * @requires type/isString
- * @requires type/isSymbol
- * @requires type/isMap
- * @requires type/isWeakMap
- * @requires type/isSet
- * @requires type/isWeakSet
- * @requires type/isUndefined
+ * @requires type.isArguments
+ * @requires type.isArray
+ * @requires type.isBoolean
+ * @requires type.isDate
+ * @requires type.isError
+ * @requires type.isFunction
+ * @requires type.isObject
+ * @requires type.isNull
+ * @requires type.isNaN
+ * @requires type.isNumber
+ * @requires type.isRegExp
+ * @requires type.isString
+ * @requires type.isSymbol
+ * @requires type.isMap
+ * @requires type.isWeakMap
+ * @requires type.isSet
+ * @requires type.isWeakSet
+ * @requires type.isUndefined
 */
 
 import isArguments from './isArguments'

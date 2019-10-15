@@ -1,8 +1,7 @@
-
 /**
  * 替换字符，应用场景如：脱敏
  * 
- * @module processor/replaceChar
+ * @alias module:processor.replaceChar
  * @since 1.1.0
  * @param {String} str 要处理的字符串
  * @param {Object} [options] 配置项
@@ -12,6 +11,8 @@
  * @param {Number} [options.repeat] 替换字符的重复次数，默认为替换内容长度，可设置为固定值
  * @param {String} [options.exclude] 排除字符，如果指定排除项，repeat设置无效
  * @example
+ * 
+ * import { replaceChar } from "util-helpers";
  * 
  * // 手机号
  * replaceChar('13000000000');

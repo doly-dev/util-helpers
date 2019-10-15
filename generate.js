@@ -15,11 +15,11 @@ const mainEntry = `${moduleName}/lib`;
 const filemaps = {};
 
 // 遍历模块
-function traverseMod(mod, pathname) {
+function traverseMod(mod, pathname, gen) {
     for (let prop in mod) {
-        if (typeof mod[prop] === 'object' && mod[prop] && mod[prop] !== 'function') {
-            traverseMod(mod[prop], pathname + '/' + prop);
-        } else {
+        if (typeof mod[prop] === 'object' && mod[prop] && typeof mod[prop] !== 'function') {
+            traverseMod(mod[prop], pathname + '/' + prop, true);
+        } else if(gen) {
             filemaps[prop] = pathname + '/' + prop;
         }
     }

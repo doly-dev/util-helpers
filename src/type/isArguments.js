@@ -3,11 +3,13 @@ import isType from './isType';
 /**
  * 检查值是否为Arguments
  * 
- * @module type/isArguments
+ * @alias module:type.isArguments
  * @since 1.1.0
  * @param {*} value 检查值
  * @returns {Boolean} 是否为Arguments
  * @example
+ * 
+ * import { isArguments } from "util-helpers";
  *
  * isArguments(function() { return arguments }())
  * // => true

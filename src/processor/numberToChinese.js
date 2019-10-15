@@ -126,7 +126,7 @@ function mapNumberChar(num) {
  * 数字转中文数字
  * 不在安全数字 -9007199254740991～9007199254740991 内，处理会有异常
  * 
- * @module processor/numberToChinese
+ * @alias module:processor.numberToChinese
  * @since 1.2.0
  * @param {Number} num 数字
  * @param {Object} [options] 配置项
@@ -140,6 +140,8 @@ function mapNumberChar(num) {
  * @param {String} [options.unitConfig.y=亿] 设置计数单位亿。常用配置 億
  * @returns {String} 中文数字
  * @example
+ * 
+ * import { numberToChinese } from "util-helpers";
  *
  * numberToChinese(100);
  * // => 一百

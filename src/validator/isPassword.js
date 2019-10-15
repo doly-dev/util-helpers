@@ -3,7 +3,7 @@
  * 检测值是否符合密码强度
  * 注意该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度
  * 
- * @module validator/isPassword
+ * @alias module:validator.isPassword
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
@@ -11,6 +11,8 @@
  * @param {Boolean} [options.ignoreCase=false] 忽略大小写，即大小写字母视为一种字符
  * @returns {Boolean} 值是否符合密码强度
  * @example
+ * 
+ * import { isPassword } from "util-helpers";
  * 
  * isPassword('a12345678');
  * // => true

@@ -1,13 +1,13 @@
-import isType from './isType';
-
 /**
  * 检查值是否为Undefined
  * 
- * @module type/isUndefined
+ * @alias module:type.isUndefined
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Undefined} 是否为Undefined
+ * @returns {Boolean} 是否为Undefined
  * @example
+ * 
+ * import { isUndefined } from "util-helpers";
  *
  * isUndefined(undefined)
  * // => true

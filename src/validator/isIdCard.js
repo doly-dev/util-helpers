@@ -3,11 +3,13 @@ import check from './check'
 /**
  * 检测值是否为身份证号
  * 
- * @module validator/isIdCard
+ * @alias module:validator.isIdCard
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @returns {Boolean} 值是否为身份证号
  * @example
+ * 
+ * import { isIdCard } from "util-helpers";
  *
  * isIdCard('320311770706001');
  * // => true

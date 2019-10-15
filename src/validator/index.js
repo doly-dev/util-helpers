@@ -7,6 +7,7 @@ import isTelephone from './isTelephone'
 import isVehicle from './isVehicle'
 import isWX from './isWX'
 import isIPv4 from './isIPv4'
+import isIPv6 from './isIPv6'
 import isBankCard from './isBankCard'
 import isSocialCreditCode from './isSocialCreditCode'
 import isPassport from './isPassport'
@@ -18,20 +19,21 @@ import isPassword from './isPassword'
  *
  * @module validator
  * @since 1.1.0
- * @requires validator/isEmail
- * @requires validator/isIdCard
- * @requires validator/isMobile
- * @requires validator/isPostcode
- * @requires validator/isQQ
- * @requires validator/isTelephone
- * @requires validator/isVehicle
- * @requires validator/isWX
- * @requires validator/isIPv4
- * @requires validator/isBankCard
- * @requires validator/isSocialCreditCode
- * @requires validator/isPassport
- * @requires validator/isChinese
- * @requires validator/isPassword
+ * @requires validator.isEmail
+ * @requires validator.isIdCard
+ * @requires validator.isMobile
+ * @requires validator.isPostcode
+ * @requires validator.isQQ
+ * @requires validator.isTelephone
+ * @requires validator.isVehicle
+ * @requires validator.isWX
+ * @requires validator.isIPv4
+ * @requires validator.isIPv6
+ * @requires validator.isBankCard
+ * @requires validator.isSocialCreditCode
+ * @requires validator.isPassport
+ * @requires validator.isChinese
+ * @requires validator.isPassword
 */
 export default {
     isEmail,
@@ -43,6 +45,7 @@ export default {
     isVehicle,
     isWX,
     isIPv4,
+    isIPv6,
     isBankCard,
     isSocialCreditCode,
     isPassport,

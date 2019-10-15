@@ -3,11 +3,13 @@ import isType from './isType';
 /**
  * 检查值是否为RegExp
  * 
- * @module type/isRegExp
+ * @alias module:type.isRegExp
  * @since 1.1.0
  * @param {*} value 检查值
  * @returns {Boolean} 是否为RegExp
  * @example
+ * 
+ * import { isRegExp } from "util-helpers";
  *
  * isRegExp(/abc/)
  * // => true

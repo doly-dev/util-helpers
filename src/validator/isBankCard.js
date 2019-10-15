@@ -3,11 +3,13 @@ import check from './check'
 /**
  * 检测值是否为银行卡号
  * 
- * @module validator/isBankCard
+ * @alias module:validator.isBankCard
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @returns {Boolean} 值是否为银行卡号
  * @example
+ * 
+ * import { isBankCard } from "util-helpers";
  * 
  * isBankCard('6228480402564890018');
  * // => true

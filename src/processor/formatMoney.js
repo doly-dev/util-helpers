@@ -7,7 +7,7 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 /**
  * 格式化金额
  *
- * @module
+ * @alias module:processor.formatMoney
  * @since 1.1.0
  * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
  * @param { Object } [options] - 金额格式化配置
@@ -17,6 +17,8 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * @param { String } [options.decimal=.] - 小数位符号
  * @returns { String } 格式化的金额
  * @example
+ * 
+ * import { formatMoney } from "util-helpers";
  *
  * // 整数
  * formatMoney('1000');

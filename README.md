@@ -36,16 +36,7 @@ formatMoney('1000') // => 1,000.00
 
 **按需引入**
 
-如果你使用 `babel`，推荐使用以下方式进行按需加载。
-
-方式一：指定模块文件
-
-```javascript
-import validator from 'util-helpers/lib/validator'
-import isMobile from 'util-helpers/lib/validator/isMobile'
-```
-
-方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` 的 `plugin` 中添加以下配置
+如果你使用 `babel`，推荐使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` 的 `plugin` 中添加以下配置
 
 ```javascript
 ['import', { 
@@ -61,26 +52,26 @@ import isMobile from 'util-helpers/lib/validator/isMobile'
 ## 文档
 
 - [processor](https://doly-dev.github.io/util-helpers/module-processor.html) - 数据处理
-    - [formatDate](https://doly-dev.github.io/util-helpers/module-processor_formatDate.html) - 日期时间格式化
-    - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor_formatMoney.html) - 金额格式化
-    - [formatBankCard](https://doly-dev.github.io/util-helpers/module-processor_formatBankCard.html) - 银行卡格式化
-    - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor_replaceChar.html) - 替换字符，应用场景如：脱敏
-    - [numberToChinese](https://doly-dev.github.io/util-helpers/module-processor_numberToChinese.html) - 数字转中文数字
+    - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor.html#.formatMoney) - 金额格式化
+    - [formatBankCard](https://doly-dev.github.io/util-helpers/module-processor.html#.formatBankCard) - 银行卡格式化
+    - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
+    - [numberToChinese](https://doly-dev.github.io/util-helpers/module-processor.html#.numberToChinese) - 数字转中文数字
 - [validator](https://doly-dev.github.io/util-helpers/module-validator.html) - 数据验证
-    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator_isMobile.html) - 手机号码
-    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator_isTelephone.html) - 固定电话
-    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator_isPostcode.html) - 邮政编码
-    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator_isIdCard.html) - 身份证号
-    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator_isEmail.html) - 邮箱
-    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator_isQQ.html) - QQ号
-    - [isWX](https://doly-dev.github.io/util-helpers/module-validator_isWX.html) - 微信号
-    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator_isVehicle.html) - 车牌号
-    - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator_isBankCard.html) - 银行卡
-    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator_isSocialCreditCode.html) - 统一社会信用代码
-    - [isPassword](https://doly-dev.github.io/util-helpers/module-validator_isPassword.html) 密码强度
-    - [isPassport](https://doly-dev.github.io/util-helpers/module-validator_isPassport.html) - 护照号
-    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator_isChinese.html) - 中文
-    - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator_isIPv4.html) - IPv4
+    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator.html#.isMobile) - 手机号码
+    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator.html#.isTelephone) - 固定电话
+    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator.html#.isPostcode) - 邮政编码
+    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator.html#.isIdCard) - 身份证号
+    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator.html#.isEmail) - 邮箱
+    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator.html#.isQQ) - QQ号
+    - [isWX](https://doly-dev.github.io/util-helpers/module-validator.html#.isWX) - 微信号
+    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator.html#.isVehicle) - 车牌号
+    - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator.html#.isBankCard) - 银行卡
+    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator.html#.isSocialCreditCode) - 统一社会信用代码
+    - [isPassword](https://doly-dev.github.io/util-helpers/module-validator.html#.isPassword) 密码强度
+    - [isPassport](https://doly-dev.github.io/util-helpers/module-validator.html#.isPassport) - 护照号
+    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator.html#.isChinese) - 中文
+    - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv4) - IPv4
+    - [isIPv6](https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv6) - IPv6
 
 ## 精选第三方工具库
 

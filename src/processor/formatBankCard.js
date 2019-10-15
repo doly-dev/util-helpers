@@ -1,14 +1,15 @@
-
 /**
  * 格式化银行卡号
  * 
- * @module processor/formatBankCard
+ * @alias module:processor.formatBankCard
  * @since 1.1.0
  * @param {String} str 要处理的字符串
  * @param {Object} [options] 配置项
  * @param {String} [options.char=' '] 间隔字符
  * @param {Number} [options.length=4] 间隔长度
  * @example
+ * 
+ * import { formatBankCard } from "util-helpers";
  *
  * // 19位银行卡
  * formatBankCard('6228480402564890018');

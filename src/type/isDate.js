@@ -3,11 +3,13 @@ import isType from './isType';
 /**
  * 检查值是否为Date
  * 
- * @module type/isDate
+ * @alias module:type.isDate
  * @since 1.1.0
  * @param {*} value 检查值
  * @returns {Boolean} 是否为Date
  * @example
+ * 
+ * import { isDate } from "util-helpers";
  *
  * isDate(new Date)
  * // => true

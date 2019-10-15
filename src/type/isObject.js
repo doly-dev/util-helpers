@@ -1,13 +1,13 @@
-import isType from './isType';
-
 /**
  * 检查值是否为Object
  * 
- * @module type/isObject
+ * @alias module:type.isObject
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Object} 是否为Object
+ * @returns {Boolean} 是否为Object
  * @example
+ * 
+ * import { isObject } from "util-helpers";
  *
  * isObject({})
  * // => true
