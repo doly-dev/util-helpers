@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>processor/formatBankCard.js - util-helpers </title>
+    <title>validator/isUrl.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">processor/formatBankCard.js</h1>
+    <h1 class="page-title">validator/isUrl.js</h1>
     
 
     
@@ -56,46 +56,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 格式化银行卡号
+            <pre class="prettyprint source linenums"><code>import check from './check'
+
+/**
+ * 检测值是否为url
  * 
- * @alias module:processor.formatBankCard
+ * @alias module:validator.isUrl
  * @since 1.1.0
- * @param {String} str 要处理的字符串
- * @param {Object} [options] 配置项
- * @param {String} [options.char=' '] 间隔字符
- * @param {Number} [options.length=4] 间隔长度
+ * @param {String} value 要检测的值
+ * @returns {Boolean} 值是否为url
  * @example
  * 
- * import { formatBankCard } from "util-helpers";
+ * import { isUrl } from "util-helpers";
+ * 
+ * isUrl('www.99bill.com');
+ * // => true
  *
- * // 19位银行卡
- * formatBankCard('6228480402564890018');
- * // => 6228 4804 0256 4890 018
- * 
- * // 16位银行卡
- * formatBankCard('6228480402564890');
- * // => 6228 4804 0256 4890
- * 
- * // 16位银行卡，"-"间隔
- * formatBankCard('6228480402564890', {char: '-'});
- * // => 6228-4804-0256-4890
+ * isUrl('99bill.com');
+ * // => true
+ *
+ * isUrl('http://www.99bill.com/');
+ * // => true
+ *
+ * isUrl('http://www.99bill.com:8080/');
+ * // => true
  * 
  */
-function formatBankCard(bankCardNo = '', {
-    char = ' ',
-    length = 4
-} = {}) {
-    const reg = new RegExp(`(\\d{${length}})`, 'g');
-
-    const needRemoveLastChar = bankCardNo.length % length === 0;
-
-    const str = bankCardNo.replace(reg, `$1${char}`);
-
-    return needRemoveLastChar ? str.substr(0, str.length - 1) : str;
+function isUrl(value) {
+    return check(value, 'url');
 }
 
-export default formatBankCard</code></pre>
+export default isUrl;</code></pre>
         </article>
     </section>
 

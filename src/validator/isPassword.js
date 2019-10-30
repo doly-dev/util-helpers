@@ -7,8 +7,9 @@
  * @since 1.1.0
  * @param {String} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {Number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、其他字符）
+ * @param {Number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
  * @param {Boolean} [options.ignoreCase=false] 忽略大小写，即大小写字母视为一种字符
+ * @param {String} [options.special=-_!@#$%^&*] 特殊字符
  * @returns {Boolean} 值是否符合密码强度
  * @example
  * 
@@ -29,31 +30,43 @@
  * isPassword('_Aa12345678', {level: 3, ignoreCase: true});
  * // => true
  * 
+ * // 仅支持 数字、字母、特殊字符，其他字符如中文字符是校验不通过的
+ * isPassword('_Aa一二三45678', {level: 3, ignoreCase: true});
+ * // => false
  * isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
- * // => true
+ * // => false
  * 
  */
 function isPassword(value, {
     level = 2,
-    ignoreCase = false
+    ignoreCase = false,
+    special = "-_!@#$%^&*"
 } = {}) {
-    if (level === 1) {
-        return /^.+$/.test(value);
-    } else if (level === 2) {
-        if (ignoreCase) {
-            return /^((\d+\D)|(\D+\d)|([a-z]+[^a-z])|([^a-z\d]+[a-z\d])).*$/i.test(value);
-        } else {
-            return /^((\d+\D)|(\D+\d)|([a-z]+[^a-z])|([A-Z]+[^A-Z])|([^a-zA-Z\d]+[a-zA-Z\d])).*$/.test(value);
+    const numRegStr = "\\d";
+    const lowercaseRegStr = "a-z";
+    const uppercaseRegStr = "A-Z";
+    const ignorecaseRegStr = "a-zA-Z";
+
+    let reg = null;
+
+    if(level === 1){
+        reg = new RegExp(`^(?:${numRegStr}+|[${ignorecaseRegStr}]+|[${special}]+)$/`);
+    }else if(level === 2){
+        if(ignoreCase){
+            reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
+        }else{
+            reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
         }
-    } else if (level === 3) {
-        if (ignoreCase) {
-            return /^((\d+[a-z]+[^\da-z])|(\d+[^\da-z]+[a-z])|([a-z]+\d+[^\da-z])|([a-z]+[^\da-z]+\d)|([^a-z\d]+\d+[a-z])|([^a-z\d]+[a-z]+\d)).*$/i.test(value);
-        } else {
-            return /^((\d+[a-z]+[^\da-z])|(\d+[A-Z]+[^\dA-Z])|(\d+[^\da-zA-Z]+[a-zA-Z])|([a-z]+\d+[^\da-z])|([a-z]+[A-Z]+[^a-zA-Z])|([a-z]+[^\da-zA-Z]+[\dA-Z])|([^a-zA-Z\d]+\d+[a-zA-Z])|([^a-zA-Z\d]+[a-z]+[\dA-Z])|([^a-zA-Z\d]+[A-Z]+[\da-z])|([A-Z]+\d+[^\dA-Z])|([A-Z]+[a-z]+[^a-zA-Z])|([A-Z]+[^\da-zA-Z]+[\da-z])).*$/.test(value);
+    }else if(level === 3){
+        if(ignoreCase){
+            // ^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&*]+$)(?![\d!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$
+            reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${ignorecaseRegStr}${numRegStr}]+$)(?![${ignorecaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
+        }else{
+            reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${lowercaseRegStr}${numRegStr}]+$)(?![${uppercaseRegStr}${numRegStr}]+$)(?![${lowercaseRegStr}${special}]+$)(?![${uppercaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
         }
-    } else {
-        return false;
     }
+
+    return reg ? reg.test(value) : false;
 }
 
 export default isPassword;

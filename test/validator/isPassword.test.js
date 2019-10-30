@@ -24,7 +24,10 @@ describe('isPassword', () => {
     it('3级强度，忽略大小写 "_Aa12345678" => true', () => {
         expect(isPassword('_Aa12345678', { level: 3, ignoreCase: true })).to.be.equal(true);
     });
-    it('3级强度，忽略大小写 " _Aa12345678" => true', () => {
-        expect(isPassword(' _Aa12345678', { level: 3, ignoreCase: true })).to.be.equal(true);
+    it('3级强度，忽略大小写 " _Aa12345678" => false', () => {
+        expect(isPassword(' _Aa12345678', { level: 3, ignoreCase: true })).to.be.equal(false);
+    });
+    it('3级强度，忽略大小写 "_Aa一二三45678" => false', () => {
+        expect(isPassword('_Aa一二三45678', {level: 3, ignoreCase: true})).to.be.equal(false);
     });
 })
