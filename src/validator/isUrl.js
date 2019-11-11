@@ -3,6 +3,7 @@ import check from './check'
 /**
  * 检测值是否为url
  * 
+ * @private
  * @alias module:validator.isUrl
  * @since 1.1.0
  * @param {String} value 要检测的值
