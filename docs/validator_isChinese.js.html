@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -56,36 +56,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
- * 检测值是否为中文
- * 
- * @alias module:validator.isChinese
- * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
- * @returns {Boolean} 值是否为中文
- * @example
- * 
- * import { isChinese } from "util-helpers";
- * 
- * isChinese('林某某');
- * // => true
- *
- * isChinese('林A');
- * // => false
- *
- * // 宽松模式，只要包含中文即为true
- * isChinese('林A', {loose: true});
- * // => true
- *
- * isChinese('A林A', {loose: true});
- * // => true
- * 
- */
-const chineseDictionary = {
+            <pre class="prettyprint source linenums"><code>const chineseDictionary = {
   // 基本汉字
   chineseBasic: '[\u4e00-\u9fa5]',
 
@@ -138,6 +109,34 @@ if(supportRegExpUnicode){
                     chineseDictionary.chineseExtendF + ')+$';
 }
 
+/**
+ * 检测值是否为中文
+ * 
+ * @alias module:validator.isChinese
+ * @since 1.1.0
+ * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
+ * @param {String} value 要检测的值
+ * @param {Object} [options] 配置项
+ * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
+ * @returns {Boolean} 值是否为中文
+ * @example
+ * 
+ * import { isChinese } from "util-helpers";
+ * 
+ * isChinese('林某某');
+ * // => true
+ *
+ * isChinese('林A');
+ * // => false
+ *
+ * // 宽松模式，只要包含中文即为true
+ * isChinese('林A', {loose: true});
+ * // => true
+ *
+ * isChinese('A林A', {loose: true});
+ * // => true
+ * 
+ */
 function isChinese(value, {
     loose = false
 } = {}) {
@@ -159,7 +158,7 @@ export default isChinese;</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Nov 11 2019 19:54:35 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Nov 21 2019 22:02:54 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

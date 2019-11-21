@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -191,7 +191,7 @@
 
     
 
-    <h4 class="name" id=".formatBankCard"><span class="type-signature">(static) </span>formatBankCard<span class="signature">(str, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".formatBankCard"><span class="type-signature">(static) </span>formatBankCard<span class="signature">(str, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -203,7 +203,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="processor_formatBankCard.js.html">processor/formatBankCard.js</a>, <a href="processor_formatBankCard.js.html#line27">line 27</a>
+        <a href="processor_formatBankCard.js.html">processor/formatBankCard.js</a>, <a href="processor_formatBankCard.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -490,6 +490,28 @@ formatBankCard('6228480402564890', {char: '-'});
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    格式化的银行卡号
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1527,7 +1549,7 @@ numberToChinese(1990, {unit: false, zero:'〇'});
 
     
 
-    <h4 class="name" id=".replaceChar"><span class="type-signature">(static) </span>replaceChar<span class="signature">(str, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".replaceChar"><span class="type-signature">(static) </span>replaceChar<span class="signature">(str, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -1539,7 +1561,7 @@ numberToChinese(1990, {unit: false, zero:'〇'});
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="processor_replaceChar.js.html">processor/replaceChar.js</a>, <a href="processor_replaceChar.js.html#line43">line 43</a>
+        <a href="processor_replaceChar.js.html">processor/replaceChar.js</a>, <a href="processor_replaceChar.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -1952,6 +1974,28 @@ replaceChar('林某某', {start: 1, end: -1, repeat: 1});
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    处理后的字符
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1975,7 +2019,7 @@ replaceChar('林某某', {start: 1, end: -1, repeat: 1});
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Nov 11 2019 19:54:35 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Nov 21 2019 22:02:54 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

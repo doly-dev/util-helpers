@@ -23,7 +23,7 @@ yarn add util-helpers
 
 `npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 进行下载。
 
-*强烈不推荐使用已构建文件，这样无法按需加载。*
+*推荐使用 [`babel-plugin-import`](https://github.com/ant-design/babel-plugin-import) 按需加载*
 
 ## 示例
 

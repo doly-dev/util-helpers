@@ -1,32 +1,3 @@
-
-/**
- * 检测值是否为中文
- * 
- * @alias module:validator.isChinese
- * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
- * @returns {Boolean} 值是否为中文
- * @example
- * 
- * import { isChinese } from "util-helpers";
- * 
- * isChinese('林某某');
- * // => true
- *
- * isChinese('林A');
- * // => false
- *
- * // 宽松模式，只要包含中文即为true
- * isChinese('林A', {loose: true});
- * // => true
- *
- * isChinese('A林A', {loose: true});
- * // => true
- * 
- */
 const chineseDictionary = {
   // 基本汉字
   chineseBasic: '[\u4e00-\u9fa5]',
@@ -80,6 +51,34 @@ if(supportRegExpUnicode){
                     chineseDictionary.chineseExtendF + ')+$';
 }
 
+/**
+ * 检测值是否为中文
+ * 
+ * @alias module:validator.isChinese
+ * @since 1.1.0
+ * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
+ * @param {String} value 要检测的值
+ * @param {Object} [options] 配置项
+ * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
+ * @returns {Boolean} 值是否为中文
+ * @example
+ * 
+ * import { isChinese } from "util-helpers";
+ * 
+ * isChinese('林某某');
+ * // => true
+ *
+ * isChinese('林A');
+ * // => false
+ *
+ * // 宽松模式，只要包含中文即为true
+ * isChinese('林A', {loose: true});
+ * // => true
+ *
+ * isChinese('A林A', {loose: true});
+ * // => true
+ * 
+ */
 function isChinese(value, {
     loose = false
 } = {}) {

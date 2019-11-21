@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -204,101 +204,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".isChinese"><span class="type-signature">(static, constant) </span>isChinese<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="validator_isChinese.js.html">validator/isChinese.js</a>, <a href="validator_isChinese.js.html#line30">line 30</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="http://www.unicode.org/reports/tr38/#BlockListing">4.4 Listing of Characters Covered by the Unihan Database</a></li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    检测值是否为中文
-</div>
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>import { isChinese } from "util-helpers";
-
-isChinese('林某某');
-// => true
-
-isChinese('林A');
-// => false
-
-// 宽松模式，只要包含中文即为true
-isChinese('林A', {loose: true});
-// => true
-
-isChinese('A林A', {loose: true});
-// => true</code></pre>
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -458,6 +363,304 @@ isBankCard('123456789');
         
 <div class="param-desc">
     值是否为银行卡号
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".isChinese"><span class="type-signature">(static) </span>isChinese<span class="signature">(value, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="validator_isChinese.js.html">validator/isChinese.js</a>, <a href="validator_isChinese.js.html#line82">line 82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="http://www.unicode.org/reports/tr38/#BlockListing">4.4 Listing of Characters Covered by the Unihan Database</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    检测值是否为中文
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>import { isChinese } from "util-helpers";
+
+isChinese('林某某');
+// => true
+
+isChinese('林A');
+// => false
+
+// 宽松模式，只要包含中文即为true
+isChinese('林A', {loose: true});
+// => true
+
+isChinese('A林A', {loose: true});
+// => true</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">要检测的值</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">配置项
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>loose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last">宽松模式。如果为true，只要包含中文即为true</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    值是否为中文
 </div>
 
 
@@ -3117,7 +3320,7 @@ isWX('123');
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Nov 11 2019 19:54:35 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Nov 21 2019 22:02:54 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

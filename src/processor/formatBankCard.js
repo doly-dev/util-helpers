@@ -7,6 +7,7 @@
  * @param {Object} [options] 配置项
  * @param {String} [options.char=' '] 间隔字符
  * @param {Number} [options.length=4] 间隔长度
+ * @returns {String} 格式化的银行卡号
  * @example
  * 
  * import { formatBankCard } from "util-helpers";
