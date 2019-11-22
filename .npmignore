@@ -14,5 +14,5 @@ conf.json
 test/
 src/
 docs/
-examples/
+example/
 generate.js
