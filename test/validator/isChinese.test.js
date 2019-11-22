@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isChinese from '../../src/validator/isChinese'
+import isChinese from '../../src/isChinese'
 
 describe('isChinese', () => {
     it('非字符串 => false', () => {

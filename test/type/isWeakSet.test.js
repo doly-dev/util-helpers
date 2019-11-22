@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isWeakSet from '../../src/type/isWeakSet'
+import isWeakSet from '../../src/utils/type/isWeakSet'
 
 describe('isWeakSet', () => {
     it('new WeakSet => true', () => {

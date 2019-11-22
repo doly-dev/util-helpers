@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isUndefined from '../../src/type/isUndefined'
+import isUndefined from '../../src/utils/type/isUndefined'
 
 describe('isUndefined', () => {
     it('undefined => true', () => {

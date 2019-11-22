@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isWeakMap from '../../src/type/isWeakMap'
+import isWeakMap from '../../src/utils/type/isWeakMap'
 
 describe('isWeakMap', () => {
     it('new WeakMap => true', () => {

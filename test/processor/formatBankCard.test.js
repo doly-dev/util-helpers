@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import formatBankCard from '../../src/processor/formatBankCard';
+import formatBankCard from '../../src/formatBankCard';
 
 describe('formatBankCard', () => {
     it(`19位银行卡 "6228480402564890018" => 6228 4804 0256 4890 018`, () => {

@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai';
 
-import formatMoney from '../../src/processor/formatMoney';
+import formatMoney from '../../src/formatMoney';
 
 describe('formatMoney', () => {
 

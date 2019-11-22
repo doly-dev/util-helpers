@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isArguments from '../../src/type/isArguments'
+import isArguments from '../../src/utils/type/isArguments'
 
 describe('isArguments', () => {
     it('arguments => true', () => {

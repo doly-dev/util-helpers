@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isString from '../../src/type/isString'
+import isString from '../../src/utils/type/isString'
 
 describe('isString', () => {
     it('"abc" => true', () => {

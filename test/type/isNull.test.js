@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isNull from '../../src/type/isNull'
+import isNull from '../../src/utils/type/isNull'
 
 describe('isNull', () => {
     it('null => true', () => {

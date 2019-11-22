@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isMobile from '../../src/validator/isMobile'
+import isMobile from '../../src/isMobile'
 
 
 describe('isMobile', () => {

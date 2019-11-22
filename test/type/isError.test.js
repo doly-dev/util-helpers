@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isError from '../../src/type/isError'
+import isError from '../../src/utils/type/isError'
 
 describe('isError', () => {
     it('new Error => true', () => {

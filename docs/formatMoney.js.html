@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>formatMoney.js - util-helpers </title>
+    
+    <meta name="description" content="一个基于业务场景的工具方法库" />
+    
+        <meta name="keywords" content="util, business-util, business-helpers, util-helpers" />
+        <meta name="keyword" content="util, business-util, business-helpers, util-helpers" />
+    
+    
+    
+    <meta property="og:title" content="util-helpers"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="util-helpers"/>
+    <meta property="og:url" content="https://doly-dev.github.io/util-helpers/index.html"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">formatMoney.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const reg = /^[+-]?\d*\.?\d*$/;
+
+const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+
+const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+
+/**
+ * 格式化金额
+ *
+ * @static
+ * @alias module:Processor.formatMoney
+ * @since 1.1.0
+ * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
+ * @param {Object} [options] - 金额格式化配置
+ * @param {String | Number} [options.precision] - 保留位数 （最高：10位）
+ * @param {String} [options.symbol] - 货币符号
+ * @param {String} [options.thousand=,] - 千分位符号
+ * @param {String} [options.decimal=.] - 小数位符号
+ * @returns {String} 格式化的金额
+ * @example
+ *
+ * // 整数
+ * formatMoney('1000');
+ * // => 1,000.00
+ *
+ * // 小数（默认保留2位小数）
+ * formatMoney('3000.03');
+ * // => 3,000.03
+ *
+ * // 保留4位小数
+ * formatMoney('3000.0300', { precision: 4 });
+ * // => 3,000.0300
+ *
+ * // 保留10位小数
+ * formatMoney('1500.2', { precision: 10 });
+ * // => 1,500.2000000000
+ *
+ * // 自定义单位符号
+ * formatMoney(1000.00, { symbol: '$' });
+ * // => $1,000.00
+ *
+ * // 自定义千位分割符（默认','）
+ * formatMoney(1000.00, { thousand: '|' });
+ * // => 1|000.00
+ *
+ * // 自定义小数位分割符(默认'.')
+ * formatMoney(1000.00, { thousand: '&amp;' });
+ * // => 1,000&amp;00
+ */
+const formatMoney = (num, { precision, symbol, thousand = ',', decimal = '.' } = {}) => {
+  if (!reg.test(num) || num === '' || !((typeof num) === 'string' || (typeof num) === 'number')) {
+    return '';
+  }
+  if (+num > MAX_SAFE_INTEGER || +num &lt; MIN_SAFE_INTEGER) {
+    return '';
+  }
+  if (!precision || !((typeof precision) === 'string' || (typeof precision) === 'number')) {
+    precision = 2;
+  } else {
+    if (precision &lt;= 0) {
+      precision = 2;
+    }
+
+    if (precision >= 10) {
+      precision = 10;
+    }
+  }
+
+  num = parseFloat((num + '').replace(/[^\d\.-]/g, '')).toFixed(precision) + '';
+  const reArr = num.split('.')[0].split('').reverse();
+  let dot = num.split('.')[1];
+  dot = dot === null ? '' : (typeof decimal === 'string' ? decimal : '.') + dot;
+  let txt = '';
+  let res = '';
+  if (reArr[reArr.length - 1] === '-') {
+    for (let i = 0; i &lt; reArr.length; i++) {
+      if (reArr[i] === '-') {
+        txt += reArr[i] + '';
+        continue;
+      }
+      txt += reArr[i] + ((i + 1) % 3 === 0 &amp;&amp; i + 1 !== reArr.length - 1 ? (typeof thousand === 'string' ? thousand : ',') : '');
+    }
+  } else {
+    for (let i = 0; i &lt; reArr.length; i++) {
+      txt += reArr[i] + ((i + 1) % 3 === 0 &amp;&amp; i + 1 !== reArr.length ? (typeof thousand === 'string' ? thousand : ',') : '');
+    }
+  }
+
+  if (symbol &amp;&amp; (typeof symbol) === 'string') {
+    res = (symbol + txt.split('').reverse().join('') + dot);
+  } else {
+    res = (txt.split('').reverse().join('') + dot);
+  }
+
+  return res;
+};
+
+export default formatMoney;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Nov 23 2019 00:11:36 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

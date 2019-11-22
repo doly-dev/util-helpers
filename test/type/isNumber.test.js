@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isNumber from '../../src/type/isNumber'
+import isNumber from '../../src/utils/type/isNumber'
 
 describe('isNumber', () => {
     it('1 => true', () => {

@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isEmail from '../../src/validator/isEmail'
+import isEmail from '../../src/isEmail'
 
 
 describe('isEmail', () => {

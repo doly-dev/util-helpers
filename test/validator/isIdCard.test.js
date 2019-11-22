@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isIdCard from '../../src/validator/isIdCard'
+import isIdCard from '../../src/isIdCard'
 
 
 describe('isIdCard', () => {

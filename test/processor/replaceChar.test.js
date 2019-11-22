@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import replaceChar from '../../src/processor/replaceChar';
+import replaceChar from '../../src/replaceChar';
 
 describe('replaceChar', () => {
     it(`手机号显示前三后四 "13000000000" => 130****0000`, () => {

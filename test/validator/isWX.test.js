@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isWX from '../../src/validator/isWX'
+import isWX from '../../src/isWX'
 
 describe('isWX', () => {
     it('非字符串 => false', () => {

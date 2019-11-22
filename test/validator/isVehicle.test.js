@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isVehicle from '../../src/validator/isVehicle'
+import isVehicle from '../../src/isVehicle'
 
 
 describe('isVehicle', () => {

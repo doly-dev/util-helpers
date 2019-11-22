@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import numberToChinese from '../../src/processor/numberToChinese';
+import numberToChinese from '../../src/numberToChinese';
 
 describe('numberToChinese', () => {
     it(`100 => 一百`, () => {

@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isSet from '../../src/type/isSet'
+import isSet from '../../src/utils/type/isSet'
 
 describe('isSet', () => {
     it('new Set => true', () => {

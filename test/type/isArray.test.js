@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isArray from '../../src/type/isArray'
+import isArray from '../../src/utils/type/isArray'
 
 describe('isArray', () => {
     it('[] => true', () => {

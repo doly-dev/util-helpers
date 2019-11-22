@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-processor.html">processor</a><ul class='methods'><li data-type='method'><a href="module-processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-validator.html#.isWX">isWX</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -84,7 +84,7 @@
 <p><strong>浏览器引入</strong></p>
 <p>在浏览器中使用 <code>script</code> 标签直接引入文件，并使用全局变量 <code>utilHelpers</code> 。</p>
 <p><code>npm</code> 包的 <code>util-helpers/dist</code> 目录下提供了 <code>util-helpers.js</code> 以及 <code>util-helpers.min.js</code>。你也可以通过 <a href="https://unpkg.com/util-helpers@latest/dist/">UNPKG</a> 进行下载。</p>
-<p><em>推荐使用 <a href="https://github.com/ant-design/babel-plugin-import"><code>babel-plugin-import</code></a> 按需加载</em></p>
+<p><em>强烈不推荐使用已构建文件，这样无法按需加载。</em></p>
 <h2>示例</h2>
 <pre class="prettyprint source lang-javascript"><code>import { isMobile, formatMoney } from 'util-helpers'
 
@@ -92,41 +92,48 @@ isMobile(&quot;13000000000&quot;) // => true
 formatMoney('1000') // => 1,000.00
 </code></pre>
 <p><strong>按需引入</strong></p>
-<p>如果你使用 <code>babel</code>，推荐使用 <a href="https://github.com/ant-design/babel-plugin-import">babel-plugin-import</a> ，在 <code>babel</code> 的 <code>plugin</code> 中添加以下配置</p>
+<p>如果你使用 <code>babel</code>，下面两种方式都可以只加载用到的组件。</p>
+<ul>
+<li>方式一：指定模块文件，所有模块都放在 <code>lib</code> 目录下</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>import isMobile from 'util-helpers/lib/isMobile'
+import formatMoney from 'util-helpers/lib/formatMoney'
+</code></pre>
+<ul>
+<li>方式二：使用 <a href="https://github.com/ant-design/babel-plugin-import">babel-plugin-import</a> ，在 <code>babel</code> 的 <code>plugin</code> 中添加以下配置</li>
+</ul>
 <pre class="prettyprint source lang-javascript"><code>['import', { 
   libraryName: 'util-helpers', 
-  camel2DashComponentName: false,
-  customName: require('path').join(__dirname, './node_modules/util-helpers/module-config.js')
+  camel2DashComponentName: false
 }, 'util-helpers']
 </code></pre>
-<p>然后跟上面示例一样写法</p>
 <h2>文档</h2>
 <ul>
-<li><a href="https://doly-dev.github.io/util-helpers/module-processor.html">processor</a> - 数据处理
+<li>数据处理
 <ul>
-<li><a href="https://doly-dev.github.io/util-helpers/module-processor.html#.formatMoney">formatMoney</a> - 金额格式化</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-processor.html#.formatBankCard">formatBankCard</a> - 银行卡格式化</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-processor.html#.replaceChar">replaceChar</a> - 替换字符，应用场景如：脱敏</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-processor.html#.numberToChinese">numberToChinese</a> - 数字转中文数字</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney">formatMoney</a> - 金额格式化</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard">formatBankCard</a> - 银行卡格式化</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar">replaceChar</a> - 替换字符，应用场景如：脱敏</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese">numberToChinese</a> - 数字转中文数字</li>
 </ul>
 </li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html">validator</a> - 数据验证
+<li>数据验证
 <ul>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isMobile">isMobile</a> - 手机号码</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isTelephone">isTelephone</a> - 固定电话</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isPostcode">isPostcode</a> - 邮政编码</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isIdCard">isIdCard</a> - 身份证号</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isEmail">isEmail</a> - 邮箱</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isQQ">isQQ</a> - QQ号</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isWX">isWX</a> - 微信号</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isVehicle">isVehicle</a> - 车牌号</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isBankCard">isBankCard</a> - 银行卡</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isSocialCreditCode">isSocialCreditCode</a> - 统一社会信用代码</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isPassword">isPassword</a> 密码强度</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isPassport">isPassport</a> - 护照号</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isChinese">isChinese</a> - 中文</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv4">isIPv4</a> - IPv4</li>
-<li><a href="https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv6">isIPv6</a> - IPv6</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile">isMobile</a> - 手机号码</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone">isTelephone</a> - 固定电话</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isPostcode">isPostcode</a> - 邮政编码</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard">isIdCard</a> - 身份证号</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail">isEmail</a> - 邮箱</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isQQ">isQQ</a> - QQ号</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX">isWX</a> - 微信号</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle">isVehicle</a> - 车牌号</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard">isBankCard</a> - 银行卡</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a> - 统一社会信用代码</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword">isPassword</a> 密码强度</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport">isPassport</a> - 护照号</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese">isChinese</a> - 中文</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4">isIPv4</a> - IPv4</li>
+<li><a href="https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6">isIPv6</a> - IPv6</li>
 </ul>
 </li>
 </ul>
@@ -157,7 +164,7 @@ formatMoney('1000') // => 1,000.00
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Nov 21 2019 22:02:54 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Nov 23 2019 00:11:36 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isBankCard from '../../src/validator/isBankCard'
+import isBankCard from '../../src/isBankCard'
 
 describe('isBankCard', () => {
     it('非字符串 => false', () => {

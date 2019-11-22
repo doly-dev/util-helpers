@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isObject from '../../src/type/isObject'
+import isObject from '../../src/utils/type/isObject'
 
 describe('isObject', () => {
     it('{} => true', () => {

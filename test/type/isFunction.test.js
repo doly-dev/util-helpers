@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isFunction from '../../src/type/isFunction'
+import isFunction from '../../src/utils/type/isFunction'
 
 describe('isFunction', () => {
     it('()=>{} => true', () => {

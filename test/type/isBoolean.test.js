@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isBoolean from '../../src/type/isBoolean'
+import isBoolean from '../../src/utils/type/isBoolean'
 
 describe('isBoolean', () => {
     it('false => true', () => {

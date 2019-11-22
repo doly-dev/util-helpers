@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isDate from '../../src/type/isDate'
+import isDate from '../../src/utils/type/isDate'
 
 describe('isDate', () => {
     it('new Date => true', () => {

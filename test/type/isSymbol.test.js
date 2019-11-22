@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isSymbol from '../../src/type/isSymbol'
+import isSymbol from '../../src/utils/type/isSymbol'
 
 describe('isSymbol', () => {
     it('Symbol.iterator => true', () => {

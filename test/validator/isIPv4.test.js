@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isIPv4 from '../../src/validator/isIPv4'
+import isIPv4 from '../../src/isIPv4'
 
 describe('isIPv4', () => {
     it('非字符串 => false', () => {

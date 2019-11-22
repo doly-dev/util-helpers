@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isNaN from '../../src/type/isNaN'
+import isNaN from '../../src/utils/type/isNaN'
 
 describe('isNaN', () => {
     it('NaN => true', () => {

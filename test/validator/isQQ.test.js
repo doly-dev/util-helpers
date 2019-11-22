@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isQQ from '../../src/validator/isQQ'
+import isQQ from '../../src/isQQ'
 
 describe('isQQ', () => {
     it('非字符串 => false', () => {

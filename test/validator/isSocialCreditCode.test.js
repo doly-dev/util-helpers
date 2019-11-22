@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isSocialCreditCode from '../../src/validator/isSocialCreditCode'
+import isSocialCreditCode from '../../src/isSocialCreditCode'
 
 describe('isSocialCreditCode', () => {
     it('非字符串 => false', () => {

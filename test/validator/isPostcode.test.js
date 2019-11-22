@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isPostcode from '../../src/validator/isPostcode'
+import isPostcode from '../../src/isPostcode'
 
 
 describe('isPostcode', () => {

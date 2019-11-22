@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isPassport from '../../src/validator/isPassport'
+import isPassport from '../../src/isPassport'
 
 describe('isPassport', () => {
     it('非字符串 => false', () => {

@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isRegExp from '../../src/type/isRegExp'
+import isRegExp from '../../src/utils/type/isRegExp'
 
 describe('isRegExp', () => {
     it('/abc/ => true', () => {

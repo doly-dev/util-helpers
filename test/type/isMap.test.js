@@ -2,7 +2,7 @@ import {
     expect
 } from 'chai';
 
-import isMap from '../../src/type/isMap'
+import isMap from '../../src/utils/type/isMap'
 
 describe('isMap', () => {
     it('new Map => true', () => {
