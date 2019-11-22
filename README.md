@@ -57,26 +57,26 @@ import formatMoney from 'util-helpers/lib/formatMoney'
 ## 文档
 
 - 数据处理
-    - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 金额格式化
-    - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 银行卡格式化
-    - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
-    - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
+    - [formatMoney](https://doly-dev.github.io/util-helpers/module-processor.html#.formatMoney) - 金额格式化
+    - [formatBankCard](https://doly-dev.github.io/util-helpers/module-processor.html#.formatBankCard) - 银行卡格式化
+    - [replaceChar](https://doly-dev.github.io/util-helpers/module-processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
+    - [numberToChinese](https://doly-dev.github.io/util-helpers/module-processor.html#.numberToChinese) - 数字转中文数字
 - 数据验证
-    - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
-    - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
-    - [isPostcode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPostcode) - 邮政编码
-    - [isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) - 身份证号
-    - [isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) - 邮箱
-    - [isQQ](https://doly-dev.github.io/util-helpers/module-Validator.html#.isQQ) - QQ号
-    - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
-    - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
-    - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
-    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码
-    - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
-    - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
-    - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
-    - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
-    - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
+    - [isMobile](https://doly-dev.github.io/util-helpers/module-validator.html#.isMobile) - 手机号码
+    - [isTelephone](https://doly-dev.github.io/util-helpers/module-validator.html#.isTelephone) - 固定电话
+    - [isPostcode](https://doly-dev.github.io/util-helpers/module-validator.html#.isPostcode) - 邮政编码
+    - [isIdCard](https://doly-dev.github.io/util-helpers/module-validator.html#.isIdCard) - 身份证号
+    - [isEmail](https://doly-dev.github.io/util-helpers/module-validator.html#.isEmail) - 邮箱
+    - [isQQ](https://doly-dev.github.io/util-helpers/module-validator.html#.isQQ) - QQ号
+    - [isWX](https://doly-dev.github.io/util-helpers/module-validator.html#.isWX) - 微信号
+    - [isVehicle](https://doly-dev.github.io/util-helpers/module-validator.html#.isVehicle) - 车牌号
+    - [isBankCard](https://doly-dev.github.io/util-helpers/module-validator.html#.isBankCard) - 银行卡
+    - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-validator.html#.isSocialCreditCode) - 统一社会信用代码
+    - [isPassword](https://doly-dev.github.io/util-helpers/module-validator.html#.isPassword) 密码强度
+    - [isPassport](https://doly-dev.github.io/util-helpers/module-validator.html#.isPassport) - 护照号
+    - [isChinese](https://doly-dev.github.io/util-helpers/module-validator.html#.isChinese) - 中文
+    - [isIPv4](https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv4) - IPv4
+    - [isIPv6](https://doly-dev.github.io/util-helpers/module-validator.html#.isIPv6) - IPv6
 
 ## 精选第三方工具库
 
