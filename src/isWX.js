@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 微信号 6至20位，以字母开头，字母，数字，减号（连接符），下划线
+const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
 
 /**
  * 检测值是否为微信号
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isWX(value) {
-    return check(value, 'wx');
+    return reg.test(value);
 }
 
 export default isWX;

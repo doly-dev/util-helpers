@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isQQ.js - util-helpers </title>
+    <title>round.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isQQ.js</h1>
+    <h1 class="page-title">round.js</h1>
     
 
     
@@ -56,31 +56,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// QQ号 非0开头，5至11位数字
-const reg = /^[1-9]\d{4,10}$/;
+            <pre class="prettyprint source linenums"><code>import divide from './divide';
+import times from './times';
 
 /**
- * 检测值是否为QQ号
+ * 四舍五入，支持设置精度
  * 
  * @static
- * @alias module:Validator.isQQ
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @alias module:Math.round
+ * @since 3.1.0
+ * @param {Number} num 要四舍五入的数字
+ * @param {Number} [precision=0] 四舍五入的精度
+ * @returns {Number} 四舍五入的数字
  * @example
  * 
- * isQQ('12345');
- * // => true
- *
- * isQQ('123');
- * // => false
+ *  round(4.006);
+ *  // => 4
  * 
+ *  round(4.006, 2);
+ *  // => 4.01
+ * 
+ *  round(4060, -2);
+ *  // => 4100
  */
-function isQQ(value) {
-    return reg.test(value);
+function round(num, precision=0) {
+  const base = Math.pow(10, precision);
+  return divide(Math.round(times(num, base)), base);
 }
 
-export default isQQ;</code></pre>
+export default round;</code></pre>
         </article>
     </section>
 

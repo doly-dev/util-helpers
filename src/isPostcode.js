@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 邮政编码
+const reg = /^\d{6}$/;
 
 /**
  * 检测值是否为邮政编码
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isPostcode(value) {
-    return check(value, 'postcode');
+    return reg.test(value);
 }
 
 export default isPostcode;

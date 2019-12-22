@@ -30,3 +30,16 @@ export { default as formatMoney } from './formatMoney';
 export { default as formatBankCard } from './formatBankCard';
 export { default as replaceChar } from './replaceChar';
 export { default as numberToChinese } from './numberToChinese';
+
+/**
+ * 数学计算，修正浮点数计算问题
+ * 
+ * @module Math
+ * @since 3.1.0
+ * @see {@link https://github.com/camsong/blog/issues/9|JavaScript 浮点数陷阱及解法}
+ */
+export { default as plus } from './plus';
+export { default as minus } from './minus';
+export { default as times } from './times';
+export { default as divide } from './divide';
+export { default as round } from './round';

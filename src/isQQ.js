@@ -1,4 +1,5 @@
-import check from './utils/check'
+// QQ号 非0开头，5至11位数字
+const reg = /^[1-9]\d{4,10}$/;
 
 /**
  * 检测值是否为QQ号
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isQQ(value) {
-    return check(value, 'qq');
+    return reg.test(value);
 }
 
 export default isQQ;

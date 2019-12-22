@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 手机号码 11位数字，以1开头，第二位是3456789其中一个，后面再加9个数字
+const reg = /^1[3456789]\d{9}$/;
 
 /**
  * 检测值是否为手机号码
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isMobile(value) {
-    return check(value, 'mobile');
+    return reg.test(value);
 }
 
 export default isMobile;

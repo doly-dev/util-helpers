@@ -1,4 +1,8 @@
-import check from './utils/check'
+// 18位身份证
+const regIdCard18 = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)$/i;
+
+// 15位身份证
+const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}$/;
 
 /**
  * 检测值是否为身份证号
@@ -21,7 +25,7 @@ import check from './utils/check'
  * 
  */
 function isIdCard(value) {
-    return check(value, 'idCard18') || check(value, 'idCard15');
+    return regIdCard18.test(value) || regIdCard15.test(value);
 }
 
 export default isIdCard;

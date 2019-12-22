@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --require @babel/register --recursive",
+    "test:math": "mocha --require @babel/register --recursive test/math",
     "test:type": "mocha --require @babel/register --recursive test/type",
     "test:validator": "mocha --require @babel/register --recursive test/validator",
     "test:processor": "mocha --require @babel/register --recursive test/processor",

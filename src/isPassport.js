@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
+const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
 
 /**
  * 检测值是否为护照号
@@ -20,7 +21,7 @@ import check from './utils/check'
  * 
  */
 function isPassport(value) {
-    return check(value, 'passport');
+    return reg.test(value);
 }
 
 export default isPassport;

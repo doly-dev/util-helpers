@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 邮箱
+const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,})+$/i;
 
 /**
  * 检测值是否为Email
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isEmail(value) {
-    return check(value, 'email');
+    return reg.test(value);
 }
 
 export default isEmail;

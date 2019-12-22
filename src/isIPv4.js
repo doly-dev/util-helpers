@@ -1,4 +1,5 @@
-import check from './utils/check'
+// ipv4正则
+const reg = /^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 
 /**
  * 检测值是否为ipv4
@@ -24,7 +25,7 @@ import check from './utils/check'
  * 
  */
 function isIPv4(value) {
-    return check(value, 'ipv4');
+    return reg.test(value);
 }
 
 export default isIPv4;

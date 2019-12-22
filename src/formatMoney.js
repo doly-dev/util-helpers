@@ -1,8 +1,6 @@
+import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './utils/constants';
+
 const reg = /^[+-]?\d*\.?\d*$/;
-
-const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
-
-const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
 /**
  * 格式化金额
@@ -10,7 +8,7 @@ const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * @static
  * @alias module:Processor.formatMoney
  * @since 1.1.0
- * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991 )
+ * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
  * @param {Object} [options] - 金额格式化配置
  * @param {String | Number} [options.precision] - 保留位数 （最高：10位）
  * @param {String} [options.symbol] - 货币符号

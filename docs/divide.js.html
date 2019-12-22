@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isQQ.js - util-helpers </title>
+    <title>divide.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isQQ.js</h1>
+    <h1 class="page-title">divide.js</h1>
     
 
     
@@ -56,31 +56,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// QQ号 非0开头，5至11位数字
-const reg = /^[1-9]\d{4,10}$/;
+            <pre class="prettyprint source linenums"><code>import { strip, digitLength, float2Fixed, checkBoundary } from './utils/math.util';
+import times from './times';
 
 /**
- * 检测值是否为QQ号
+ * 精确除法，支持多个数相除
  * 
  * @static
- * @alias module:Validator.isQQ
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @alias module:Math.divide
+ * @since 3.1.0
+ * @param {Number} num1 除数
+ * @param {Number} num2 被除数
+ * @param {Number} [others] 其余被除数
+ * @returns {Number} 商数
  * @example
  * 
- * isQQ('12345');
- * // => true
- *
- * isQQ('123');
- * // => false
+ *  divide(1.21, 1.1);
+ *  // => 1.1
  * 
+ *  divide(1000, 10, 10);
+ *  // => 10
+ * 
+ *  divide(1000, 10, 10, 10);
+ *  // => 1
  */
-function isQQ(value) {
-    return reg.test(value);
+function divide(num1, num2, ...others) {
+  if (others.length > 0) {
+    return divide(divide(num1, num2), ...others);
+  }
+  const num1Changed = float2Fixed(num1);
+  const num2Changed = float2Fixed(num2);
+  checkBoundary(num1Changed);
+  checkBoundary(num2Changed);
+  // fix: 类似 10 ** -4 为 0.00009999999999999999，strip 修正
+  return times((num1Changed / num2Changed), strip(Math.pow(10, digitLength(num2) - digitLength(num1))));
 }
 
-export default isQQ;</code></pre>
+export default divide;</code></pre>
         </article>
     </section>
 

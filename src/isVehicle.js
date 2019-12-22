@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 车牌号正则
+const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
 
 /**
  * 检测值是否为车牌号
@@ -18,7 +19,7 @@ import check from './utils/check'
  * 
  */
 function isVehicle(value) {
-    return check(value, 'vehicle');
+    return reg.test(value);
 }
 
 export default isVehicle;

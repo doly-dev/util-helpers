@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isQQ.js - util-helpers </title>
+    <title>times.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isQQ.js</h1>
+    <h1 class="page-title">times.js</h1>
     
 
     
@@ -56,31 +56,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// QQ号 非0开头，5至11位数字
-const reg = /^[1-9]\d{4,10}$/;
-
+            <pre class="prettyprint source linenums"><code>import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
+ 
 /**
- * 检测值是否为QQ号
+ * 精确乘法，支持多个数相乘
  * 
  * @static
- * @alias module:Validator.isQQ
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @alias module:Math.times
+ * @since 3.1.0
+ * @param {Number} num1 相乘的第一个数
+ * @param {Number} num2 相乘的第二个数
+ * @param {Number} [others] 相乘的其余数
+ * @returns {Number} 乘积
  * @example
  * 
- * isQQ('12345');
- * // => true
- *
- * isQQ('123');
- * // => false
+ *  times(3, 0.6);
+ *  // => 1.8
  * 
+ *  times(3, 0.6, 2);
+ *  // => 3.6
+ * 
+ *  times(3, 0.6, 2, 10);
+ *  // => 36
  */
-function isQQ(value) {
-    return reg.test(value);
+function times(num1, num2, ...others) {
+  if (others.length > 0) {
+    return times(times(num1, num2), ...others);
+  }
+  const num1Changed = float2Fixed(num1);
+  const num2Changed = float2Fixed(num2);
+  const baseNum = digitLength(num1) + digitLength(num2);
+  const leftValue = num1Changed * num2Changed;
+
+  checkBoundary(leftValue);
+
+  return leftValue / Math.pow(10, baseNum);
 }
 
-export default isQQ;</code></pre>
+export default times;</code></pre>
         </article>
     </section>
 

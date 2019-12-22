@@ -1,3 +1,5 @@
+import { checkBoundary } from './utils/math.util';
+
 // 简体
 const chnNumberChar = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
 const chnUnitChar = ["", "十", "百", "千"];
@@ -5,12 +7,6 @@ const chnUnitChar = ["", "十", "百", "千"];
 // 繁体
 const big5NumberChar = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
 const big5UnitChar = ["", "拾", "佰", "仟"];
-
-// 最大安全数字
-const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
-
-// 最小安全数字
-const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
 // 数字字符、计数单位
 let numberChar, unitChar, unitSection;
@@ -185,9 +181,7 @@ function numberToChinese(num, {
     }
 
     // 超过安全数字提示
-    if (num > MAX_SAFE_INTEGER || num < MIN_SAFE_INTEGER) {
-        console.error(`${num} 参数不在安全数字内，会有异常`);
-    }
+    checkBoundary(num);
 
     // 设置数字字符和计数单位
     if (big5) {

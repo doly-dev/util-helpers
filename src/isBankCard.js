@@ -1,4 +1,5 @@
-import check from './utils/check'
+// 银行卡号正则 非0开头，15至19位数字
+const reg = /^[1-9]\d{14,18}$/;
 
 /**
  * 检测值是否为银行卡号
@@ -21,7 +22,7 @@ import check from './utils/check'
  * 
  */
 function isBankCard(value) {
-    return check(value, 'bankCard');
+    return reg.test(value);
 }
 
 export default isBankCard;

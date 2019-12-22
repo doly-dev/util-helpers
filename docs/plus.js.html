@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isQQ.js - util-helpers </title>
+    <title>plus.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isQQ.js</h1>
+    <h1 class="page-title">plus.js</h1>
     
 
     
@@ -56,31 +56,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// QQ号 非0开头，5至11位数字
-const reg = /^[1-9]\d{4,10}$/;
+            <pre class="prettyprint source linenums"><code>import { digitLength } from './utils/math.util';
+import times from './times';
 
 /**
- * 检测值是否为QQ号
+ * 精确加法，支持多个数相加
  * 
  * @static
- * @alias module:Validator.isQQ
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @alias module:Math.plus
+ * @since 3.1.0
+ * @param {Number} num1 相加的第一个数
+ * @param {Number} num2 相加的第二个数
+ * @param {Number} [others] 相加的其余数
+ * @returns {Number} 总和
  * @example
  * 
- * isQQ('12345');
- * // => true
- *
- * isQQ('123');
- * // => false
+ *  plus(0.1, 0.2);
+ *  // => 0.3
  * 
+ *  plus(0.1, 0.2, 0.3);
+ *  // => 0.6
+ * 
+ *  plus(0.1, 0.2, 0.3, 0.4);
+ *  // => 1
  */
-function isQQ(value) {
-    return reg.test(value);
+function plus(num1, num2, ...others) {
+  if (others.length > 0) {
+    return plus(plus(num1, num2), ...others);
+  }
+  const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
+  return (times(num1, baseNum) + times(num2, baseNum)) / baseNum;
 }
 
-export default isQQ;</code></pre>
+export default plus;</code></pre>
         </article>
     </section>
 
