@@ -60,11 +60,11 @@ import formatMoney from 'util-helpers/lib/formatMoney'
 > 参考：[JS浮点数计算测试](https://2zbuy.csb.app/)
 
 - 数学计算
-  - [plus](file:///Users/caijinfeng/Desktop/projects/util-helpers/docs/module-Math.html#.plus) - 加
-  - [minus](file:///Users/caijinfeng/Desktop/projects/util-helpers/docs/module-Math.html#.minus) - 减
-  - [times](file:///Users/caijinfeng/Desktop/projects/util-helpers/docs/module-Math.html#.times) - 乘
-  - [divide](file:///Users/caijinfeng/Desktop/projects/util-helpers/docs/module-Math.html#.divide) - 除
-  - [round](file:///Users/caijinfeng/Desktop/projects/util-helpers/docs/module-Math.html#.round) - 四舍五入
+  - [plus](https://doly-dev.github.io/util-helpers/module-Math.html#.plus) - 加
+  - [minus](https://doly-dev.github.io/util-helpers/module-Math.html#.minus) - 减
+  - [times](https://doly-dev.github.io/util-helpers/module-Math.html#.times) - 乘
+  - [divide](https://doly-dev.github.io/util-helpers/module-Math.html#.divide) - 除
+  - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
 - 数据处理
   - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 金额格式化
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 银行卡格式化
