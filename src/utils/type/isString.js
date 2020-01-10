@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isString(value) {
-    return isType(value, 'String');
+  return isType(value, 'String');
 }
 
-export default isString
+export default isString;

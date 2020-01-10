@@ -1,48 +1,51 @@
 {
-    "tags": {
-        "allowUnknownTags": false
+  "tags": {
+    "allowUnknownTags": false
+  },
+  "source": {
+    "include": [
+      "src",
+      "README.md"
+    ],
+    "exclude": [
+      "./src/utils"
+    ],
+    "includePattern": ".+\\.js(doc)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": [],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "template": "node_modules/docdash",
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true
+  },
+  "docdash": {
+    "openGraph": {
+      "title": "util-helpers",
+      "type": "website",
+      "image": "",
+      "site_name": "util-helpers",
+      "url": "https://doly-dev.github.io/util-helpers/index.html"
     },
-    "source": {
-        "include": ["src", "README.md"],
-        "exclude": [
-            "./src/utils"
-        ],
-        "includePattern": ".+\\.js(doc)?$",
-        "excludePattern": "(^|\\/|\\\\)_"
+    "meta": {
+      "title": "util-helpers ",
+      "description": "一个基于业务场景的工具方法库",
+      "keyword": "util, business-util, business-helpers, util-helpers"
     },
-    "plugins": [],
-    "templates": {
-        "cleverLinks": false,
-        "monospaceLinks": false
-    },
-    "opts": {
-        "template": "node_modules/docdash",
-        "encoding": "utf8",
-        "destination": "docs/",
-        "recurse": true,
-        "verbose": true
-    },
-    "docdash": {
-        "openGraph": {
-            "title": "util-helpers",
-            "type": "website",
-            "image": "",
-            "site_name": "util-helpers",
-            "url": "https://doly-dev.github.io/util-helpers/index.html"
-        },
-        "meta": {
-            "title": "util-helpers ",
-            "description": "一个基于业务场景的工具方法库",
-            "keyword": "util, business-util, business-helpers, util-helpers"
-        },
-        "search": true,
-        "menu": {
-            "Github repo": {
-                "href": "https://github.com/doly-dev/util-helpers",
-                "target": "_blank",
-                "class": "menu-item",
-                "id": "repo_link"
-            }
-        }
+    "search": true,
+    "menu": {
+      "Github repo": {
+        "href": "https://github.com/doly-dev/util-helpers",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "repo_link"
+      }
     }
+  }
 }

@@ -15,7 +15,7 @@ const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30
  * @returns {Number} 字符所在基础字符的位置
  */
 function getBaseCodeIndex(code) {
-    return baseCodeArr.findIndex(item => item === code);
+  return baseCodeArr.findIndex(item => item === code);
 }
 
 /**
@@ -27,26 +27,26 @@ function getBaseCodeIndex(code) {
  * @returns {String} 校验码
  */
 function sumCheckCode(preCode) {
-    const preCodeArr = preCode.split('');
+  // const preCodeArr = preCode.split('');
 
-    let total = 0;
+  let total = 0;
 
-    // 计算字符位置对应序号和加权因子的乘积，总和
-    for (let i = 0; i < 17; i++) {
-        // 字符位置对应的基础编码序号
-        const index = getBaseCodeIndex(preCode[i]);
-        // 加权因子
-        const wf = weightFactor[i];
-        // 计算序号和加权因子的乘积，并计算级数之和
-        total += index * wf;
-    }
+  // 计算字符位置对应序号和加权因子的乘积，总和
+  for (let i = 0; i < 17; i++) {
+    // 字符位置对应的基础编码序号
+    const index = getBaseCodeIndex(preCode[i]);
+    // 加权因子
+    const wf = weightFactor[i];
+    // 计算序号和加权因子的乘积，并计算级数之和
+    total += index * wf;
+  }
 
-    // 计算整数求余函数MOD
-    const remainder = total % 31;
-    // 校验码字符值序号
-    const checkCodeIndex = 31 - remainder;
+  // 计算整数求余函数MOD
+  const remainder = total % 31;
+  // 校验码字符值序号
+  const checkCodeIndex = 31 - remainder;
 
-    return baseCodeArr[checkCodeIndex];
+  return baseCodeArr[checkCodeIndex];
 }
 
 /**
@@ -74,22 +74,22 @@ function sumCheckCode(preCode) {
  * 
  */
 function isSocialCreditCode(value, {
-    loose = false
+  loose = false
 } = {}) {
-    const passBaseRule = baseReg.test(value);
+  const passBaseRule = baseReg.test(value);
 
-    if (!loose && passBaseRule) {
-        // 前17位
-        const preCode = value.substr(0, 17);
-        // 校验码
-        const lastCode = value.substr(-1);
-        // 计算校验码
-        const checkCode = sumCheckCode(preCode);
+  if (!loose && passBaseRule) {
+    // 前17位
+    const preCode = value.substr(0, 17);
+    // 校验码
+    const lastCode = value.substr(-1);
+    // 计算校验码
+    const checkCode = sumCheckCode(preCode);
 
-        return lastCode === checkCode;
-    } else {
-        return passBaseRule;
-    }
+    return lastCode === checkCode;
+  } else {
+    return passBaseRule;
+  }
 }
 
 export default isSocialCreditCode;

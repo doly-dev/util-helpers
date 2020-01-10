@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isRegExp(value) {
-    return isType(value, 'RegExp');
+  return isType(value, 'RegExp');
 }
 
-export default isRegExp
+export default isRegExp;

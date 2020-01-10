@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isWeakMap(value) {
-    return isType(value, 'WeakMap');
+  return isType(value, 'WeakMap');
 }
 
-export default isWeakMap
+export default isWeakMap;

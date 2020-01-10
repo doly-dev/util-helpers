@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isWeakSet(value) {
-    return isType(value, 'WeakSet');
+  return isType(value, 'WeakSet');
 }
 
-export default isWeakSet
+export default isWeakSet;

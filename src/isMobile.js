@@ -19,7 +19,7 @@ const reg = /^1[3456789]\d{9}$/;
  * 
  */
 function isMobile(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isMobile;

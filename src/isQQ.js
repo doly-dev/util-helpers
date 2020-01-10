@@ -19,7 +19,7 @@ const reg = /^[1-9]\d{4,10}$/;
  * 
  */
 function isQQ(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isQQ;

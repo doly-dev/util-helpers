@@ -30,25 +30,25 @@ let chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
 
 const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
 
-if(supportRegExpUnicode){
-  looseChineseRegExp = '(?:'+
-                        chineseDictionary.chineseBasic + '|' +
-                        chineseDictionary.chineseExtend + '|' +
-                        chineseDictionary.chineseExtendA + '|' +
-                        chineseDictionary.chineseExtendB + '|' +
-                        chineseDictionary.chineseExtendC + '|' +
-                        chineseDictionary.chineseExtendD + '|' +
-                        chineseDictionary.chineseExtendE + '|' +
-                        chineseDictionary.chineseExtendF + ')+';
-  chineseRegExp = '^(?:'+
-                    chineseDictionary.chineseBasic + '|' +
-                    chineseDictionary.chineseExtend + '|' +
-                    chineseDictionary.chineseExtendA + '|' +
-                    chineseDictionary.chineseExtendB + '|' +
-                    chineseDictionary.chineseExtendC + '|' +
-                    chineseDictionary.chineseExtendD + '|' +
-                    chineseDictionary.chineseExtendE + '|' +
-                    chineseDictionary.chineseExtendF + ')+$';
+if (supportRegExpUnicode) {
+  looseChineseRegExp = '(?:' +
+    chineseDictionary.chineseBasic + '|' +
+    chineseDictionary.chineseExtend + '|' +
+    chineseDictionary.chineseExtendA + '|' +
+    chineseDictionary.chineseExtendB + '|' +
+    chineseDictionary.chineseExtendC + '|' +
+    chineseDictionary.chineseExtendD + '|' +
+    chineseDictionary.chineseExtendE + '|' +
+    chineseDictionary.chineseExtendF + ')+';
+  chineseRegExp = '^(?:' +
+    chineseDictionary.chineseBasic + '|' +
+    chineseDictionary.chineseExtend + '|' +
+    chineseDictionary.chineseExtendA + '|' +
+    chineseDictionary.chineseExtendB + '|' +
+    chineseDictionary.chineseExtendC + '|' +
+    chineseDictionary.chineseExtendD + '|' +
+    chineseDictionary.chineseExtendE + '|' +
+    chineseDictionary.chineseExtendF + ')+$';
 }
 
 /**
@@ -79,10 +79,10 @@ if(supportRegExpUnicode){
  * 
  */
 function isChinese(value, {
-    loose = false
+  loose = false
 } = {}) {
-    const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : null);
-    return reg.test(value);
+  const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : null);
+  return reg.test(value);
 }
 
 export default isChinese;

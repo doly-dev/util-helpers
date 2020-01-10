@@ -26,7 +26,7 @@ import isType from './isType';
  * // => false
  */
 function isNumber(value) {
-    return isType(value, 'Number');
+  return isType(value, 'Number');
 }
 
-export default isNumber
+export default isNumber;

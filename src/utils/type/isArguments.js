@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isArguments(value) {
-    return isType(value, 'Arguments');
+  return isType(value, 'Arguments');
 }
 
-export default isArguments
+export default isArguments;

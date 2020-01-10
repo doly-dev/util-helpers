@@ -25,7 +25,7 @@ const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|3
  * 
  */
 function isIdCard(value) {
-    return regIdCard18.test(value) || regIdCard15.test(value);
+  return regIdCard18.test(value) || regIdCard15.test(value);
 }
 
 export default isIdCard;

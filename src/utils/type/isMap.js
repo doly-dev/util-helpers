@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isMap(value) {
-    return isType(value, 'Map');
+  return isType(value, 'Map');
 }
 
-export default isMap
+export default isMap;

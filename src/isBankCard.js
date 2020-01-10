@@ -22,7 +22,7 @@ const reg = /^[1-9]\d{14,18}$/;
  * 
  */
 function isBankCard(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isBankCard;

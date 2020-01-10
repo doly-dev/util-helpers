@@ -19,7 +19,7 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  * 
  */
 function isVehicle(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isVehicle;

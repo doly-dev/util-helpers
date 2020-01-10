@@ -37,6 +37,7 @@ export { default as numberToChinese } from './numberToChinese';
  * @module Math
  * @since 3.1.0
  * @see {@link https://github.com/camsong/blog/issues/9|JavaScript 浮点数陷阱及解法}
+ * @see {@link https://2zbuy.csb.app/|JS浮点数计算测试}
  */
 export { default as plus } from './plus';
 export { default as minus } from './minus';

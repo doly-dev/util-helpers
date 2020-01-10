@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isError(value) {
-    return isType(value, 'Error') || isType(value, 'DOMException');
+  return isType(value, 'Error') || isType(value, 'DOMException');
 }
 
-export default isError
+export default isError;

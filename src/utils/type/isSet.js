@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isSet(value) {
-    return isType(value, 'Set');
+  return isType(value, 'Set');
 }
 
-export default isSet
+export default isSet;

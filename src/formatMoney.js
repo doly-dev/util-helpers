@@ -10,7 +10,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  * @since 1.1.0
  * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
  * @param {Object} [options] - 金额格式化配置
- * @param {String | Number} [options.precision] - 保留位数 （最高：10位）
+ * @param {String | Number} [options.precision=2] - 保留位数 （最高：10位）
  * @param {String} [options.symbol] - 货币符号
  * @param {String} [options.thousand=,] - 千分位符号
  * @param {String} [options.decimal=.] - 小数位符号
@@ -45,7 +45,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  * formatMoney(1000.00, { thousand: '&' });
  * // => 1,000&00
  */
-const formatMoney = (num, { precision, symbol, thousand = ',', decimal = '.' } = {}) => {
+const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.' } = {}) => {
   if (!reg.test(num) || num === '' || !((typeof num) === 'string' || (typeof num) === 'number')) {
     return '';
   }

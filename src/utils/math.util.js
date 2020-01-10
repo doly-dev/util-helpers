@@ -13,7 +13,7 @@ import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './constants';
  * @param {String} num 检查值
  * @returns {Boolean}
  */
-function isScientificNumber(num) {
+export function isScientificNumber(num) {
   return /\d+\.?\d*e[\+\-]*\d+/i.test(num);
 }
 

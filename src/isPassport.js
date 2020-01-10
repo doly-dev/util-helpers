@@ -21,7 +21,7 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
  * 
  */
 function isPassport(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isPassport;

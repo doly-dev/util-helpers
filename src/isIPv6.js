@@ -50,7 +50,7 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
  * 
  */
 function isIPv6(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isIPv6;

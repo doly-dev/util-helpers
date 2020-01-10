@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isSymbol(value) {
-    return isType(value, 'Symbol');
+  return isType(value, 'Symbol');
 }
 
-export default isSymbol
+export default isSymbol;

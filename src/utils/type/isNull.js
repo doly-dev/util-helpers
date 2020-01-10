@@ -15,7 +15,7 @@
  * // => false
  */
 function isNull(value) {
-    return value === null;
+  return value === null;
 }
 
-export default isNull
+export default isNull;

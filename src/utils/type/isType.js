@@ -10,7 +10,7 @@ const toString = Object.prototype.toString
  * @returns {Boolean} 返回值的 `toString` 类型是否匹配
  */
 function isType(value, typename) {
-    return toString.call(value) === `[object ${typename}]`;
+  return toString.call(value) === `[object ${typename}]`;
 }
 
-export default isType
+export default isType;

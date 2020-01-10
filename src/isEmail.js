@@ -19,7 +19,7 @@ const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,
  * 
  */
 function isEmail(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isEmail;

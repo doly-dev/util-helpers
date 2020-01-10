@@ -19,7 +19,7 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  * 
  */
 function isWX(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isWX;

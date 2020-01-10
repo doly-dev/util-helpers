@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isBoolean(value) {
-    return value === true || value === false || isType(value, 'Boolean');
+  return value === true || value === false || isType(value, 'Boolean');
 }
 
-export default isBoolean
+export default isBoolean;

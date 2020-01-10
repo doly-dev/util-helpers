@@ -5,11 +5,11 @@ const pkg = require('./package.json');
 const cwd = process.cwd();
 
 // 连接符转驼峰
-function stringToCamelCase(str){
-    var re=/-(\w)/g;
-    return str.replace(re,function ($0,$1){
-        return $1.toUpperCase();
-    });
+function stringToCamelCase(str) {
+  var re = /-(\w)/g;
+  return str.replace(re, function ($0, $1) {
+    return $1.toUpperCase();
+  });
 }
 
 // 命令行参数
@@ -29,27 +29,27 @@ const outputFilename = isProd ? `${pkg.name}.min.js` : `${pkg.name}.js`;
 const devtool = isProd ? undefined : 'cheap-module-source-map';
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        library: libraryGlobalName,
-        libraryTarget: 'umd',
-        path: join(cwd, 'dist'),
-        filename: outputFilename,
-        umdNamedDefine: true
-    },
-    target: 'web',
-    devtool,
-    module: {
-        rules: [
-            {
-                test: /\.jsx?/,
-                include: join(cwd, 'src'),
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: pkg.babel
-                }
-            }
-        ]
-    }
+  entry: './src/index.js',
+  output: {
+    library: libraryGlobalName,
+    libraryTarget: 'umd',
+    path: join(cwd, 'dist'),
+    filename: outputFilename,
+    umdNamedDefine: true
+  },
+  target: 'web',
+  devtool,
+  module: {
+    rules: [
+      {
+        test: /\.jsx?/,
+        include: join(cwd, 'src'),
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: pkg.babel
+        }
+      }
+    ]
+  }
 }

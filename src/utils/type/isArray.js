@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isArray(value) {
-    return Array.isArray(value) || isType(value, 'Array');
+  return Array.isArray(value) || isType(value, 'Array');
 }
 
-export default isArray
+export default isArray;

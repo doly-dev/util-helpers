@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function _isNaN(value) {
-    return isType(value, 'Number') && isNaN(value);
+  return isType(value, 'Number') && isNaN(value);
 }
 
-export default _isNaN
+export default _isNaN;

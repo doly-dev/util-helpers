@@ -28,10 +28,10 @@ yarn add util-helpers
 ## 示例
 
 ```javascript
-import { isMobile, formatMoney } from 'util-helpers'
+import { formatBankCard } from 'util-helpers'
 
-isMobile("13000000000") // => true
-formatMoney('1000') // => 1,000.00
+formatBankCard('6228480402564890018'); // => 6228 4804 0256 4890 018
+formatBankCard('6228480402564890018', {char: '-'}); // => 6228-4804-0256-4890-018
 ```
 
 **按需引入**
@@ -41,11 +41,10 @@ formatMoney('1000') // => 1,000.00
 - 方式一：指定模块文件，所有模块都放在 `lib` 目录下
 
 ```javascript
-import isMobile from 'util-helpers/lib/isMobile'
-import formatMoney from 'util-helpers/lib/formatMoney'
+import formatBankCard from 'util-helpers/lib/formatBankCard'
 ```
 
-- 方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` 的 `plugin` 中添加以下配置
+- 方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` `plugin` 中添加以下配置
 
 ```javascript
 ['import', { 

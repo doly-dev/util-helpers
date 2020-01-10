@@ -41,41 +41,41 @@
  * 
  */
 function replaceChar(str = '', {
-    start = 3,
-    end = -4,
-    char = '*',
-    repeat,
-    exclude
+  start = 3,
+  end = -4,
+  char = '*',
+  repeat,
+  exclude
 } = {}) {
-    const strLen = str.length;
+  const strLen = str.length;
 
-    // 开始位置超过str长度
-    if (Math.abs(start) >= strLen) {
-        return str;
-    }
+  // 开始位置超过str长度
+  if (Math.abs(start) >= strLen) {
+    return str;
+  }
 
-    start = start >= 0 ? start : strLen + start;
-    end = end >= 0 ? end : strLen + end;
+  start = start >= 0 ? start : strLen + start;
+  end = end >= 0 ? end : strLen + end;
 
-    // 开始位置大于结束位置
-    if (start >= end) {
-        return str;
-    }
+  // 开始位置大于结束位置
+  if (start >= end) {
+    return str;
+  }
 
-    let middleStr = '';
+  let middleStr = '';
 
-    if (exclude) {
-        repeat = Math.round(end - start);
+  if (exclude) {
+    repeat = Math.round(end - start);
 
-        const maskStr = str.substr(start, repeat);
-        const reg = new RegExp(`[^${exclude}]`, 'g');
-        middleStr = maskStr.replace(reg, char);
-    } else {
-        repeat = typeof repeat === 'number' && repeat >= 0 ? repeat : Math.round(end - start);
-        middleStr = char.repeat(repeat);
-    }
+    const maskStr = str.substr(start, repeat);
+    const reg = new RegExp(`[^${exclude}]`, 'g');
+    middleStr = maskStr.replace(reg, char);
+  } else {
+    repeat = typeof repeat === 'number' && repeat >= 0 ? repeat : Math.round(end - start);
+    middleStr = char.repeat(repeat);
+  }
 
-    return str.substr(0, start) + middleStr + str.substr(end);
+  return str.substr(0, start) + middleStr + str.substr(end);
 }
 
-export default replaceChar
+export default replaceChar;

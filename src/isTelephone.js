@@ -25,7 +25,7 @@ const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
  * 
  */
 function isTelephone(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isTelephone;

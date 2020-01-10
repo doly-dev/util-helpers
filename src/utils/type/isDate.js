@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isDate(value) {
-    return isType(value, 'Date');
+  return isType(value, 'Date');
 }
 
-export default isDate
+export default isDate;

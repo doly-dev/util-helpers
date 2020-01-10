@@ -37,35 +37,35 @@
  * 
  */
 function isPassword(value, {
-    level = 2,
-    ignoreCase = false,
-    special = "-_!@#$%^&*"
+  level = 2,
+  ignoreCase = false,
+  special = "-_!@#$%^&*"
 } = {}) {
-    const numRegStr = "\\d";
-    const lowercaseRegStr = "a-z";
-    const uppercaseRegStr = "A-Z";
-    const ignorecaseRegStr = "a-zA-Z";
+  const numRegStr = "\\d";
+  const lowercaseRegStr = "a-z";
+  const uppercaseRegStr = "A-Z";
+  const ignorecaseRegStr = "a-zA-Z";
 
-    let reg = null;
+  let reg = null;
 
-    if(level === 1){
-        reg = new RegExp(`^(?:${numRegStr}+|[${ignorecaseRegStr}]+|[${special}]+)$/`);
-    }else if(level === 2){
-        if(ignoreCase){
-            reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
-        }else{
-            reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
-        }
-    }else if(level === 3){
-        if(ignoreCase){
-            // ^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&*]+$)(?![\d!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$
-            reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${ignorecaseRegStr}${numRegStr}]+$)(?![${ignorecaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
-        }else{
-            reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${lowercaseRegStr}${numRegStr}]+$)(?![${uppercaseRegStr}${numRegStr}]+$)(?![${lowercaseRegStr}${special}]+$)(?![${uppercaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
-        }
+  if (level === 1) {
+    reg = new RegExp(`^(?:${numRegStr}+|[${ignorecaseRegStr}]+|[${special}]+)$/`);
+  } else if (level === 2) {
+    if (ignoreCase) {
+      reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
+    } else {
+      reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
     }
+  } else if (level === 3) {
+    if (ignoreCase) {
+      // ^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&*]+$)(?![\d!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$
+      reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${ignorecaseRegStr}${numRegStr}]+$)(?![${ignorecaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
+    } else {
+      reg = new RegExp(`^(?![${lowercaseRegStr}]+$)(?![${uppercaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)(?![${lowercaseRegStr}${numRegStr}]+$)(?![${uppercaseRegStr}${numRegStr}]+$)(?![${lowercaseRegStr}${special}]+$)(?![${uppercaseRegStr}${special}]+$)(?![${numRegStr}${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
+    }
+  }
 
-    return reg ? reg.test(value) : false;
+  return reg ? reg.test(value) : false;
 }
 
 export default isPassword;

@@ -19,7 +19,7 @@ const reg = /^\d{6}$/;
  * 
  */
 function isPostcode(value) {
-    return reg.test(value);
+  return reg.test(value);
 }
 
 export default isPostcode;

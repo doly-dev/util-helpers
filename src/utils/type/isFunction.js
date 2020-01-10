@@ -17,7 +17,7 @@ import isType from './isType';
  * // => false
  */
 function isFunction(value) {
-    return isType(value, 'Function') || isType(value, 'AsyncFunction') || isType(value, 'GeneratorFunction') || isType(value, 'Proxy');
+  return isType(value, 'Function') || isType(value, 'AsyncFunction') || isType(value, 'GeneratorFunction') || isType(value, 'Proxy');
 }
 
-export default isFunction
+export default isFunction;
