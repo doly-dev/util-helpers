@@ -15,7 +15,17 @@ const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30
  * @returns {Number} 字符所在基础字符的位置
  */
 function getBaseCodeIndex(code) {
-  return baseCodeArr.findIndex(item => item === code);
+  let ret;
+
+  baseCodeArr.some((item, index)=>{
+    if(item === code){
+      ret = index;
+      return true;
+    }
+    return false;
+  });
+
+  return ret;
 }
 
 /**
@@ -50,7 +60,7 @@ function sumCheckCode(preCode) {
 }
 
 /**
- * 检测值是否为统一社会信用代码
+ * 检测值是否为统一社会信用代码，也叫三证合一组织代码
  * 
  * @static
  * @alias module:Validator.isSocialCreditCode
