@@ -2,6 +2,8 @@ import { assert, expect } from 'chai';
 
 import formatMoney from '../../src/formatMoney';
 
+// console.log(formatMoney('-1000.123456', {precision:10}))
+
 describe('formatMoney', () => {
 
   describe('输入金额 - string', () => {
@@ -18,16 +20,25 @@ describe('formatMoney', () => {
       expect(formatMoney('-3000.03')).to.be.equal('-3,000.03');
     });
     it('测试最大值 输入9007199254740991: number, 返回 9,007,199,254,740,991.00: string', () => {
-      expect(formatMoney(9007199254740991)).to.be.equal('9,007,199,254,740,991.00');
+      expect(formatMoney('9007199254740991')).to.be.equal('9,007,199,254,740,991.00');
     });
     it('测试最小值 输入-9007199254740991: number, 返回 -9,007,199,254,740,991.00: string', () => {
-      expect(formatMoney(-9007199254740991)).to.be.equal('-9,007,199,254,740,991.00');
+      expect(formatMoney('-9007199254740991')).to.be.equal('-9,007,199,254,740,991.00');
     });
-    it('测试溢出最大值 输入9007199254740992: number, 返回 \'\': string', () => {
-      expect(formatMoney(9007199254740992)).to.be.equal('');
+    it('测试溢出最大值 输入9007199254740992: number, 返回 9,007,199,254,740,992.00: string', () => {
+      expect(formatMoney('9007199254740992')).to.be.equal('9,007,199,254,740,992.00');
     });
-    it('测试溢出最小值 输入-9007199254740992: number, 返回 \'\': string', () => {
-      expect(formatMoney(-9007199254740992)).to.be.equal('');
+    it('测试溢出最大值 输入40833293563290239918163922168323157340193394658892337376669999999999999951662: number, 返回 40,833,293,563,290,239,918,163,922,168,323,157,340,193,394,658,892,337,376,669,999,999,999,999,951,662.00: string', () => {
+      expect(formatMoney('40833293563290239918163922168323157340193394658892337376669999999999999951662')).to.be.equal('40,833,293,563,290,239,918,163,922,168,323,157,340,193,394,658,892,337,376,669,999,999,999,999,951,662.00');
+    });
+    it('测试溢出最小值 输入-9007199254740992: number, 返回 -9,007,199,254,740,992.00: string', () => {
+      expect(formatMoney('-9007199254740992')).to.be.equal('-9,007,199,254,740,992.00');
+    });
+    it('测试无限大 输入Infinity: number, 返回 \'\' string', () => {
+      expect(formatMoney(Infinity)).to.be.equal('');
+    });
+    it('测试无限小 输入-Infinity: number, 返回 \'\' string', () => {
+      expect(formatMoney(-Infinity)).to.be.equal('');
     });
   });
 
@@ -43,6 +54,9 @@ describe('formatMoney', () => {
     });
     it('小数(负数) - 输入-3000.03: number，返回 -3,000.03: string ', () => {
       expect(formatMoney(-3000.03)).to.be.equal('-3,000.03');
+    });
+    it('测试科学记数法 输入1.054e+2: number, 返回 1054.20 string', () => {
+      expect(formatMoney(1.054e+2)).to.be.equal('105.40');
     });
   });
 
@@ -122,13 +136,13 @@ describe('formatMoney', () => {
       expect(formatMoney(-1000.123456, { precision: 11 })).to.be.equal('-1,000.1234560000');
     });
     it('string类型 - 输入num = 1000.123456：number  options: {precision: \'2\'}, 返回 1,000.12: string ', () => {
-      expect(formatMoney(1000.123456, { precision: '2' })).to.be.equal('1,000.12');
+      expect(formatMoney(1000.123456, { precision: 2 })).to.be.equal('1,000.12');
     });
     it('string类型 - 输入num = -1000.123456：number  options: {precision: \'10\'}， 返回 -1,000.1234560000： string', () => {
-      expect(formatMoney(-1000.123456, { precision: '10' })).to.be.equal('-1,000.1234560000');
+      expect(formatMoney(-1000.123456, { precision: 10 })).to.be.equal('-1,000.1234560000');
     });
     it('string类型 - 输入num = -1000.123456：number  options: {precision: \'11\'}, 返回 -1,000.1234560000： string', () => {
-      expect(formatMoney(-1000.123456, { precision: '11' })).to.be.equal('-1,000.1234560000');
+      expect(formatMoney(-1000.123456, { precision: 11 })).to.be.equal('-1,000.1234560000');
     });
     it('boolean类型 - 输入num = 1000.123456：number  options: {precision: true} , 返回 1,000.12： string', () => {
       expect(formatMoney(1000.123456, { precision: true })).to.be.equal('1,000.12');
@@ -148,7 +162,6 @@ describe('formatMoney', () => {
   });
 
   // 测试symbol
-
   describe('测试symbol', () => {
     it('/ - 输入num = 1000.00：number  options: {symbol: \'/\'}, 返回 /1,000.00：string', () => {
       expect(formatMoney(1000.00, { symbol: '/' })).to.be.equal('/1,000.00');

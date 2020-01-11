@@ -1,6 +1,61 @@
-import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './utils/constants';
+import { checkBoundary, scientificToNumber } from './utils/math.util';
+import isNaN from './utils/type/isNaN';
 
-const reg = /^[+-]?\d*\.?\d*$/;
+// 检查数字或数字字符串
+function checkNumber(num) {
+  if (
+    isNaN(num) ||
+    (typeof num !== 'number' && typeof num !== 'string') ||
+    num === '' ||
+    typeof Number(num) !== 'number' ||
+    num === Infinity || 
+    num === -Infinity
+  ) {
+    console.error(`${num} invalid parameter.`);
+    return false;
+  }
+
+  // 数字超限如果不是是字符串，可能有异常
+  // 如 1111111111111111111111 // => 1.1111111111111111e+21
+  if (typeof num === 'number') {
+    checkBoundary(num);
+  }
+
+  return true;
+}
+
+// 格式化整数部分
+function formatInt(intStr, thousand) {
+  let txt = '';
+  intStr = intStr[0] === '+' ? intStr.substr(1) : intStr; // 去掉+符号
+  const negativeSymbol = Number(intStr) < 0 ? '-' : '';
+  const reArr = negativeSymbol ? intStr.substr(1).split('').reverse() : intStr.split('').reverse();
+
+  for (let i = 0; i < reArr.length; i++) {
+    txt += reArr[i] + ((i + 1) % 3 === 0 && i + 1 !== reArr.length ? thousand : '');
+  }
+
+  return negativeSymbol + txt.split('').reverse().join('');
+}
+
+// 格式化小数部分，如果使用 toFixed，超大额数字会自动被截断
+function formatDec(decStr, precision, decimal){
+  if(precision === 0){
+    return '';
+  }
+
+  const zero = 0;
+  let ret = '';
+  
+  if(decStr && Number(decStr) > 0){
+    let tmpNum = parseFloat('0.' + decStr);
+    ret = tmpNum.toFixed(precision).substr(2);
+  }else{
+    ret = zero.toFixed(precision).substr(2);
+  }
+
+  return decimal + ret;
+}
 
 /**
  * 格式化金额
@@ -46,51 +101,27 @@ const reg = /^[+-]?\d*\.?\d*$/;
  * // => 1,000&00
  */
 const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.' } = {}) => {
-  if (!reg.test(num) || num === '' || !((typeof num) === 'string' || (typeof num) === 'number')) {
+  // 数字参数不正确，返回空字符串
+  if (!checkNumber(num)) {
     return '';
   }
-  if (+num > MAX_SAFE_INTEGER || +num < MIN_SAFE_INTEGER) {
-    return '';
-  }
-  if (!precision || !((typeof precision) === 'string' || (typeof precision) === 'number')) {
+
+  // 参数规整化
+  if (typeof precision !== 'number' || isNaN(precision) || precision < 0) {
     precision = 2;
-  } else {
-    if (precision <= 0) {
-      precision = 2;
-    }
-
-    if (precision >= 10) {
-      precision = 10;
-    }
+  } else if (precision > 10) {
+    precision = 10;
   }
+  symbol = typeof symbol === 'string' ? symbol : '';
+  thousand = typeof thousand === 'string' ? thousand : ',';
+  decimal = typeof decimal === 'string' ? decimal : '.';
 
-  num = parseFloat((num + '').replace(/[^\d\.-]/g, '')).toFixed(precision) + '';
-  const reArr = num.split('.')[0].split('').reverse();
-  let dot = num.split('.')[1];
-  dot = dot === null ? '' : (typeof decimal === 'string' ? decimal : '.') + dot;
-  let txt = '';
-  let res = '';
-  if (reArr[reArr.length - 1] === '-') {
-    for (let i = 0; i < reArr.length; i++) {
-      if (reArr[i] === '-') {
-        txt += reArr[i] + '';
-        continue;
-      }
-      txt += reArr[i] + ((i + 1) % 3 === 0 && i + 1 !== reArr.length - 1 ? (typeof thousand === 'string' ? thousand : ',') : '');
-    }
-  } else {
-    for (let i = 0; i < reArr.length; i++) {
-      txt += reArr[i] + ((i + 1) % 3 === 0 && i + 1 !== reArr.length ? (typeof thousand === 'string' ? thousand : ',') : '');
-    }
-  }
+  // 转换数字字符串，支持科学记数法
+  const numStr = scientificToNumber(num) + '';
+  // 整数和小数部分
+  const [intStr, decStr] = numStr.split('.');
 
-  if (symbol && (typeof symbol) === 'string') {
-    res = (symbol + txt.split('').reverse().join('') + dot);
-  } else {
-    res = (txt.split('').reverse().join('') + dot);
-  }
-
-  return res;
+  return symbol + formatInt(intStr, thousand) + formatDec(decStr, precision, decimal);
 };
 
 export default formatMoney;
