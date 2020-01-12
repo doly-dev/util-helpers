@@ -34,11 +34,8 @@ describe('formatMoney', () => {
     it('测试溢出最小值 输入-9007199254740992: number, 返回 -9,007,199,254,740,992.00: string', () => {
       expect(formatMoney('-9007199254740992')).to.be.equal('-9,007,199,254,740,992.00');
     });
-    it('测试无限大 输入Infinity: number, 返回 \'\' string', () => {
-      expect(formatMoney(Infinity)).to.be.equal('');
-    });
-    it('测试无限小 输入-Infinity: number, 返回 \'\' string', () => {
-      expect(formatMoney(-Infinity)).to.be.equal('');
+    it('测试进制数字 输入0x11: string, 返回 \'\' string', () => {
+      expect(formatMoney('0x11')).to.be.equal('');
     });
   });
 
@@ -57,6 +54,15 @@ describe('formatMoney', () => {
     });
     it('测试科学记数法 输入1.054e+2: number, 返回 1054.20 string', () => {
       expect(formatMoney(1.054e+2)).to.be.equal('105.40');
+    });
+    it('测试无限大 输入Infinity: number, 返回 \'\' string', () => {
+      expect(formatMoney(Infinity)).to.be.equal('');
+    });
+    it('测试无限小 输入-Infinity: number, 返回 \'\' string', () => {
+      expect(formatMoney(-Infinity)).to.be.equal('');
+    });
+    it('测试进制数字 输入0x11: number, 返回 17.00 string', () => {
+      expect(formatMoney(0x11)).to.be.equal('17.00');
     });
   });
 

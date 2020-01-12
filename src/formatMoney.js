@@ -1,15 +1,15 @@
-import { checkBoundary, scientificToNumber } from './utils/math.util';
+import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
 import isNaN from './utils/type/isNaN';
+
+const reg = /^[+-]?\d*\.?\d*$/;
 
 // 检查数字或数字字符串
 function checkNumber(num) {
   if (
+    !(reg.test(num) || isScientificNumber(num)) ||
     isNaN(num) ||
     (typeof num !== 'number' && typeof num !== 'string') ||
-    num === '' ||
-    typeof Number(num) !== 'number' ||
-    num === Infinity || 
-    num === -Infinity
+    num === ''
   ) {
     console.error(`${num} invalid parameter.`);
     return false;
