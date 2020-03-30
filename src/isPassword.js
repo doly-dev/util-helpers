@@ -32,9 +32,9 @@
  * // 仅支持 数字、字母、特殊字符，其他字符如中文字符是校验不通过的
  * isPassword('_Aa一二三45678', {level: 3, ignoreCase: true});
  * // => false
+ * 
  * isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
  * // => false
- * 
  */
 function isPassword(value, {
   level = 2,

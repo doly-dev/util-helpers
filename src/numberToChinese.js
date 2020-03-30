@@ -176,7 +176,7 @@ function numberToChinese(num, {
 } = {}) {
   // 非数字 或 NaN 不处理
   if (typeof num !== 'number' || isNaN(num)) {
-    console.error(`参数错误 ${num}，请传入数字`);
+    console.warn(`参数错误 ${num}，请传入数字`);
     return '';
   }
 

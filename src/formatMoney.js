@@ -11,7 +11,7 @@ function checkNumber(num) {
     (typeof num !== 'number' && typeof num !== 'string') ||
     num === ''
   ) {
-    console.error(`${num} invalid parameter.`);
+    console.warn(`${num} invalid parameter.`);
     return false;
   }
 
