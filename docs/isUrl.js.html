@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isQQ.js - util-helpers </title>
+    <title>isUrl.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isQQ.js</h1>
+    <h1 class="page-title">isUrl.js</h1>
     
 
     
@@ -56,31 +56,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// QQ号 非0开头，5至11位数字
-const reg = /^[1-9]\d{4,10}$/;
+            <pre class="prettyprint source linenums"><code>// url正则
+const reg = /(((^https?:(?:\/\/)?)(?:[-;:&amp;=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&amp;=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&amp;;%@.\w_]*)#?(?:[\w]*))?)$/;
 
 /**
- * 检测值是否为QQ号
+ * 检测值是否为url
  * 
  * @static
- * @alias module:Validator.isQQ
- * @since 1.1.0
+ * @alias module:Validator.isUrl
+ * @since 3.4.0
  * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @returns {Boolean} 值是否为url
  * @example
- * 
- * isQQ('12345');
+ *
+ * isUrl('');
+ * // => false
+ *
+ * isUrl('8.8.8.8');
+ * // => false
+ *
+ * isUrl('http://example.com');
  * // => true
  *
- * isQQ('123');
- * // => false
- * 
+ * isUrl('https://example.com:8080');
+ * // => true
+ *
+ * isUrl('http://www.example.com/test/123');
+ * // => true
+ *
+ * isUrl('http://www.example.com/test/123?foo=bar');
+ * // => true
  */
-function isQQ(value) {
+function isUrl(value) {
   return reg.test(value);
 }
 
-export default isQQ;</code></pre>
+export default isUrl;</code></pre>
         </article>
     </section>
 

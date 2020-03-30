@@ -41,7 +41,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-Math.html">Math</a><ul class='methods'><li data-type='method'><a href="module-Math.html#.divide">divide</a></li><li data-type='method'><a href="module-Math.html#.minus">minus</a></li><li data-type='method'><a href="module-Math.html#.plus">plus</a></li><li data-type='method'><a href="module-Math.html#.round">round</a></li><li data-type='method'><a href="module-Math.html#.times">times</a></li></ul></li><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-Math.html">Math</a><ul class='methods'><li data-type='method'><a href="module-Math.html#.divide">divide</a></li><li data-type='method'><a href="module-Math.html#.minus">minus</a></li><li data-type='method'><a href="module-Math.html#.plus">plus</a></li><li data-type='method'><a href="module-Math.html#.round">round</a></li><li data-type='method'><a href="module-Math.html#.times">times</a></li></ul></li><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isUrl">isUrl</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -1248,18 +1248,18 @@ isIPv6('FF01:0:0:0:0:0:0:1101');
 
 // 0位压缩表示法
 isIPv6('FF01::1101');
+// => true
+
+isIPv6('::1');
+// => true
+
+isIPv6('::');
+// => true
 
 isIPv6('0:0:0:0:0:0:0:1');
 // => true
 
-// 0位压缩表示法
-isIPv6('::1');
-
 isIPv6('0:0:0:0:0:0:0:0');
-// => true
-
-// 0位压缩表示法
-isIPv6('::');
 // => true
 
 // 内嵌IPv4地址表示法
@@ -1803,6 +1803,7 @@ isPassword('_Aa12345678', {level: 3, ignoreCase: true});
 // 仅支持 数字、字母、特殊字符，其他字符如中文字符是校验不通过的
 isPassword('_Aa一二三45678', {level: 3, ignoreCase: true});
 // => false
+
 isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
 // => false</code></pre>
 
@@ -2901,6 +2902,188 @@ isTelephone('13000000000');
 
     
 
+    <h4 class="name" id=".isUrl"><span class="type-signature">(static) </span>isUrl<span class="signature">(value)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="isUrl.js.html">isUrl.js</a>, <a href="isUrl.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>3.4.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    检测值是否为url
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>isUrl('');
+// => false
+
+isUrl('8.8.8.8');
+// => false
+
+isUrl('http://example.com');
+// => true
+
+isUrl('https://example.com:8080');
+// => true
+
+isUrl('http://www.example.com/test/123');
+// => true
+
+isUrl('http://www.example.com/test/123?foo=bar');
+// => true</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">要检测的值</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    值是否为url
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".isVehicle"><span class="type-signature">(static) </span>isVehicle<span class="signature">(value)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
 
     
@@ -3256,7 +3439,7 @@ isWX('123');
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Jan 12 2020 02:15:44 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Mar 30 2020 09:43:26 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

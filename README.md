@@ -85,6 +85,7 @@ import formatBankCard from 'util-helpers/lib/formatBankCard'
   - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
   - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
   - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
+  - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
 
 ## 精选第三方工具库
 
