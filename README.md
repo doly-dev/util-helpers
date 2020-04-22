@@ -99,3 +99,4 @@ import formatBankCard from 'util-helpers/lib/formatBankCard'
 - [axios](https://www.npmjs.com/package/axios) - 基于Promise的HTTP客户端，用于浏览器和node.js
 - [jsencrypt](https://www.npmjs.com/package/jsencrypt) - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库。
 - [crypto-js](https://www.npmjs.com/package/crypto-js) - 加密标准的JavaScript库。(AES/SHA256/MD5/SHA1...但没有RSA)
+- [tinycolor2](https://www.npmjs.com/package/tinycolor2) - JavaScript颜色工具，用于JavaScript中的颜色处理和转换。
