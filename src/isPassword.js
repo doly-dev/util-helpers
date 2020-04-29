@@ -49,7 +49,7 @@ function isPassword(value, {
   let reg = null;
 
   if (level === 1) {
-    reg = new RegExp(`^(?:${numRegStr}+|[${ignorecaseRegStr}]+|[${special}]+)$/`);
+    reg = new RegExp(`^[${numRegStr}${ignorecaseRegStr}${special}]+$`);
   } else if (level === 2) {
     if (ignoreCase) {
       reg = new RegExp(`^(?![${ignorecaseRegStr}]+$)(?!${numRegStr}+$)(?![${special}]+$)[${ignorecaseRegStr}${numRegStr}${special}]+$`);
