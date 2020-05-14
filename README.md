@@ -79,7 +79,7 @@ import formatBankCard from 'util-helpers/lib/formatBankCard'
   - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
-  - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码。
+  - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
   - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
   - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
   - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文

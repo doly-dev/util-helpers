@@ -47,6 +47,18 @@ function sumCheckCode(preCode) {
  * 
  * isBusinessLicense('310115600985533');
  * // => true
+ * 
+ * isBusinessLicense('3101156009');
+ * // => false
+ * 
+ * isBusinessLicense('3101156009', { loose: true });
+ * // => false
+ * 
+ * isBusinessLicense('310115600985535');
+ * // => false
+ * 
+ * isBusinessLicense('310115600985535', { loose: true });
+ * // => true
  */
 function isBusinessLicense(value, {
   loose = false

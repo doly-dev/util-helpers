@@ -15,6 +15,9 @@ describe('isBusinessLicense', () => {
   it('"310115600985" => false', () => {
     expect(isBusinessLicense('310115600985')).to.be.equal(false);
   });
+  it('宽松模式，"310115600985" => false', () => {
+    expect(isBusinessLicense('310115600985', { loose: true })).to.be.equal(false);
+  });
   it('"310115600985535" => false', () => {
     expect(isBusinessLicense('310115600985535')).to.be.equal(false);
   });
