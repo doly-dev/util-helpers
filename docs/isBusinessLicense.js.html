@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isVehicle.js - util-helpers </title>
+    <title>isBusinessLicense.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isVehicle.js</h1>
+    <h1 class="page-title">isBusinessLicense.js</h1>
     
 
     
@@ -56,31 +56,77 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// 车牌号正则
-const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+            <pre class="prettyprint source linenums"><code>// 基础规则，由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
+const baseReg = /^\d{15}$/;
 
 /**
- * 检测值是否为车牌号
+ * 计算校验码
  * 
- * @static
- * @alias module:Validator.isVehicle
- * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为车牌号
- * @example 
- * 
- * isVehicle('京L88888');
- * // => true
- *
- * isVehicle('333333');
- * // => false
- * 
+ * @private
+ * @since 3.5.0
+ * @param {String} preCode 营业执照前14位
+ * @returns {String} 校验码
  */
-function isVehicle(value) {
-  return reg.test(value);
+function sumCheckCode(preCode) {
+  let retNum; // 校验位数字
+
+  let pj = 10; // Pj+1 11，初始为10
+
+  for (let j = 0; j &lt; 14; j++) {
+    const sj = pj + Number(preCode[j]);
+    let sj10 = sj % 10;
+    sj10 = sj10 === 0 ? 10 : sj10;
+    const pj1 = sj10 * 2;
+    pj = pj1 % 11;
+  }
+
+  // 反模10计算
+  if (pj === 10 || pj === 1) {
+    retNum = 1;
+  } else {
+    retNum = 11 - pj;
+  }
+
+  return retNum;
 }
 
-export default isVehicle;</code></pre>
+/**
+ * 检测值是否为营业执照号，也叫工商注册号。由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
+ * 
+ * @static
+ * @alias module:Validator.isBusinessLicense
+ * @see {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html|GS15—2006 工商行政管理市场主体注册号编制规则}
+ * @since 3.5.0
+ * @param {String} value 要检测的值
+ * @param {Object} [options] 配置项
+ * @param {Boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
+ * @returns {Boolean} 值是否为营业执照号
+ * @example
+ * 
+ * isBusinessLicense('310115600985533');
+ * // => true
+ */
+function isBusinessLicense(value, {
+  loose = false
+} = {}) {
+  const passBaseRule = baseReg.test(value);
+
+  // 宽松模式 或 基础规则不通过直接返回
+  if (loose || !passBaseRule) {
+    return passBaseRule;
+  }
+
+  // 前14位
+  const preCode = value.substr(0, 14);
+  // 校验码
+  const lastCode = value.substr(-1);
+  // 计算校验码
+  const checkCode = sumCheckCode(preCode);
+
+  return lastCode === String(checkCode);
+}
+
+export default isBusinessLicense;</code></pre>
         </article>
     </section>
 
