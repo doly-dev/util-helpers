@@ -9,8 +9,14 @@ describe('isSocialCreditCode', () => {
     expect(isSocialCreditCode(true)).to.be.equal(false);
     expect(isSocialCreditCode(123)).to.be.equal(false);
   });
+  it('"92310115MA1LAG5R9M" => true', () => {
+    expect(isSocialCreditCode('92310115MA1LAG5R9M')).to.be.equal(true);
+  });
   it('"91350100M000100Y4A3" => true', () => {
     expect(isSocialCreditCode('91350100M000100Y4A3')).to.be.equal(true);
+  });
+  it('"91350100M0001" => false', () => {
+    expect(isSocialCreditCode('91350100M0001')).to.be.equal(false);
   });
   it('"91350100M000100Y4AB" => false', () => {
     expect(isSocialCreditCode('91350100M000100Y4AB')).to.be.equal(false);

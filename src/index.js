@@ -19,6 +19,8 @@ export { default as isPassport } from './isPassport';
 export { default as isChinese } from './isChinese';
 export { default as isIPv4 } from './isIPv4';
 export { default as isIPv6 } from './isIPv6';
+export { default as isUrl } from './isUrl';
+export { default as isBusinessLicense } from './isBusinessLicense';
 
 /**
  * 数据处理

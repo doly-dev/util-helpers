@@ -17,8 +17,8 @@ const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30
 function getBaseCodeIndex(code) {
   let ret;
 
-  baseCodeArr.some((item, index)=>{
-    if(item === code){
+  baseCodeArr.some((item, index) => {
+    if (item === code) {
       ret = index;
       return true;
     }
@@ -60,7 +60,7 @@ function sumCheckCode(preCode) {
 }
 
 /**
- * 检测值是否为统一社会信用代码，也叫三证合一组织代码
+ * 检测值是否为统一社会信用代码，也叫三证合一组织代码。由18位数字和大写字母组成，不使用I、O、Z、S、V。
  * 
  * @static
  * @alias module:Validator.isSocialCreditCode
@@ -88,18 +88,19 @@ function isSocialCreditCode(value, {
 } = {}) {
   const passBaseRule = baseReg.test(value);
 
-  if (!loose && passBaseRule) {
-    // 前17位
-    const preCode = value.substr(0, 17);
-    // 校验码
-    const lastCode = value.substr(-1);
-    // 计算校验码
-    const checkCode = sumCheckCode(preCode);
-
-    return lastCode === checkCode;
-  } else {
+  // 宽松模式 或 基础规则不通过直接返回
+  if (loose || !passBaseRule) {
     return passBaseRule;
   }
+
+  // 前17位
+  const preCode = value.substr(0, 17);
+  // 校验码
+  const lastCode = value.substr(-1);
+  // 计算校验码
+  const checkCode = sumCheckCode(preCode);
+
+  return lastCode === checkCode;
 }
 
 export default isSocialCreditCode;
