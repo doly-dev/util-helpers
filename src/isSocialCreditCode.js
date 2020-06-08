@@ -1,5 +1,5 @@
 // 基础规则，由18位数字和大写字母组成，不使用I、O、Z、S、V。
-const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}/;
+const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
 
 // 基础字符组成
 const baseCodeArr = '0123456789ABCDEFGHJKLMNPQRTUWXY'.split('');
@@ -72,14 +72,14 @@ function sumCheckCode(preCode) {
  * @returns {Boolean} 值是否为统一社会信用代码
  * @example
  * 
- * isSocialCreditCode('91350100M000100Y4A3');
+ * isSocialCreditCode('91350100M000100Y43');
  * // => true
  *
- * isSocialCreditCode('91350100M000100Y4AB');
+ * isSocialCreditCode('91350100M000100Y4A');
  * // => false
  *
  * // 宽松模式，不校验校验位。所以也可以通过
- * isSocialCreditCode('91350100M000100Y4AB', {loose: true});
+ * isSocialCreditCode('91350100M000100Y4A', {loose: true});
  * // => true
  * 
  */
