@@ -95,9 +95,10 @@ import formatBankCard from 'util-helpers/lib/formatBankCard'
 - [qs](https://www.npmjs.com/package/qs) - URL查询字符串解析和序列化库
 - [js-cookie](https://www.npmjs.com/package/js-cookie) - 一个简单，轻量级的JavaScript API，用于处理cookie
 - [number-precision](https://www.npmjs.com/package/number-precision) - 使用javascript精确地执行加法，减法，乘法和除法运算
-- [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期。
-- [dayjs](https://www.npmjs.com/package/dayjs) - 使用相同的现代API 快速2kB替代Moment.js
+- [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期
+- [dayjs](https://www.npmjs.com/package/dayjs) - 一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样
 - [axios](https://www.npmjs.com/package/axios) - 基于Promise的HTTP客户端，用于浏览器和node.js
-- [jsencrypt](https://www.npmjs.com/package/jsencrypt) - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库。
-- [crypto-js](https://www.npmjs.com/package/crypto-js) - 加密标准的JavaScript库。(AES/SHA256/MD5/SHA1...但没有RSA)
-- [tinycolor2](https://www.npmjs.com/package/tinycolor2) - JavaScript颜色工具，用于JavaScript中的颜色处理和转换。
+- [jsencrypt](https://www.npmjs.com/package/jsencrypt) - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库
+- [crypto-js](https://www.npmjs.com/package/crypto-js) - 加密标准的JavaScript库
+- [tinycolor2](https://www.npmjs.com/package/tinycolor2) - JavaScript颜色工具，用于JavaScript中的颜色处理和转换
+- [store2](https://www.npmjs.com/package/store2) - 丰富了localStorage和sessionStorage功能（JSON，命名空间，扩展等）
