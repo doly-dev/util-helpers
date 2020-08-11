@@ -197,13 +197,13 @@ describe('formatMoney', () => {
   });
 
   describe('测试decimal', () => {
-    it('\'\' - 输入num = 1000.00：number  options: {thousand: \'\'}, 返回 1,000 00：string', () => {
+    it('\'\' - 输入num = 1000.00：number  options: {decimal: \'\'}, 返回 1,000 00：string', () => {
       expect(formatMoney(1000.00, { decimal: ' ' })).to.be.equal('1,000 00');
     });
-    it('& - 输入num = 1000.00：number  options: {thousand: \'&\'}, 返回 1,000&00：string', () => {
+    it('& - 输入num = 1000.00：number  options: {decimal: \'&\'}, 返回 1,000&00：string', () => {
       expect(formatMoney(1000.00, { decimal: '&' })).to.be.equal('1,000&00');
     });
-    it('？- 输入num = 1000.00：number  options: {thousand: \'?\'}, 返回 1,000?00：string', () => {
+    it('？- 输入num = 1000.00：number  options: {decimal: \'?\'}, 返回 1,000?00：string', () => {
       expect(formatMoney(1000.00, { decimal: '?' })).to.be.equal('1,000?00');
     });
   });

@@ -97,7 +97,7 @@ function formatDec(decStr, precision, decimal){
  * // => 1|000.00
  *
  * // 自定义小数位分割符(默认'.')
- * formatMoney(1000.00, { thousand: '&' });
+ * formatMoney(1000.00, { decimal: '&' });
  * // => 1,000&00
  */
 const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.' } = {}) => {
