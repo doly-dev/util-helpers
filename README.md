@@ -23,34 +23,15 @@ yarn add util-helpers
 
 `npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 进行下载。
 
-*强烈不推荐使用已构建文件，这样无法按需加载。*
-
 ## 示例
 
 ```javascript
-import { formatBankCard } from 'util-helpers'
+import { formatBankCard, formatMoney } from 'util-helpers'
 
 formatBankCard('6228480402564890018'); // => 6228 4804 0256 4890 018
 formatBankCard('6228480402564890018', {char: '-'}); // => 6228-4804-0256-4890-018
-```
 
-**按需引入**
-
-如果你使用 `babel`，下面两种方式都可以只加载用到的组件。
-
-- 方式一：指定模块文件，所有模块都放在 `lib` 目录下
-
-```javascript
-import formatBankCard from 'util-helpers/lib/formatBankCard'
-```
-
-- 方式二：使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) ，在 `babel` `plugin` 中添加以下配置
-
-```javascript
-['import', { 
-  libraryName: 'util-helpers', 
-  camel2DashComponentName: false
-}, 'util-helpers']
+formatMoney('1000'); // => 1,000.00
 ```
 
 ## 文档
