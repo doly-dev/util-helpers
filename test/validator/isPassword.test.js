@@ -30,6 +30,12 @@ describe('isPassword', () => {
   it('1级强度 "*_ )" => false', () => {
     expect(isPassword('*_ )', {level: 1})).to.be.equal(false);
   });
+  it('1级强度 "!@#$%^&*()-=_+[]\|{},./?<>~`" => true', () => {
+    expect(isPassword('!@#$%^&*()-=_+[]\|{},./?<>~`', {level: 1})).to.be.equal(true);
+  });
+  it('2级强度 "!@#$%^&*()-=_+[]\|{},./?<>~`" => false', () => {
+    expect(isPassword('!@#$%^&*()-=_+[]\|{},./?<>~`', {level: 2})).to.be.equal(false);
+  });
 
   it('2级强度 "a12345678" => true', () => {
     expect(isPassword('a12345678')).to.be.equal(true);

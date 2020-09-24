@@ -3,6 +3,7 @@
  * 检测值是否符合密码强度
  * 注意该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度
  * 
+ * @see {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @static
  * @alias module:Validator.isPassword
  * @since 1.1.0
@@ -10,7 +11,7 @@
  * @param {Object} [options] 配置项
  * @param {Number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
  * @param {Boolean} [options.ignoreCase=false] 忽略大小写，即大小写字母视为一种字符
- * @param {String} [options.special=-_!@#$%^&*] 特殊字符
+ * @param {String} [options.special=!@#$%^&*()-=_+[]\|{},./?<>~] 支持的特殊字符
  * @returns {Boolean} 值是否符合密码强度
  * @example
  * 
@@ -39,7 +40,7 @@
 function isPassword(value, {
   level = 2,
   ignoreCase = false,
-  special = "-_!@#$%^&*"
+  special = "\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E"
 } = {}) {
   const numRegStr = "\\d";
   const lowercaseRegStr = "a-z";
