@@ -7,8 +7,8 @@ const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
  * @static
  * @alias module:Validator.isTelephone
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为固定电话
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为固定电话
  * @example
  *
  * isTelephone('22033212');

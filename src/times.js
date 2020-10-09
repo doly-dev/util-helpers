@@ -6,10 +6,10 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  * @static
  * @alias module:Math.times
  * @since 3.1.0
- * @param {Number} num1 相乘的第一个数
- * @param {Number} num2 相乘的第二个数
- * @param {Number} [others] 相乘的其余数
- * @returns {Number} 乘积
+ * @param {number} num1 相乘的第一个数
+ * @param {number} num2 相乘的第二个数
+ * @param {...number} [others] 相乘的其余数
+ * @returns {number} 乘积
  * @example
  * 
  *  times(3, 0.6);

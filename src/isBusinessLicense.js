@@ -6,8 +6,8 @@ const baseReg = /^\d{15}$/;
  * 
  * @private
  * @since 3.5.0
- * @param {String} preCode 营业执照前14位
- * @returns {String} 校验码
+ * @param {string} preCode 营业执照前14位
+ * @returns {string} 校验码
  */
 function sumCheckCode(preCode) {
   let retNum; // 校验位数字
@@ -39,10 +39,10 @@ function sumCheckCode(preCode) {
  * @alias module:Validator.isBusinessLicense
  * @see {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html|GS15—2006 工商行政管理市场主体注册号编制规则}
  * @since 3.5.0
- * @param {String} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
- * @returns {Boolean} 值是否为营业执照号
+ * @param {string} value 要检测的值
+ * @param {object} [options] 配置项
+ * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
+ * @returns {boolean} 值是否为营业执照号
  * @example
  * 
  * isBusinessLicense('310115600985533');

@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isRegExp
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为RegExp
+ * @returns {boolean} 是否为RegExp
  * @example
  *
  * isRegExp(/abc/)

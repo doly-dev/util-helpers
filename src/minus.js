@@ -7,10 +7,10 @@ import times from './times';
  * @static
  * @alias module:Math.minus
  * @since 3.1.0
- * @param {Number} num1 相减的第一个数
- * @param {Number} num2 相减的第二个数
- * @param {Number} [others] 相减的第其余数
- * @returns {Number} 差
+ * @param {number} num1 相减的第一个数
+ * @param {number} num2 相减的第二个数
+ * @param {...number} [others] 相减的第其余数
+ * @returns {number} 差
  * @example
  * 
  *  minus(1, 0.9);

@@ -66,10 +66,10 @@ function sumCheckCode(preCode) {
  * @alias module:Validator.isSocialCreditCode
  * @see {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则|GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
- * @returns {Boolean} 值是否为统一社会信用代码
+ * @param {string} value 要检测的值
+ * @param {object} [options] 配置项
+ * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
+ * @returns {boolean} 值是否为统一社会信用代码
  * @example
  * 
  * isSocialCreditCode('91350100M000100Y43');

@@ -7,8 +7,8 @@ const reg = /^[1-9]\d{4,10}$/;
  * @static
  * @alias module:Validator.isQQ
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为QQ号
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为QQ号
  * @example
  * 
  * isQQ('12345');

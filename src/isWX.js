@@ -7,8 +7,8 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  * @static
  * @alias module:Validator.isWX
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为微信号
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为微信号
  * @example
  * 
  * isWX('a12345');

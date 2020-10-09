@@ -7,8 +7,8 @@ const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,
  * @static
  * @alias module:Validator.isEmail
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为Email
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为Email
  * @example 
  * 
  * isEmail('1232@qq.com');

@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isArguments
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Arguments
+ * @returns {boolean} 是否为Arguments
  * @example
  *
  * isArguments(function() { return arguments }())

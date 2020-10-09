@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isWeakSet
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为WeakSet
+ * @returns {boolean} 是否为WeakSet
  * @example
  *
  * isWeakSet(new WeakSet)

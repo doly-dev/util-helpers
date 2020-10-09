@@ -15,8 +15,8 @@ let numberChar, unitChar, unitSection;
  * 每个小节的内部进行转化
  * 
  * @private
- * @param {Number} section 数字
- * @returns {String} 转化的数字
+ * @param {number} section 数字
+ * @returns {string} 转化的数字
  */
 function sectionToChinese(section) {
   let str = '',
@@ -52,8 +52,8 @@ function sectionToChinese(section) {
  * 转换整数
  * 
  * @private
- * @param {Number} num 要转换的数字
- * @returns {String} 中文数字
+ * @param {number} num 要转换的数字
+ * @returns {string} 中文数字
  */
 function convertInteger(num) {
   num = Math.floor(num);
@@ -84,7 +84,7 @@ function convertInteger(num) {
  * 转换小数
  * 
  * @private
- * @param {Number} num 要转换的数字
+ * @param {number} num 要转换的数字
  */
 function convertDecimal(num) {
   const numStr = num + '';
@@ -104,8 +104,8 @@ function convertDecimal(num) {
  * 映射为中文数字
  * 
  * @private
- * @param {Number} num 要处理的数字
- * @returns {String} 返回中文数字的映射
+ * @param {number} num 要处理的数字
+ * @returns {string} 返回中文数字的映射
  */
 function mapNumberChar(num) {
   const numStr = num + '';
@@ -125,17 +125,17 @@ function mapNumberChar(num) {
  * @static
  * @alias module:Processor.numberToChinese
  * @since 1.2.0
- * @param {Number} num 数字
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.big5=false] 繁体
- * @param {Boolean} [options.unit=true] 计数单位
- * @param {String} [options.decomal=点] 中文小数点
- * @param {String} [options.zero=零] 设置0。常用配置 〇
- * @param {String} [options.negative=负] 负数前面的字
- * @param {Object} [options.unitConfig] 节点单位配置
- * @param {String} [options.unitConfig.w=万] 设置计数单位万。常用配置 萬
- * @param {String} [options.unitConfig.y=亿] 设置计数单位亿。常用配置 億
- * @returns {String} 中文数字
+ * @param {number} num 数字
+ * @param {object} [options] 配置项
+ * @param {boolean} [options.big5=false] 繁体
+ * @param {boolean} [options.unit=true] 计数单位
+ * @param {string} [options.decomal=点] 中文小数点
+ * @param {string} [options.zero=零] 设置0。常用配置 〇
+ * @param {string} [options.negative=负] 负数前面的字
+ * @param {object} [options.unitConfig] 节点单位配置
+ * @param {string} [options.unitConfig.w=万] 设置计数单位万。常用配置 萬
+ * @param {string} [options.unitConfig.y=亿] 设置计数单位亿。常用配置 億
+ * @returns {string} 中文数字
  * @example
  *
  * numberToChinese(100);

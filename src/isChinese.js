@@ -58,10 +58,10 @@ if (supportRegExpUnicode) {
  * @alias module:Validator.isChinese
  * @since 1.1.0
  * @see {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
- * @param {String} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {Boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
- * @returns {Boolean} 值是否为中文
+ * @param {string} value 要检测的值
+ * @param {object} [options] 配置项
+ * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
+ * @returns {boolean} 值是否为中文
  * @example
  * 
  * isChinese('林某某');

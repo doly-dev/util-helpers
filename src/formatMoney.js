@@ -63,13 +63,13 @@ function formatDec(decStr, precision, decimal){
  * @static
  * @alias module:Processor.formatMoney
  * @since 1.1.0
- * @param {String | Number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
- * @param {Object} [options] - 金额格式化配置
- * @param {String | Number} [options.precision=2] - 保留位数 （最高：10位）
- * @param {String} [options.symbol] - 货币符号
- * @param {String} [options.thousand=,] - 千分位符号
- * @param {String} [options.decimal=.] - 小数位符号
- * @returns {String} 格式化的金额
+ * @param {string | number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
+ * @param {object} [options] - 金额格式化配置
+ * @param {string | number} [options.precision=2] - 保留位数 （最高：10位）
+ * @param {string} [options.symbol] - 货币符号
+ * @param {string} [options.thousand=,] - 千分位符号
+ * @param {string} [options.decimal=.] - 小数位符号
+ * @returns {string} 格式化的金额
  * @example
  *
  * // 整数

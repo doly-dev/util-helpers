@@ -5,7 +5,7 @@
  * @alias module:Type.isNull
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Null
+ * @returns {boolean} 是否为Null
  * @example
  *
  * isNull(null)

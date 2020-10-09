@@ -7,8 +7,8 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
  * @static
  * @alias module:Validator.isIPv6
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为ipv6
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为ipv6
  * @example
  *
  * // 冒分十六进制表示法

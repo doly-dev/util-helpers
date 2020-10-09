@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isDate
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Date
+ * @returns {boolean} 是否为Date
  * @example
  *
  * isDate(new Date)

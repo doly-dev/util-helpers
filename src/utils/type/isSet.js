@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isSet
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Set
+ * @returns {boolean} 是否为Set
  * @example
  *
  * isSet(new Set)

@@ -7,8 +7,8 @@ const reg = /^\d{6}$/;
  * @static
  * @alias module:Validator.isPostcode
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为邮政编码
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为邮政编码
  * @example 
  * 
  * isPostcode('101111');

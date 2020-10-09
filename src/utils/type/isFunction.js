@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isFunction
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy
+ * @returns {boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy
  * @example
  * 
  * isFunction(()=>{}))

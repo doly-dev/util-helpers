@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isString
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为String
+ * @returns {boolean} 是否为String
  * @example
  *
  * isString('abc')

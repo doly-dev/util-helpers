@@ -7,7 +7,7 @@ import isType from './isType';
  * @alias module:Type.isMap
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Map
+ * @returns {boolean} 是否为Map
  * @example
  *
  * isMap(new Map)

@@ -7,8 +7,8 @@ const reg = /^1[3456789]\d{9}$/;
  * @static
  * @alias module:Validator.isMobile
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为手机号码
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为手机号码
  * @example 
  * 
  * isMobile('13000000000');

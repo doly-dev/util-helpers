@@ -7,10 +7,10 @@ import times from './times';
  * @static
  * @alias module:Math.divide
  * @since 3.1.0
- * @param {Number} num1 除数
- * @param {Number} num2 被除数
- * @param {Number} [others] 其余被除数
- * @returns {Number} 商数
+ * @param {number} num1 除数
+ * @param {number} num2 被除数
+ * @param {...number} [others] 其余被除数
+ * @returns {number} 商数
  * @example
  * 
  *  divide(1.21, 1.1);

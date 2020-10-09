@@ -7,9 +7,9 @@ import times from './times';
  * @static
  * @alias module:Math.round
  * @since 3.1.0
- * @param {Number} num 要四舍五入的数字
- * @param {Number} [precision=0] 四舍五入的精度
- * @returns {Number} 四舍五入的数字
+ * @param {number} num 要四舍五入的数字
+ * @param {number} [precision=0] 四舍五入的精度
+ * @returns {number} 四舍五入的数字
  * @example
  * 
  *  round(4.006);

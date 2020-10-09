@@ -7,8 +7,8 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(
  * @static
  * @alias module:Validator.isUrl
  * @since 3.4.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为url
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为url
  * @example
  *
  * isUrl('');

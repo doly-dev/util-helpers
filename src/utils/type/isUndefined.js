@@ -5,7 +5,7 @@
  * @alias module:Type.isUndefined
  * @since 1.1.0
  * @param {*} value 检查值
- * @returns {Boolean} 是否为Undefined
+ * @returns {boolean} 是否为Undefined
  * @example
  *
  * isUndefined(undefined)

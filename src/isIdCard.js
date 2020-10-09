@@ -10,8 +10,8 @@ const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|3
  * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为身份证号
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为身份证号
  * @example
  *
  * isIdCard('320311770706001');

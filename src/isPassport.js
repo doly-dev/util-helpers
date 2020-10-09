@@ -9,8 +9,8 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
  * @alias module:Validator.isPassport
  * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国护照#个人资料页|中华人民共和国护照#个人资料页}
  * @since 1.1.0
- * @param {String} value 要检测的值
- * @returns {Boolean} 值是否为护照号
+ * @param {string} value 要检测的值
+ * @returns {boolean} 值是否为护照号
  * @example
  * 
  * isPassport('E12345678');
