@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>minus.js - util-helpers </title>
+    <title>Debug - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -46,51 +46,139 @@
 
 <div id="main">
     
-    <h1 class="page-title">minus.js</h1>
+    <h1 class="page-title">Debug</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { digitLength } from './utils/math.util';
-import times from './times';
+        
+            
+        
+    
+</header>
 
-/**
- * 精确减法，支持多个数相减
- * 
- * @static
- * @alias module:Math.minus
- * @since 3.1.0
- * @param {number} num1 相减的第一个数
- * @param {number} num2 相减的第二个数
- * @param {...number} [others] 相减的第其余数
- * @returns {number} 差
- * @example
- * 
- *  minus(1, 0.9);
- *  // => 0.1
- * 
- *  minus(1, 0.9, 0.02);
- *  // => 0.08
- * 
- *  minus(1, 0.9, 0.02, 0.08);
- *  // => 0
- */
-function minus(num1, num2, ...others) {
-  if (others.length > 0) {
-    return minus(minus(num1, num2), ...others);
-  }
-  const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
-  return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
-}
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">调试相关</div>
+            
 
-export default minus;</code></pre>
-        </article>
-    </section>
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>3.6.1</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
