@@ -1,5 +1,6 @@
 import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
 import isNaN from './utils/type/isNaN';
+import { config } from './utils/config';
 
 const reg = /^[+-]?\d*\.?\d*$/;
 
@@ -11,7 +12,10 @@ function checkNumber(num) {
     (typeof num !== 'number' && typeof num !== 'string') ||
     num === ''
   ) {
-    console.warn(`${num} invalid parameter.`);
+    if (!config.disableWarning) {
+      console.warn(`${num} invalid parameter.`);
+    }
+
     return false;
   }
 
@@ -39,18 +43,18 @@ function formatInt(intStr, thousand) {
 }
 
 // 格式化小数部分，如果使用 toFixed，超大额数字会自动被截断
-function formatDec(decStr, precision, decimal){
-  if(precision === 0){
+function formatDec(decStr, precision, decimal) {
+  if (precision === 0) {
     return '';
   }
 
   const zero = 0;
   let ret = '';
-  
-  if(decStr && Number(decStr) > 0){
+
+  if (decStr && Number(decStr) > 0) {
     let tmpNum = parseFloat('0.' + decStr);
     ret = tmpNum.toFixed(precision).substr(2);
-  }else{
+  } else {
     ret = zero.toFixed(precision).substr(2);
   }
 

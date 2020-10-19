@@ -68,3 +68,7 @@ export declare const times: Math;
 export declare const divide: Math;
 export declare const round: (num: number, precision?: number) => number;
 // ----- 数学计算 end -----
+
+// ----- 调试相关 start -----
+export declare const setDisableWarning: (bool: boolean) => void;
+// ----- 调试相关 end -----

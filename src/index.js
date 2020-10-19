@@ -46,3 +46,11 @@ export { default as minus } from './minus';
 export { default as times } from './times';
 export { default as divide } from './divide';
 export { default as round } from './round';
+
+/**
+ * 调试相关
+ * 
+ * @module Debug
+ * @since 3.6.1
+ */
+export { setDisableWarning } from './utils/config';

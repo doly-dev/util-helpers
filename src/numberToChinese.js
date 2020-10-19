@@ -1,4 +1,5 @@
 import { checkBoundary } from './utils/math.util';
+import { config } from './utils/config';
 
 // 简体
 const chnNumberChar = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
@@ -176,7 +177,10 @@ function numberToChinese(num, {
 } = {}) {
   // 非数字 或 NaN 不处理
   if (typeof num !== 'number' || isNaN(num)) {
-    console.warn(`参数错误 ${num}，请传入数字`);
+    if (!config.disableWarning) {
+      console.warn(`参数错误 ${num}，请传入数字`);
+    }
+
     return '';
   }
 
