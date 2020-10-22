@@ -1,5 +1,6 @@
 # util-helpers
 
+[![npm][npm]][npm-url]
 ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 [![Build Status](https://travis-ci.org/doly-dev/util-helpers.svg?branch=master)](https://travis-ci.org/doly-dev/util-helpers)
 
@@ -73,15 +74,30 @@ formatMoney('1000'); // => 1,000.00
 
 ## 精选第三方工具库
 
-- [lodash](https://www.npmjs.com/package/lodash) - 封装了诸多对字符串、数组、对象等常见数据类型的处理函数
-- [query-string](https://www.npmjs.com/package/query-string) - URL解析、序列化
-- [qs](https://www.npmjs.com/package/qs) - URL查询字符串解析和序列化库
-- [js-cookie](https://www.npmjs.com/package/js-cookie) - 一个简单，轻量级的JavaScript API，用于处理cookie
-- [number-precision](https://www.npmjs.com/package/number-precision) - 使用javascript精确地执行加法，减法，乘法和除法运算
-- [moment](https://www.npmjs.com/package/moment) - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期
-- [dayjs](https://www.npmjs.com/package/dayjs) - 一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样
-- [axios](https://www.npmjs.com/package/axios) - 基于Promise的HTTP客户端，用于浏览器和node.js
-- [jsencrypt](https://www.npmjs.com/package/jsencrypt) - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库
-- [crypto-js](https://www.npmjs.com/package/crypto-js) - 加密标准的JavaScript库
-- [tinycolor2](https://www.npmjs.com/package/tinycolor2) - JavaScript颜色工具，用于JavaScript中的颜色处理和转换
-- [store2](https://www.npmjs.com/package/store2) - 丰富了localStorage和sessionStorage功能（JSON，命名空间，扩展等）
+- [lodash] - 封装了诸多对字符串、数组、对象等常见数据类型的处理函数
+- [query-string] - URL解析、序列化
+- [qs] - URL查询字符串解析和序列化库
+- [js-cookie] - 一个简单，轻量级的JavaScript API，用于处理cookie
+- [moment] - 一个轻量级JavaScript日期库，用于解析，验证，操作和格式化日期
+- [dayjs] - 一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样
+- [axios] - 基于Promise的HTTP客户端，用于浏览器和node.js
+- [jsencrypt] - 用于执行OpenSSL RSA加密，解密和密钥生成的Javascript库
+- [crypto-js] - 加密标准的JavaScript库
+- [tinycolor2] - JavaScript颜色工具，用于JavaScript中的颜色处理和转换
+- [store2] - 丰富了localStorage和sessionStorage功能（JSON，命名空间，扩展等）
+
+[lodash]: https://www.npmjs.com/package/lodash
+[query-string]: https://www.npmjs.com/package/query-string
+[qs]: https://www.npmjs.com/package/qs
+[js-cookie]: https://www.npmjs.com/package/js-cookie
+[moment]: https://www.npmjs.com/package/moment
+[dayjs]: https://www.npmjs.com/package/dayjs
+[axios]: https://www.npmjs.com/package/axios
+[jsencrypt]: https://www.npmjs.com/package/jsencrypt
+[crypto-js]: https://www.npmjs.com/package/crypto-js
+[tinycolor2]: https://www.npmjs.com/package/tinycolor2
+[store2]: https://www.npmjs.com/package/store2
+
+
+[npm]: https://img.shields.io/npm/v/util-helpers.svg
+[npm-url]: https://npmjs.com/package/util-helpers
