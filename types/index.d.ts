@@ -1,5 +1,6 @@
 // ----- 数据验证 start -----
 type Validator = (value: string) => boolean;
+type EnableLooseValidator = (value: string, options?: { loose?: boolean; }) => boolean;
 
 export declare const isMobile: Validator;
 export declare const isTelephone: Validator;
@@ -9,15 +10,15 @@ export declare const isEmail: Validator;
 export declare const isQQ: Validator;
 export declare const isWX: Validator;
 export declare const isVehicle: Validator;
-export declare const isBankCard: Validator;
-export declare const isSocialCreditCode: Validator;
+export declare const isBankCard: EnableLooseValidator;
+export declare const isSocialCreditCode: EnableLooseValidator;
 export declare const isPassword: (value: string, options?: { level?: number; ignoreCase?: boolean; special?: string; }) => boolean;
 export declare const isPassport: Validator;
-export declare const isChinese: (value: string, options?: { loose?: boolean }) => boolean;
+export declare const isChinese: EnableLooseValidator;
 export declare const isIPv4: Validator;
 export declare const isIPv6: Validator;
 export declare const isUrl: Validator;
-export declare const isBusinessLicense: Validator;
+export declare const isBusinessLicense: EnableLooseValidator;
 // ----- 数据验证 end -----
 
 
