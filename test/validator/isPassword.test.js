@@ -50,7 +50,7 @@ describe('isPassword', () => {
   it('3级强度 "a12345678" => false', () => {
     expect(isPassword('a12345678', { level: 3 })).to.be.equal(false);
   });
-  it('3级强度 "Aa12345678" => true', () => {
+  it('3级强度，不忽略大小写 "Aa12345678" => true', () => {
     expect(isPassword('Aa12345678', { level: 3 })).to.be.equal(true);
   });
   it('3级强度，忽略大小写 "Aa12345678" => false', () => {
@@ -59,10 +59,17 @@ describe('isPassword', () => {
   it('3级强度，忽略大小写 "_Aa12345678" => true', () => {
     expect(isPassword('_Aa12345678', { level: 3, ignoreCase: true })).to.be.equal(true);
   });
-  it('3级强度，忽略大小写 " _Aa12345678" => false', () => {
+  it('3级强度，非法字符 " _Aa12345678" => false', () => {
     expect(isPassword(' _Aa12345678', { level: 3, ignoreCase: true })).to.be.equal(false);
   });
-  it('3级强度，忽略大小写 "_Aa一二三45678" => false', () => {
+  it('3级强度，非法字符 "_Aa一二三45678" => false', () => {
     expect(isPassword('_Aa一二三45678', { level: 3, ignoreCase: true })).to.be.equal(false);
+  });
+
+  it('3级强度，自定义特殊字符1', () => {
+    expect(isPassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_一二三' })).to.be.equal(true);
+  });
+  it('3级强度，自定义特殊字符2', () => {
+    expect(isPassword('_Aa一二三45678=', { level: 3, ignoreCase: true, special: '_一二三' })).to.be.equal(false);
   });
 })
