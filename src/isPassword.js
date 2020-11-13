@@ -82,6 +82,7 @@ function hasDisabled(val, chars = '') {
  * @static
  * @alias module:Validator.isPassword
  * @since 1.1.0
+ * @deprecated 将在下次大版本更新后废弃，请使用 validatePassword
  * @param {string} value 要检测的值
  * @param {object} [options] 配置项
  * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）

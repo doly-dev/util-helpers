@@ -1,6 +1,17 @@
 // ----- 数据验证 start -----
 type Validator = (value: string) => boolean;
 type EnableLooseValidator = (value: string, options?: { loose?: boolean; }) => boolean;
+interface ValidateResult {
+  validated: boolean;
+  level: number;
+  containes: {
+    number: boolean;
+    lowerCaseLetter: boolean;
+    upperCaseLetter: boolean;
+    specialCharacter: boolean;
+    unallowableCharacter: boolean;
+  }
+}
 
 export declare const isMobile: Validator;
 export declare const isTelephone: Validator;
@@ -19,6 +30,7 @@ export declare const isIPv4: Validator;
 export declare const isIPv6: Validator;
 export declare const isUrl: Validator;
 export declare const isBusinessLicense: EnableLooseValidator;
+export declare const validatePassword: (value: string, options?: { level?: number; ignoreCase?: boolean; special?: string; }) => ValidateResult;
 // ----- 数据验证 end -----
 
 

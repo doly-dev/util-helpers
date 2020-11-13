@@ -62,13 +62,14 @@ formatMoney('1000'); // => 1,000.00
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
   - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
-  - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
+  - <del>[isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度</del>（即将废弃，请使用[validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword)）
   - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
   - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
   - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
   - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
   - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
   - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
+  - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 调试相关
   - setDisableWarning - 禁止警告提示
 
