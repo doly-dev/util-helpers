@@ -2,7 +2,8 @@ import validatePassword from './validatePassword';
 
 /**
  * 检测值是否符合密码强度
- * 注意该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。如果需要更细致的验证，请使用 `validatePassword`
+ * <p><strong>注意：该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。</strong></p>
+ * <p><i>如果需要更细致的验证，请使用 <a href="#.validatePassword">validatePassword</a></i></p>
  * 
  * @see {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @static
