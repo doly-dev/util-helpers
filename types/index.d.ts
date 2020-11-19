@@ -1,6 +1,8 @@
 // ----- 数据验证 start -----
-type Validator = (value: string) => boolean;
-type EnableLooseValidator = (value: string, options?: { loose?: boolean; }) => boolean;
+type ValidateValueType = string | any;
+type Validator = (value: ValidateValueType) => boolean;
+type EnableLooseValidator = (value: ValidateValueType, options?: { loose?: boolean; }) => boolean;
+type PasswordOption = { level?: number; ignoreCase?: boolean; special?: string; };
 interface ValidateResult {
   validated: boolean;
   level: number;
@@ -23,14 +25,14 @@ export declare const isWX: Validator;
 export declare const isVehicle: Validator;
 export declare const isBankCard: EnableLooseValidator;
 export declare const isSocialCreditCode: EnableLooseValidator;
-export declare const isPassword: (value: string, options?: { level?: number; ignoreCase?: boolean; special?: string; }) => boolean;
+export declare const isPassword: (value: ValidateValueType, options?: PasswordOption) => boolean;
 export declare const isPassport: Validator;
 export declare const isChinese: EnableLooseValidator;
 export declare const isIPv4: Validator;
 export declare const isIPv6: Validator;
 export declare const isUrl: Validator;
 export declare const isBusinessLicense: EnableLooseValidator;
-export declare const validatePassword: (value: string, options?: { level?: number; ignoreCase?: boolean; special?: string; }) => ValidateResult;
+export declare const validatePassword: (value: ValidateValueType, options?: PasswordOption) => ValidateResult;
 // ----- 数据验证 end -----
 
 
