@@ -62,7 +62,7 @@ formatMoney('1000'); // => 1,000.00
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
   - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
-  - <del>[isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度</del>（即将废弃，请使用[validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword)）
+  - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
   - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
   - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
   - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
