@@ -32,7 +32,7 @@ function formatBankCard(bankCardNo = '', {
   char = ' ',
   length = 4
 } = {}) {
-  const reg = new RegExp(`(*{${length}})`, 'g');
+  const reg = new RegExp(`(.{${length}})`, 'g');
 
   const needRemoveLastChar = bankCardNo.length % length === 0;
 
