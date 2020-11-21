@@ -19,6 +19,10 @@
  * formatBankCard('6228480402564890');
  * // => 6228 4804 0256 4890
  * 
+ * // 脱敏银行卡
+ * formatBankCard('6228********890');
+ * // => 6228 **** **** 890
+ * 
  * // 16位银行卡，"-"间隔
  * formatBankCard('6228480402564890', {char: '-'});
  * // => 6228-4804-0256-4890
@@ -28,7 +32,7 @@ function formatBankCard(bankCardNo = '', {
   char = ' ',
   length = 4
 } = {}) {
-  const reg = new RegExp(`(\\d{${length}})`, 'g');
+  const reg = new RegExp(`(*{${length}})`, 'g');
 
   const needRemoveLastChar = bankCardNo.length % length === 0;
 
