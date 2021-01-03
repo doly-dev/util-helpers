@@ -57,6 +57,7 @@ formatMoney('1000'); // => 1,000.00
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 银行卡格式化
   - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
   - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
+  - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
 - 数据验证
   - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
   - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
@@ -93,22 +94,6 @@ formatMoney('1000'); // => 1,000.00
 - [tinycolor2] - JavaScript颜色工具，用于JavaScript中的颜色处理和转换
 - [store2] - 丰富了localStorage和sessionStorage功能（JSON，命名空间，扩展等）
 
-[lodash]: https://www.npmjs.com/package/lodash
-[query-string]: https://www.npmjs.com/package/query-string
-[qs]: https://www.npmjs.com/package/qs
-[js-cookie]: https://www.npmjs.com/package/js-cookie
-[moment]: https://www.npmjs.com/package/moment
-[dayjs]: https://www.npmjs.com/package/dayjs
-[axios]: https://www.npmjs.com/package/axios
-[jsencrypt]: https://www.npmjs.com/package/jsencrypt
-[crypto-js]: https://www.npmjs.com/package/crypto-js
-[tinycolor2]: https://www.npmjs.com/package/tinycolor2
-[store2]: https://www.npmjs.com/package/store2
-
-
-[npm]: https://img.shields.io/npm/v/util-helpers.svg
-[npm-url]: https://npmjs.com/package/util-helpers
-
 ## 贡献
 
 ### commit格式
@@ -142,3 +127,22 @@ refactor | 既不修复bug也不添加新功能的代码更改
 revert | 还原以前的提交
 style | 不影响代码含义的更改(white-space、格式、缺少分号等)
 test | 添加缺失的测试或纠正现有的测试
+
+
+
+
+[lodash]: https://www.npmjs.com/package/lodash
+[query-string]: https://www.npmjs.com/package/query-string
+[qs]: https://www.npmjs.com/package/qs
+[js-cookie]: https://www.npmjs.com/package/js-cookie
+[moment]: https://www.npmjs.com/package/moment
+[dayjs]: https://www.npmjs.com/package/dayjs
+[axios]: https://www.npmjs.com/package/axios
+[jsencrypt]: https://www.npmjs.com/package/jsencrypt
+[crypto-js]: https://www.npmjs.com/package/crypto-js
+[tinycolor2]: https://www.npmjs.com/package/tinycolor2
+[store2]: https://www.npmjs.com/package/store2
+
+
+[npm]: https://img.shields.io/npm/v/util-helpers.svg
+[npm-url]: https://npmjs.com/package/util-helpers

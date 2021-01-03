@@ -64,6 +64,7 @@ declare namespace utilHelpers {
       y?: string;
     };
   }) => string;
+  export const bytesToSize: (bytes: number) => string;
 
   // ----- 数学计算 -----
   type Math = (num1: number, num2: number, ...others: number[]) => number;
