@@ -24,6 +24,12 @@ yarn add util-helpers
 
 `npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 进行下载。
 
+如果使用 `typescript` 可以单独引入外部声明：
+
+```typescript
+/// <reference path="../node_modules/util-helpers/types/index.d.ts" />
+```
+
 ## 示例
 
 ```javascript
@@ -102,3 +108,37 @@ formatMoney('1000'); // => 1,000.00
 
 [npm]: https://img.shields.io/npm/v/util-helpers.svg
 [npm-url]: https://npmjs.com/package/util-helpers
+
+## 贡献
+
+### commit格式
+
+- **格式**
+
+```bash
+type(scope?): subject
+```
+
+- **示例**
+
+```bash
+chore: run tests on travis ci
+fix(server): send cors headers
+feat(blog): add comment section
+```
+
+- **type**
+
+ 值 | 说明 
+ --- | ---
+build | 影响构建系统或外部依赖项的更新（示例范围：gulp, broccoli, npm）
+ci | 对CI配置文件和脚本的更改(例如scopes: Travis, Circle, BrowserStack, SauceLabs)
+chore | 其他不修改src或测试文件的更改
+docs | 只改变文档
+feat | 新功能
+fix | bug 修复
+perf | 改进性能的代码更改
+refactor | 既不修复bug也不添加新功能的代码更改
+revert | 还原以前的提交
+style | 不影响代码含义的更改(white-space、格式、缺少分号等)
+test | 添加缺失的测试或纠正现有的测试
