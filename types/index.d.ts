@@ -33,6 +33,7 @@ declare namespace utilHelpers {
   export const isUrl: Validator;
   export const isBusinessLicense: EnableLooseValidator;
   export const validatePassword: (value: ValidateValueType, options?: PasswordOption) => ValidateResult;
+  export const isPromiseLike: (value: any) => boolean;
 
   // ----- 数据处理 -----
   type NumType = number | string;

@@ -22,6 +22,7 @@ export { default as isIPv6 } from './isIPv6';
 export { default as isUrl } from './isUrl';
 export { default as isBusinessLicense } from './isBusinessLicense';
 export { default as validatePassword } from './validatePassword';
+export { default as isPromiseLike } from './isPromiseLike';
 
 /**
  * 数据处理
