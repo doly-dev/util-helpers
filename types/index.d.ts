@@ -1,89 +1,82 @@
-// ----- 数据验证 start -----
-type ValidateValueType = string | any;
-type Validator = (value: ValidateValueType) => boolean;
-type EnableLooseValidator = (value: ValidateValueType, options?: { loose?: boolean; }) => boolean;
-type PasswordOption = { level?: number; ignoreCase?: boolean; special?: string; };
-interface ValidateResult {
-  validated: boolean;
-  level: number;
-  containes: {
-    number: boolean;
-    lowerCaseLetter: boolean;
-    upperCaseLetter: boolean;
-    specialCharacter: boolean;
-    unallowableCharacter: boolean;
+declare namespace utilHelpers {
+  // ----- 数据验证 -----
+  type ValidateValueType = string | any;
+  type Validator = (value: ValidateValueType) => boolean;
+  type EnableLooseValidator = (value: ValidateValueType, options?: { loose?: boolean; }) => boolean;
+  type PasswordOption = { level?: number; ignoreCase?: boolean; special?: string; };
+  interface ValidateResult {
+    validated: boolean;
+    level: number;
+    containes: {
+      number: boolean;
+      lowerCaseLetter: boolean;
+      upperCaseLetter: boolean;
+      specialCharacter: boolean;
+      unallowableCharacter: boolean;
+    }
   }
+  export const isMobile: Validator;
+  export const isTelephone: Validator;
+  export const isPostcode: Validator;
+  export const isIdCard: Validator;
+  export const isEmail: Validator;
+  export const isQQ: Validator;
+  export const isWX: Validator;
+  export const isVehicle: Validator;
+  export const isBankCard: EnableLooseValidator;
+  export const isSocialCreditCode: EnableLooseValidator;
+  export const isPassword: (value: ValidateValueType, options?: PasswordOption) => boolean;
+  export const isPassport: Validator;
+  export const isChinese: EnableLooseValidator;
+  export const isIPv4: Validator;
+  export const isIPv6: Validator;
+  export const isUrl: Validator;
+  export const isBusinessLicense: EnableLooseValidator;
+  export const validatePassword: (value: ValidateValueType, options?: PasswordOption) => ValidateResult;
+
+  // ----- 数据处理 -----
+  type NumType = number | string;
+  export const formatMoney: (num: NumType, options?: {
+    precision?: string | number;
+    symbol?: string;
+    thousand?: string;
+    decimal?: string;
+  }) => string;
+  export const formatBankCard: (str: string, options?: {
+    char?: string;
+    length?: number;
+  }) => string;
+  export const replaceChar: (str: string, options?: {
+    start?: number;
+    end?: number;
+    char?: string;
+    repeat?: number;
+    exclude?: string;
+  }) => string;
+  export const numberToChinese: (num: number, options?: {
+    big5?: boolean;
+    unit?: boolean;
+    decomal?: string;
+    zero?: string;
+    negative?: string;
+    unitConfig?: {
+      w?: string;
+      y?: string;
+    };
+  }) => string;
+
+  // ----- 数学计算 -----
+  type Math = (num1: number, num2: number, ...others: number[]) => number;
+  export const plus: Math;
+  export const minus: Math;
+  export const times: Math;
+  export const divide: Math;
+  export const round: (num: number, precision?: number) => number;
+
+  // ----- 调试相关 -----
+  export const setDisableWarning: (bool: boolean) => void;
 }
 
-export declare const isMobile: Validator;
-export declare const isTelephone: Validator;
-export declare const isPostcode: Validator;
-export declare const isIdCard: Validator;
-export declare const isEmail: Validator;
-export declare const isQQ: Validator;
-export declare const isWX: Validator;
-export declare const isVehicle: Validator;
-export declare const isBankCard: EnableLooseValidator;
-export declare const isSocialCreditCode: EnableLooseValidator;
-export declare const isPassword: (value: ValidateValueType, options?: PasswordOption) => boolean;
-export declare const isPassport: Validator;
-export declare const isChinese: EnableLooseValidator;
-export declare const isIPv4: Validator;
-export declare const isIPv6: Validator;
-export declare const isUrl: Validator;
-export declare const isBusinessLicense: EnableLooseValidator;
-export declare const validatePassword: (value: ValidateValueType, options?: PasswordOption) => ValidateResult;
-// ----- 数据验证 end -----
+export as namespace utilHelpers;
 
-
-
-// ----- 数据处理 start -----
-type NumType = number | string;
-
-export declare const formatMoney: (num: NumType, options?: {
-  precision?: string | number;
-  symbol?: string;
-  thousand?: string;
-  decimal?: string;
-}) => string;
-
-export declare const formatBankCard: (str: string, options?: {
-  char?: string;
-  length?: number;
-}) => string;
-
-export declare const replaceChar: (str: string, options?: {
-  start?: number;
-  end?: number;
-  char?: string;
-  repeat?: number;
-  exclude?: string;
-}) => string;
-
-export declare const numberToChinese: (num: number, options?: {
-  big5?: boolean;
-  unit?: boolean;
-  decomal?: string;
-  zero?: string;
-  negative?: string;
-  unitConfig?: {
-    w?: string;
-    y?: string;
-  };
-}) => string;
-// ----- 数据处理 end -----
-
-
-// ----- 数学计算 start -----
-type Math = (num1: number, num2: number, ...others: number[]) => number;
-
-export declare const plus: Math;
-export declare const minus: Math;
-export declare const times: Math;
-export declare const divide: Math;
-export declare const round: (num: number, precision?: number) => number;
-// ----- 数学计算 end -----
-
-// ----- 调试相关 start -----
-export declare const setDisableWarning: (bool: boolean) => void;
-// ----- 调试相关 end -----
+export = utilHelpers;
