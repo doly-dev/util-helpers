@@ -17,6 +17,7 @@
     "build:lib-development": "rm -rf lib && babel src --out-dir lib --source-maps inline",
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && jsdoc -c conf.json",
+    "commit": "cz",
     "pub": "npm run build && npm publish"
   },
   "repository": {
@@ -41,9 +42,13 @@
     "@babel/plugin-transform-modules-umd": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
+    "cz-conventional-changelog": "^3.3.0",
     "docdash": "^1.2.0",
+    "husky": "^4.3.6",
     "jsdoc": "^3.6.3",
     "minimist": "^1.2.5",
     "mocha": "^6.2.2",
@@ -75,5 +80,15 @@
         }
       ]
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
