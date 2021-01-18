@@ -129,7 +129,15 @@ revert | 还原以前的提交
 style | 不影响代码含义的更改(white-space、格式、缺少分号等)
 test | 添加缺失的测试或纠正现有的测试
 
+- **使用 `cz` 生成**
 
+> 格式参考 [What is commitlint]
+
+原来使用 `git commit -m "xx"` 改为以下命令（交互方式填写提交信息）：
+
+```bash
+npm run commit
+```
 
 
 [lodash]: https://www.npmjs.com/package/lodash

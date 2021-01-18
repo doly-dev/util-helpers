@@ -33,10 +33,13 @@ function formatBankCard(bankCardNo = '', {
   length = 4
 } = {}) {
   const reg = new RegExp(`(.{${length}})`, 'g');
+  const regChar = new RegExp(`${char}`, 'g');
 
-  const needRemoveLastChar = bankCardNo.length % length === 0;
+  const realValue = bankCardNo.replace(regChar, '');
 
-  const str = bankCardNo.replace(reg, `$1${char}`);
+  const needRemoveLastChar = realValue.length % length === 0;
+
+  const str = realValue.replace(reg, `$1${char}`);
 
   return needRemoveLastChar ? str.substr(0, str.length - 1) : str;
 }

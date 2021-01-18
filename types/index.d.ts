@@ -1,8 +1,7 @@
 declare namespace utilHelpers {
   // ----- 数据验证 -----
-  type ValidateValueType = string | any;
-  type Validator = (value: ValidateValueType) => boolean;
-  type EnableLooseValidator = (value: ValidateValueType, options?: { loose?: boolean; }) => boolean;
+  type Validator = (value: any) => boolean;
+  type EnableLooseValidator = (value: any, options?: { loose?: boolean; }) => boolean;
   type PasswordOption = { level?: number; ignoreCase?: boolean; special?: string; };
   interface ValidateResult {
     validated: boolean;
@@ -25,15 +24,15 @@ declare namespace utilHelpers {
   export const isVehicle: Validator;
   export const isBankCard: EnableLooseValidator;
   export const isSocialCreditCode: EnableLooseValidator;
-  export const isPassword: (value: ValidateValueType, options?: PasswordOption) => boolean;
+  export const isPassword: (value: any, options?: PasswordOption) => boolean;
   export const isPassport: Validator;
   export const isChinese: EnableLooseValidator;
   export const isIPv4: Validator;
   export const isIPv6: Validator;
   export const isUrl: Validator;
   export const isBusinessLicense: EnableLooseValidator;
-  export const validatePassword: (value: ValidateValueType, options?: PasswordOption) => ValidateResult;
-  export const isPromiseLike: (value: any) => boolean;
+  export const validatePassword: (value: any, options?: PasswordOption) => ValidateResult;
+  export const isPromiseLike: Validator;
 
   // ----- 数据处理 -----
   type NumType = number | string;
