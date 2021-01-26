@@ -1,6 +1,7 @@
 const parseArgs = require('minimist');
 const { join } = require('path');
 const pkg = require('./package.json');
+const babelOptions = require('./.babelrc.js');
 
 const cwd = process.cwd();
 
@@ -26,7 +27,7 @@ const libraryGlobalName = stringToCamelCase(pkg.name);
 // 生产模式输出压缩版
 const outputFilename = isProd ? `${pkg.name}.min.js` : `${pkg.name}.js`;
 
-const devtool = isProd ? undefined : 'cheap-module-source-map';
+const devtool = isProd ? 'source-map' : 'eval-source-map';
 
 module.exports = {
   entry: './src/index.js',
@@ -47,7 +48,7 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: pkg.babel
+          options: babelOptions
         }
       }
     ]
