@@ -20,6 +20,9 @@ describe('bytesToSize', () => {
   it(`1024 * 1024 => 1 MB`, () => {
     expect(bytesToSize(1024 * 1024)).to.be.equal('1 MB');
   });
+  it(`3.213243*1024*1024 => 3.21 MB`, () => {
+    expect(bytesToSize(3.213243*1024*1024)).to.be.equal('3.21 MB');
+  });
   it(`10 * 1024 * 1024 => 10 MB`, () => {
     expect(bytesToSize(10 * 1024 * 1024)).to.be.equal('10 MB');
   });

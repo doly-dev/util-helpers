@@ -94,6 +94,7 @@ formatMoney('1000'); // => 1,000.00
 - [crypto-js] - 加密标准的JavaScript库
 - [tinycolor2] - JavaScript颜色工具，用于JavaScript中的颜色处理和转换
 - [store2] - 丰富了localStorage和sessionStorage功能（JSON，命名空间，扩展等）
+- [uuid] - 生成通用唯一识别码（Universally Unique Identifier）
 
 ## 贡献
 
@@ -151,7 +152,7 @@ npm run commit
 [crypto-js]: https://www.npmjs.com/package/crypto-js
 [tinycolor2]: https://www.npmjs.com/package/tinycolor2
 [store2]: https://www.npmjs.com/package/store2
-
+[uuid]: https://www.npmjs.com/package/uuid
 
 [npm]: https://img.shields.io/npm/v/util-helpers.svg
 [npm-url]: https://npmjs.com/package/util-helpers

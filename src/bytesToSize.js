@@ -14,11 +14,8 @@
  * bytesToSize(1024);
  * => 1 KB
  * 
- * bytesToSize(1024*1024);
- * => 1 MB
- * 
- * bytesToSize(3*1024*1024);
- * => 3 MB
+ * bytesToSize(3.213243*1024*1024);
+ * => 3.21 MB
  * 
  * bytesToSize(1024*1024*1024);
  * => 1 GB
