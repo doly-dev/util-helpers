@@ -54,6 +54,7 @@ export { default as round } from './round';
  * 调试相关
  * 
  * @module Debug
+ * @private
  * @since 3.6.1
  */
 export { setDisableWarning } from './utils/config';
