@@ -30,9 +30,11 @@
   },
   "keywords": [
     "util",
+    "helpers",
+    "util-helpers",
+    "business",
     "business-util",
-    "business-helpers",
-    "util-helpers"
+    "biz-util"
   ],
   "author": "caijf",
   "license": "MIT",

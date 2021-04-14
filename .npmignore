@@ -15,3 +15,5 @@ test/
 src/
 docs/
 example/
+.babelrc.*
+commitlint.config.js
