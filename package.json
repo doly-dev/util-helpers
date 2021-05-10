@@ -16,8 +16,8 @@
     "build:lib": "rm -rf lib && babel src --out-dir lib",
     "build:esm": "rm -rf esm && cross-env MODULE_TYPE=esm babel src --out-dir esm",
     "build:dist": "rm -rf dist && npm run build:dist-production && npm run build:dist-development",
-    "build:dist-production": "webpack --mode=production",
-    "build:dist-development": "webpack --mode=development",
+    "build:dist-production": "cross-env MODULE_TYPE=global webpack --mode=production",
+    "build:dist-development": "cross-env MODULE_TYPE=global webpack --mode=development",
     "build:lib-development": "rm -rf lib && babel src --out-dir lib --source-maps inline",
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && jsdoc -c conf.json",
@@ -46,6 +46,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-transform-modules-umd": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "@commitlint/cli": "^11.0.0",
@@ -71,5 +72,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.0"
   }
 }

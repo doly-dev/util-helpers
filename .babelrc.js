@@ -1,18 +1,22 @@
 const { MODULE_TYPE } = process.env;
 
-const babelEnvModulesConfig = MODULE_TYPE === 'esm' ? { modules: false } : {};
-const plugins = MODULE_TYPE === 'esm' ? {} : {
-  "plugins": [
-    [
-      "@babel/transform-modules-umd",
-      {
-        "globals": {
-          "index": "utilHelpers"
-        },
-        "exactGlobals": true
-      }
-    ]
-  ]
+const babelEnvModulesConfig = MODULE_TYPE === "esm" ? { modules: false } : {};
+const plugins = [];
+
+if (MODULE_TYPE !== "esm") {
+  plugins.push([
+    "@babel/transform-modules-umd",
+    {
+      "globals": {
+        "index": "utilHelpers"
+      },
+      "exactGlobals": true
+    }
+  ]);
+}
+
+if (MODULE_TYPE !== "global") {
+  plugins.push("@babel/transform-runtime");
 }
 
 module.exports = {
@@ -30,5 +34,5 @@ module.exports = {
       }
     ]
   ],
-  ...plugins
+  plugins
 }

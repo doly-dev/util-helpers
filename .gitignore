@@ -8,3 +8,6 @@ module-config.js
 yarn.lock
 package-lock.json
 example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
