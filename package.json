@@ -28,6 +28,11 @@
     "type": "git",
     "url": "git+https://github.com/doly-dev/util-helpers.git"
   },
+  "files": [
+    "esm",
+    "lib",
+    "dist"
+  ],
   "keywords": [
     "util",
     "helpers",
