@@ -1,23 +1,20 @@
-const parseArgs = require('minimist');
 const { join } = require('path');
 const pkg = require('./package.json');
 const babelOptions = require('./.babelrc.js');
 
 const cwd = process.cwd();
 
+const { NODE_ENV } = process.env;
+
 // 连接符转驼峰
 function stringToCamelCase(str) {
-  var re = /-(\w)/g;
-  return str.replace(re, function ($0, $1) {
-    return $1.toUpperCase();
+  return str.replace(/-(\w)/g, function (m, p1) {
+    return p1.toUpperCase();
   });
 }
 
-// 命令行参数
-const cmdArgs = parseArgs(process.argv.slice(2));
-
 // 标识生产环境
-const isProd = cmdArgs.mode === 'production';
+const isProd = NODE_ENV === 'production';
 
 // umd全局变量名
 const libraryGlobalName = stringToCamelCase(pkg.name);
@@ -43,8 +40,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        include: join(cwd, 'src'),
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',

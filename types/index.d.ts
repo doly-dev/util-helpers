@@ -67,11 +67,11 @@ declare namespace utilHelpers {
   export const bytesToSize: (bytes: number) => string;
 
   // ----- 数学计算 -----
-  type Math = (num1: number, num2: number, ...others: number[]) => number;
-  export const plus: Math;
-  export const minus: Math;
-  export const times: Math;
-  export const divide: Math;
+  type MathMethod = (num1: number, num2: number, ...others: number[]) => number;
+  export const plus: MathMethod;
+  export const minus: MathMethod;
+  export const times: MathMethod;
+  export const divide: MathMethod;
   export const round: (num: number, precision?: number) => number;
 
   // ----- 调试相关 -----

@@ -11,7 +11,7 @@
 **`npm` 或 `yarn` 安装**
 
 ```shell
-npm install util-helpers --save
+npm install util-helpers
 ```
 
 ```shell
