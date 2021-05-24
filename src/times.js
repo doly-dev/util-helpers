@@ -1,5 +1,5 @@
 import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
- 
+
 /**
  * 精确乘法，支持多个数相乘
  * 
@@ -8,7 +8,7 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  * @since 3.1.0
  * @param {number} num1 相乘的第一个数
  * @param {number} num2 相乘的第二个数
- * @param {...number} [others] 相乘的其余数
+ * @param {...number} others 相乘的其余数
  * @returns {number} 乘积
  * @example
  * 
@@ -23,6 +23,7 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  */
 function times(num1, num2, ...others) {
   if (others.length > 0) {
+    // @ts-ignore
     return times(times(num1, num2), ...others);
   }
   const num1Changed = float2Fixed(num1);

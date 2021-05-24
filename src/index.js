@@ -41,8 +41,8 @@ export { default as bytesToSize } from './bytesToSize';
  * 
  * @module Math
  * @since 3.1.0
- * @see {@link https://github.com/camsong/blog/issues/9|JavaScript 浮点数陷阱及解法}
- * @see {@link https://2zbuy.csb.app/|JS浮点数计算测试}
+ * @see 参考 {@link https://github.com/camsong/blog/issues/9|JavaScript 浮点数陷阱及解法}
+ * @see 参考 {@link https://2zbuy.csb.app/|JS浮点数计算测试}
  */
 export { default as plus } from './plus';
 export { default as minus } from './minus';
@@ -54,7 +54,7 @@ export { default as round } from './round';
  * 调试相关
  * 
  * @module Debug
- * @private
+ * @ignore
  * @since 3.6.1
  */
 export { setDisableWarning } from './utils/config';

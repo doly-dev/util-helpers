@@ -9,7 +9,7 @@ import times from './times';
  * @since 3.1.0
  * @param {number} num1 除数
  * @param {number} num2 被除数
- * @param {...number} [others] 其余被除数
+ * @param {...number} others 其余被除数
  * @returns {number} 商数
  * @example
  * 
@@ -24,6 +24,7 @@ import times from './times';
  */
 function divide(num1, num2, ...others) {
   if (others.length > 0) {
+    // @ts-ignore
     return divide(divide(num1, num2), ...others);
   }
   const num1Changed = float2Fixed(num1);

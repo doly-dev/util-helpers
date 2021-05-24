@@ -9,7 +9,7 @@ import times from './times';
  * @since 3.1.0
  * @param {number} num1 相加的第一个数
  * @param {number} num2 相加的第二个数
- * @param {...number} [others] 相加的其余数
+ * @param {...number} others 相加的其余数
  * @returns {number} 总和
  * @example
  * 
@@ -24,6 +24,7 @@ import times from './times';
  */
 function plus(num1, num2, ...others) {
   if (others.length > 0) {
+    // @ts-ignore
     return plus(plus(num1, num2), ...others);
   }
   const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));

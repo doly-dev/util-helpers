@@ -4,9 +4,9 @@
  * @static
  * @alias module:Processor.formatBankCard
  * @since 1.1.0
- * @param {string} str 要处理的字符串
- * @param {object} [options] 配置项
- * @param {string} [options.char=' '] 间隔字符
+ * @param {string} bankCardNo 要处理的字符串
+ * @param {Object} [options] 配置项
+ * @param {string} [options.char=" "] 间隔字符
  * @param {number} [options.length=4] 间隔长度
  * @returns {string} 格式化的银行卡号
  * @example

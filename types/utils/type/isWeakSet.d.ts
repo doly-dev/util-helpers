@@ -1,0 +1,18 @@
+export default isWeakSet;
+/**
+ * 检查值是否为WeakSet
+ *
+ * @static
+ * @alias module:Type.isWeakSet
+ * @since 1.1.0
+ * @param {*} value 检查值
+ * @returns {boolean} 是否为WeakSet
+ * @example
+ *
+ * isWeakSet(new WeakSet)
+ * // => true
+ *
+ * isWeakSet(new Set)
+ * // => false
+ */
+declare function isWeakSet(value: any): boolean;

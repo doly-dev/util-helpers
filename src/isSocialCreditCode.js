@@ -11,8 +11,8 @@ const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30
  * 获取字符位置
  * 
  * @private
- * @param {String} code 字符
- * @returns {Number} 字符所在基础字符的位置
+ * @param {string} code 字符
+ * @returns {number} 字符所在基础字符的位置
  */
 function getBaseCodeIndex(code) {
   let ret;
@@ -25,6 +25,7 @@ function getBaseCodeIndex(code) {
     return false;
   });
 
+  // @ts-ignore
   return ret;
 }
 
@@ -33,8 +34,8 @@ function getBaseCodeIndex(code) {
  * 
  * @private
  * @since 1.1.0
- * @param {String} preCode 统一代码前17位
- * @returns {String} 校验码
+ * @param {string} preCode 统一代码前17位
+ * @returns {string} 校验码
  */
 function sumCheckCode(preCode) {
   // const preCodeArr = preCode.split('');
@@ -64,10 +65,10 @@ function sumCheckCode(preCode) {
  * 
  * @static
  * @alias module:Validator.isSocialCreditCode
- * @see {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则|GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
+ * @see 参考 {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则|GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
  * @since 1.1.0
  * @param {string} value 要检测的值
- * @param {object} [options] 配置项
+ * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
  * @returns {boolean} 值是否为统一社会信用代码
  * @example

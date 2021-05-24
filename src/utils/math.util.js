@@ -62,7 +62,7 @@ export function float2Fixed(num) {
 /**
  * 检测数字是否越界，如果越界给出提示
  * @param {number} num 输入数
- * @returns {boolean}
+ * @returns
  */
 export function checkBoundary(num) {
   if (+num > MAX_SAFE_INTEGER || +num < MIN_SAFE_INTEGER) {
@@ -103,11 +103,13 @@ function trimLeftZero(num) {
  * @returns {string} 转换后的数字字符串
  */
 export function scientificToNumber(num) {
-  if (isScientificNumber(num)) {
+  if (isScientificNumber(num.toString())) {
     const zero = '0';
     const parts = String(num).toLowerCase().split('e');
     const e = parts.pop(); // 存储指数
+    // @ts-ignore
     const l = Math.abs(e); // 取绝对值，l-1就是0的个数
+    // @ts-ignore
     const sign = e / l; //判断正负
     const coeff_array = parts[0].split('.');   // 将系数按照小数点拆分
 
@@ -127,5 +129,6 @@ export function scientificToNumber(num) {
       }
     }
   }
+  // @ts-ignore
   return num;
 }

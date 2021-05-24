@@ -27,7 +27,7 @@ function bytesToSize(bytes) {
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return sizes[i] ? `${Number((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}` : bytes;
+  return sizes[i] ? `${Number((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}` : bytes + '';
 }
 
 export default bytesToSize;

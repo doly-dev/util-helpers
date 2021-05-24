@@ -21,7 +21,7 @@ import isUndefined from './isUndefined'
  * 类型检测
  *
  * @module Type
- * @private
+ * @ignore
  * @since 1.1.0
 */
 export default {
