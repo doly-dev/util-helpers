@@ -5,12 +5,12 @@ import {
 import isBusinessLicense from '../../src/isBusinessLicense'
 
 describe('isBusinessLicense', () => {
-  it('非字符串 => false', () => {
+  it('错误示例', () => {
     expect(isBusinessLicense(true)).to.be.equal(false);
     expect(isBusinessLicense(123)).to.be.equal(false);
   });
   it('"310115600985533" => true', () => {
-    expect(isBusinessLicense('310115600985533')).to.be.equal(true);
+    expect(isBusinessLicense(310115600985533)).to.be.equal(true);
   });
   it('"310115600985" => false', () => {
     expect(isBusinessLicense('310115600985')).to.be.equal(false);

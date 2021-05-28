@@ -1,3 +1,5 @@
+import isString from './utils/type/isString';
+
 // 基础规则，由18位数字和大写字母组成，不使用I、O、Z、S、V。
 const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
 
@@ -87,7 +89,9 @@ function sumCheckCode(preCode) {
 function isSocialCreditCode(value, {
   loose = false
 } = {}) {
-  const passBaseRule = baseReg.test(value);
+  const realValue = isString(value) ? value : String(value);
+
+  const passBaseRule = baseReg.test(realValue);
 
   // 宽松模式 或 基础规则不通过直接返回
   if (loose || !passBaseRule) {
@@ -95,9 +99,9 @@ function isSocialCreditCode(value, {
   }
 
   // 前17位
-  const preCode = value.substr(0, 17);
+  const preCode = realValue.substr(0, 17);
   // 校验码
-  const lastCode = value.substr(-1);
+  const lastCode = realValue.substr(-1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 

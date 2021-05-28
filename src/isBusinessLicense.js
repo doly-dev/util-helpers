@@ -1,3 +1,5 @@
+import isString from './utils/type/isString';
+
 // 基础规则，由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
 const baseReg = /^\d{15}$/;
 
@@ -63,7 +65,9 @@ function sumCheckCode(preCode) {
 function isBusinessLicense(value, {
   loose = false
 } = {}) {
-  const passBaseRule = baseReg.test(value);
+  const realValue = isString(value) ? value : String(value);
+
+  const passBaseRule = baseReg.test(realValue);
 
   // 宽松模式 或 基础规则不通过直接返回
   if (loose || !passBaseRule) {
@@ -71,9 +75,9 @@ function isBusinessLicense(value, {
   }
 
   // 前14位
-  const preCode = value.substr(0, 14);
+  const preCode = realValue.substr(0, 14);
   // 校验码
-  const lastCode = value.substr(-1);
+  const lastCode = realValue.substr(-1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 
