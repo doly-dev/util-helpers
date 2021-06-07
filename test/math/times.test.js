@@ -8,6 +8,9 @@ describe('times', () => {
   it(`3 * 0.6 = 1.8`, () => {
     expect(times(3, 0.6)).to.be.equal(1.8);
   });
+  it(`字符串 '1' * '1'`, () => {
+    expect(times('1', '1')).to.be.equal(1);
+  });
   it(`3 * 0.6 * 2 = 3.6`, () => {
     expect(times(3, 0.6, 2)).to.be.equal(3.6);
   });

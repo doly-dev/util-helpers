@@ -8,6 +8,9 @@ describe('minus', () => {
   it(`1 - 0.9 = 0.1`, () => {
     expect(minus(1, 0.9)).to.be.equal(0.1);
   });
+  it(`字符串 '1' - '1'`, () => {
+    expect(minus('1', '1')).to.be.equal(0);
+  });
   it(`1 - 0.9 - 0.02 = 0.08`, () => {
     expect(minus(1, 0.9, 0.02)).to.be.equal(0.08);
   });

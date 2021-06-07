@@ -8,6 +8,9 @@ describe('plus', () => {
   it(`0.1 + 0.2 = 0.3`, () => {
     expect(plus(0.1, 0.2)).to.be.equal(0.3);
   });
+  it(`字符串 '1' + '1'`, () => {
+    expect(plus('1', '1')).to.be.equal(2);
+  });
   it(`2.3 + 2.4 = 4.7`, () => {
     expect(plus(2.3, 2.4)).to.be.equal(4.7);
   });

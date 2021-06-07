@@ -8,6 +8,9 @@ describe('divide', () => {
   it(`1.21 / 1.1 = 1.1`, () => {
     expect(divide(1.21, 1.1)).to.be.equal(1.1);
   });
+  it(`字符串 '1' / '1'`, () => {
+    expect(divide('1', '1')).to.be.equal(1);
+  });
   it(`4750.49269435 / 4 = 1187.6231735875`, () => {
     expect(divide(4750.49269435, 4)).to.be.equal(1187.6231735875);
   });

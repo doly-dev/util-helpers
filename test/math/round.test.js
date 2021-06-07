@@ -8,6 +8,9 @@ describe('round', () => {
   it(`4.006 = 4`, () => {
     expect(round(4.006)).to.be.equal(4);
   });
+  it(`字符串 '4.006'`, () => {
+    expect(round('4.006')).to.be.equal(4);
+  });
   it(`4.006, 2 = 4.01`, () => {
     expect(round(4.006, 2)).to.be.equal(4.01);
   });

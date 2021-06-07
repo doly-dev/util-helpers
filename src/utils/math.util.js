@@ -35,7 +35,7 @@ export function strip(num, precision = 12) {
 /**
  * 计算数字的小数点长度，支持科学记数法
  * 
- * @param {number} num 输入数
+ * @param {number|string} num 输入数
  * @returns {number} 小数点长度
  */
 export function digitLength(num) {
@@ -48,7 +48,7 @@ export function digitLength(num) {
 /**
  * 把小数转成整数，支持科学计数法。如果是小数则放大成整数
  * 
- * @param {number} num 输入数
+ * @param {number|string} num 输入数
  * @returns {number}
  */
 export function float2Fixed(num) {

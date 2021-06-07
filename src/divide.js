@@ -7,9 +7,9 @@ import times from './times';
  * @static
  * @alias module:Math.divide
  * @since 3.1.0
- * @param {number} num1 除数
- * @param {number} num2 被除数
- * @param {...number} others 其余被除数
+ * @param {number|string} num1 除数
+ * @param {number|string} num2 被除数
+ * @param {...number|string} others 其余被除数
  * @returns {number} 商数
  * @example
  * 

@@ -7,7 +7,7 @@ import times from './times';
  * @static
  * @alias module:Math.round
  * @since 3.1.0
- * @param {number} num 要四舍五入的数字
+ * @param {number|string} num 要四舍五入的数字
  * @param {number} [precision=0] 四舍五入的精度
  * @returns {number} 四舍五入的数字
  * @example
@@ -21,7 +21,7 @@ import times from './times';
  *  round(4060, -2);
  *  // => 4100
  */
-function round(num, precision=0) {
+function round(num, precision = 0) {
   const base = Math.pow(10, precision);
   return divide(Math.round(times(num, base)), base);
 }
