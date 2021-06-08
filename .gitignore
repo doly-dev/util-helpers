@@ -4,6 +4,7 @@ esm
 .idea
 dist
 types
+docs
 .vscode
 module-config.js
 yarn.lock
