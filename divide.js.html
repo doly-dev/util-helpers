@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>divide.js - util-helpers </title>
+    
+    <meta name="description" content="一个基于业务场景的工具方法库" />
+    
+        <meta name="keywords" content="util, business-util, business-helpers, util-helpers" />
+        <meta name="keyword" content="util, business-util, business-helpers, util-helpers" />
+    
+    
+    
+    <meta property="og:title" content="util-helpers"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="util-helpers"/>
+    <meta property="og:url" content="https://doly-dev.github.io/util-helpers/index.html"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github repo</a></h2><h3>Modules</h3><ul><li><a href="module-Math.html">Math</a><ul class='methods'><li data-type='method'><a href="module-Math.html#.divide">divide</a></li><li data-type='method'><a href="module-Math.html#.minus">minus</a></li><li data-type='method'><a href="module-Math.html#.plus">plus</a></li><li data-type='method'><a href="module-Math.html#.round">round</a></li><li data-type='method'><a href="module-Math.html#.times">times</a></li></ul></li><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.bytesToSize">bytesToSize</a></li><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isBusinessLicense">isBusinessLicense</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isPromiseLike">isPromiseLike</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isUrl">isUrl</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li><li data-type='method'><a href="module-Validator.html#.validatePassword">validatePassword</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">divide.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { strip, digitLength, float2Fixed, checkBoundary } from './utils/math.util';
+import times from './times';
+
+/**
+ * 精确除法，支持多个数相除
+ * 
+ * @static
+ * @alias module:Math.divide
+ * @since 3.1.0
+ * @param {number|string} num1 除数
+ * @param {number|string} num2 被除数
+ * @param {...number|string} others 其余被除数
+ * @returns {number} 商数
+ * @example
+ * 
+ *  divide(1.21, 1.1);
+ *  // => 1.1
+ * 
+ *  divide(1000, 10, 10);
+ *  // => 10
+ * 
+ *  divide(1000, 10, 10, 10);
+ *  // => 1
+ */
+function divide(num1, num2, ...others) {
+  if (others.length > 0) {
+    // @ts-ignore
+    return divide(divide(num1, num2), ...others);
+  }
+  const num1Changed = float2Fixed(num1);
+  const num2Changed = float2Fixed(num2);
+  checkBoundary(num1Changed);
+  checkBoundary(num2Changed);
+  // fix: 类似 10 ** -4 为 0.00009999999999999999，strip 修正
+  return times((num1Changed / num2Changed), strip(Math.pow(10, digitLength(num2) - digitLength(num1))));
+}
+
+export default divide;</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Tue Jun 08 2021 07:06:07 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
