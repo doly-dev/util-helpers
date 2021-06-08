@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 const chineseDictionary = {
   // 基本汉字
   chineseBasic: '[\u4e00-\u9fa5]',
@@ -58,7 +60,7 @@ if (supportRegExpUnicode) {
  * @alias module:Validator.isChinese
  * @since 1.1.0
  * @see 参考 {@link http://www.unicode.org/reports/tr38/#BlockListing|4.4 Listing of Characters Covered by the Unihan Database}
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
  * @returns {boolean} 值是否为中文
@@ -81,8 +83,9 @@ if (supportRegExpUnicode) {
 function isChinese(value, {
   loose = false
 } = {}) {
+  const valueStr = convertToString(value);
   const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : undefined);
-  return reg.test(value);
+  return reg.test(valueStr);
 }
 
 export default isChinese;

@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
 const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
 
@@ -9,7 +11,7 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
  * @alias module:Validator.isPassport
  * @see 参考 {@link https://zh.wikipedia.org/wiki/中华人民共和国护照#个人资料页|中华人民共和国护照#个人资料页}
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为护照号
  * @example
  * 
@@ -21,7 +23,8 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
  * 
  */
 function isPassport(value) {
-  return reg.test(value);
+  const valueStr = convertToString(value);
+  return reg.test(valueStr);
 }
 
 export default isPassport;

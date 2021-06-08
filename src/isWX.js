@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 微信号 6至20位，以字母开头，字母，数字，减号（连接符），下划线
 const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
 
@@ -7,7 +9,7 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  * @static
  * @alias module:Validator.isWX
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为微信号
  * @example
  * 
@@ -19,7 +21,8 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  * 
  */
 function isWX(value) {
-  return reg.test(value);
+  const valueStr = convertToString(value);
+  return reg.test(valueStr);
 }
 
 export default isWX;

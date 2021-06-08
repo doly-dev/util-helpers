@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 邮政编码
 const reg = /^\d{6}$/;
 
@@ -7,7 +9,7 @@ const reg = /^\d{6}$/;
  * @static
  * @alias module:Validator.isPostcode
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为邮政编码
  * @example 
  * 
@@ -19,7 +21,8 @@ const reg = /^\d{6}$/;
  * 
  */
 function isPostcode(value) {
-  return reg.test(value);
+  const valueStr = convertToString(value);
+  return reg.test(valueStr);
 }
 
 export default isPostcode;

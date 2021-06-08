@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 手机号码 11位数字，以1开头，第二位是3456789其中一个，后面再加9个数字
 const reg = /^1[3456789]\d{9}$/;
 
@@ -7,7 +9,7 @@ const reg = /^1[3456789]\d{9}$/;
  * @static
  * @alias module:Validator.isMobile
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为手机号码
  * @example 
  * 
@@ -19,7 +21,8 @@ const reg = /^1[3456789]\d{9}$/;
  * 
  */
 function isMobile(value) {
-  return reg.test(value);
+  const valueStr = convertToString(value);
+  return reg.test(valueStr);
 }
 
 export default isMobile;

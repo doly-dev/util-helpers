@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 非0开头，10~21位数字
 const reg = /^[1-9]\d{9,20}$/;
 
@@ -11,7 +13,7 @@ const regLoose = /^\d{8,30}$/;
  * @alias module:Validator.isBankCard
  * @see 参考 {@link https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html|常用银行账号位数参考}
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式，默认 false
  * @returns {boolean} 值是否为银行卡号
@@ -33,10 +35,12 @@ const regLoose = /^\d{8,30}$/;
 function isBankCard(value, {
   loose = false
 } = {}) {
+  const valueStr = convertToString(value);
+
   if (loose) {
-    return regLoose.test(value);
+    return regLoose.test(valueStr);
   }
-  return reg.test(value);
+  return reg.test(valueStr);
 }
 
 export default isBankCard;

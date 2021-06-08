@@ -1,4 +1,4 @@
-import isString from './utils/type/isString';
+import convertToString from './utils/convertToString';
 
 // 基础规则，由18位数字和大写字母组成，不使用I、O、Z、S、V。
 const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
@@ -69,7 +69,7 @@ function sumCheckCode(preCode) {
  * @alias module:Validator.isSocialCreditCode
  * @see 参考 {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则|GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
  * @returns {boolean} 值是否为统一社会信用代码
@@ -89,9 +89,9 @@ function sumCheckCode(preCode) {
 function isSocialCreditCode(value, {
   loose = false
 } = {}) {
-  const realValue = isString(value) ? value : String(value);
+  const valueStr = convertToString(value);
 
-  const passBaseRule = baseReg.test(realValue);
+  const passBaseRule = baseReg.test(valueStr);
 
   // 宽松模式 或 基础规则不通过直接返回
   if (loose || !passBaseRule) {
@@ -99,9 +99,9 @@ function isSocialCreditCode(value, {
   }
 
   // 前17位
-  const preCode = realValue.substr(0, 17);
+  const preCode = valueStr.substr(0, 17);
   // 校验码
-  const lastCode = realValue.substr(-1);
+  const lastCode = valueStr.substr(-1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 

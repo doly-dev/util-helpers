@@ -10,7 +10,7 @@ import validatePassword from './validatePassword';
  * @alias module:Validator.isPassword
  * @since 1.1.0
  * @requires module:Validator.validatePassword
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
  * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符

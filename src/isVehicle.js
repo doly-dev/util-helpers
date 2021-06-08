@@ -1,3 +1,5 @@
+import convertToString from './utils/convertToString';
+
 // 车牌号正则
 const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([A-Z0-9]{4}[A-Z0-9挂学警港澳]{1})|([A-Z0-9]{5}[DF])|([DF][A-Z0-9]{5}))$/;
 
@@ -8,7 +10,7 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  * @alias module:Validator.isVehicle
  * @see 参考 {@link https://baike.baidu.com/item/%E8%BD%A6%E7%89%8C%E5%8F%B7/1170490|车牌号}
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为车牌号
  * @example 
  * 
@@ -29,7 +31,8 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  * 
  */
 function isVehicle(value) {
-  return reg.test(value);
+  const valueStr = convertToString(value);
+  return reg.test(valueStr);
 }
 
 export default isVehicle;

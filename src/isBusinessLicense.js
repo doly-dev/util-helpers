@@ -1,4 +1,4 @@
-import isString from './utils/type/isString';
+import convertToString from './utils/convertToString';
 
 // 基础规则，由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
 const baseReg = /^\d{15}$/;
@@ -41,7 +41,7 @@ function sumCheckCode(preCode) {
  * @alias module:Validator.isBusinessLicense
  * @see 参考 {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html|GS15—2006 工商行政管理市场主体注册号编制规则}
  * @since 3.5.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
  * @returns {boolean} 值是否为营业执照号
@@ -65,9 +65,9 @@ function sumCheckCode(preCode) {
 function isBusinessLicense(value, {
   loose = false
 } = {}) {
-  const realValue = isString(value) ? value : String(value);
+  const valueStr = convertToString(value);
 
-  const passBaseRule = baseReg.test(realValue);
+  const passBaseRule = baseReg.test(valueStr);
 
   // 宽松模式 或 基础规则不通过直接返回
   if (loose || !passBaseRule) {
@@ -75,9 +75,9 @@ function isBusinessLicense(value, {
   }
 
   // 前14位
-  const preCode = realValue.substr(0, 14);
+  const preCode = valueStr.substr(0, 14);
   // 校验码
-  const lastCode = realValue.substr(-1);
+  const lastCode = valueStr.substr(-1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 

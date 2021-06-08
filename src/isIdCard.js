@@ -1,8 +1,13 @@
+import convertToString from './utils/convertToString';
+
 // 18位身份证
 const regIdCard18 = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)$/i;
 
 // 15位身份证
 const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}$/;
+
+// 身份证正则通用？ 可能匹配到16～17位
+// const regIdCard = /^[1-9]\d{5}(18|19|20)?\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)?$/i;
 
 /**
  * 检测值是否为身份证号
@@ -10,7 +15,7 @@ const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|3
  * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
- * @param {string} value 要检测的值
+ * @param {*} value 要检测的值
  * @returns {boolean} 值是否为身份证号
  * @example
  *
@@ -25,7 +30,8 @@ const regIdCard15 = /^[1-9]\d{5}\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|3
  * 
  */
 function isIdCard(value) {
-  return regIdCard18.test(value) || regIdCard15.test(value);
+  const valueStr = convertToString(value);
+  return regIdCard18.test(valueStr) || regIdCard15.test(valueStr);
 }
 
 export default isIdCard;
