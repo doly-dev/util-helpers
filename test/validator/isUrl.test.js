@@ -5,7 +5,7 @@ import {
 import isUrl from '../../src/isUrl'
 
 describe('isUrl', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isUrl([])).to.be.equal(false);
     expect(isUrl({})).to.be.equal(false);
     expect(isUrl(false)).to.be.equal(false);

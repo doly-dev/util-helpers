@@ -6,7 +6,7 @@ import isTelephone from '../../src/isTelephone'
 
 
 describe('isTelephone', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isTelephone(true)).to.be.equal(false);
     expect(isTelephone(123)).to.be.equal(false);
   });

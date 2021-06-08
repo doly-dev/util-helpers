@@ -6,7 +6,7 @@ import isPostcode from '../../src/isPostcode'
 
 
 describe('isPostcode', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isPostcode(true)).to.be.equal(false);
     expect(isPostcode(123)).to.be.equal(false);
   });

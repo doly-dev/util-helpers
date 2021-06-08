@@ -6,7 +6,7 @@ import isEmail from '../../src/isEmail'
 
 
 describe('isEmail', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isEmail(true)).to.be.equal(false);
     expect(isEmail(123)).to.be.equal(false);
   });

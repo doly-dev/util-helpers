@@ -5,7 +5,7 @@ import {
 import isBusinessLicense from '../../src/isBusinessLicense'
 
 describe('isBusinessLicense', () => {
-  it('错误示例', () => {
+  it('非字符串', () => {
     expect(isBusinessLicense(true)).to.be.equal(false);
     expect(isBusinessLicense(123)).to.be.equal(false);
   });

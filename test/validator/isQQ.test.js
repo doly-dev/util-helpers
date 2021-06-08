@@ -5,7 +5,7 @@ import {
 import isQQ from '../../src/isQQ'
 
 describe('isQQ', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isQQ(true)).to.be.equal(false);
     expect(isQQ(123)).to.be.equal(false);
   });

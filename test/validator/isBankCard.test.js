@@ -5,7 +5,7 @@ import {
 import isBankCard from '../../src/isBankCard'
 
 describe('isBankCard', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isBankCard(true)).to.be.equal(false);
     expect(isBankCard(123)).to.be.equal(false);
   });

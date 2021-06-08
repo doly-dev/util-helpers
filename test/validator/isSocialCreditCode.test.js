@@ -5,7 +5,7 @@ import {
 import isSocialCreditCode from '../../src/isSocialCreditCode'
 
 describe('isSocialCreditCode', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isSocialCreditCode(true)).to.be.equal(false);
     expect(isSocialCreditCode(123)).to.be.equal(false);
   });

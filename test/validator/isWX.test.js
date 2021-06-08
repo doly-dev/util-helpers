@@ -5,7 +5,7 @@ import {
 import isWX from '../../src/isWX'
 
 describe('isWX', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isWX(true)).to.be.equal(false);
     expect(isWX(123)).to.be.equal(false);
   });

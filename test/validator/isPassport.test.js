@@ -5,7 +5,7 @@ import {
 import isPassport from '../../src/isPassport'
 
 describe('isPassport', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isPassport(true)).to.be.equal(false);
     expect(isPassport(123)).to.be.equal(false);
   });

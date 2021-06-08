@@ -6,7 +6,7 @@ import isVehicle from '../../src/isVehicle'
 
 
 describe('isVehicle', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isVehicle(true)).to.be.equal(false);
     expect(isVehicle(123)).to.be.equal(false);
   });

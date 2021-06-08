@@ -5,7 +5,7 @@ import {
 import isIPv6 from '../../src/isIPv6'
 
 describe('isIPv6', () => {
-  it('非字符串 => false', () => {
+  it('非字符串', () => {
     expect(isIPv6(true)).to.be.equal(false);
     expect(isIPv6(123)).to.be.equal(false);
   });
