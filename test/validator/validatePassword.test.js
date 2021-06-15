@@ -1,7 +1,3 @@
-import {
-  expect
-} from 'chai';
-
 import validatePassword from '../../src/validatePassword';
 
 function checkEqual(value, opts, equalObj) {
@@ -10,13 +6,13 @@ function checkEqual(value, opts, equalObj) {
   const { validated, level, containes } = equalObj;
   const { number, lowerCaseLetter, upperCaseLetter, specialCharacter, unallowableCharacter } = containes;
 
-  expect(result.validated).to.be.equal(validated);
-  expect(result.level).to.be.equal(level);
-  expect(result.containes.number).to.be.equal(number);
-  expect(result.containes.lowerCaseLetter).to.be.equal(lowerCaseLetter);
-  expect(result.containes.upperCaseLetter).to.be.equal(upperCaseLetter);
-  expect(result.containes.specialCharacter).to.be.equal(specialCharacter);
-  expect(result.containes.unallowableCharacter).to.be.equal(unallowableCharacter);
+  expect(result.validated).toBe(validated);
+  expect(result.level).toBe(level);
+  expect(result.containes.number).toBe(number);
+  expect(result.containes.lowerCaseLetter).toBe(lowerCaseLetter);
+  expect(result.containes.upperCaseLetter).toBe(upperCaseLetter);
+  expect(result.containes.specialCharacter).toBe(specialCharacter);
+  expect(result.containes.unallowableCharacter).toBe(unallowableCharacter);
 }
 
 describe('validatePassword', () => {

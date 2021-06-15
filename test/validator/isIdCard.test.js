@@ -1,22 +1,30 @@
-import {
-  expect
-} from 'chai';
-
 import isIdCard from '../../src/isIdCard'
 
-
 describe('isIdCard', () => {
-  it('非字符串', () => {
-    expect(isIdCard(true)).to.be.equal(false);
-    expect(isIdCard(123)).to.be.equal(false);
+  it('错误数据', () => {
+    expect(isIdCard()).toBe(false);
+    expect(isIdCard(' ')).toBe(false);
+    expect(isIdCard(true)).toBe(false);
+    expect(isIdCard(123)).toBe(false);
+    expect(isIdCard('130701199310')).toBe(false);
+    expect(isIdCard('13070119931030228X')).toBe(false);
+    expect(isIdCard('230701199310302289')).toBe(false);
+    expect(isIdCard('520302198912097948')).toBe(false);
   });
-  it('"320311770706001" => true', () => {
-    expect(isIdCard('320311770706001')).to.be.equal(true);
+  it('正常模式下15位不通过', () => {
+    expect(isIdCard('320311770706001')).toBe(false);
   });
-  it('"130701199310302288" => true', () => {
-    expect(isIdCard('130701199310302288')).to.be.equal(true);
+  it('宽松模式下支持15位', () => {
+    expect(isIdCard('320311770706001', { loose: true })).toBe(true);
   });
-  it('"130701199310" => false', () => {
-    expect(isIdCard('130701199310')).to.be.equal(false);
+  it('不校验校验码的正确数据', () => {
+    expect(isIdCard('13070119931030228X', { checkCode: false })).toBe(true);
+    expect(isIdCard('230701199310302288', { checkCode: false })).toBe(true);
+    expect(isIdCard('23070119931030228X', { checkCode: false })).toBe(true);
+    expect(isIdCard('520302198912097948', { checkCode: false })).toBe(true);
+  });
+  it('正确数据', () => {
+    expect(isIdCard('130701199310302288')).toBe(true);
+    expect(isIdCard('52030219891209794X')).toBe(true);
   });
 })

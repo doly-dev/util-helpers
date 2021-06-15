@@ -1,14 +1,10 @@
-import {
-  expect
-} from 'chai';
-
 import isArguments from '../../src/utils/type/isArguments'
 
 describe('isArguments', () => {
   it('arguments => true', () => {
-    expect(isArguments(function () { return arguments }())).to.be.equal(true);
+    expect(isArguments(function () { return arguments }())).toBe(true);
   });
   it('[1, 2, 3] => false', () => {
-    expect(isArguments([1, 2, 3])).to.be.equal(false);
+    expect(isArguments([1, 2, 3])).toBe(false);
   });
 })

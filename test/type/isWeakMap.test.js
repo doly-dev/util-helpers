@@ -1,14 +1,10 @@
-import {
-  expect
-} from 'chai';
-
 import isWeakMap from '../../src/utils/type/isWeakMap'
 
 describe('isWeakMap', () => {
   it('new WeakMap => true', () => {
-    expect(isWeakMap(new WeakMap)).to.be.equal(true);
+    expect(isWeakMap(new WeakMap)).toBe(true);
   });
   it('new Map => false', () => {
-    expect(isWeakMap(new Map)).to.be.equal(false);
+    expect(isWeakMap(new Map)).toBe(false);
   });
 })
