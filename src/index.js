@@ -23,6 +23,8 @@ export { default as isUrl } from './isUrl';
 export { default as isBusinessLicense } from './isBusinessLicense';
 export { default as validatePassword } from './validatePassword';
 export { default as isPromiseLike } from './isPromiseLike';
+export { default as isHMCard } from './isHMCard';
+export { default as isTWCard } from './isTWCard';
 
 /**
  * 数据处理
@@ -35,6 +37,7 @@ export { default as formatBankCard } from './formatBankCard';
 export { default as replaceChar } from './replaceChar';
 export { default as numberToChinese } from './numberToChinese';
 export { default as bytesToSize } from './bytesToSize';
+export { default as parseIdCard } from './parseIdCard';
 
 /**
  * 数学计算，修正浮点数计算问题
