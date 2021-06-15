@@ -57,6 +57,8 @@ formatMoney('1000'); // => 1,000.00
   - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
   - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
   - [isPostcode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPostcode) - 邮政编码
+  - [isHMCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isHMCard) - 港澳居民来往内地通行证，俗称回乡证或回乡卡
+  - [isTWCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTWCard) - 台湾居民来往大陆通行证，俗称台胞证
   - [isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) - 身份证号
   - [isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) - 邮箱
   - [isQQ](https://doly-dev.github.io/util-helpers/module-Validator.html#.isQQ) - QQ 号
