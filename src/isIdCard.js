@@ -26,15 +26,15 @@ function check(id) {
 }
 
 /**
- * 检测值是否为18位身份证号。<br/>宽松模式下，支持15位身份证号
+ * 检测值是否为18位身份证号码。<br/>宽松模式下，支持15位身份证号码
  * 
  * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式
- * @param {boolean} [options.checkCode=true] 是否校验最后一位校验码，仅支持18位身份证号
+ * @param {boolean} [options.loose=false] 宽松模式，支持15位身份证号码
+ * @param {boolean} [options.checkCode=true] 是否校验最后一位校验码，仅支持18位身份证号码
  * @returns {boolean} 值是否为身份证号
  * @example
  *

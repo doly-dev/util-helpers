@@ -15,7 +15,7 @@ const regLoose = /^\d{8,30}$/;
  * @since 1.1.0
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式，默认 false
+ * @param {boolean} [options.loose=false] 宽松模式，8~30位数字
  * @returns {boolean} 值是否为银行卡号
  * @example
  * 
