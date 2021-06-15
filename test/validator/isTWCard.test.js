@@ -1,4 +1,4 @@
-import isTWCard from '../../src/isTWCard'
+import { isTWCard } from '../../src'
 
 describe('isTWCard', () => {
   it('should be defined', () => {

@@ -1,4 +1,4 @@
-import validatePassword from '../../src/validatePassword';
+import { validatePassword } from '../../src';
 
 function checkEqual(value, opts, equalObj) {
   const result = validatePassword(value, opts);
@@ -6,16 +6,20 @@ function checkEqual(value, opts, equalObj) {
   const { validated, level, containes } = equalObj;
   const { number, lowerCaseLetter, upperCaseLetter, specialCharacter, unallowableCharacter } = containes;
 
-  expect(result.validated).toBe(validated);
-  expect(result.level).toBe(level);
-  expect(result.containes.number).toBe(number);
-  expect(result.containes.lowerCaseLetter).toBe(lowerCaseLetter);
-  expect(result.containes.upperCaseLetter).toBe(upperCaseLetter);
-  expect(result.containes.specialCharacter).toBe(specialCharacter);
-  expect(result.containes.unallowableCharacter).toBe(unallowableCharacter);
+  expect(result.validated).toEqual(validated);
+  expect(result.level).toEqual(level);
+  expect(result.containes.number).toEqual(number);
+  expect(result.containes.lowerCaseLetter).toEqual(lowerCaseLetter);
+  expect(result.containes.upperCaseLetter).toEqual(upperCaseLetter);
+  expect(result.containes.specialCharacter).toEqual(specialCharacter);
+  expect(result.containes.unallowableCharacter).toEqual(unallowableCharacter);
 }
 
 describe('validatePassword', () => {
+  it('should be defined', () => {
+    expect(validatePassword).toBeDefined();
+  });
+
   it('非字符串', () => {
     checkEqual(true, {}, {
       validated: false,

@@ -1,6 +1,10 @@
-import numberToChinese from '../../src/numberToChinese';
+import { numberToChinese } from '../../src';
 
 describe('numberToChinese', () => {
+  it('should be defined', () => {
+    expect(numberToChinese).toBeDefined();
+  });
+
   it(`100 => 一百`, () => {
     expect(numberToChinese(100)).toBe('一百');
   });

@@ -1,6 +1,10 @@
-import isQQ from '../../src/isQQ'
+import { isQQ } from '../../src'
 
 describe('isQQ', () => {
+  it('should be defined', () => {
+    expect(isQQ).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isQQ(true)).toBe(false);
     expect(isQQ(123)).toBe(false);

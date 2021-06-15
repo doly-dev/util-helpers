@@ -1,6 +1,10 @@
-import plus from '../../src/plus';
+import { plus } from '../../src';
 
 describe('plus', () => {
+  it('should be defined', () => {
+    expect(plus).toBeDefined();
+  });
+
   it(`0.1 + 0.2 = 0.3`, () => {
     expect(plus(0.1, 0.2)).toBe(0.3);
   });

@@ -1,6 +1,10 @@
-import isWX from '../../src/isWX'
+import { isWX } from '../../src'
 
 describe('isWX', () => {
+  it('should be defined', () => {
+    expect(isWX).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isWX(true)).toBe(false);
     expect(isWX(123)).toBe(false);

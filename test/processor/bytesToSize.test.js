@@ -1,6 +1,10 @@
-import bytesToSize from '../../src/bytesToSize';
+import { bytesToSize } from '../../src';
 
 describe('bytesToSize', () => {
+  it('should be defined', () => {
+    expect(bytesToSize).toBeDefined();
+  });
+
   it(`0 => "0 B"`, () => {
     expect(bytesToSize(0)).toBe('0 B');
   });

@@ -1,6 +1,10 @@
-import isBankCard from '../../src/isBankCard'
+import { isBankCard } from '../../src'
 
 describe('isBankCard', () => {
+  it('should be defined', () => {
+    expect(isBankCard).toBeDefined();
+  });
+
   it('错误数据', () => {
     expect(isBankCard()).toBe(false);
     expect(isBankCard('')).toBe(false);

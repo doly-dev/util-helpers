@@ -1,6 +1,10 @@
-import isIPv4 from '../../src/isIPv4'
+import { isIPv4 } from '../../src'
 
 describe('isIPv4', () => {
+  it('should be defined', () => {
+    expect(isIPv4).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isIPv4(true)).toBe(false);
     expect(isIPv4(123)).toBe(false);

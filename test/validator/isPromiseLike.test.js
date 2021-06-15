@@ -1,9 +1,13 @@
-import isPromiseLike from '../../src/isPromiseLike'
+import { isPromiseLike } from '../../src'
 
 const fn = () => { };
 fn.then = () => { };
 
 describe('isPromiseLike', () => {
+  it('should be defined', () => {
+    expect(isPromiseLike).toBeDefined();
+  });
+
   it('null => false', () => {
     expect(isPromiseLike(null)).toBe(false);
   });

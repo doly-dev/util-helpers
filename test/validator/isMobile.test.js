@@ -1,6 +1,10 @@
-import isMobile from '../../src/isMobile'
+import { isMobile } from '../../src'
 
 describe('isMobile', () => {
+  it('should be defined', () => {
+    expect(isMobile).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isMobile(true)).toBe(false);
     expect(isMobile(123)).toBe(false);

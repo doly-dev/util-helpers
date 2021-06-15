@@ -1,6 +1,10 @@
-import divide from '../../src/divide';
+import { divide } from '../../src';
 
 describe('divide', () => {
+  it('should be defined', () => {
+    expect(divide).toBeDefined();
+  });
+
   it(`1.21 / 1.1 = 1.1`, () => {
     expect(divide(1.21, 1.1)).toBe(1.1);
   });

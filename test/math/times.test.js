@@ -1,6 +1,10 @@
-import times from '../../src/times';
+import { times } from '../../src';
 
 describe('times', () => {
+  it('should be defined', () => {
+    expect(times).toBeDefined();
+  });
+
   it(`3 * 0.6 = 1.8`, () => {
     expect(times(3, 0.6)).toBe(1.8);
   });

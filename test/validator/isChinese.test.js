@@ -1,6 +1,10 @@
-import isChinese from '../../src/isChinese'
+import { isChinese } from '../../src'
 
 describe('isChinese', () => {
+  it('should be defined', () => {
+    expect(isChinese).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isChinese(true)).toBe(false);
     expect(isChinese(123)).toBe(false);

@@ -1,6 +1,10 @@
-import isHMCard from '../../src/isHMCard'
+import { isHMCard } from '../../src'
 
 describe('isHMCard', () => {
+  it('should be defined', () => {
+    expect(isHMCard).toBeDefined();
+  });
+
   it('should be defined', () => {
     expect(isHMCard).toBeDefined();
   });

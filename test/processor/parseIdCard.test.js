@@ -1,4 +1,4 @@
-import parseIdCard from '../../src/parseIdCard';
+import { parseIdCard } from '../../src';
 
 describe('parseIdCard', () => {
   it('should be defined', () => {

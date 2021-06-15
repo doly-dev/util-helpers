@@ -1,7 +1,11 @@
-import isPostcode from '../../src/isPostcode'
+import { isPostcode } from '../../src'
 
 
 describe('isPostcode', () => {
+  it('should be defined', () => {
+    expect(isPostcode).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isPostcode(true)).toBe(false);
     expect(isPostcode(123)).toBe(false);

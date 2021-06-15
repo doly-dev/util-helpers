@@ -1,6 +1,10 @@
-import minus from '../../src/minus';
+import { minus } from '../../src';
 
 describe('minus', () => {
+  it('should be defined', () => {
+    expect(minus).toBeDefined();
+  });
+
   it(`1 - 0.9 = 0.1`, () => {
     expect(minus(1, 0.9)).toBe(0.1);
   });

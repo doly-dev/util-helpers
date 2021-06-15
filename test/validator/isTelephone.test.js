@@ -1,7 +1,11 @@
-import isTelephone from '../../src/isTelephone'
+import { isTelephone } from '../../src'
 
 
 describe('isTelephone', () => {
+  it('should be defined', () => {
+    expect(isTelephone).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isTelephone(true)).toBe(false);
     expect(isTelephone(123)).toBe(false);

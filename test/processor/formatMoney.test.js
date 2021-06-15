@@ -1,8 +1,11 @@
-import formatMoney from '../../src/formatMoney';
+import { formatMoney } from '../../src';
 
 // console.log(formatMoney('-1000.123456', {precision:10}))
 
 describe('formatMoney', () => {
+  it('should be defined', () => {
+    expect(formatMoney).toBeDefined();
+  });
 
   describe('输入金额 - string', () => {
     it('正数 - 输入 1000 : string, 返回 1,000.00 : string', () => {

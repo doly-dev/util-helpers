@@ -1,6 +1,10 @@
-import round from '../../src/round';
+import { round } from '../../src';
 
 describe('round', () => {
+  it('should be defined', () => {
+    expect(round).toBeDefined();
+  });
+
   it(`4.006 = 4`, () => {
     expect(round(4.006)).toBe(4);
   });

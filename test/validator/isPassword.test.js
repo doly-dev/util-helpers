@@ -1,6 +1,10 @@
-import isPassword from '../../src/isPassword'
+import { isPassword } from '../../src'
 
 describe('isPassword', () => {
+  it('should be defined', () => {
+    expect(isPassword).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isPassword(true)).toBe(false);
     expect(isPassword(123)).toBe(false);

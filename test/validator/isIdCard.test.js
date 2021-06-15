@@ -1,6 +1,10 @@
-import isIdCard from '../../src/isIdCard'
+import { isIdCard } from '../../src'
 
 describe('isIdCard', () => {
+  it('should be defined', () => {
+    expect(isIdCard).toBeDefined();
+  });
+
   it('错误数据', () => {
     expect(isIdCard()).toBe(false);
     expect(isIdCard(' ')).toBe(false);

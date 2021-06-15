@@ -1,7 +1,11 @@
-import isVehicle from '../../src/isVehicle'
+import { isVehicle } from '../../src'
 
 
 describe('isVehicle', () => {
+  it('should be defined', () => {
+    expect(isVehicle).toBeDefined();
+  });
+
   it('非字符串', () => {
     expect(isVehicle(true)).toBe(false);
     expect(isVehicle(123)).toBe(false);
