@@ -7,8 +7,8 @@ const regIdCard = /^[1-9]\d{5}(19|20)?\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|2
  * 校验码计算
  * 
  * @private
- * @see 参考 {@link http://www.wanweibaike.com/wiki-%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%85%AC%E6%B0%91%E8%BA%AB%E4%BB%BD%E5%8F%B7%E7%A0%81|中华人民共和国公民身份号码}
- * @see 参考 {@link https://baike.baidu.com/item/%E5%B1%85%E6%B0%91%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81|居民身份证号码}
+ * @see 参考 {@link https://zh.wikipedia.org/wiki/中华人民共和国公民身份号码|中华人民共和国公民身份号码}
+ * @see 参考 {@link https://baike.baidu.com/item/居民身份证号码|居民身份证号码}
  * @param {string} id 身份证号码
  * @returns 校验码是否正确
  */

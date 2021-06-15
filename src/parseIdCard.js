@@ -49,7 +49,9 @@ const Provinces = [
   ['65', '新疆维吾尔自治区'],
 
   // 台湾地区：台湾省|710000
+  // 台湾居民公民身份号码地址码为830000，参考 http://www.wanweibaike.com/wiki-中华人民共和国行政区划代码_(7区)、https://zh.wikipedia.org/wiki/港澳台居民居住证
   ['71', '台湾省'],
+  ['83', '台湾省'],
 
   // 港澳地区：香港特别行政区|810000，澳门特别行政区|820000
   ['81', '香港特别行政区'],
@@ -74,7 +76,7 @@ const Provinces = [
  * @static
  * @alias module:Processor.parseIdCard
  * @since 4.0.0
- * @see 参考 {@link https://baike.baidu.com/item/%E5%B1%85%E6%B0%91%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81|居民身份证号码}
+ * @see 参考 {@link https://baike.baidu.com/item/居民身份证号码|居民身份证号码}
  * @param {string} id 身份证号码，支持15位
  * @returns {null | Object} 省份、生日、性别，省/市/区/年/月/日/性别编码
  * @example

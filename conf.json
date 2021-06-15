@@ -45,6 +45,12 @@
         "target": "_blank",
         "class": "menu-item",
         "id": "repo_link"
+      },
+      "Change log": {
+        "href": "https://github.com/doly-dev/util-helpers/releases",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "repo_link"
       }
     }
   }
