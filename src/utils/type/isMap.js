@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Map
- * 
+ *
  * @static
  * @alias module:Type.isMap
  * @since 1.1.0

@@ -5,7 +5,7 @@ const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
 
 /**
  * 检测值是否为固定电话
- * 
+ *
  * @static
  * @alias module:Validator.isTelephone
  * @since 1.1.0
@@ -24,7 +24,7 @@ const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
  *
  * isTelephone('13000000000');
  * // => false
- * 
+ *
  */
 function isTelephone(value) {
   const valueStr = convertToString(value);

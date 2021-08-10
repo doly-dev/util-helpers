@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Boolean
- * 
+ *
  * @static
  * @alias module:Type.isBoolean
  * @since 1.1.0

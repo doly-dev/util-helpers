@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Number
- * 
+ *
  * @static
  * @alias module:Type.isNumber
  * @since 1.1.0

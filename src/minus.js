@@ -3,7 +3,7 @@ import times from './times';
 
 /**
  * 精确减法，支持多个数相减
- * 
+ *
  * @static
  * @alias module:Math.minus
  * @since 3.1.0
@@ -12,15 +12,15 @@ import times from './times';
  * @param {...number|string} others 相减的第其余数
  * @returns {number} 差
  * @example
- * 
- *  minus(1, 0.9);
- *  // => 0.1
- * 
- *  minus(1, 0.9, 0.02);
- *  // => 0.08
- * 
- *  minus(1, 0.9, 0.02, 0.08);
- *  // => 0
+ *
+ * minus(1, 0.9);
+ * // => 0.1
+ *
+ * minus(1, 0.9, 0.02);
+ * // => 0.08
+ *
+ * minus(1, 0.9, 0.02, 0.08);
+ * // => 0
  */
 function minus(num1, num2, ...others) {
   if (others.length > 0) {

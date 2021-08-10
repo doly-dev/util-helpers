@@ -3,7 +3,7 @@ import times from './times';
 
 /**
  * 精确加法，支持多个数相加
- * 
+ *
  * @static
  * @alias module:Math.plus
  * @since 3.1.0
@@ -12,15 +12,15 @@ import times from './times';
  * @param {...number|string} others 相加的其余数
  * @returns {number} 总和
  * @example
- * 
- *  plus(0.1, 0.2);
- *  // => 0.3
- * 
- *  plus(0.1, 0.2, 0.3);
- *  // => 0.6
- * 
- *  plus(0.1, 0.2, 0.3, 0.4);
- *  // => 1
+ *
+ * plus(0.1, 0.2);
+ * // => 0.3
+ *
+ * plus(0.1, 0.2, 0.3);
+ * // => 0.6
+ *
+ * plus(0.1, 0.2, 0.3, 0.4);
+ * // => 1
  */
 function plus(num1, num2, ...others) {
   if (others.length > 0) {

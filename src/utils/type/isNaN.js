@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为NaN
- * 
+ *
  * @static
  * @alias module:Type.isNaN
  * @since 1.1.0

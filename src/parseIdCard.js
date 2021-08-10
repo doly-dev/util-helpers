@@ -55,7 +55,7 @@ const Provinces = [
 
   // 港澳地区：香港特别行政区|810000，澳门特别行政区|820000
   ['81', '香港特别行政区'],
-  ['82', '澳门特别行政区'],
+  ['82', '澳门特别行政区']
 ];
 
 // 第一位数字是以前的大区制代码。第二位是大区所在省市编码。全国共分为8个大区：华北（1）、东北（2）、华东（3）、中南（4）、西南（5）、西北（6）、台湾（7）和港澳（8）。
@@ -114,10 +114,10 @@ function parseIdCard(id) {
     return null;
   }
 
-  /** 
-   * @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }} 
-   * 
-  */
+  /**
+   * @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }}
+   *
+   */
   let origin = {
     province: '',
     city: '',
@@ -132,8 +132,15 @@ function parseIdCard(id) {
     // @ts-ignore
     origin = info.groups;
   } else {
-    const [_, province, city, area, year, month, day, gender] = info;
-    origin = { province, city, area, year, month, day, gender }
+    origin = {
+      province: info[1],
+      city: info[2],
+      area: info[3],
+      year: info[4],
+      month: info[5],
+      day: info[6],
+      gender: info[7]
+    };
   }
 
   const province = Provinces.find(item => item[0] === origin.province);
@@ -152,7 +159,7 @@ function parseIdCard(id) {
     birthday,
     gender,
     origin
-  }
+  };
 }
 
 export default parseIdCard;

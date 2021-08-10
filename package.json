@@ -18,6 +18,12 @@
     "build:dist": "rm -rf dist && rollup -c",
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && jsdoc -c conf.json",
+    "prettier": "prettier --write 'src/**/*.js' && prettier --write 'test/**/*.js'",
+    "lint-staged": "lint-staged",
+    "lint-staged:prettier": "prettier --write",
+    "precommit": "lint-staged",
+    "lint": "eslint src --ext js",
+    "lint:fix": "eslint src --ext js --fix",
     "commit": "cz",
     "pub": "npm run build && npm publish",
     "types": "tsc"
@@ -61,12 +67,21 @@
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "docdash": "^1.2.0",
+    "eslint": "^7.32.0",
     "husky": "^4.3.6",
     "jest": "^27.0.4",
     "jsdoc": "^3.6.3",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
     "rollup": "^2.49.0",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.2.4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "npm run lint-staged:prettier"
+    ]
   },
   "husky": {
     "hooks": {

@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Arguments
- * 
+ *
  * @static
  * @alias module:Type.isArguments
  * @since 1.1.0

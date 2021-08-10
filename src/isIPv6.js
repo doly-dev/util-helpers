@@ -5,7 +5,7 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
 
 /**
  * 检测值是否为ipv6
- * 
+ *
  * @static
  * @alias module:Validator.isIPv6
  * @since 1.1.0
@@ -27,7 +27,7 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
  * // 0位压缩表示法
  * isIPv6('FF01::1101');
  * // => true
- * 
+ *
  * isIPv6('::1');
  * // => true
  *
@@ -36,20 +36,20 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
  *
  * isIPv6('0:0:0:0:0:0:0:1');
  * // => true
- * 
+ *
  * isIPv6('0:0:0:0:0:0:0:0');
  * // => true
  *
  * // 内嵌IPv4地址表示法
  * isIPv6('::192.168.1.1');
  * // => true
- * 
+ *
  * isIPv6('::FFFF:192.168.1.1');
  * // => true
  *
  * isIPv6('192.168.1.1');
  * // => false
- * 
+ *
  */
 function isIPv6(value) {
   const valueStr = convertToString(value);

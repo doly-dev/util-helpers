@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为RegExp
- * 
+ *
  * @static
  * @alias module:Type.isRegExp
  * @since 1.1.0

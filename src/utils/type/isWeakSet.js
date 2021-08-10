@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为WeakSet
- * 
+ *
  * @static
  * @alias module:Type.isWeakSet
  * @since 1.1.0

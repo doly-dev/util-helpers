@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为String
- * 
+ *
  * @static
  * @alias module:Type.isString
  * @since 1.1.0

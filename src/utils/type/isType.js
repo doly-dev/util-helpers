@@ -1,4 +1,4 @@
-const toString = Object.prototype.toString
+const toString = Object.prototype.toString;
 
 /**
  * 检测值的 `toString` 类型

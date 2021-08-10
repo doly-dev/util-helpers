@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Date
- * 
+ *
  * @static
  * @alias module:Type.isDate
  * @since 1.1.0

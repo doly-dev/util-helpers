@@ -1,6 +1,6 @@
 /**
  * 检查值是否为Undefined
- * 
+ *
  * @static
  * @alias module:Type.isUndefined
  * @since 1.1.0

@@ -6,18 +6,13 @@ const reg = /^[+-]?\d*\.?\d*$/;
 
 /**
  * 检查数字或数字字符串
- * 
+ *
  * @private
- * @param {string} num 
+ * @param {string} num
  * @returns 是否为数字
  */
 function checkNumber(num) {
-  if (
-    !(reg.test(num) || isScientificNumber(num)) ||
-    isNaN(num) ||
-    (typeof num !== 'number' && typeof num !== 'string') ||
-    num === ''
-  ) {
+  if (!(reg.test(num) || isScientificNumber(num)) || isNaN(num) || (typeof num !== 'number' && typeof num !== 'string') || num === '') {
     if (!config.disableWarning) {
       console.warn(`${num} invalid parameter.`);
     }
@@ -36,7 +31,7 @@ function checkNumber(num) {
 
 /**
  * 格式化整数部分
- * 
+ *
  * @private
  * @param {string} intStr 数字字符串
  * @param {string} thousand 千分位符号
@@ -57,7 +52,7 @@ function formatInt(intStr, thousand) {
 
 /**
  * 格式化小数部分，如果使用 toFixed，超大额数字会自动被截断
- * 
+ *
  * @private
  * @param {string} decStr 小数点部分的字符串
  * @param {number} precision 保留位数

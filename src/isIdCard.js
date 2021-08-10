@@ -5,7 +5,7 @@ const regIdCard = /^[1-9]\d{5}(19|20)?\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|2
 
 /**
  * 校验码计算
- * 
+ *
  * @private
  * @see 参考 {@link https://zh.wikipedia.org/wiki/中华人民共和国公民身份号码|中华人民共和国公民身份号码}
  * @see 参考 {@link https://baike.baidu.com/item/居民身份证号码|居民身份证号码}
@@ -27,7 +27,7 @@ function check(id) {
 
 /**
  * 检测值是否为18位身份证号码。<br/>宽松模式下，支持15位身份证号码
- * 
+ *
  * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
@@ -52,12 +52,9 @@ function check(id) {
  *
  * isIdCard('320311770706001', { loose: true });
  * // => true
- * 
+ *
  */
-function isIdCard(value, {
-  loose = false,
-  checkCode = true
-} = {}) {
+function isIdCard(value, { loose = false, checkCode = true } = {}) {
   const valueStr = convertToString(value);
   if (valueStr.length === 15 && loose) {
     return regIdCard.test(valueStr);

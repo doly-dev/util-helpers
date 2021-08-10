@@ -5,20 +5,20 @@ const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,
 
 /**
  * 检测值是否为Email
- * 
+ *
  * @static
  * @alias module:Validator.isEmail
  * @since 1.1.0
  * @param {*} value 要检测的值
  * @returns {boolean} 值是否为Email
- * @example 
- * 
+ * @example
+ *
  * isEmail('1232@qq.com');
  * // => true
  *
  * isEmail('123@');
  * // => false
- * 
+ *
  */
 function isEmail(value) {
   const valueStr = convertToString(value);

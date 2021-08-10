@@ -3,11 +3,11 @@ import { config } from './utils/config';
 const regNumber = /[\d]/;
 const regLowerCaseLetter = /[a-z]/;
 const regUpperCaseLetter = /[A-Z]/;
-const regAllNumberAndLetter = /[\d|a-z]/ig;
+const regAllNumberAndLetter = /[\d|a-z]/gi;
 
 /**
  * 是否包含数字
- * 
+ *
  * @private
  * @param {string} val 检查的值
  * @returns {boolean} 是否包含数字
@@ -18,7 +18,7 @@ function hasNumber(val) {
 
 /**
  * 是否包含小写字母
- * 
+ *
  * @private
  * @param {string} val 检测的值
  * @returns {boolean} 是否包含小写字母
@@ -29,7 +29,7 @@ function hasLowerCaseLetter(val) {
 
 /**
  * 是否包含大写字母
- * 
+ *
  * @private
  * @param {string} val 检测的值
  * @returns {boolean} 是否包含大写字母
@@ -40,7 +40,7 @@ function hasUpperCaseLetter(val) {
 
 /**
  * 是否为十六进制
- * 
+ *
  * @private
  * @param {string} val 检测的值
  * @returns {boolean} 是否为十六进制
@@ -51,7 +51,7 @@ function hasHex(val) {
 
 /**
  * 是否包含特殊字符
- * 
+ *
  * @private
  * @param {string} val 检测的值
  * @param {string} [chars] 特殊字符
@@ -70,7 +70,7 @@ function hasSpecialCharacter(val, chars = '') {
   }
 
   let ret = false;
-  specialChars.split('').some((charItem) => {
+  specialChars.split('').some(charItem => {
     if (chars.indexOf(charItem) > -1) {
       ret = true;
     }
@@ -81,7 +81,7 @@ function hasSpecialCharacter(val, chars = '') {
 
 /**
  * 是否包含非法字符
- * 
+ *
  * @private
  * @param {string} val 检测的值
  * @param {string} chars 非法字符
@@ -99,7 +99,7 @@ function hasUnallowableCharacter(val, chars = '') {
     return regChars.test(specialChars);
   }
   let ret = false;
-  specialChars.split('').some((charItem) => {
+  specialChars.split('').some(charItem => {
     if (chars.indexOf(charItem) === -1) {
       ret = true;
     }
@@ -110,7 +110,7 @@ function hasUnallowableCharacter(val, chars = '') {
 
 /**
  * 验证密码（数字、大小写字母、特殊字符、非法字符）
- * 
+ *
  * @see 参考 {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @static
  * @alias module:Validator.validatePassword
@@ -122,9 +122,9 @@ function hasUnallowableCharacter(val, chars = '') {
  * @param {string} [options.special="!@#$%^&*()-=_+[]\|{},./?<>~"] 支持的特殊字符
  * @returns 验证结果
  * @example
- * 
+ *
  * validatePassword('a12345678');
- * // => 
+ * // =>
  * {
  *   validated: true, // 验证结果，根据密码强度、是否包含非法字符得出
  *   level: 2, // 强度级别
@@ -136,9 +136,9 @@ function hasUnallowableCharacter(val, chars = '') {
  *     unallowableCharacter: false // 包含非法字符
  *   }
  * }
- * 
+ *
  * validatePassword('a12345678', {level: 3});
- * // => 
+ * // =>
  * {
  *   validated: false,
  *   level: 2,
@@ -150,9 +150,9 @@ function hasUnallowableCharacter(val, chars = '') {
  *     unallowableCharacter: false
  *   }
  * }
- * 
+ *
  * validatePassword('_Aa一二三45678', {level: 3, ignoreCase: true});
- * // => 
+ * // =>
  * {
  *   validated: false,
  *   level: 3,
@@ -164,10 +164,10 @@ function hasUnallowableCharacter(val, chars = '') {
  *     unallowableCharacter: true
  *   }
  * }
- * 
+ *
  * // 自定义特殊字符
  * validatePassword('_Aa一二三45678', {level: 3, ignoreCase: true, special: '_一二三'});
- * // => 
+ * // =>
  * {
  *   validated: true,
  *   level: 3,
@@ -180,11 +180,7 @@ function hasUnallowableCharacter(val, chars = '') {
  *   }
  * }
  */
-function validatePassword(value, {
-  level = 2,
-  ignoreCase = false,
-  special = "\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E"
-} = {}) {
+function validatePassword(value, { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = {}) {
   let valStr = value;
 
   if (typeof value !== 'string') {
@@ -211,11 +207,13 @@ function validatePassword(value, {
     currentLevel += 1;
   }
 
-  if (ignoreCase) { // 不区分大小写
+  if (ignoreCase) {
+    // 不区分大小写
     if (containesLowerCaseLetter || containesUpperCaseLetter) {
       currentLevel += 1;
     }
-  } else { // 区分大小写
+  } else {
+    // 区分大小写
     if (containesLowerCaseLetter) {
       currentLevel += 1;
     }
@@ -241,7 +239,7 @@ function validatePassword(value, {
       specialCharacter: containesSpecialCharacter,
       unallowableCharacter: containesUnallowableCharacter
     }
-  }
+  };
 }
 
 export default validatePassword;

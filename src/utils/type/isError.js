@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError|DOMException
- * 
+ *
  * @static
  * @alias module:Type.isError
  * @since 1.1.0

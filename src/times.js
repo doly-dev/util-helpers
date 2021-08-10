@@ -2,7 +2,7 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
 
 /**
  * 精确乘法，支持多个数相乘
- * 
+ *
  * @static
  * @alias module:Math.times
  * @since 3.1.0
@@ -11,15 +11,15 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  * @param {...number|string} others 相乘的其余数
  * @returns {number} 乘积
  * @example
- * 
- *  times(3, 0.6);
- *  // => 1.8
- * 
- *  times(3, 0.6, 2);
- *  // => 3.6
- * 
- *  times(3, 0.6, 2, 10);
- *  // => 36
+ *
+ * times(3, 0.6);
+ * // => 1.8
+ *
+ * times(3, 0.6, 2);
+ * // => 3.6
+ *
+ * times(3, 0.6, 2, 10);
+ * // => 36
  */
 function times(num1, num2, ...others) {
   if (others.length > 0) {

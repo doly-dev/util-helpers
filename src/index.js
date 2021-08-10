@@ -3,7 +3,7 @@
  *
  * @module Validator
  * @since 1.1.0
-*/
+ */
 export { default as isMobile } from './isMobile';
 export { default as isTelephone } from './isTelephone';
 export { default as isPostcode } from './isPostcode';
@@ -31,7 +31,7 @@ export { default as isTWCard } from './isTWCard';
  *
  * @module Processor
  * @since 1.1.0
-*/
+ */
 export { default as formatMoney } from './formatMoney';
 export { default as formatBankCard } from './formatBankCard';
 export { default as replaceChar } from './replaceChar';
@@ -41,7 +41,7 @@ export { default as parseIdCard } from './parseIdCard';
 
 /**
  * 数学计算，修正浮点数计算问题
- * 
+ *
  * @module Math
  * @since 3.1.0
  * @see 参考 {@link https://github.com/camsong/blog/issues/9|JavaScript 浮点数陷阱及解法}
@@ -55,7 +55,7 @@ export { default as round } from './round';
 
 /**
  * 调试相关
- * 
+ *
  * @module Debug
  * @ignore
  * @since 3.6.1

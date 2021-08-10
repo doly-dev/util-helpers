@@ -5,12 +5,12 @@ const regTWCard = /^(\d{8}|[\da-z]{10})$/i;
 
 /**
  * 检测值是否为台湾居民来往大陆通行证，俗称台胞证。
- * 
+ *
  * @static
  * @alias module:Validator.isTWCard
  * @since 4.0.0
  * @see 参考 {@link https://zh.wikipedia.org/wiki/台湾居民来往大陆通行证|台湾居民来往大陆通行证}
- * @param {*} value 要检测的值 
+ * @param {*} value 要检测的值
  * @returns {boolean} 是否为台湾居民来往大陆通行证
  */
 function isTWCard(value) {

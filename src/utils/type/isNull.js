@@ -1,6 +1,6 @@
 /**
  * 检查值是否为Null
- * 
+ *
  * @static
  * @alias module:Type.isNull
  * @since 1.1.0

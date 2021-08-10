@@ -1,6 +1,6 @@
 /**
  * 参考: https://github.com/nefe/number-precision/blob/master/src/index.ts
- * 
+ *
  * 解决浮动运算问题，避免小数点后产生多位数和计算精度损失。
  * 问题示例：2.3 + 2.4 = 4.699999999999999，1.0 - 0.9 = 0.09999999999999998
  */
@@ -10,7 +10,7 @@ import { config } from './config';
 
 /**
  * 是否为科学计数法数字
- * 
+ *
  * @param {string} num 检查值
  * @returns {boolean}
  */
@@ -20,12 +20,12 @@ export function isScientificNumber(num) {
 
 /**
  * 把错误的数据转正
- * 
+ *
  * @param {number} num 输入数
  * @param {number} [precision=12] 小数点的精度
  * @returns {number}
  * @example
- * 
+ *
  *  strip(0.09999999999999998)=0.1
  */
 export function strip(num, precision = 12) {
@@ -34,20 +34,20 @@ export function strip(num, precision = 12) {
 
 /**
  * 计算数字的小数点长度，支持科学记数法
- * 
+ *
  * @param {number|string} num 输入数
  * @returns {number} 小数点长度
  */
 export function digitLength(num) {
   // Get digit length of e
   const eSplit = num.toString().split(/e/i);
-  const len = (eSplit[0].split('.')[1] || '').length - (+(eSplit[1] || 0));
+  const len = (eSplit[0].split('.')[1] || '').length - +(eSplit[1] || 0);
   return len > 0 ? len : 0;
 }
 
 /**
  * 把小数转成整数，支持科学计数法。如果是小数则放大成整数
- * 
+ *
  * @param {number|string} num 输入数
  * @returns {number}
  */
@@ -56,7 +56,7 @@ export function float2Fixed(num) {
     return Number(num.toString().replace('.', ''));
   }
   const dLen = digitLength(num);
-  return dLen > 0 ? strip((+num) * Math.pow(10, dLen)) : +num;
+  return dLen > 0 ? strip(+num * Math.pow(10, dLen)) : +num;
 }
 
 /**
@@ -74,7 +74,7 @@ export function checkBoundary(num) {
 
 /**
  * 去掉左边数字0
- * 
+ *
  * @param {string} num 数字字符串
  * @returns {string}
  */
@@ -94,11 +94,11 @@ function trimLeftZero(num) {
 
 /**
  * 科学计数法转换成普通数字
- * 
+ *
  * JavaScript在以下情景会自动将数值转换为科学计数法：
  *  1.小数点前的数字个数大于等于22位
  *  2.小数点前边是0，小数点后十分位（包含十分位）之后连续零的个数大于等于6个
- * 
+ *
  * @param {string | number} num 科学计数法数字
  * @returns {string} 转换后的数字字符串
  */
@@ -111,7 +111,7 @@ export function scientificToNumber(num) {
     const l = Math.abs(e); // 取绝对值，l-1就是0的个数
     // @ts-ignore
     const sign = e / l; //判断正负
-    const coeff_array = parts[0].split('.');   // 将系数按照小数点拆分
+    const coeff_array = parts[0].split('.'); // 将系数按照小数点拆分
 
     //如果是小数
     if (sign === -1) {

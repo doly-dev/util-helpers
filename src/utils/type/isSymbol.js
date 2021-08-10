@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Symbol
- * 
+ *
  * @static
  * @alias module:Type.isSymbol
  * @since 1.1.0

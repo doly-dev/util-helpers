@@ -2,28 +2,28 @@ import { checkBoundary } from './utils/math.util';
 import { config } from './utils/config';
 
 // 简体
-const chnNumberChar = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
-const chnUnitChar = ["", "十", "百", "千"];
+const chnNumberChar = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+const chnUnitChar = ['', '十', '百', '千'];
 
 // 繁体
-const big5NumberChar = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
-const big5UnitChar = ["", "拾", "佰", "仟"];
+const big5NumberChar = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+const big5UnitChar = ['', '拾', '佰', '仟'];
 
 // 数字字符、计数单位
 
-/** 
- * @type {string[]} 
+/**
+ * @type {string[]}
  * @private
  */
 let numberChar;
 
-/** 
+/**
  * @type {string[]}
  * @private
  */
 let unitChar;
 
-/** 
+/**
  * @type {string[]}
  * @private
  */
@@ -31,7 +31,7 @@ let unitSection;
 
 /**
  * 每个小节的内部进行转化
- * 
+ *
  * @private
  * @param {number} section 数字
  * @returns {string} 转化的数字
@@ -68,7 +68,7 @@ function sectionToChinese(section) {
 
 /**
  * 转换整数
- * 
+ *
  * @private
  * @param {number} num 要转换的数字
  * @returns {string} 中文数字
@@ -77,7 +77,8 @@ function convertInteger(num) {
   num = Math.floor(num);
 
   let unitPos = 0;
-  let strIns = '', chnStr = '';
+  let strIns = '',
+    chnStr = '';
   let needZero = false;
 
   if (num === 0) {
@@ -89,9 +90,9 @@ function convertInteger(num) {
       chnStr = numberChar[0] + chnStr;
     }
     strIns = sectionToChinese(section);
-    strIns += (section !== 0) ? unitSection[unitPos] : unitSection[0];
+    strIns += section !== 0 ? unitSection[unitPos] : unitSection[0];
     chnStr = strIns + chnStr;
-    needZero = (section < 1000) && (section > 0);
+    needZero = section < 1000 && section > 0;
     num = Math.floor(num / 10000);
     unitPos++;
   }
@@ -100,13 +101,13 @@ function convertInteger(num) {
 
 /**
  * 转换小数
- * 
+ *
  * @private
  * @param {number} num 要转换的数字
  */
 function convertDecimal(num) {
   const numStr = num + '';
-  const index = numStr.indexOf(".");
+  const index = numStr.indexOf('.');
 
   let ret = '';
 
@@ -120,7 +121,7 @@ function convertDecimal(num) {
 
 /**
  * 映射为中文数字
- * 
+ *
  * @private
  * @param {number} num 要处理的数字
  * @returns {string} 返回中文数字的映射
@@ -139,7 +140,7 @@ function mapNumberChar(num) {
 /**
  * 数字转中文数字
  * 不在安全数字 -9007199254740991～9007199254740991 内，处理会有异常
- * 
+ *
  * @static
  * @alias module:Processor.numberToChinese
  * @since 1.2.0
@@ -168,7 +169,7 @@ function mapNumberChar(num) {
  *
  * numberToChinese(100.3, {big5: true});
  * // => 壹佰点叁
- * 
+ *
  * numberToChinese(1234567890, {big5: true});
  * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
  *
@@ -179,19 +180,22 @@ function mapNumberChar(num) {
  * // 不带计数单位，修改0
  * numberToChinese(1990, {unit: false, zero:'〇'});
  * // => 一九九〇
- * 
+ *
  */
-function numberToChinese(num, {
-  big5 = false,
-  unit = true,
-  decimal = '点',
-  zero = '',
-  negative = '负',
-  unitConfig = {
-    w: '万', // '萬'
-    y: '亿' // '億'
-  }
-} = {}) {
+function numberToChinese(
+  num,
+  {
+    big5 = false,
+    unit = true,
+    decimal = '点',
+    zero = '',
+    negative = '负',
+    unitConfig = {
+      w: '万', // '萬'
+      y: '亿' // '億'
+    }
+  } = {}
+) {
   // 非数字 或 NaN 不处理
   if (typeof num !== 'number' || isNaN(num)) {
     if (!config.disableWarning) {
@@ -216,7 +220,7 @@ function numberToChinese(num, {
   // 设置节点计数单位，万、亿、万亿
   const defaultUnitWan = '万';
   const defaultUnitYi = '亿';
-  unitSection = ['', unitConfig.w || defaultUnitWan, unitConfig.y || defaultUnitYi, (unitConfig.w && unitConfig.y ? unitConfig.w + unitConfig.y : defaultUnitWan + defaultUnitYi)];
+  unitSection = ['', unitConfig.w || defaultUnitWan, unitConfig.y || defaultUnitYi, unitConfig.w && unitConfig.y ? unitConfig.w + unitConfig.y : defaultUnitWan + defaultUnitYi];
 
   // 设置0
   if (zero) {

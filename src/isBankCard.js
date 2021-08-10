@@ -8,7 +8,7 @@ const regLoose = /^\d{8,30}$/;
 
 /**
  * 检测值是否为银行卡号。正常模式（非0开头，10~21位数字）宽松模式（8~30位数字）
- * 
+ *
  * @static
  * @alias module:Validator.isBankCard
  * @see 参考 {@link https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html|常用银行账号位数参考}
@@ -18,7 +18,7 @@ const regLoose = /^\d{8,30}$/;
  * @param {boolean} [options.loose=false] 宽松模式，8~30位数字
  * @returns {boolean} 值是否为银行卡号
  * @example
- * 
+ *
  * isBankCard('6228480402564890018');
  * // => true
  *
@@ -27,14 +27,12 @@ const regLoose = /^\d{8,30}$/;
  *
  * isBankCard('123456789');
  * // => false
- * 
+ *
  * isBankCard('123456789', { loose: true });
  * // => true
- * 
+ *
  */
-function isBankCard(value, {
-  loose = false
-} = {}) {
+function isBankCard(value, { loose = false } = {}) {
   const valueStr = convertToString(value);
 
   if (loose) {

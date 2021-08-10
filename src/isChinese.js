@@ -23,39 +23,24 @@ const chineseDictionary = {
   chineseExtendE: '[\u{2B820}-\u{2CEA1}]',
 
   // 汉字扩展F
-  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]',
+  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]'
 };
 
 let looseChineseRegExp = chineseDictionary.chineseBasic + '+';
 
 let chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
 
+// eslint-disable-next-line no-prototype-builtins
 const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
 
 if (supportRegExpUnicode) {
-  looseChineseRegExp = '(?:' +
-    chineseDictionary.chineseBasic + '|' +
-    chineseDictionary.chineseExtend + '|' +
-    chineseDictionary.chineseExtendA + '|' +
-    chineseDictionary.chineseExtendB + '|' +
-    chineseDictionary.chineseExtendC + '|' +
-    chineseDictionary.chineseExtendD + '|' +
-    chineseDictionary.chineseExtendE + '|' +
-    chineseDictionary.chineseExtendF + ')+';
-  chineseRegExp = '^(?:' +
-    chineseDictionary.chineseBasic + '|' +
-    chineseDictionary.chineseExtend + '|' +
-    chineseDictionary.chineseExtendA + '|' +
-    chineseDictionary.chineseExtendB + '|' +
-    chineseDictionary.chineseExtendC + '|' +
-    chineseDictionary.chineseExtendD + '|' +
-    chineseDictionary.chineseExtendE + '|' +
-    chineseDictionary.chineseExtendF + ')+$';
+  looseChineseRegExp = '(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')+';
+  chineseRegExp = '^(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')+$';
 }
 
 /**
  * 检测值是否为中文
- * 
+ *
  * @static
  * @alias module:Validator.isChinese
  * @since 1.1.0
@@ -65,7 +50,7 @@ if (supportRegExpUnicode) {
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
  * @returns {boolean} 值是否为中文
  * @example
- * 
+ *
  * isChinese('林某某');
  * // => true
  *
@@ -78,11 +63,9 @@ if (supportRegExpUnicode) {
  *
  * isChinese('A林A', {loose: true});
  * // => true
- * 
+ *
  */
-function isChinese(value, {
-  loose = false
-} = {}) {
+function isChinese(value, { loose = false } = {}) {
   const valueStr = convertToString(value);
   const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : undefined);
   return reg.test(valueStr);

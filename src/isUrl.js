@@ -5,7 +5,7 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(
 
 /**
  * 检测值是否为url
- * 
+ *
  * @static
  * @alias module:Validator.isUrl
  * @since 3.4.0

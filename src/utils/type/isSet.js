@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Set
- * 
+ *
  * @static
  * @alias module:Type.isSet
  * @since 1.1.0
