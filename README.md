@@ -1,8 +1,6 @@
 # util-helpers
 
-[![npm][npm]][npm-url]
-![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
-[![Build Status](https://travis-ci.org/doly-dev/util-helpers.svg?branch=master)](https://travis-ci.org/doly-dev/util-helpers)
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg) [![Build Status](https://travis-ci.org/doly-dev/util-helpers.svg?branch=master)](https://travis-ci.org/doly-dev/util-helpers)
 
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库。
 
@@ -37,8 +35,7 @@ formatMoney('1000'); // => 1,000.00
 
 ## 文档
 
-> 数学计算，修正了浮点数计算问题，适用于金额计算。
-> 参考：[JS 浮点数计算测试](https://2zbuy.csb.app/)
+> 数学计算，修正了浮点数计算问题，适用于金额计算。参考：[JS 浮点数计算测试](https://2zbuy.csb.app/)
 
 - 数学计算
   - [plus](https://doly-dev.github.io/util-helpers/module-Math.html#.plus) - 加
