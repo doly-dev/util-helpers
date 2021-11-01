@@ -16,7 +16,10 @@
   "plugins": [],
   "templates": {
     "cleverLinks": false,
-    "monospaceLinks": false
+    "monospaceLinks": false,
+    "default": {
+      "layoutFile": "./.jsdoc/tmpl/layout.tmpl"
+    }
   },
   "opts": {
     "template": "node_modules/docdash",
