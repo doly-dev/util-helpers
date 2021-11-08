@@ -143,7 +143,7 @@ function parseIdCard(id) {
     };
   }
 
-  const province = Provinces.find(item => item[0] === origin.province);
+  const province = Provinces.find((item) => item[0] === origin.province);
 
   if (!province) {
     return null;

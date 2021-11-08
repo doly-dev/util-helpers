@@ -1,4 +1,4 @@
-import isNumber from '../../src/utils/type/isNumber'
+import isNumber from '../../src/utils/type/isNumber';
 
 describe('isNumber', () => {
   it('1 => true', () => {
@@ -14,6 +14,6 @@ describe('isNumber', () => {
     expect(isNumber(NaN)).toBe(true);
   });
   it('"1" => false', () => {
-    expect(isNumber("1")).toBe(false);
+    expect(isNumber('1')).toBe(false);
   });
-})
+});

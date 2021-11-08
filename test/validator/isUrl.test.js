@@ -1,4 +1,4 @@
-import { isUrl } from '../../src'
+import { isUrl } from '../../src';
 
 describe('isUrl', () => {
   it('should be defined', () => {

@@ -1,4 +1,4 @@
-import isRegExp from '../../src/utils/type/isRegExp'
+import isRegExp from '../../src/utils/type/isRegExp';
 
 describe('isRegExp', () => {
   it('/abc/ => true', () => {
@@ -7,4 +7,4 @@ describe('isRegExp', () => {
   it('"/abc/" => false', () => {
     expect(isRegExp('/abc/')).toBe(false);
   });
-})
+});

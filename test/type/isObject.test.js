@@ -1,4 +1,4 @@
-import isObject from '../../src/utils/type/isObject'
+import isObject from '../../src/utils/type/isObject';
 
 describe('isObject', () => {
   it('{} => true', () => {
@@ -10,4 +10,4 @@ describe('isObject', () => {
   it('null => false', () => {
     expect(isObject(null)).toBe(false);
   });
-})
+});

@@ -14,24 +14,21 @@ function toCamel(str) {
 const globalVarName = toCamel(pkg.name);
 
 export default {
-  input: "./src/index.js",
+  input: './src/index.js',
   output: [
     {
-      format: "umd",
+      format: 'umd',
       file: `dist/${pkg.name}.js`,
       name: globalVarName,
-      sourcemap: "inline"
+      sourcemap: 'inline'
     },
     {
-      format: "umd",
+      format: 'umd',
       file: `dist/${pkg.name}.min.js`,
       name: globalVarName,
       sourcemap: true,
       plugins: [terser()]
     }
   ],
-  plugins: [
-    resolve(),
-    commonjs()
-  ]
-}
+  plugins: [resolve(), commonjs()]
+};

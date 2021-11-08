@@ -1,4 +1,4 @@
-import { isHMCard } from '../../src'
+import { isHMCard } from '../../src';
 
 describe('isHMCard', () => {
   it('should be defined', () => {
@@ -31,4 +31,4 @@ describe('isHMCard', () => {
     expect(isHMCard('m32031177')).toBe(true);
     expect(isHMCard('M32031177')).toBe(true);
   });
-})
+});

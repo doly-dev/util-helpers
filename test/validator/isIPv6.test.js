@@ -1,4 +1,4 @@
-import { isIPv6 } from '../../src'
+import { isIPv6 } from '../../src';
 
 describe('isIPv6', () => {
   it('should be defined', () => {
@@ -42,4 +42,4 @@ describe('isIPv6', () => {
   it('"192.168.1.1" => false', () => {
     expect(isIPv6('192.168.1.1')).toBe(false);
   });
-})
+});

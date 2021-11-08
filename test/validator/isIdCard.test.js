@@ -1,4 +1,4 @@
-import { isIdCard } from '../../src'
+import { isIdCard } from '../../src';
 
 describe('isIdCard', () => {
   it('should be defined', () => {
@@ -31,4 +31,4 @@ describe('isIdCard', () => {
     expect(isIdCard('130701199310302288')).toBe(true);
     expect(isIdCard('52030219891209794X')).toBe(true);
   });
-})
+});

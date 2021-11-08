@@ -1,4 +1,4 @@
-import { isChinese } from '../../src'
+import { isChinese } from '../../src';
 
 describe('isChinese', () => {
   it('should be defined', () => {

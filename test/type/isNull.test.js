@@ -1,4 +1,4 @@
-import isNull from '../../src/utils/type/isNull'
+import isNull from '../../src/utils/type/isNull';
 
 describe('isNull', () => {
   it('null => true', () => {
@@ -7,4 +7,4 @@ describe('isNull', () => {
   it('false => false', () => {
     expect(isNull(false)).toBe(false);
   });
-})
+});

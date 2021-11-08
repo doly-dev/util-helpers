@@ -1,4 +1,4 @@
-import { isIPv4 } from '../../src'
+import { isIPv4 } from '../../src';
 
 describe('isIPv4', () => {
   it('should be defined', () => {
@@ -21,4 +21,4 @@ describe('isIPv4', () => {
   it('"0.0.0" => false', () => {
     expect(isIPv4('0.0.0')).toBe(false);
   });
-})
+});

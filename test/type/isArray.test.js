@@ -1,4 +1,4 @@
-import isArray from '../../src/utils/type/isArray'
+import isArray from '../../src/utils/type/isArray';
 
 describe('isArray', () => {
   it('[] => true', () => {
@@ -7,4 +7,4 @@ describe('isArray', () => {
   it('1 => false', () => {
     expect(isArray(1)).toBe(false);
   });
-})
+});

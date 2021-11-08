@@ -1,7 +1,7 @@
-import { isPromiseLike } from '../../src'
+import { isPromiseLike } from '../../src';
 
-const fn = () => { };
-fn.then = () => { };
+const fn = () => {};
+fn.then = () => {};
 
 describe('isPromiseLike', () => {
   it('should be defined', () => {
@@ -27,7 +27,7 @@ describe('isPromiseLike', () => {
     expect(isPromiseLike('')).toBe(false);
   });
   it('"then" => false', () => {
-    expect(isPromiseLike("then")).toBe(false);
+    expect(isPromiseLike('then')).toBe(false);
   });
   it('false => false', () => {
     expect(isPromiseLike(false)).toBe(false);
@@ -48,18 +48,18 @@ describe('isPromiseLike', () => {
     expect(isPromiseLike([true])).toBe(false);
   });
   it('() => {} => false', () => {
-    expect(isPromiseLike(() => { })).toBe(false);
+    expect(isPromiseLike(() => {})).toBe(false);
   });
   it('{then: function () {}} => true', () => {
-    expect(isPromiseLike({ then: function () { } })).toBe(true);
+    expect(isPromiseLike({ then: function () {} })).toBe(true);
   });
   it('fn => true', () => {
     expect(isPromiseLike(fn)).toBe(true);
   });
   it('new Promise(resolve=>resolve()) => true', () => {
-    expect(isPromiseLike(new Promise(resolve => resolve()))).toBe(true);
+    expect(isPromiseLike(new Promise((resolve) => resolve()))).toBe(true);
   });
   it('Promise.resolve() => true', () => {
     expect(isPromiseLike(Promise.resolve())).toBe(true);
   });
-})
+});

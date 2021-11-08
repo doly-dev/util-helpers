@@ -1,4 +1,4 @@
-import { isBankCard } from '../../src'
+import { isBankCard } from '../../src';
 
 describe('isBankCard', () => {
   it('should be defined', () => {
@@ -26,4 +26,4 @@ describe('isBankCard', () => {
     expect(isBankCard('6228480402564890018')).toBe(true);
     expect(isBankCard('6228480402564890')).toBe(true);
   });
-})
+});

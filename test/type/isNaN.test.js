@@ -1,4 +1,4 @@
-import isNaN from '../../src/utils/type/isNaN'
+import isNaN from '../../src/utils/type/isNaN';
 
 describe('isNaN', () => {
   it('NaN => true', () => {
@@ -7,4 +7,4 @@ describe('isNaN', () => {
   it('1 => false', () => {
     expect(isNaN(1)).toBe(false);
   });
-})
+});

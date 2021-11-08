@@ -1,4 +1,4 @@
-import { isPassport } from '../../src'
+import { isPassport } from '../../src';
 
 describe('isPassport', () => {
   it('should be defined', () => {
@@ -15,4 +15,4 @@ describe('isPassport', () => {
   it('"abc" => false', () => {
     expect(isPassport('abc')).toBe(false);
   });
-})
+});

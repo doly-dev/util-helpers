@@ -1,4 +1,4 @@
-import { isWX } from '../../src'
+import { isWX } from '../../src';
 
 describe('isWX', () => {
   it('should be defined', () => {
@@ -15,4 +15,4 @@ describe('isWX', () => {
   it('"1234" => false', () => {
     expect(isWX('1234')).toBe(false);
   });
-})
+});

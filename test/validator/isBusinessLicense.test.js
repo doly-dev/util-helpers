@@ -1,4 +1,4 @@
-import { isBusinessLicense } from '../../src'
+import { isBusinessLicense } from '../../src';
 
 describe('isBusinessLicense', () => {
   it('should be defined', () => {
@@ -24,4 +24,4 @@ describe('isBusinessLicense', () => {
   it('宽松模式，"310115600985535" => true', () => {
     expect(isBusinessLicense('310115600985535', { loose: true })).toBe(true);
   });
-})
+});

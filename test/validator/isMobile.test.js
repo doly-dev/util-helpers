@@ -1,4 +1,4 @@
-import { isMobile } from '../../src'
+import { isMobile } from '../../src';
 
 describe('isMobile', () => {
   it('should be defined', () => {
@@ -18,4 +18,4 @@ describe('isMobile', () => {
   it('"10000000000" => false', () => {
     expect(isMobile('10000000000')).toBe(false);
   });
-})
+});

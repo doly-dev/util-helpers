@@ -1,4 +1,4 @@
-import isString from '../../src/utils/type/isString'
+import isString from '../../src/utils/type/isString';
 
 describe('isString', () => {
   it('"abc" => true', () => {
@@ -7,4 +7,4 @@ describe('isString', () => {
   it('1 => false', () => {
     expect(isString(1)).toBe(false);
   });
-})
+});

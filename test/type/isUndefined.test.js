@@ -1,4 +1,4 @@
-import isUndefined from '../../src/utils/type/isUndefined'
+import isUndefined from '../../src/utils/type/isUndefined';
 
 describe('isUndefined', () => {
   it('undefined => true', () => {
@@ -10,4 +10,4 @@ describe('isUndefined', () => {
   it('null => false', () => {
     expect(isUndefined(null)).toBe(false);
   });
-})
+});

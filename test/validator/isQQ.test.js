@@ -1,4 +1,4 @@
-import { isQQ } from '../../src'
+import { isQQ } from '../../src';
 
 describe('isQQ', () => {
   it('should be defined', () => {
@@ -21,4 +21,4 @@ describe('isQQ', () => {
   it('"1234567890123" => false', () => {
     expect(isQQ('1234567890123')).toBe(false);
   });
-})
+});

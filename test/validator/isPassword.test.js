@@ -1,4 +1,4 @@
-import { isPassword } from '../../src'
+import { isPassword } from '../../src';
 
 describe('isPassword', () => {
   it('should be defined', () => {
@@ -30,11 +30,11 @@ describe('isPassword', () => {
   it('1级强度 "*_ )" => false', () => {
     expect(isPassword('*_ )', { level: 1 })).toBe(false);
   });
-  it('1级强度 "!@#$%^&*()-=_+[]\|{},./?<>~`" => true', () => {
-    expect(isPassword('!@#$%^&*()-=_+[]\|{},./?<>~`', { level: 1 })).toBe(true);
+  it('1级强度 "!@#$%^&*()-=_+[]|{},./?<>~`" => true', () => {
+    expect(isPassword('!@#$%^&*()-=_+[]|{},./?<>~`', { level: 1 })).toBe(true);
   });
-  it('2级强度 "!@#$%^&*()-=_+[]\|{},./?<>~`" => false', () => {
-    expect(isPassword('!@#$%^&*()-=_+[]\|{},./?<>~`', { level: 2 })).toBe(false);
+  it('2级强度 "!@#$%^&*()-=_+[]|{},./?<>~`" => false', () => {
+    expect(isPassword('!@#$%^&*()-=_+[]|{},./?<>~`', { level: 2 })).toBe(false);
   });
 
   it('2级强度 "a12345678" => true', () => {
@@ -72,4 +72,4 @@ describe('isPassword', () => {
   it('3级强度，自定义特殊字符2', () => {
     expect(isPassword('_Aa一二三45678=', { level: 3, ignoreCase: true, special: '_一二三' })).toBe(false);
   });
-})
+});

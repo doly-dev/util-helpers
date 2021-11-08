@@ -1,5 +1,4 @@
-import { isPostcode } from '../../src'
-
+import { isPostcode } from '../../src';
 
 describe('isPostcode', () => {
   it('should be defined', () => {
@@ -16,4 +15,4 @@ describe('isPostcode', () => {
   it('"123" => false', () => {
     expect(isPostcode('123')).toBe(false);
   });
-})
+});

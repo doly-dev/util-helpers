@@ -1,4 +1,4 @@
-import { isTWCard } from '../../src'
+import { isTWCard } from '../../src';
 
 describe('isTWCard', () => {
   it('should be defined', () => {
@@ -22,4 +22,4 @@ describe('isTWCard', () => {
     expect(isTWCard('12345678')).toBe(true);
     expect(isTWCard('07257456')).toBe(true);
   });
-})
+});

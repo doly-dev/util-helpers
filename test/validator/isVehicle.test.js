@@ -1,5 +1,4 @@
-import { isVehicle } from '../../src'
-
+import { isVehicle } from '../../src';
 
 describe('isVehicle', () => {
   it('should be defined', () => {
@@ -34,4 +33,4 @@ describe('isVehicle', () => {
   it('"粤B12345F" => true', () => {
     expect(isVehicle('粤B12345F')).toBe(true);
   });
-})
+});

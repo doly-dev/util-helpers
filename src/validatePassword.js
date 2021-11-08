@@ -70,7 +70,7 @@ function hasSpecialCharacter(val, chars = '') {
   }
 
   let ret = false;
-  specialChars.split('').some(charItem => {
+  specialChars.split('').some((charItem) => {
     if (chars.indexOf(charItem) > -1) {
       ret = true;
     }
@@ -99,7 +99,7 @@ function hasUnallowableCharacter(val, chars = '') {
     return regChars.test(specialChars);
   }
   let ret = false;
-  specialChars.split('').some(charItem => {
+  specialChars.split('').some((charItem) => {
     if (chars.indexOf(charItem) === -1) {
       ret = true;
     }

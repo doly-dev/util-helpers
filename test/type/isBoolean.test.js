@@ -1,4 +1,4 @@
-import isBoolean from '../../src/utils/type/isBoolean'
+import isBoolean from '../../src/utils/type/isBoolean';
 
 describe('isBoolean', () => {
   it('false => true', () => {
@@ -7,4 +7,4 @@ describe('isBoolean', () => {
   it('null => false', () => {
     expect(isBoolean(null)).toBe(false);
   });
-})
+});

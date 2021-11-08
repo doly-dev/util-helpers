@@ -24,23 +24,4 @@ import isUndefined from './isUndefined';
  * @ignore
  * @since 1.1.0
  */
-export {
-  isArguments,
-  isArray,
-  isBoolean,
-  isDate,
-  isError,
-  isFunction,
-  isObject,
-  isNull,
-  isNaN,
-  isNumber,
-  isRegExp,
-  isString,
-  isSymbol,
-  isMap,
-  isWeakMap,
-  isSet,
-  isWeakSet,
-  isUndefined
-};
+export { isArguments, isArray, isBoolean, isDate, isError, isFunction, isObject, isNull, isNaN, isNumber, isRegExp, isString, isSymbol, isMap, isWeakMap, isSet, isWeakSet, isUndefined };

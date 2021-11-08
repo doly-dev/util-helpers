@@ -1,4 +1,4 @@
-import { isSocialCreditCode } from '../../src'
+import { isSocialCreditCode } from '../../src';
 
 describe('isSocialCreditCode', () => {
   it('should be defined', () => {
@@ -24,4 +24,4 @@ describe('isSocialCreditCode', () => {
   it('宽松模式，"91350100M000100Y4AB" => true', () => {
     expect(isSocialCreditCode('91350100M000100Y4A', { loose: true })).toBe(true);
   });
-})
+});

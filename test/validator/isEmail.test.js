@@ -1,4 +1,4 @@
-import { isEmail } from '../../src'
+import { isEmail } from '../../src';
 
 describe('isEmail', () => {
   it('should be defined', () => {
@@ -15,4 +15,4 @@ describe('isEmail', () => {
   it('"123@" => false', () => {
     expect(isEmail('123@')).toBe(false);
   });
-})
+});

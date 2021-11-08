@@ -16,9 +16,6 @@ describe('digitLength', () => {
   it(`1.23e-5 => 7`, () => {
     expect(digitLength(1.23e-5)).toBe(7);
   });
-  it(`1.23E-5 => 7`, () => {
-    expect(digitLength(1.23E-5)).toBe(7);
-  });
   it(`1.233467e-5 => 11`, () => {
     expect(digitLength(1.233467e-5)).toBe(11);
   });

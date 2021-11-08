@@ -11,4 +11,4 @@ describe('utilHelpers', () => {
   it('isBankCard("6228480402564890") => true', () => {
     expect(utilHelpers.isBankCard('6228480402564890')).toBe(true);
   });
-})
+});

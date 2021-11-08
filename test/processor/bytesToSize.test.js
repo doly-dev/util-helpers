@@ -35,4 +35,4 @@ describe('bytesToSize', () => {
   it(`1425000000909 => 1.3 TB`, () => {
     expect(bytesToSize(1425000000909)).toBe('1.3 TB');
   });
-})
+});

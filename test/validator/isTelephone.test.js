@@ -1,5 +1,4 @@
-import { isTelephone } from '../../src'
-
+import { isTelephone } from '../../src';
 
 describe('isTelephone', () => {
   it('should be defined', () => {
@@ -22,4 +21,4 @@ describe('isTelephone', () => {
   it('"13000000000" => false', () => {
     expect(isTelephone('13000000000')).toBe(false);
   });
-})
+});

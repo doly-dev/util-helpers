@@ -38,4 +38,4 @@ describe('numberToChinese', () => {
   it(`1234567890 繁体，配置萬、億 => 壹拾贰億叁仟肆佰伍拾陆萬柒仟捌佰玖拾`, () => {
     expect(numberToChinese(1234567890, { big5: true, unitConfig: { w: '萬', y: '億' } })).toBe('壹拾贰億叁仟肆佰伍拾陆萬柒仟捌佰玖拾');
   });
-})
+});
