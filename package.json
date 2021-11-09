@@ -20,9 +20,10 @@
     "doc": "rm -rf docs && jsdoc -c conf.json",
     "prettier": "prettier --write 'src/**/*.js' && prettier --write 'test/**/*.js'",
     "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js",
     "precommit": "lint-staged",
-    "lint": "eslint src --ext js",
-    "lint:fix": "eslint src --ext js --fix",
+    "lint": "eslint src --ext .js",
+    "lint:fix": "eslint src --ext .js --fix",
     "commit": "cz",
     "pub": "npm run build && npm publish",
     "types": "tsc"
@@ -77,12 +78,8 @@
     "typescript": "^4.2.4"
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "eslint"
-    ],
-    "**/*.{js,md}": [
-      "prettier --write"
-    ]
+    "**/*.js": "npm run lint-staged:js",
+    "**/*.{js,md}": "prettier --write"
   },
   "husky": {
     "hooks": {
