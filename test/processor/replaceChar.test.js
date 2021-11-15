@@ -25,7 +25,19 @@ describe('replaceChar', () => {
   it(`带格式的银行卡号显示前四后四，排除空格 "6228 4804 0256 4890 018" => 6228 **** **** **** 018`, () => {
     expect(replaceChar('6228 4804 0256 4890 018', { start: 4, end: -4, exclude: ' ' })).toBe('6228 **** **** **** 018');
   });
-  it(`用户名显示前后一位 "林某某" => 林*某`, () => {
-    expect(replaceChar('林某某', { start: 1, end: -1, repeat: 1 })).toBe('林*某');
+  it(`用户名 "林某" => 林*`, () => {
+    expect(replaceChar('林某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+  });
+  it(`用户名 "林某某" => 林**`, () => {
+    expect(replaceChar('林某某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+  });
+  it(`用户名 "林某某某" => 林**`, () => {
+    expect(replaceChar('林某某某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+  });
+  it(`end 过大`, () => {
+    expect(replaceChar('林某某', { start: 1, end: 111 })).toBe('林**');
+  });
+  it(`start 过大`, () => {
+    expect(replaceChar('林某某', { start: 111, end: 1 })).toBe('林某某');
   });
 });

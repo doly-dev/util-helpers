@@ -36,8 +36,12 @@
  * // => 6228 **** **** **** 018
  *
  * // 用户名
- * replaceChar('林某某', {start: 1, end: -1, repeat: 1});
- * // => 林*某
+ * replaceChar('林某某', {start: 1, end: 10, repeat: 2});
+ * // => 林**
+ * replaceChar('林某', {start: 1, end: 10, repeat: 2});
+ * // => 林**
+ * replaceChar('林某某某', {start: 1, end: 10, repeat: 2});
+ * // => 林**
  *
  */
 function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclude } = {}) {
@@ -48,8 +52,8 @@ function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclud
     return str;
   }
 
-  start = start >= 0 ? start : strLen + start;
-  end = end >= 0 ? end : strLen + end;
+  start = start >= 0 ? (start > strLen ? strLen : start) : strLen + start;
+  end = end >= 0 ? (end > strLen ? strLen : end) : strLen + end;
 
   // 开始位置大于结束位置
   if (start >= end) {
