@@ -52,24 +52,21 @@ function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclud
     return str;
   }
 
-  start = start >= 0 ? (start > strLen ? strLen : start) : strLen + start;
-  end = end >= 0 ? (end > strLen ? strLen : end) : strLen + end;
+  start = start >= 0 ? start : strLen + start;
+  end = end >= 0 ? end : strLen + end;
 
   // 开始位置大于结束位置
   if (start >= end) {
     return str;
   }
 
-  let middleStr = '';
+  let middleStr = str.substring(start, end);
 
   if (exclude) {
-    repeat = Math.round(end - start);
-
-    const maskStr = str.substr(start, repeat);
     const reg = new RegExp(`[^${exclude}]`, 'g');
-    middleStr = maskStr.replace(reg, char);
+    middleStr = middleStr.replace(reg, char);
   } else {
-    repeat = typeof repeat === 'number' && repeat >= 0 ? repeat : Math.round(end - start);
+    repeat = typeof repeat === 'number' && repeat >= 0 ? repeat : middleStr.length;
     middleStr = char.repeat(repeat);
   }
 
