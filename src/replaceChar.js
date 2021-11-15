@@ -36,11 +36,11 @@
  * // => 6228 **** **** **** 018
  *
  * // 用户名
- * replaceChar('林某某', {start: 1, end: 10, repeat: 2});
+ * replaceChar('林某某', {start: 1, end: Infinity, repeat: 2});
  * // => 林**
- * replaceChar('林某', {start: 1, end: 10, repeat: 2});
+ * replaceChar('林某', {start: 1, end: Infinity, repeat: 2});
  * // => 林**
- * replaceChar('林某某某', {start: 1, end: 10, repeat: 2});
+ * replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2});
  * // => 林**
  *
  */

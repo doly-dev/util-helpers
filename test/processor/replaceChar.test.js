@@ -26,13 +26,13 @@ describe('replaceChar', () => {
     expect(replaceChar('6228 4804 0256 4890 018', { start: 4, end: -4, exclude: ' ' })).toBe('6228 **** **** **** 018');
   });
   it(`用户名 "林某" => 林*`, () => {
-    expect(replaceChar('林某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+    expect(replaceChar('林某', { start: 1, end: Infinity, repeat: 2 })).toBe('林**');
   });
   it(`用户名 "林某某" => 林**`, () => {
-    expect(replaceChar('林某某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+    expect(replaceChar('林某某', { start: 1, end: Infinity, repeat: 2 })).toBe('林**');
   });
   it(`用户名 "林某某某" => 林**`, () => {
-    expect(replaceChar('林某某某', { start: 1, end: 10, repeat: 2 })).toBe('林**');
+    expect(replaceChar('林某某某', { start: 1, end: Infinity, repeat: 2 })).toBe('林**');
   });
   it(`end 过大`, () => {
     expect(replaceChar('林某某', { start: 1, end: 111 })).toBe('林**');
