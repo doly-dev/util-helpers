@@ -1,5 +1,6 @@
 import { strip, digitLength, float2Fixed, checkBoundary } from './utils/math.util';
 import times from './times';
+import { isNumber, isNaN, isString } from './utils/type';
 
 /**
  * 精确除法，支持多个数相除
@@ -7,9 +8,7 @@ import times from './times';
  * @static
  * @alias module:Math.divide
  * @since 3.1.0
- * @param {number|string} num1 除数
- * @param {number|string} num2 被除数
- * @param {...number|string} others 其余被除数
+ * @param {...number|string} nums 除数和被除数
  * @returns {number} 商数
  * @example
  *
@@ -22,11 +21,19 @@ import times from './times';
  * divide(1000, 10, 10, 10);
  * // => 1
  */
-function divide(num1, num2, ...others) {
-  if (others.length > 0) {
-    // @ts-ignore
-    return divide(divide(num1, num2), ...others);
+function divide(...nums) {
+  const [num1, num2, ...rest] = nums;
+
+  if (rest.length > 0) {
+    return divide(divide(num1, num2), ...rest);
   }
+
+  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
+  if ((!isNumber(num2) || isNaN(num2)) && !isString(num2)) {
+    // @ts-ignore
+    return num1;
+  }
+
   const num1Changed = float2Fixed(num1);
   const num2Changed = float2Fixed(num2);
   checkBoundary(num1Changed);

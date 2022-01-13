@@ -92,3 +92,18 @@ describe('times', () => {
     expect(times(1.23456e-7, 1.23456e-7)).toBe(1.5241383936e-14);
   });
 });
+
+describe('times special', () => {
+  it(`(0.1) = 0.1`, () => {
+    expect(times(0.1)).toBe(0.1);
+  });
+  it(`(0.1, null) = 0.1`, () => {
+    expect(times(0.1, null)).toBe(0.1);
+  });
+  it(`(0.1, []) = 0.1`, () => {
+    expect(times(0.1, [])).toBe(0.1);
+  });
+  it(`(0.1, undefined) = 0.1`, () => {
+    expect(times(0.1, undefined)).toBe(0.1);
+  });
+});

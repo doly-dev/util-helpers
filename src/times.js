@@ -1,4 +1,5 @@
 import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
+import { isNumber, isNaN, isString } from './utils/type';
 
 /**
  * 精确乘法，支持多个数相乘
@@ -6,9 +7,7 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  * @static
  * @alias module:Math.times
  * @since 3.1.0
- * @param {number|string} num1 相乘的第一个数
- * @param {number|string} num2 相乘的第二个数
- * @param {...number|string} others 相乘的其余数
+ * @param {...number|string} nums 相乘的数
  * @returns {number} 乘积
  * @example
  *
@@ -21,11 +20,18 @@ import { digitLength, float2Fixed, checkBoundary } from './utils/math.util';
  * times(3, 0.6, 2, 10);
  * // => 36
  */
-function times(num1, num2, ...others) {
-  if (others.length > 0) {
-    // @ts-ignore
-    return times(times(num1, num2), ...others);
+function times(...nums) {
+  const [num1, num2, ...rest] = nums;
+  if (rest.length > 0) {
+    return times(times(num1, num2), ...rest);
   }
+
+  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
+  if ((!isNumber(num2) || isNaN(num2)) && !isString(num2)) {
+    // @ts-ignore
+    return num1;
+  }
+
   const num1Changed = float2Fixed(num1);
   const num2Changed = float2Fixed(num2);
   const baseNum = digitLength(num1) + digitLength(num2);

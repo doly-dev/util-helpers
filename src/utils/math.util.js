@@ -78,15 +78,15 @@ export function checkBoundary(num) {
  * @param {string} num 数字字符串
  * @returns {string}
  */
-function trimLeftZero(num) {
-  const reg = /^([+-])?(0+)([1-9\.]+)$/;
+export function trimLeftZero(num) {
+  const reg = /^([+-])?(0+)([0-9\.]+)$/;
   const result = reg.exec(num);
 
   let sign;
 
   if (result) {
     sign = result[1] || '';
-    return sign + result[3];
+    return sign + (result[3][0] === '.' ? '0' + result[3] : result[3]);
   }
 
   return num;
@@ -122,7 +122,7 @@ export function scientificToNumber(num) {
 
       //如果是整数，将整数除第一位之外的非零数字计入位数，相应的减少0的个数
       if (l - dec.length < 0) {
-        num = trimLeftZero(coeff_array[0] + dec.substr(0, l)) + '.' + dec.substr(l);
+        num = trimLeftZero(coeff_array[0] + dec.substring(0, l)) + '.' + dec.substring(l);
       } else {
         //拼接字符串，如果是整数，不需要拼接小数点
         num = coeff_array.join('') + new Array(l - dec.length + 1).join(zero);

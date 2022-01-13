@@ -69,3 +69,18 @@ describe('divide', () => {
     expect(divide(1, 3)).toBe(0.3333333333333333);
   });
 });
+
+describe('divide special', () => {
+  it(`(0.1) = 0.1`, () => {
+    expect(divide(0.1)).toBe(0.1);
+  });
+  it(`(0.1, null) = 0.1`, () => {
+    expect(divide(0.1, null)).toBe(0.1);
+  });
+  it(`(0.1, []) = 0.1`, () => {
+    expect(divide(0.1, [])).toBe(0.1);
+  });
+  it(`(0.1, undefined) = 0.1`, () => {
+    expect(divide(0.1, undefined)).toBe(0.1);
+  });
+});

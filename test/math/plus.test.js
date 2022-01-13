@@ -4,7 +4,6 @@ describe('plus', () => {
   it('should be defined', () => {
     expect(plus).toBeDefined();
   });
-
   it(`0.1 + 0.2 = 0.3`, () => {
     expect(plus(0.1, 0.2)).toBe(0.3);
   });
@@ -46,5 +45,20 @@ describe('plus', () => {
   });
   it(`0.1 + 0.2 + 0.3 + 0.4 + 0.5 = 1.5`, () => {
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5)).toBe(1.5);
+  });
+});
+
+describe('plus special', () => {
+  it(`(0.1) = 0.1`, () => {
+    expect(plus(0.1)).toBe(0.1);
+  });
+  it(`(0.1, null) = 0.1`, () => {
+    expect(plus(0.1, null)).toBe(0.1);
+  });
+  it(`(0.1, []) = 0.1`, () => {
+    expect(plus(0.1, [])).toBe(0.1);
+  });
+  it(`(0.1, undefined) = 0.1`, () => {
+    expect(plus(0.1, undefined)).toBe(0.1);
   });
 });

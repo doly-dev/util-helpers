@@ -1,4 +1,4 @@
-import { strip, digitLength, float2Fixed } from '../../src/utils/math.util';
+import { strip, digitLength, float2Fixed, trimLeftZero } from '../../src/utils/math.util';
 
 describe('strip', () => {
   it(`0.09999999999999998 => 0.1`, () => {
@@ -6,6 +6,15 @@ describe('strip', () => {
   });
   it(`1.0000000000000001 => 1`, () => {
     expect(strip(1.0000000000000001)).toBe(1);
+  });
+});
+
+describe('trimLeftZero', () => {
+  it('010.123 => 10.123', () => {
+    expect(trimLeftZero('010.123')).toBe('10.123');
+  });
+  it('000.123 => 0.123', () => {
+    expect(trimLeftZero('000.123')).toBe('0.123');
   });
 });
 

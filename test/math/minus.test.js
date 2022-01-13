@@ -69,3 +69,18 @@ describe('minus', () => {
     expect(minus(6, 3, 2, 1, 2, 3)).toBe(-5);
   });
 });
+
+describe('minus special', () => {
+  it(`(0.1) = 0.1`, () => {
+    expect(minus(0.1)).toBe(0.1);
+  });
+  it(`(0.1, null) = 0.1`, () => {
+    expect(minus(0.1, null)).toBe(0.1);
+  });
+  it(`(0.1, []) = 0.1`, () => {
+    expect(minus(0.1, [])).toBe(0.1);
+  });
+  it(`(0.1, undefined) = 0.1`, () => {
+    expect(minus(0.1, undefined)).toBe(0.1);
+  });
+});
