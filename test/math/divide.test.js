@@ -71,6 +71,9 @@ describe('divide', () => {
 });
 
 describe('divide special', () => {
+  it(`() = undefined`, () => {
+    expect(divide()).toBe();
+  });
   it(`(0.1) = 0.1`, () => {
     expect(divide(0.1)).toBe(0.1);
   });

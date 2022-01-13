@@ -94,6 +94,9 @@ describe('times', () => {
 });
 
 describe('times special', () => {
+  it(`() = undefined`, () => {
+    expect(times()).toBe();
+  });
   it(`(0.1) = 0.1`, () => {
     expect(times(0.1)).toBe(0.1);
   });

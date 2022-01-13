@@ -49,6 +49,9 @@ describe('plus', () => {
 });
 
 describe('plus special', () => {
+  it(`() = undefined`, () => {
+    expect(plus()).toBe();
+  });
   it(`(0.1) = 0.1`, () => {
     expect(plus(0.1)).toBe(0.1);
   });

@@ -71,6 +71,9 @@ describe('minus', () => {
 });
 
 describe('minus special', () => {
+  it(`() = undefined`, () => {
+    expect(minus()).toBe();
+  });
   it(`(0.1) = 0.1`, () => {
     expect(minus(0.1)).toBe(0.1);
   });
