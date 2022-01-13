@@ -1,5 +1,6 @@
 import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
 import isNaN from './utils/type/isNaN';
+import { trimLeftZero } from './utils/math.util';
 import { config } from './utils/config';
 
 const reg = /^[+-]?\d*\.?\d*$/;
@@ -9,7 +10,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  *
  * @private
  * @param {string} num
- * @returns 是否为数字
+ * @returns 是否为数字
  */
 function checkNumber(num) {
   if (!(reg.test(num) || isScientificNumber(num)) || isNaN(num) || (typeof num !== 'number' && typeof num !== 'string') || num === '') {
@@ -39,9 +40,10 @@ function checkNumber(num) {
  */
 function formatInt(intStr, thousand) {
   let txt = '';
-  intStr = intStr[0] === '+' ? intStr.substr(1) : intStr; // 去掉+符号
+  intStr = trimLeftZero(intStr);
+  intStr = intStr[0] === '+' ? intStr.substring(1) : intStr; // 去掉+符号
   const negativeSymbol = Number(intStr) < 0 ? '-' : '';
-  const reArr = negativeSymbol ? intStr.substr(1).split('').reverse() : intStr.split('').reverse();
+  const reArr = negativeSymbol ? intStr.substring(1).split('').reverse() : intStr.split('').reverse();
 
   for (let i = 0; i < reArr.length; i++) {
     txt += reArr[i] + ((i + 1) % 3 === 0 && i + 1 !== reArr.length ? thousand : '');
@@ -69,9 +71,9 @@ function formatDec(decStr, precision, decimal) {
 
   if (decStr && Number(decStr) > 0) {
     let tmpNum = parseFloat('0.' + decStr);
-    ret = tmpNum.toFixed(precision).substr(2);
+    ret = tmpNum.toFixed(precision).substring(2);
   } else {
-    ret = zero.toFixed(precision).substr(2);
+    ret = zero.toFixed(precision).substring(2);
   }
 
   return decimal + ret;

@@ -8,6 +8,22 @@ describe('formatMoney', () => {
   });
 
   describe('输入金额 - string', () => {
+    it('处理左侧数字0， 010 : string, 返回 10.00 : string', () => {
+      expect(formatMoney('010')).toBe('10.00');
+    });
+    it('处理左侧数字0， 0010 : string, 返回 10.00 : string', () => {
+      expect(formatMoney('0010')).toBe('10.00');
+    });
+    it('处理左侧数字0， 0010.001 : string, 返回 10.00 : string', () => {
+      expect(formatMoney('0010')).toBe('10.00');
+    });
+    it('处理左侧数字0， 0010.01 : string, 返回 10.01 : string', () => {
+      expect(formatMoney('0010.01')).toBe('10.01');
+    });
+    it('处理左侧数字0， 000.01 : string, 返回 0.01 : string', () => {
+      expect(formatMoney('000.01')).toBe('0.01');
+    });
+
     it('正数 - 输入 1000 : string, 返回 1,000.00 : string', () => {
       expect(formatMoney('1000')).toBe('1,000.00');
     });
