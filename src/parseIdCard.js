@@ -151,7 +151,7 @@ function parseIdCard(id) {
 
   const birthday = `${origin.year}-${origin.month}-${origin.day}`;
   const gender = Number(origin.gender) % 2 === 0 ? '女' : '男';
-  // const region = Regions.find(item => item[0] === origin.province?.substr(0, 1));
+  // const region = Regions.find(item => item[0] === origin.province?.substring(0, 1));
 
   return {
     // region,

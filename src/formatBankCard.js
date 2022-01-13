@@ -38,7 +38,7 @@ function formatBankCard(bankCardNo = '', { char = ' ', length = 4 } = {}) {
 
   const str = realValue.replace(reg, `$1${char}`);
 
-  return needRemoveLastChar ? str.substr(0, str.length - 1) : str;
+  return needRemoveLastChar ? str.substring(0, str.length - 1) : str;
 }
 
 export default formatBankCard;

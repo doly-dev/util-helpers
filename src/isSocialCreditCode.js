@@ -97,9 +97,9 @@ function isSocialCreditCode(value, { loose = false } = {}) {
   }
 
   // 前17位
-  const preCode = valueStr.substr(0, 17);
+  const preCode = valueStr.substring(0, 17);
   // 校验码
-  const lastCode = valueStr.substr(-1);
+  const lastCode = valueStr.substring(valueStr.length - 1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 

@@ -34,6 +34,12 @@ describe('replaceChar', () => {
   it(`用户名 "林某某某" => 林**`, () => {
     expect(replaceChar('林某某某', { start: 1, end: Infinity, repeat: 2 })).toBe('林**');
   });
+  it(`用户名 "林某某" => 林*某`, () => {
+    expect(replaceChar('林某某', { start: 1, end: -1, repeat: 1 })).toBe('林*某');
+  });
+  it(`用户名 "林某某某" => 林*某`, () => {
+    expect(replaceChar('林某某某', { start: 1, end: -1, repeat: 1 })).toBe('林*某');
+  });
   it(`end 过大`, () => {
     expect(replaceChar('林某某', { start: 1, end: 111 })).toBe('林**');
   });

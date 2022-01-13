@@ -70,7 +70,7 @@ function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclud
     middleStr = char.repeat(repeat);
   }
 
-  return str.substr(0, start) + middleStr + str.substr(end);
+  return str.substring(0, start) + middleStr + str.substring(end);
 }
 
 export default replaceChar;
