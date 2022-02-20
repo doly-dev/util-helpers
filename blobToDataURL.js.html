@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>minus.js - util-helpers </title>
+    <title>blobToDataURL.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">minus.js</h1>
+    <h1 class="page-title">blobToDataURL.js</h1>
     
 
     
@@ -69,47 +69,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { digitLength } from './utils/math.util';
-import times from './times';
-import { isNumber, isNaN, isString } from './utils/type';
+            <pre class="prettyprint source linenums"><code>//  file、blob文件如何预览图片？
+//  方法1：将file或者blob类型文件转成base64数据，再作为src赋值给img标签
+//  方法2：使用 window.URL.createObjectURL(blob) 为blob、file 创建一个指向该参数对象的URL
 
 /**
- * 精确减法，支持多个数相减
+ * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串。
  *
  * @static
- * @alias module:Math.minus
- * @since 3.1.0
- * @param {...number|string} nums 相减的数
- * @returns {number} 差
+ * @alias module:Processor.blobToDataURL
+ * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL|FileReader.readAsDataURL()}
+ * @since 4.1.0
+ * @param {Blob} blob Blob 或 File 对象
+ * @returns {Promise&lt;string>} data:URL 格式的 Base64 字符串。
  * @example
+ * const aFileParts = ['&lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>']; // 一个包含DOMString的数组
+ * const htmlBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
  *
- * minus(1, 0.9);
- * // => 0.1
+ * blobToDataURL(htmlBlob).then(data=>{
+ *   console.log(data); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * });
  *
- * minus(1, 0.9, 0.02);
- * // => 0.08
+ * const textBlob = new Blob(aFileParts, { type: 'text/plain' });
  *
- * minus(1, 0.9, 0.02, 0.08);
- * // => 0
+ * blobToDataURL(textBlob).then(data=>{
+ *   console.log(data); // data:text/plain;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * });
  */
-function minus(...nums) {
-  const [num1, num2, ...rest] = nums;
-
-  if (rest.length > 0) {
-    return minus(minus(num1, num2), ...rest);
-  }
-
-  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
-  if ((!isNumber(num2) || isNaN(num2)) &amp;&amp; !isString(num2)) {
+function blobToDataURL(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
     // @ts-ignore
-    return num1;
-  }
-
-  const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
-  return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 }
 
-export default minus;
+export default blobToDataURL;
 </code></pre>
         </article>
     </section>

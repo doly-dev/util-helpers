@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>minus.js - util-helpers </title>
+    <title>dataURLToBlob.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">minus.js</h1>
+    <h1 class="page-title">dataURLToBlob.js</h1>
     
 
     
@@ -69,47 +69,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { digitLength } from './utils/math.util';
-import times from './times';
-import { isNumber, isNaN, isString } from './utils/type';
-
-/**
- * 精确减法，支持多个数相减
+            <pre class="prettyprint source linenums"><code>/**
+ * 将 DataURL 转为 Blob 对象
  *
  * @static
- * @alias module:Math.minus
- * @since 3.1.0
- * @param {...number|string} nums 相减的数
- * @returns {number} 差
+ * @alias module:Processor.dataURLToBlob
+ * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64|Base64}
+ * @since 4.1.0
+ * @param {string} dataurl data: 协议的URL
+ * @returns {Blob} Blob 对象
  * @example
- *
- * minus(1, 0.9);
- * // => 0.1
- *
- * minus(1, 0.9, 0.02);
- * // => 0.08
- *
- * minus(1, 0.9, 0.02, 0.08);
- * // => 0
+ * const dataurl = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
+ * dataURLToBlob(dataurl);
  */
-function minus(...nums) {
-  const [num1, num2, ...rest] = nums;
+function dataURLToBlob(dataurl) {
+  const arr = dataurl.split(',');
+  // @ts-ignore
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
 
-  if (rest.length > 0) {
-    return minus(minus(num1, num2), ...rest);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
   }
-
-  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
-  if ((!isNumber(num2) || isNaN(num2)) &amp;&amp; !isString(num2)) {
-    // @ts-ignore
-    return num1;
-  }
-
-  const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
-  return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
+  return new Blob([u8arr], { type: mime });
 }
 
-export default minus;
+export default dataURLToBlob;
 </code></pre>
         </article>
     </section>

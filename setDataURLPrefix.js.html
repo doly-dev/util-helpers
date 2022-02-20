@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>minus.js - util-helpers </title>
+    <title>setDataURLPrefix.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">minus.js</h1>
+    <h1 class="page-title">setDataURLPrefix.js</h1>
     
 
     
@@ -69,47 +69,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { digitLength } from './utils/math.util';
-import times from './times';
-import { isNumber, isNaN, isString } from './utils/type';
-
-/**
- * 精确减法，支持多个数相减
+            <pre class="prettyprint source linenums"><code>/**
+ * 设置 DataURL 前缀、MIME 类型、base64 标识。&lt;br/>&lt;br/>
+ *
+ * 如果你需要获取DataURL 的 MIME 类型和数据本身，推荐使用 &lt;a href="https://www.npmjs.com/package/data-urls">data-urls&lt;/a>。
  *
  * @static
- * @alias module:Math.minus
- * @since 3.1.0
- * @param {...number|string} nums 相减的数
- * @returns {number} 差
+ * @alias module:Processor.setDataURLPrefix
+ * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs|Data URLs}
+ * @param {string} data 数据本身
+ * @param {string} [mimetype="image/png"] MIME 类型
+ * @param {boolean} [base64=true] 添加 base64 标识
+ * @returns {string} DataURL 格式的字符串
  * @example
- *
- * minus(1, 0.9);
- * // => 0.1
- *
- * minus(1, 0.9, 0.02);
- * // => 0.08
- *
- * minus(1, 0.9, 0.02, 0.08);
- * // => 0
+ * const data = 'PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
+ * setDataURLPrefix(data); // data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * setDataURLPrefix(data, 'image/png', false); // data:image/png,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * setDataURLPrefix(data, 'image/jpg'); // data:image/jpg;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * setDataURLPrefix(data, 'text/html'); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * setDataURLPrefix(data, ''); // data:;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
  */
-function minus(...nums) {
-  const [num1, num2, ...rest] = nums;
-
-  if (rest.length > 0) {
-    return minus(minus(num1, num2), ...rest);
-  }
-
-  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
-  if ((!isNumber(num2) || isNaN(num2)) &amp;&amp; !isString(num2)) {
-    // @ts-ignore
-    return num1;
-  }
-
-  const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));
-  return (times(num1, baseNum) - times(num2, baseNum)) / baseNum;
+function setDataURLPrefix(data, mimetype = 'image/png', base64 = true) {
+  return `data:${mimetype}${base64 ? ';base64' : ''},${data}`;
 }
 
-export default minus;
+export default setDataURLPrefix;
 </code></pre>
         </article>
     </section>
