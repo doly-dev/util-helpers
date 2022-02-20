@@ -1,4 +1,4 @@
-const { MODULE_TYPE } = process.env;
+const { MODULE_TYPE, NODE_ENV } = process.env;
 
 const plugins = [];
 
@@ -6,7 +6,7 @@ if (MODULE_TYPE === 'cjs') {
   plugins.push('@babel/transform-modules-commonjs');
 }
 
-if (MODULE_TYPE === 'esm') {
+if (MODULE_TYPE === 'esm' || NODE_ENV === 'test') {
   plugins.push('@babel/transform-runtime');
 }
 

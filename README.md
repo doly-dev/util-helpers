@@ -87,56 +87,8 @@ formatMoney('1000'); // => 1,000.00
 - [tinycolor2] - JavaScript 颜色工具，用于 JavaScript 中的颜色处理和转换
 - [store2] - 丰富了 localStorage 和 sessionStorage 功能（JSON，命名空间，扩展等）
 - [uuid] - 生成通用唯一识别码（Universally Unique Identifier）
-
-## 贡献
-
-### commit 格式
-
-- **格式**
-
-```bash
-type(scope?): subject
-```
-
-- **示例**
-
-```bash
-chore: run tests on travis ci
-fix(server): send cors headers
-feat(blog): add comment section
-```
-
-- **type**
-
-| 值       | 说明                                                                             |
-| -------- | -------------------------------------------------------------------------------- |
-| build    | 影响构建系统或外部依赖项的更新（示例范围：gulp, broccoli, npm）                  |
-| ci       | 对 CI 配置文件和脚本的更改(例如 scopes: Travis, Circle, BrowserStack, SauceLabs) |
-| chore    | 其他不修改 src 或测试文件的更改                                                  |
-| docs     | 只改变文档                                                                       |
-| feat     | 新功能                                                                           |
-| fix      | bug 修复                                                                         |
-| perf     | 改进性能的代码更改                                                               |
-| refactor | 既不修复 bug 也不添加新功能的代码更改                                            |
-| revert   | 还原以前的提交                                                                   |
-| style    | 不影响代码含义的更改(white-space、格式、缺少分号等)                              |
-| test     | 添加缺失的测试或纠正现有的测试                                                   |
-
-- **使用 `cz` 生成**
-
-> 格式参考 [What is commitlint]
-
-原来使用 `git commit -m "xx"` 改为以下命令（交互方式填写提交信息）：
-
-```bash
-yarn commit
-```
-
-或
-
-```bash
-npm run commit
-```
+- [JSZip] - 创建、读取和编辑 zip 文件
+<!-- - [data-urls] - 根据 WHATWG Fetch 标准解析 Data URLs -->
 
 [lodash]: https://www.npmjs.com/package/lodash
 [query-string]: https://www.npmjs.com/package/query-string
@@ -150,6 +102,8 @@ npm run commit
 [tinycolor2]: https://www.npmjs.com/package/tinycolor2
 [store2]: https://www.npmjs.com/package/store2
 [uuid]: https://www.npmjs.com/package/uuid
+[jszip]: https://www.npmjs.com/package/jszip
+[data-urls]: https://www.npmjs.com/package/data-urls
 [npm]: https://img.shields.io/npm/v/util-helpers.svg
 [npm-url]: https://npmjs.com/package/util-helpers
 [what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint

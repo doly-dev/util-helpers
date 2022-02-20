@@ -38,6 +38,9 @@ export { default as replaceChar } from './replaceChar';
 export { default as numberToChinese } from './numberToChinese';
 export { default as bytesToSize } from './bytesToSize';
 export { default as parseIdCard } from './parseIdCard';
+export { default as blobToDataURL } from './blobToDataURL';
+export { default as dataURLToBlob } from './dataURLToBlob';
+export { default as setDataURLPrefix } from './setDataURLPrefix';
 
 /**
  * 数学计算，修正浮点数计算问题
