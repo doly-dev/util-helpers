@@ -75,6 +75,8 @@ formatMoney('1000'); // => 1,000.00
   - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
   - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
+- 其他
+  - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise
 
 ## 精选第三方工具库
 

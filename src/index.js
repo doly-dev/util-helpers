@@ -57,6 +57,14 @@ export { default as divide } from './divide';
 export { default as round } from './round';
 
 /**
+ * 其他
+ *
+ * @module Other
+ * @since 4.2.0
+ */
+export { default as waitTime } from './waitTime';
+
+/**
  * 调试相关
  *
  * @module Debug
