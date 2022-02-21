@@ -6,6 +6,7 @@
  * @static
  * @alias module:Processor.setDataURLPrefix
  * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs|Data URLs}
+ * @see 参考 {@link https://mimesniff.spec.whatwg.org/#understanding-mime-types|MIME types}
  * @since 4.1.0
  * @param {string} data 数据本身
  * @param {string} [mimetype="image/png"] MIME 类型
