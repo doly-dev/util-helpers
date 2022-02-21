@@ -3,7 +3,7 @@
  *
  * @static
  * @alias module:Other.waitTime
- * @since 3.1.0
+ * @since 4.2.0
  * @param {number} [time=1000] 延时时间，单位毫秒
  * @returns {Promise<void>}
  * @example
