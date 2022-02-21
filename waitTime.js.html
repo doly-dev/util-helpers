@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isEmail.js - util-helpers </title>
+    <title>waitTime.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isEmail.js</h1>
+    <h1 class="page-title">waitTime.js</h1>
     
 
     
@@ -69,34 +69,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import convertToString from './utils/convertToString';
-
-// 邮箱
-const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,})+$/i;
-
-/**
- * 检测值是否为Email
+            <pre class="prettyprint source linenums"><code>/**
+ * 等待时间返回 Promise 。常用于异步方法中延时。
  *
  * @static
- * @alias module:Validator.isEmail
- * @since 1.1.0
- * @param {*} value 要检测的值
- * @returns {boolean} 值是否为Email
+ * @alias module:Other.waitTime
+ * @since 3.1.0
+ * @param {number} [time=1000] 延时时间，单位毫秒
+ * @returns {Promise&lt;void>}
  * @example
+ * const test = async ()=>{
+ *   await waitTime();
+ *   // do something
+ * }
  *
- * isEmail('1232@qq.com');
- * // => true
- *
- * isEmail('123@');
- * // => false
- *
+ * waitTime(500).then(()=>{
+ *   // do something
+ * })
  */
-function isEmail(value) {
-  const valueStr = convertToString(value);
-  return reg.test(valueStr);
+function waitTime(time = 1000) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
 }
 
-export default isEmail;
+export default waitTime;
 </code></pre>
         </article>
     </section>
