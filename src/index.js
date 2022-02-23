@@ -41,6 +41,7 @@ export { default as parseIdCard } from './parseIdCard';
 export { default as blobToDataURL } from './blobToDataURL';
 export { default as dataURLToBlob } from './dataURLToBlob';
 export { default as setDataURLPrefix } from './setDataURLPrefix';
+export { default as normalizeString } from './normalizeString';
 
 /**
  * 数学计算，修正浮点数计算问题

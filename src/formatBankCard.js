@@ -1,3 +1,5 @@
+import normalizeString from './normalizeString';
+
 /**
  * 格式化银行卡号
  *
@@ -32,7 +34,7 @@ function formatBankCard(bankCardNo = '', { char = ' ', length = 4 } = {}) {
   const reg = new RegExp(`(.{${length}})`, 'g');
   const regChar = new RegExp(`${char}`, 'g');
 
-  const realValue = bankCardNo.replace(regChar, '');
+  const realValue = normalizeString(bankCardNo).replace(regChar, '');
 
   const needRemoveLastChar = realValue.length % length === 0;
 

@@ -20,4 +20,11 @@ describe('formatBankCard', () => {
   it(`脱敏银行卡2，"6228********890" => 6228-****-****-890`, () => {
     expect(formatBankCard('6228********890', { char: '-' })).toBe('6228-****-****-890');
   });
+
+  it(`null => ''`, () => {
+    expect(formatBankCard(null)).toBe('');
+  });
+  it(`undefined => ''`, () => {
+    expect(formatBankCard()).toBe('');
+  });
 });
