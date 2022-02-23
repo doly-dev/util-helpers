@@ -14,8 +14,9 @@ describe('waitTime', () => {
     end = Date.now();
     elapsedTime = end - start;
 
-    expect(elapsedTime).toBeGreaterThanOrEqual(1000);
-    expect(elapsedTime).toBeLessThanOrEqual(1050); // 允许误差50ms内，函数执行时间
+    // 允许误差20ms内
+    expect(elapsedTime).toBeGreaterThanOrEqual(980);
+    expect(elapsedTime).toBeLessThanOrEqual(1020);
   });
 
   it('custom time', async () => {
@@ -26,7 +27,7 @@ describe('waitTime', () => {
     end = Date.now();
     elapsedTime = end - start;
 
-    expect(elapsedTime).toBeGreaterThanOrEqual(300);
-    expect(elapsedTime).toBeLessThanOrEqual(350);
+    expect(elapsedTime).toBeGreaterThanOrEqual(280);
+    expect(elapsedTime).toBeLessThanOrEqual(320);
   });
 });
