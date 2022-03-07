@@ -22,10 +22,6 @@ yarn add util-helpers
 
 `npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
 
-```html
-<script src="https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js"></script>
-```
-
 ## 示例
 
 ```javascript
