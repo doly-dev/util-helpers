@@ -20,7 +20,11 @@ yarn add util-helpers
 
 在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
 
-`npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 进行下载。
+`npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
+
+```html
+<script src="https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js"></script>
+```
 
 ## 示例
 
@@ -94,7 +98,6 @@ formatMoney('1000'); // => 1,000.00
 - [store2] - 丰富了 localStorage 和 sessionStorage 功能（JSON，命名空间，扩展等）
 - [uuid] - 生成通用唯一识别码（Universally Unique Identifier）
 - [JSZip] - 创建、读取和编辑 zip 文件
-<!-- - [data-urls] - 根据 WHATWG Fetch 标准解析 Data URLs -->
 
 [lodash]: https://www.npmjs.com/package/lodash
 [query-string]: https://www.npmjs.com/package/query-string
