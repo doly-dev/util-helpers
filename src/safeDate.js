@@ -3,7 +3,7 @@ import isNil from './utils/type/isNil';
 // TODO: 函数重载，类型参照 Date
 
 /**
- * 创建一个 Date 实例，同 new Date() 。<br/><br/>主要是规避了 iphone 设备浏览器不支持部分格式（YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
+ * 创建一个 Date 实例，同 new Date() 。<br/><br/>规避了苹果设备浏览器不支持部分格式（YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
  *
  * @static
  * @alias module:Processor.safeDate
