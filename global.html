@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Math - util-helpers </title>
+    <title>Global - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Math</h1>
+    <h1 class="page-title">Global</h1>
     
 
     
@@ -71,8 +71,9 @@
 
 <header>
     
+        <h2>
         
-            
+        </h2>
         
     
 </header>
@@ -82,29 +83,11 @@
         <div class="container-overview">
         
             
-                <div class="description usertext">数学计算，修正浮点数计算问题</div>
-            
-
-            
-                
-
-
-
 
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line48">line 48</a>
-    </li></ul></dd>
-    
 
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
     
 
     
@@ -130,14 +113,7 @@
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>参考 <a href="https://github.com/camsong/blog/issues/9">JavaScript 浮点数陷阱及解法</a></li>
-        
-            <li>参考 <a href="https://2zbuy.csb.app/">JS浮点数计算测试</a></li>
-        </ul>
-    </dd>
+
     
 
     
@@ -146,33 +122,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
             
         
@@ -194,16 +144,14 @@
     
 
     
-        <h3 class="subsection-title">Methods</h3>
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
 
         
-            
+                
+<h4 class="name" id="IdCardInfo">IdCardInfo</h4>
 
-    
-
-    <h4 class="name" id=".divide"><span class="type-signature">(static) </span>divide<span class="signature">(&hellip;nums)</span><span class="type-signature"> &rarr; {number}</span></h4>
-
-    
 
 
 
@@ -213,15 +161,12 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="divide.js.html">divide.js</a>, <a href="divide.js.html#line24">line 24</a>
+        <a href="parseIdCard.js.html">parseIdCard.js</a>, <a href="parseIdCard.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
     
 
     
@@ -253,38 +198,11 @@
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-
-<div class="description usertext">
-    精确除法，支持多个数相除
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>divide(1.21, 1.1);
-// => 1.1
-
-divide(1000, 10, 10);
-// => 10
-
-divide(1000, 10, 10, 10);
-// => 1</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -293,8 +211,6 @@ divide(1000, 10, 10, 10);
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -308,15 +224,12 @@ divide(1000, 10, 10, 10);
 
         <tr>
             
-                <td class="name"><code>nums</code></td>
+                <td class="name"><code>province</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-|
-
 <span class="param-type">string</span>
 
 
@@ -324,20 +237,79 @@ divide(1000, 10, 10, 10);
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last">省份</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>birthday</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last">除数和被除数</td>
+            <td class="description last">生日</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>gender</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">性别</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>origin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#IdCardOrigin">IdCardOrigin</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">解析身份证原数据</td>
         </tr>
 
     
@@ -349,49 +321,31 @@ divide(1000, 10, 10, 10);
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    商数
+<div class="description usertext">
+    身份证信息
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
+<span class="param-type">Object</span>
 
-    
 
-    <h4 class="name" id=".minus"><span class="type-signature">(static) </span>minus<span class="signature">(&hellip;nums)</span><span class="type-signature"> &rarr; {number}</span></h4>
+        </li>
+    </ul>
 
-    
+
+
+
+
+
+            
+                
+<h4 class="name" id="IdCardOrigin">IdCardOrigin</h4>
+
 
 
 
@@ -401,15 +355,12 @@ divide(1000, 10, 10, 10);
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="minus.js.html">minus.js</a>, <a href="minus.js.html#line24">line 24</a>
+        <a href="parseIdCard.js.html">parseIdCard.js</a>, <a href="parseIdCard.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
     
 
     
@@ -441,38 +392,11 @@ divide(1000, 10, 10, 10);
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-
-<div class="description usertext">
-    精确减法，支持多个数相减
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>minus(1, 0.9);
-// => 0.1
-
-minus(1, 0.9, 0.02);
-// => 0.08
-
-minus(1, 0.9, 0.02, 0.08);
-// => 0</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -481,8 +405,6 @@ minus(1, 0.9, 0.02, 0.08);
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -496,15 +418,12 @@ minus(1, 0.9, 0.02, 0.08);
 
         <tr>
             
-                <td class="name"><code>nums</code></td>
+                <td class="name"><code>province</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-|
-
 <span class="param-type">string</span>
 
 
@@ -512,20 +431,148 @@ minus(1, 0.9, 0.02, 0.08);
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last">省份编码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>city</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last">相减的数</td>
+            <td class="description last">城市编码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>area</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">地区编码</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>year</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">出生年</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>month</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">出生月</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>day</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">出生日</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>gender</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">性别 能整除2为女，否则为男</td>
         </tr>
 
     
@@ -537,49 +584,31 @@ minus(1, 0.9, 0.02, 0.08);
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    差
+<div class="description usertext">
+    解析身份证原数据
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
+<span class="param-type">Object</span>
 
-    
 
-    <h4 class="name" id=".plus"><span class="type-signature">(static) </span>plus<span class="signature">(&hellip;nums)</span><span class="type-signature"> &rarr; {number}</span></h4>
+        </li>
+    </ul>
 
-    
+
+
+
+
+
+            
+                
+<h4 class="name" id="PasswordContaines">PasswordContaines</h4>
+
 
 
 
@@ -589,15 +618,12 @@ minus(1, 0.9, 0.02, 0.08);
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="plus.js.html">plus.js</a>, <a href="plus.js.html#line24">line 24</a>
+        <a href="validatePassword.js.html">validatePassword.js</a>, <a href="validatePassword.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
     
 
     
@@ -629,38 +655,11 @@ minus(1, 0.9, 0.02, 0.08);
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-
-<div class="description usertext">
-    精确加法，支持多个数相加
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>plus(0.1, 0.2);
-// => 0.3
-
-plus(0.1, 0.2, 0.3);
-// => 0.6
-
-plus(0.1, 0.2, 0.3, 0.4);
-// => 1</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -669,8 +668,6 @@ plus(0.1, 0.2, 0.3, 0.4);
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -684,36 +681,115 @@ plus(0.1, 0.2, 0.3, 0.4);
 
         <tr>
             
-                <td class="name"><code>nums</code></td>
+                <td class="name"><code>number</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last">包含数字</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lowerCaseLetter</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last">相加的数</td>
+            <td class="description last">包含小写字母</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upperCaseLetter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">包含大写字母</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>specialCharacter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">包含特殊字符</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>unallowableCharacter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">包含非法字符</td>
         </tr>
 
     
@@ -725,49 +801,31 @@ plus(0.1, 0.2, 0.3, 0.4);
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    总和
+<div class="description usertext">
+    验证密码的包含内容
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
+<span class="param-type">Object</span>
 
-    
 
-    <h4 class="name" id=".round"><span class="type-signature">(static) </span>round<span class="signature">(num, precision<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
+        </li>
+    </ul>
 
-    
+
+
+
+
+
+            
+                
+<h4 class="name" id="ValidatePasswordReturn">ValidatePasswordReturn</h4>
+
 
 
 
@@ -777,15 +835,12 @@ plus(0.1, 0.2, 0.3, 0.4);
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="round.js.html">round.js</a>, <a href="round.js.html#line24">line 24</a>
+        <a href="validatePassword.js.html">validatePassword.js</a>, <a href="validatePassword.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
     
 
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
     
 
     
@@ -817,38 +872,11 @@ plus(0.1, 0.2, 0.3, 0.4);
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-
-<div class="description usertext">
-    四舍五入，支持设置精度
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>round(4.006);
-// => 4
-
-round(4.006, 2);
-// => 4.01
-
-round(4060, -2);
-// => 4100</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -857,239 +885,6 @@ round(4060, -2);
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>num</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last">要四舍五入的数字</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>precision</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>0</code>
-                
-                </td>
-            
-
-            <td class="description last">四舍五入的精度</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    四舍五入的数字
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".times"><span class="type-signature">(static) </span>times<span class="signature">(&hellip;nums)</span><span class="type-signature"> &rarr; {number}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="times.js.html">times.js</a>, <a href="times.js.html#line23">line 23</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>3.1.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    精确乘法，支持多个数相乘
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>times(3, 0.6);
-// => 1.8
-
-times(3, 0.6, 2);
-// => 3.6
-
-times(3, 0.6, 2, 10);
-// => 36</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
         
 
         
@@ -1103,36 +898,69 @@ times(3, 0.6, 2, 10);
 
         <tr>
             
-                <td class="name"><code>nums</code></td>
+                <td class="name"><code>validated</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last">验证结果，根据密码强度、是否包含非法字符得出</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>level</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last">相乘的数</td>
+            <td class="description last">强度级别，包含数字/大小写字母/特殊字符</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>containes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#PasswordContaines">PasswordContaines</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">包含内容</td>
         </tr>
 
     
@@ -1144,44 +972,28 @@ times(3, 0.6, 2, 10);
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    乘积
+<div class="description usertext">
+    验证结果
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
 
 
-    </dd>
-</dl>
-
-    
+        </li>
+    </ul>
 
 
 
-        
-    
 
+
+
+            
     
 
     

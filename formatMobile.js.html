@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isPassword.js - util-helpers </title>
+    <title>formatMobile.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isPassword.js</h1>
+    <h1 class="page-title">formatMobile.js</h1>
     
 
     
@@ -69,53 +69,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import validatePassword from './validatePassword';
+            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
 
 /**
- * 检测值是否符合密码强度
- * &lt;p>&lt;strong>注意：该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。&lt;/strong>&lt;/p>
- * &lt;p>&lt;i>如果需要更细致的验证，请使用 &lt;a href="#.validatePassword">validatePassword&lt;/a>&lt;/i>&lt;/p>
+ * 格式化手机号码
  *
- * @see 参考 {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @static
- * @alias module:Validator.isPassword
- * @since 1.1.0
- * @requires module:Validator.validatePassword
- * @param {*} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
- * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符
- * @param {string} [options.special="!@#$%^&amp;*()-=_+[]\|{},./?&lt;>~"] 支持的特殊字符
- * @returns {boolean} 值是否符合密码强度
+ * @alias module:Processor.formatMobile
+ * @since 4.5.0
+ * @param {string} mobileNo 手机号码
+ * @param {object} [options] 配置项
+ * @param {string} [options.char=' '] 间隔字符
+ * @returns {string} 格式化后的手机号码
  * @example
- *
- * isPassword('a12345678');
- * // => true
- *
- * isPassword('a12345678', {level: 3});
- * // => false
- *
- * isPassword('Aa12345678', {level: 3});
- * // => true
- *
- * isPassword('Aa12345678', {level: 3, ignoreCase: true});
- * // => false
- *
- * isPassword('_Aa12345678', {level: 3, ignoreCase: true});
- * // => true
- *
- * // 仅支持 数字、字母、特殊字符，其他字符如中文字符是校验不通过的
- * isPassword('_Aa一二三45678', {level: 3, ignoreCase: true});
- * // => false
- *
- * isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
- * // => false
+ * formatMobile('13345678900') // '133 4567 8900'
+ * formatMobile('13345678900', { char: '-' }) // '133-4567-8900'
+ * formatMobile('133****1234') // '133 **** 1234'
+ * formatMobile('133****1234', { char: '-' }) // '133-****-1234'
  */
-function isPassword(value, { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = {}) {
-  return validatePassword(value, { level, ignoreCase, special }).validated;
+function formatMobile(mobileNo, { char = ' ' } = {}) {
+  const regChar = new RegExp(char, 'g');
+  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
+
+  if (realValue.length > 7) {
+    return realValue.replace(/^(...)(....)/g, `$1${char}$2${char}`);
+  }
+  if (realValue.length > 3) {
+    return realValue.replace(/^(...)/g, `$1${char}`);
+  }
+  return realValue;
 }
 
-export default isPassword;
+export default formatMobile;
 </code></pre>
         </article>
     </section>
