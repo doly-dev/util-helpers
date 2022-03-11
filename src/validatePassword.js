@@ -109,6 +109,22 @@ function hasUnallowableCharacter(val, chars = '') {
 }
 
 /**
+ * @typedef {Object} PasswordContaines - 验证密码的包含内容
+ * @property {boolean} number - 包含数字
+ * @property {boolean} lowerCaseLetter - 包含小写字母
+ * @property {boolean} upperCaseLetter - 包含大写字母
+ * @property {boolean} specialCharacter - 包含特殊字符
+ * @property {boolean} unallowableCharacter - 包含非法字符
+ */
+
+/**
+ * @typedef {Object} ValidatePasswordReturn - 验证结果
+ * @property {boolean} validated - 验证结果，根据密码强度、是否包含非法字符得出
+ * @property {number} level - 强度级别，包含数字/大小写字母/特殊字符
+ * @property {PasswordContaines} containes - 包含内容
+ */
+
+/**
  * 验证密码（数字、大小写字母、特殊字符、非法字符）
  *
  * @see 参考 {@link https://baike.baidu.com/item/ASCII#3|ASCII}
@@ -120,7 +136,7 @@ function hasUnallowableCharacter(val, chars = '') {
  * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
  * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符
  * @param {string} [options.special="!@#$%^&*()-=_+[]\|{},./?<>~"] 支持的特殊字符
- * @returns 验证结果
+ * @returns {ValidatePasswordReturn} 验证结果
  * @example
  *
  * validatePassword('a12345678');

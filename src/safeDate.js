@@ -3,7 +3,8 @@ import isNil from './utils/type/isNil';
 // TODO: 函数重载，类型参照 Date
 
 /**
- * 创建一个 Date 实例，同 new Date() 。<br/><br/>规避了苹果设备浏览器不支持部分格式（YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
+ * 创建一个 Date 实例日期对象，同 new Date() 。<br/>
+ * 规避了苹果设备浏览器不支持部分格式（YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
  *
  * @static
  * @alias module:Processor.safeDate
@@ -11,7 +12,7 @@ import isNil from './utils/type/isNil';
  * @since 4.4.0
  * @param {string|number|Date} [value] 日期时间字符串、毫秒数、日期对象
  * @param {...number} args 月/日/时/分/秒/毫秒
- * @returns {Date} Date 实例
+ * @returns {Date} Date 实例日期对象
  * @example
  * safeDate('2022-1-1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
  * safeDate('2022/1/1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)

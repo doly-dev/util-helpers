@@ -12,6 +12,18 @@ const regHMCard = /^[hm]{1}([0-9]{10}|[0-9]{8})$/i;
  * @see 参考 {@link https://zh.wikipedia.org/wiki/港澳居民来往内地通行证|港澳居民来往内地通行证}
  * @param {*} value 要检测的值
  * @returns {boolean} 是否为港澳居民来往内地通行证
+ * @example
+ * // 第一代 11 位
+ * isHMCard('h3203117707') // true
+ * isHMCard('H3203117707') // true
+ * isHMCard('m3203117707') // true
+ * isHMCard('M3203117707') // true
+ *
+ * // 第二代 9 位
+ * isHMCard('h32031177') // true
+ * isHMCard('H32031177') // true
+ * isHMCard('m32031177') // true
+ * isHMCard('M32031177') // true
  */
 function isHMCard(value) {
   const valueStr = convertToString(value);

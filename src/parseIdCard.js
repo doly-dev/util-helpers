@@ -71,37 +71,57 @@ const Provinces = [
 // ];
 
 /**
+ * @typedef {Object} IdCardOrigin - 解析身份证原数据
+ * @property {string} province - 省份编码
+ * @property {string} city - 城市编码
+ * @property {string} area - 地区编码
+ * @property {string} year - 出生年
+ * @property {string} month - 出生月
+ * @property {string} day - 出生日
+ * @property {string} gender - 性别 能整除2为女，否则为男
+ */
+
+/**
+ * @typedef {Object} IdCardInfo - 身份证信息
+ * @property {string} province - 省份
+ * @property {string} birthday - 生日
+ * @property {string} gender - 性别
+ * @property {IdCardOrigin} origin - 解析身份证原数据
+ */
+
+/**
  * 解析身份证号码，支持15、18位身份证号码
- * 
+ *
  * @static
  * @alias module:Processor.parseIdCard
  * @since 4.0.0
  * @see 参考 {@link https://baike.baidu.com/item/居民身份证号码|居民身份证号码}
  * @param {string} id 身份证号码，支持15位
- * @returns null 或 省份、生日、性别，省/市/区/年/月/日/性别编码
+ * @returns {null|IdCardInfo} null 或 省份、生日、性别，省/市/区/年/月/日/性别编码
  * @example
  * parseIdCard('123456789123456');
  * // => null
- * 
+ *
  * // 18位身份证号码
  * parseIdCard('130701199310302288')
  * // =>
  * {
-  birthday: "1993-10-30",
-  gender: "女",
-  origin: { province: "13", city: "07", area: "01", year: "1993", month: "10", day: "30", gender: "8" },
-  province: "河北省"
-}
+ *   birthday: "1993-10-30",
+ *   gender: "女",
+ *   origin: { province: "13", city: "07", area: "01", year: "1993", month: "10", day: "30", gender: "8" },
+ *   province: "河北省"
+ * }
+ *
  * // 15位身份证号码
  * parseIdCard('130701931030228');
  * // =>
  * {
-  birthday: "93-10-30",
-  gender: "女",
-  origin: { province: "13", city: "07", area: "01", year: "93", month: "10", day: "30", gender: "8" },
-  province: "河北省"
-}
- * 
+ *   birthday: "93-10-30",
+ *   gender: "女",
+ *   origin: { province: "13", city: "07", area: "01", year: "93", month: "10", day: "30", gender: "8" },
+ *   province: "河北省"
+ * }
+ *
  */
 function parseIdCard(id) {
   if (!isIdCard(id, { loose: true })) {
