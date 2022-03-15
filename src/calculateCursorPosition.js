@@ -10,7 +10,8 @@ import normalizeString from './normalizeString';
  * @since 4.6.0
  * @see 格式化手机号码 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile|formatMobile}
  * @see 格式化银行卡号 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard|formatBankCard}
- * @see 示例 {@link https://2950v9.csb.app/|点击查看}
+ * @see h5示例 {@link https://2950v9.csb.app/|点击查看}
+ * @see react示例 {@link https://33ccy9.csb.app/|点击查看}
  * @param {number} prevPos 赋值前的光标位置，onChange/onInput的光标位置 e.target.selectionEnd
  * @param {string} prevCtrlValue 上一个格式化后的值
  * @param {string} rawValue 当前输入原值
