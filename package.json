@@ -1,6 +1,6 @@
 {
   "name": "util-helpers",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "module": "esm/index.js",
