@@ -79,7 +79,8 @@ formatMoney('1000'); // => 1,000.00
   - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
-  - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise
+  - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 等待时间返回 Promise
+  - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 计算光标位置
 
 ## 精选第三方工具库
 
