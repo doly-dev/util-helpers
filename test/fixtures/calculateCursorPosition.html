@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Static Template</title>
+</head>
+
+<body>
+  <h1>util-helpers calculateCursorPosition 示例</h1>
+  <p>计算格式化手机号码或银行卡号后的光标位置</p>
+  <div>手机号码: <input type="text" id="mobile" placeholder="请输入" /></div>
+  <div>
+    银行卡号: <input type="text" id="bankCard" placeholder="请输入" />
+  </div>
+  <p style="margin-top: 50px; font-size: 12px; color: gray;">
+    * 如果选择范围含有间隔字符再粘贴，会产生错位
+  </p>
+  <script src="../../dist/util-helpers.js"></script>
+  <script>
+    const oMobile = document.querySelector("#mobile");
+    let mobilePrevCtrlValue = "";
+    oMobile.addEventListener("input", (e) => {
+      const el = e.target;
+      const prevPos = el.selectionEnd;
+      const rawValue = el.value;
+      const ctrlValue = utilHelpers.formatMobile(rawValue.replace(/\D/g, ""));
+      el.value = ctrlValue;
+      el.selectionStart = el.selectionEnd = utilHelpers.calculateCursorPosition(
+        prevPos,
+        mobilePrevCtrlValue,
+        rawValue,
+        ctrlValue,
+        { type: "mobile" }
+      );
+      mobilePrevCtrlValue = ctrlValue;
+    });
+
+    const oBankCard = document.querySelector("#bankCard");
+    let bankCardPrevCtrlValue = "";
+    oBankCard.addEventListener("input", (e) => {
+      const el = e.target;
+      const prevPos = el.selectionEnd;
+      const rawValue = el.value;
+      const ctrlValue = utilHelpers.formatBankCard(
+        rawValue.replace(/\D/g, "")
+      );
+      el.value = ctrlValue;
+      el.selectionStart = el.selectionEnd = utilHelpers.calculateCursorPosition(
+        prevPos,
+        bankCardPrevCtrlValue,
+        rawValue,
+        ctrlValue,
+        {
+          type: "bankCard"
+        }
+      );
+      bankCardPrevCtrlValue = ctrlValue;
+    });
+  </script>
+</body>
+
+</html>
