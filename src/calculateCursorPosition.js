@@ -1,63 +1,54 @@
 import normalizeString from './normalizeString';
 
+// ref: https://github.com/ant-design/ant-design-mobile/blob/v2/components/input-item/index.tsx#L240
+
 /**
- * 计算格式化手机号码或银行卡号后的光标位置。<br/>手机号码格式为xxx xxxx xxxx ，银行卡号格式为xxxx xxxx xxxx xxx。
+ * 计算输入框的值格式化后光标位置
  *
  * @static
  * @alias module:Other.calculateCursorPosition
  * @since 4.6.0
  * @see 格式化手机号码 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile|formatMobile}
  * @see 格式化银行卡号 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard|formatBankCard}
+ * @see 示例 {@link https://2950v9.csb.app/|点击查看}
+ * @param {number} prevPos 赋值前的光标位置，onChange/onInput的光标位置 e.target.selectionEnd
  * @param {string} prevCtrlValue 上一个格式化后的值
- * @param {string} nextRawValue 当前输入原值，注意不是格式化后的值
- * @param {number} prevPos 当前光标位置，onChange/onInput的光标位置 e.target.selectionEnd
+ * @param {string} rawValue 当前输入原值
+ * @param {string} ctrlValue 当前格式化后的值
  * @param {Object} [options] 配置项
- * @param {string} [options.char=' '] 间隔字符，占位符
- * @param {'mobile'|'bankCard'} [options.type='mobile'] 格式化类型
+ * @param {string[]|string} [options.placeholderChar=' '] 占位符
+ * @param {RegExp} [options.maskReg=/\D/g] 需要遮盖的字符规则。默认去掉非数字，意味着 ctrlValue 需要去掉非数字。
+ * @param {'mobile'|'bankCard'} [options.type] 格式化类型，内置手机号码和银行卡号特殊处理
  * @returns {number} 格式化后的光标位置
  */
-function calculateCursorPosition(prevCtrlValue, nextRawValue, prevPos, { char = ' ', type = 'mobile' } = {}) {
+function calculateCursorPosition(prevPos, prevCtrlValue, rawValue, ctrlValue, { placeholderChar = ' ', maskReg = /\D/g, type } = {}) {
   const realCtrlValue = normalizeString(prevCtrlValue);
-  const realNextRawValue = normalizeString(nextRawValue);
+  const realRawValue = normalizeString(rawValue);
+  const placeholderChars = Array.isArray(placeholderChar) ? placeholderChar : [placeholderChar];
 
-  let pos = typeof prevPos === 'number' && !isNaN(prevPos) ? prevPos : realNextRawValue.length;
-  const editLength = realNextRawValue.length - realCtrlValue.length;
-  const realPrevPos = pos - editLength;
-  const editStr = realNextRawValue.substring(realPrevPos, prevPos);
+  const editLength = realRawValue.length - realCtrlValue.length;
+  const isAddition = editLength > 0;
 
-  // 输入占位符
-  if (editStr === char) {
-    return pos;
+  let pos = prevPos;
+
+  if (isAddition) {
+    const additionStr = realRawValue.substring(pos - editLength, pos);
+    let ctrlCharCount = additionStr.replace(maskReg, '').length;
+    pos -= editLength - ctrlCharCount;
+
+    let placeholderCharCount = 0;
+    while (ctrlCharCount > 0) {
+      if (placeholderChars.indexOf(ctrlValue.charAt(pos - ctrlCharCount + placeholderCharCount)) !== -1) {
+        placeholderCharCount++;
+      } else {
+        ctrlCharCount--;
+      }
+    }
+    pos += placeholderCharCount;
   }
 
-  if (type === 'mobile') {
-    // 复制粘贴多个值
-    if (editLength > 1) {
-      if (realPrevPos < 9) {
-        if (realPrevPos < 4 && pos >= 4) {
-          pos += 1;
-        }
-        if (pos >= 9) {
-          pos += 1;
-        }
-      }
-    } else if (pos === 4 || pos === 9) {
-      // 输入或删除占位符
-      pos += editLength > 0 ? 1 : -1;
-    }
-  } else if (type === 'bankCard') {
-    if (editLength > 1) {
-      if (pos >= 5) {
-        const chunks = Math.floor(pos / 5) - Math.floor(realPrevPos / 5);
-        pos += chunks;
-
-        if (pos > 0 && pos % 5 === 0) {
-          pos += 1;
-        }
-      }
-    } else if (pos % 5 === 0) {
-      pos += editLength > 0 ? 1 : -1;
-    }
+  if ((type === 'mobile' && (pos === 4 || pos === 9)) || (type === 'bankCard' && pos > 0 && pos % 5 === 0)) {
+    pos -= 1;
   }
 
   return pos;
