@@ -52,6 +52,7 @@ formatMoney('1000'); // => 1,000.00
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
   - [normalizeString](https://doly-dev.github.io/util-helpers/module-Processor.html#.normalizeString) - 规整化字符串，如果值为 `undefined` `null` 转为 ''，如果不是字符串类型则转为字符串
   - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
+  - [padZero](https://doly-dev.github.io/util-helpers/module-Processor.html#.padZero) - 前置补零
   - [parseIdCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.parseIdCard) - 解析身份证号码
   - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
   - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
