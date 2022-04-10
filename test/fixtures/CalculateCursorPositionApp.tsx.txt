@@ -1,0 +1,37 @@
+import "./styles.css";
+import * as React from "react";
+import SuperInput from "./SuperInput";
+
+export default function App() {
+  return (
+    <div className="App">
+      <h1>
+        <a href="https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition">
+          util-helpers calculateCursorPosition
+        </a>{" "}
+        示例
+      </h1>
+      <p>
+        <mark>React</mark> 计算格式化手机号码或银行卡号后的光标位置
+      </p>
+      <div>
+        手机号码: <SuperInput type="mobile" />
+      </div>
+      <div>
+        银行卡号: <SuperInput type="bankCard" />
+      </div>
+      <div>
+        禁止空格: <SuperInput disabledWhiteSpace />
+      </div>
+      <div>
+        数字: <SuperInput type="number" />
+      </div>
+      <div>
+        身份证号: <SuperInput type="idCard" />
+      </div>
+      {/* <p style={{ marginTop: 50, fontSize: 12, color: "gray" }}>
+        * 如果选择范围含有间隔字符再粘贴，会产生错位
+      </p> */}
+    </div>
+  );
+}

@@ -20,7 +20,7 @@ export default {
       format: 'umd',
       file: `dist/${pkg.name}.js`,
       name: globalVarName,
-      sourcemap: 'inline'
+      sourcemap: true
     },
     {
       format: 'umd',

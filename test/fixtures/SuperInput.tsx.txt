@@ -1,0 +1,139 @@
+import React, { useCallback, useMemo } from "react";
+import {
+  formatBankCard,
+  formatMobile,
+  calculateCursorPosition
+} from "util-helpers";
+
+interface SuperInputProps
+  extends Omit<React.HTMLAttributes<HTMLInputElement>, "type"> {
+  type?:
+  | React.HTMLInputTypeAttribute
+  | "mobile"
+  | "bankCard"
+  | "disabledWhiteSpace"
+  | "number"
+  | "idCard";
+  disabledWhiteSpace?: boolean;
+}
+
+const SuperInput: React.FC<SuperInputProps> = ({
+  type,
+  disabledWhiteSpace,
+  inputMode,
+  ...restProps
+}) => {
+  const [value, setValue] = React.useState("");
+
+  const realType = useMemo(() => {
+    if (
+      type === "mobile" ||
+      type === "bankCard" ||
+      type === "number" ||
+      type === "idCard"
+    ) {
+      return "text";
+    }
+    return type;
+  }, [type]);
+  const realInputMode = useMemo(() => {
+    if (!inputMode && type === "number") {
+      return "decimal";
+    }
+    return inputMode;
+  }, [inputMode, type]);
+
+  const needAdjustPos = useMemo(() => {
+    return (
+      type === "mobile" ||
+      type === "bankCard" ||
+      type === "number" ||
+      type === "idCard" ||
+      disabledWhiteSpace
+    );
+  }, [type, disabledWhiteSpace]);
+
+  const normalize = useCallback(
+    (val: string) => {
+      if (type === "mobile") {
+        return formatMobile(val.replace(/\D/g, ""));
+      }
+      if (type === "bankCard") {
+        return formatBankCard(val.replace(/\D/g, ""));
+      }
+      if (type === "number") {
+        return val.replace(/\D/g, "");
+      }
+      if (type === "idCard") {
+        return val
+          .replace(/[^\dx]/gi, "")
+          .substring(0, 18)
+          .toUpperCase();
+      }
+      if (disabledWhiteSpace) {
+        return val.replace(/\s/g, "");
+      }
+      return val;
+    },
+    [type, disabledWhiteSpace]
+  );
+
+  const calcPosOptions = useMemo(() => {
+    const ret: Record<string, any> = {};
+    if (type === "bankCard") {
+      ret.type = "bankCard";
+    } else if (type === "mobile") {
+      ret.type = "mobile";
+    } else if (type === "idCard") {
+      ret.maskReg = /[^\dx]/gi;
+      ret.placeholderChars = [];
+    } else if (type === "number") {
+      ret.maskReg = /[^\d\\.-]/g;
+      ret.placeholderChars = [];
+    } else if (disabledWhiteSpace) {
+      ret.maskReg = /\s/g;
+      ret.placeholderChars = [];
+    }
+    return ret;
+  }, [type, disabledWhiteSpace]);
+
+  const handleChange = (e) => {
+    const el = e.target;
+    const prevPos = el.selectionEnd;
+    const rawValue = el.value;
+    const ctrlValue = normalize(rawValue);
+
+    setValue(ctrlValue);
+
+    if (needAdjustPos) {
+      const adjustPos = calculateCursorPosition(
+        prevPos,
+        value,
+        rawValue,
+        ctrlValue,
+        calcPosOptions
+      );
+
+      if (rawValue !== ctrlValue) {
+        setTimeout(() => {
+          el.selectionStart = el.selectionEnd = adjustPos;
+        });
+      } else {
+        el.selectionStart = el.selectionEnd = adjustPos;
+      }
+    }
+  };
+
+  return (
+    <input
+      value={value}
+      onChange={handleChange}
+      type={realType}
+      inputMode={realInputMode}
+      placeholder="请输入"
+      {...restProps}
+    />
+  );
+};
+
+export default SuperInput;

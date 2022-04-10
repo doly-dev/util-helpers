@@ -9,56 +9,104 @@
 </head>
 
 <body>
-  <h1>util-helpers calculateCursorPosition 示例</h1>
+  <h1>
+    <a href="https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition">util-helpers
+      calculateCursorPosition</a>
+    示例
+  </h1>
   <p>计算格式化手机号码或银行卡号后的光标位置</p>
   <div>手机号码: <input type="text" id="mobile" placeholder="请输入" /></div>
   <div>
     银行卡号: <input type="text" id="bankCard" placeholder="请输入" />
   </div>
-  <p style="margin-top: 50px; font-size: 12px; color: gray;">
-    * 如果选择范围含有间隔字符再粘贴，会产生错位
-  </p>
-  <script src="../../dist/util-helpers.js"></script>
+  <div>
+    禁止空格: <input type="text" id="notWhiteSpace" placeholder="请输入" />
+  </div>
+  <div>
+    数字:
+    <input type="text" inputmode="decimal" id="number" placeholder="请输入" />
+  </div>
+  <div>身份证号: <input type="text" id="idCard" placeholder="请输入" /></div>
+  <!-- <p style="margin-top: 50px; font-size: 12px; color: gray;">
+      * 如果选择范围含有间隔字符再粘贴，会产生错位
+    </p> -->
+  <script src="https://unpkg.com/util-helpers@^4.6.0/dist/util-helpers.min.js"></script>
   <script>
-    const oMobile = document.querySelector("#mobile");
-    let mobilePrevCtrlValue = "";
-    oMobile.addEventListener("input", (e) => {
-      const el = e.target;
-      const prevPos = el.selectionEnd;
-      const rawValue = el.value;
-      const ctrlValue = utilHelpers.formatMobile(rawValue.replace(/\D/g, ""));
-      el.value = ctrlValue;
-      el.selectionStart = el.selectionEnd = utilHelpers.calculateCursorPosition(
-        prevPos,
-        mobilePrevCtrlValue,
-        rawValue,
-        ctrlValue,
-        { type: "mobile" }
-      );
-      mobilePrevCtrlValue = ctrlValue;
-    });
+    function registerMethod(inputId, normalize, calcOptions = {}) {
+      const inputElement = document.getElementById(inputId);
+      let prevCtrlValue = "";
+      inputElement.addEventListener("input", (e) => {
+        const el = e.target;
+        const prevPos = el.selectionEnd;
+        const rawValue = el.value;
+        const ctrlValue = normalize(rawValue);
+        el.value = ctrlValue;
+        el.selectionStart = el.selectionEnd = utilHelpers.calculateCursorPosition(
+          prevPos,
+          prevCtrlValue,
+          rawValue,
+          ctrlValue,
+          calcOptions
+        );
+        prevCtrlValue = ctrlValue;
+      });
+    }
 
-    const oBankCard = document.querySelector("#bankCard");
-    let bankCardPrevCtrlValue = "";
-    oBankCard.addEventListener("input", (e) => {
-      const el = e.target;
-      const prevPos = el.selectionEnd;
-      const rawValue = el.value;
-      const ctrlValue = utilHelpers.formatBankCard(
-        rawValue.replace(/\D/g, "")
-      );
-      el.value = ctrlValue;
-      el.selectionStart = el.selectionEnd = utilHelpers.calculateCursorPosition(
-        prevPos,
-        bankCardPrevCtrlValue,
-        rawValue,
-        ctrlValue,
-        {
-          type: "bankCard"
-        }
-      );
-      bankCardPrevCtrlValue = ctrlValue;
-    });
+    // ----- mobile -----
+    registerMethod(
+      "mobile",
+      (rawValue) => {
+        return utilHelpers.formatMobile(rawValue.replace(/\D/g, ""));
+      },
+      { type: "mobile" }
+    );
+
+    // ----- bankCard -----
+    registerMethod(
+      "bankCard",
+      (rawValue) => {
+        return utilHelpers.formatBankCard(rawValue.replace(/\D/g, ""));
+      },
+      { type: "bankCard" }
+    );
+
+    // ----- notWhiteSpace -----
+    registerMethod(
+      "notWhiteSpace",
+      (rawValue) => {
+        return rawValue.replace(/\s/g, "");
+      },
+      {
+        maskReg: /\s/g,
+        placeholderChars: []
+      }
+    );
+
+    // ----- number -----
+    registerMethod(
+      "number",
+      (rawValue) => {
+        return rawValue.replace(/\D/g, "");
+      },
+      {
+        placeholderChars: []
+      }
+    );
+
+    // ----- idCard -----
+    registerMethod(
+      "idCard",
+      (rawValue) => {
+        return rawValue
+          .replace(/[^\dx]/gi, "")
+          .substring(0, 18)
+          .toUpperCase();
+      },
+      {
+        maskReg: /[^\dx]/gi,
+        placeholderChars: []
+      }
+    );
   </script>
 </body>
 
