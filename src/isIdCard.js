@@ -21,7 +21,7 @@ function check(id) {
   if (num < 10) {
     return num === Number(id[17]);
   } else {
-    return id[17] == 'X';
+    return id[17].toUpperCase() === 'X';
   }
 }
 
