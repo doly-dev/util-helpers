@@ -6,9 +6,6 @@ const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
 // 基础字符组成
 const baseCodeArr = '0123456789ABCDEFGHJKLMNPQRTUWXY'.split('');
 
-//加权因子
-const weightFactor = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28];
-
 /**
  * 获取字符位置
  *
@@ -49,7 +46,7 @@ function sumCheckCode(preCode) {
     // 字符位置对应的基础编码序号
     const index = getBaseCodeIndex(preCode[i]);
     // 加权因子
-    const wf = weightFactor[i];
+    const wf = Math.pow(3, i) % 31;
     // 计算序号和加权因子的乘积，并计算级数之和
     total += index * wf;
   }
