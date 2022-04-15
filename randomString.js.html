@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isPostcode.js - util-helpers </title>
+    <title>randomString.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isPostcode.js</h1>
+    <h1 class="page-title">randomString.js</h1>
     
 
     
@@ -69,34 +69,54 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import convertToString from './utils/convertToString';
-
-// 邮政编码
-const reg = /^\d{6}$/;
+            <pre class="prettyprint source linenums"><code>const numberChars = '0123456789';
+const letterChars = 'abcdefghijklmnopqrstuvwxyz';
+const defaultChars = numberChars + letterChars + letterChars.toUpperCase();
 
 /**
- * 检测值是否为邮政编码，6位数字
- *
- * @static
- * @alias module:Validator.isPostcode
- * @since 1.1.0
- * @param {*} value 要检测的值
- * @returns {boolean} 值是否为邮政编码
- * @example
- *
- * isPostcode('101111');
- * // => true
- *
- * isPostcode('123');
- * // => false
- *
+ * @private
+ * @param {number} [len=0] 长度
+ * @param {string} [optionalChars] 允许的字符，默认为数字和大小写字母
+ * @param {string} [prefix=''] 前缀部分，不计入长度
+ * @returns {string}
  */
-function isPostcode(value) {
-  const valueStr = convertToString(value);
-  return reg.test(valueStr);
+function internalRandomString(len = 0, optionalChars = defaultChars, prefix = '') {
+  while (len-- > 0) {
+    const r = optionalChars[Math.floor(Math.random() * optionalChars.length)];
+    return internalRandomString(len, optionalChars, prefix + r);
+  }
+  return prefix;
 }
 
-export default isPostcode;
+/**
+ * 生成随机字符串
+ *
+ * @static
+ * @alias module:Other.randomString
+ * @since 4.8.0
+ * @param {number} [len=0] 长度
+ * @param {string} [optionalChars] 允许的字符，默认为数字和大小写字母
+ * @returns {string} 随机字符串
+ * @example
+ * randomString(5); // slk23
+ * randomString(8); // 71mHqo2A
+ *
+ * // 自定义允许的字符
+ * randomString(5, 'abc'); // ccbcb
+ * randomString(8, 'abcefg'); // bcgcfabg
+ */
+function randomString(len = 0, optionalChars) {
+  let realLen = typeof len === 'number' ? len : Number(len);
+  if (isNaN(realLen)) {
+    realLen = 0;
+  }
+
+  const realChars = typeof optionalChars === 'string' &amp;&amp; optionalChars ? optionalChars : defaultChars;
+
+  return internalRandomString(len, realChars);
+}
+
+export default randomString;
 </code></pre>
         </article>
     </section>
