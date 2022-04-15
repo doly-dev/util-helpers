@@ -30,7 +30,7 @@ function sumCheckCode(preCode) {
   // 计算整数求余函数MOD
   const remainder = total % 31;
   // 校验码字符值序号
-  const checkCodeIndex = 31 - remainder;
+  const checkCodeIndex = remainder !== 0 ? 31 - remainder : 0;
 
   return baseCodeArr[checkCodeIndex];
 }

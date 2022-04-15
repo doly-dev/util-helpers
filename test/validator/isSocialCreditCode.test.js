@@ -21,6 +21,9 @@ describe('isSocialCreditCode', () => {
   it('"91350100M000100Y4A" => false', () => {
     expect(isSocialCreditCode('91350100M000100Y4A')).toBe(false);
   });
+  it('校验位为0 "911101005JLR20JR60" => true', () => {
+    expect(isSocialCreditCode('911101005JLR20JR60')).toBe(true);
+  });
   it('宽松模式，"91350100M000100Y4AB" => true', () => {
     expect(isSocialCreditCode('91350100M000100Y4A', { loose: true })).toBe(true);
   });
