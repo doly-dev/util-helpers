@@ -81,6 +81,7 @@ formatMoney('1000'); // => 1,000.00
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
+  - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise
 
 ## 精选第三方工具库

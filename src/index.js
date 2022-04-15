@@ -68,6 +68,7 @@ export { default as round } from './round';
  */
 export { default as waitTime } from './waitTime';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
+export { default as randomString } from './randomString';
 
 /**
  * 调试相关
