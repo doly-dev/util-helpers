@@ -7,28 +7,6 @@ const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
 const baseCodeArr = '0123456789ABCDEFGHJKLMNPQRTUWXY'.split('');
 
 /**
- * 获取字符位置
- *
- * @private
- * @param {string} code 字符
- * @returns {number} 字符所在基础字符的位置
- */
-function getBaseCodeIndex(code) {
-  let ret;
-
-  baseCodeArr.some((item, index) => {
-    if (item === code) {
-      ret = index;
-      return true;
-    }
-    return false;
-  });
-
-  // @ts-ignore
-  return ret;
-}
-
-/**
  * 计算校验码
  *
  * @private
@@ -37,14 +15,12 @@ function getBaseCodeIndex(code) {
  * @returns {string} 校验码
  */
 function sumCheckCode(preCode) {
-  // const preCodeArr = preCode.split('');
-
   let total = 0;
 
   // 计算字符位置对应序号和加权因子的乘积，总和
   for (let i = 0; i < 17; i++) {
     // 字符位置对应的基础编码序号
-    const index = getBaseCodeIndex(preCode[i]);
+    const index = baseCodeArr.findIndex((item) => item === preCode[i]);
     // 加权因子
     const wf = Math.pow(3, i) % 31;
     // 计算序号和加权因子的乘积，并计算级数之和
