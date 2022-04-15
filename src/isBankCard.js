@@ -8,12 +8,12 @@ const regLoose = /^\d{8,30}$/;
 
 /**
  * luhn 计算校验位
- *
- * @param {string} num 银行卡前面数字
- * @returns
+ * @private
+ * @param {string} numStr 银行卡前面数字
+ * @returns {number}
  */
-function sumCheckCode(num) {
-  const numArr = (num + '').replace(/\D/g, '').split('').reverse();
+function sumCheckCode(numStr) {
+  const numArr = (numStr + '').replace(/\D/g, '').split('').reverse();
 
   let sum = 0;
   for (let i = 0; i < numArr.length; i++) {
