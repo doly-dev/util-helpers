@@ -26,4 +26,12 @@ describe('isBankCard', () => {
     expect(isBankCard('6228480402564890018')).toBe(true);
     expect(isBankCard('6228480402564890')).toBe(true);
   });
+
+  it('luhn 校验', () => {
+    expect(isBankCard('6228480402564890018', { luhn: true })).toBe(true);
+    expect(isBankCard('6200581470885491854', { luhn: true })).toBe(true);
+    expect(isBankCard('621205632767301910', { luhn: true })).toBe(true);
+    expect(isBankCard('1034503324951584964', { luhn: true })).toBe(true);
+    expect(isBankCard('6228480402564890', { luhn: true })).toBe(false);
+  });
 });
