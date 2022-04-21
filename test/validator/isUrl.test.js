@@ -46,5 +46,7 @@ describe('isUrl', () => {
     expect(isUrl('https://www.example.com/test/123?foo=bar')).toBe(true);
     expect(isUrl('https://example.com:8080')).toBe(true);
     expect(isUrl('https://example.com:8080/')).toBe(true);
+    expect(isUrl('https://example.com/live?id=Ww-bYUVcVZQ**97&uid=abc')).toBe(true);
+    expect(isUrl('https://example.com/live?*id*V*=Ww-bYUVcVZQ**97&uid=abc')).toBe(true);
   });
 });
