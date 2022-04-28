@@ -1,6 +1,6 @@
 # util-helpers
 
-[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg) [![Build Status](https://travis-ci.org/doly-dev/util-helpers.svg?branch=master)](https://travis-ci.org/doly-dev/util-helpers)
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库。
 
