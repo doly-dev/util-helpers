@@ -28,5 +28,9 @@ describe('isSwiftCode', () => {
     expect(isSwiftCode('BKTWTWTP010')).toBe(true);
     // 中国工商银行北京分行
     expect(isSwiftCode('ICBKCNBJBJM')).toBe(true);
+    // 东京证券交易所
+    expect(isSwiftCode('XTKSJPJ1')).toBe(true);
+    // 韩国期货交易所
+    expect(isSwiftCode('XKFEKR21')).toBe(true);
   });
 });
