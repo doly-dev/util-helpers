@@ -25,6 +25,7 @@ export { default as validatePassword } from './validatePassword';
 export { default as isPromiseLike } from './isPromiseLike';
 export { default as isHMCard } from './isHMCard';
 export { default as isTWCard } from './isTWCard';
+export { default as isSwiftCode } from './isSwiftCode';
 
 /**
  * 数据处理

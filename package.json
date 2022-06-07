@@ -18,6 +18,7 @@
     "build:dist": "rm -rf dist && rollup -c",
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && jsdoc -c conf.json",
+    "open:doc": "open ./docs/index.html",
     "prettier": "prettier --write 'src/**/*.js' && prettier --write 'test/**/*.js'",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js",
