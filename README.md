@@ -70,6 +70,7 @@ formatMoney('1000'); // => 1,000.00
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
   - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
+  - [isSwiftCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSwiftCode) - Swift Code
   - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
   - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
   - [isPromiseLike](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPromiseLike) - 类似 Promise 对象
