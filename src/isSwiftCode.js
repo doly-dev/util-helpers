@@ -11,6 +11,16 @@ const reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
  * @since 4.9.0
  * @param {*} value 要检测的值
  * @returns {boolean} 值是否为 Swift Code
+ * @example
+ *
+ * isSwiftCode('DEUTDEFF') //  true
+ * isSwiftCode('deutdeff') //  false
+ *
+ * isSwiftCode('BKTWTWTP010') //  true
+ * isSwiftCode('010BKTWTWTP') //  false
+ *
+ * isSwiftCode('ICBKCNBJBJM') //  true
+ *
  */
 function isSwiftCode(value) {
   const valueStr = convertToString(value);
