@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 const reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
 
@@ -23,7 +23,7 @@ const reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
  *
  */
 function isSwiftCode(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return reg.test(valueStr);
 }
 

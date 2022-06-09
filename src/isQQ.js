@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // QQ号正则
 const reg = /^[1-9]\d{4,10}$/;
@@ -21,7 +21,7 @@ const reg = /^[1-9]\d{4,10}$/;
  *
  */
 function isQQ(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return reg.test(valueStr);
 }
 

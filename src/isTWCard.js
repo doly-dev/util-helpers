@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 台湾居民来往大陆通行证正则，支持一次性短期台胞证
 const regTWCard = /^(\d{8}|[\da-z]{10})$/i;
@@ -20,7 +20,7 @@ const regTWCard = /^(\d{8}|[\da-z]{10})$/i;
  * isTWCard('F290299977') // true
  */
 function isTWCard(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return regTWCard.test(valueStr);
 }
 

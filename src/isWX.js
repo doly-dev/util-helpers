@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 微信号 6至20位，以字母开头，字母，数字，减号（连接符），下划线
 const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
@@ -21,7 +21,7 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  *
  */
 function isWX(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return reg.test(valueStr);
 }
 

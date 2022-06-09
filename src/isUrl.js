@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // url正则
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\*\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
@@ -36,7 +36,7 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(
  * // => true
  */
 function isUrl(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return reg.test(valueStr);
 }
 

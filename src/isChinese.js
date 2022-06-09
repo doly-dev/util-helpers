@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 const chineseDictionary = {
   // 基本汉字
@@ -66,7 +66,7 @@ if (supportRegExpUnicode) {
  *
  */
 function isChinese(value, { loose = false } = {}) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : undefined);
   return reg.test(valueStr);
 }

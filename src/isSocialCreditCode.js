@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 基础规则，由18位数字和大写字母组成，不使用I、O、Z、S、V。
 const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
@@ -60,7 +60,7 @@ function sumCheckCode(preCode) {
  *
  */
 function isSocialCreditCode(value, { loose = false } = {}) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
 
   const passBaseRule = baseReg.test(valueStr);
 

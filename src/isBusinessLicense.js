@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 基础规则，由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
 const baseReg = /^\d{15}$/;
@@ -63,7 +63,7 @@ function sumCheckCode(preCode) {
  * // => true
  */
 function isBusinessLicense(value, { loose = false } = {}) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
 
   const passBaseRule = baseReg.test(valueStr);
 

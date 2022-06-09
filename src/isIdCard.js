@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 身份证号正则
 const regIdCard = /^[1-9]\d{5}(19|20)?\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)?$/i;
@@ -55,7 +55,7 @@ function check(id) {
  *
  */
 function isIdCard(value, { loose = false, checkCode = true } = {}) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   if (valueStr.length === 15 && loose) {
     return regIdCard.test(valueStr);
   }

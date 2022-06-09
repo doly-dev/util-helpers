@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 非0开头，10~21位数字
 const reg = /^[1-9]\d{9,20}$/;
@@ -52,7 +52,7 @@ function sumCheckCode(numStr) {
  *
  */
 function isBankCard(value, { loose = false, luhn = false } = {}) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   const validateResult = loose ? regLoose.test(valueStr) : reg.test(valueStr);
 
   if (validateResult && luhn) {

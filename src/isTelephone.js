@@ -1,4 +1,4 @@
-import convertToString from './utils/convertToString';
+import normalizeString from './normalizeString';
 
 // 固定电话 支持区号和分机号 3～4位区号，以0开头；7～8位直播号，以2～9开头；1～6位分机号
 const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
@@ -27,7 +27,7 @@ const reg = /^(0\d{2,3}\-)?([2-9]\d{6,7})(\-\d{1,6})?$/;
  *
  */
 function isTelephone(value) {
-  const valueStr = convertToString(value);
+  const valueStr = normalizeString(value);
   return reg.test(valueStr);
 }
 
