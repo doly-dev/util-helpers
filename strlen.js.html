@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>isWX.js - util-helpers </title>
+    <title>strlen.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isWX.js</h1>
+    <h1 class="page-title">strlen.js</h1>
     
 
     
@@ -71,32 +71,39 @@
         <article>
             <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
 
-// 微信号 6至20位，以字母开头，字母，数字，减号（连接符），下划线
-const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
-
 /**
- * 检测值是否为微信号
+ * 获取字符长度。中文汉字占2个字符，英文占1个字符，特殊如emoji占4个字符。
  *
  * @static
- * @alias module:Validator.isWX
- * @since 1.1.0
- * @param {*} value 要检测的值
- * @returns {boolean} 值是否为微信号
+ * @alias module:Other.strlen
+ * @since 4.10.0
+ * @param {string} str 字符串
+ * @returns {number} 字符长度
  * @example
  *
- * isWX('a12345');
- * // => true
- *
- * isWX('123');
- * // => false
+ * strlen('你好a'); // 5
+ * strlen('你好，世界！'); // 12
+ * strlen('严両丞丽'); // 8
+ * strlen('abcde'); // 5
+ * strlen('𠮷'); // 4
+ * strlen('🍎'); // 4
  *
  */
-function isWX(value) {
-  const valueStr = normalizeString(value);
-  return reg.test(valueStr);
+function strlen(str) {
+  const realStr = normalizeString(str);
+  let len = 0;
+  for (let i = 0; i &lt; realStr.length; i++) {
+    const c = realStr.charCodeAt(i);
+    if ((c >= 0x0001 &amp;&amp; c &lt;= 0x007e) || (0xff60 &lt;= c &amp;&amp; c &lt;= 0xff9f)) {
+      len++;
+    } else {
+      len += 2;
+    }
+  }
+  return len;
 }
 
-export default isWX;
+export default strlen;
 </code></pre>
         </article>
     </section>
