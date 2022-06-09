@@ -24,7 +24,7 @@ function internalRandomString(len = 0, optionalChars = defaultChars, prefix = ''
  * @alias module:Other.randomString
  * @since 4.8.0
  * @param {number} [len=0] 长度
- * @param {string} [optionalChars] 允许的字符，默认为数字和大小写字母
+ * @param {string} [optionalChars='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 允许的字符，默认为数字和大小写字母
  * @returns {string} 随机字符串
  * @example
  * randomString(5); // slk23
