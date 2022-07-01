@@ -5,7 +5,7 @@ describe('isTWCard', () => {
     expect(isTWCard).toBeDefined();
   });
 
-  it('错误数据', () => {
+  it('incorrect', () => {
     expect(isTWCard()).toBe(false);
     expect(isTWCard(' ')).toBe(false);
     expect(isTWCard(true)).toBe(false);
@@ -15,8 +15,9 @@ describe('isTWCard', () => {
     expect(isTWCard('123456789')).toBe(false);
     expect(isTWCard('12345678901')).toBe(false);
   });
-  it('一次性短期台胞证10位，可能带有英文', () => {
-    expect(isTWCard('F290299977')).toBe(true);
+  it('一次性短期台胞证', () => {
+    expect(isTWCard('F290299977', { loose: true })).toBe(true);
+    expect(isTWCard('F290299977')).toBe(false);
   });
   it('8位号码', () => {
     expect(isTWCard('12345678')).toBe(true);
