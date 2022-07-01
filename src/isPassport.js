@@ -1,11 +1,11 @@
 import normalizeString from './normalizeString';
 
-// 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
-const reg = /^((e[\da-z])|(de)|(se)|(pe)|(k[\da-z])|(kj)|(ma))[\da-z]{7}$/i;
+// 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ/H*)、澳门特区护照(MA/MB/M*)
+const reg = /^((e[\da-z])|(de)|(se)|(pe)|([khm][\da-z]))[\da-z]{7}$/i;
 
 /**
  * 检测值是否为护照号
- * 支持普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ)、澳门特区护照(MA)
+ * 支持普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ/H*)、澳门特区护照(MA/MB/M*)，注意不区分大小写
  *
  * @static
  * @alias module:Validator.isPassport
