@@ -8,20 +8,22 @@ describe('isBusinessLicense', () => {
   it('非字符串', () => {
     expect(isBusinessLicense(true)).toBe(false);
     expect(isBusinessLicense(123)).toBe(false);
+    expect(isBusinessLicense(null)).toBe(false);
+    expect(isBusinessLicense()).toBe(false);
   });
-  it('"310115600985533" => true', () => {
-    expect(isBusinessLicense(310115600985533)).toBe(true);
-  });
-  it('"310115600985" => false', () => {
+
+  it('incorrect', () => {
     expect(isBusinessLicense('310115600985')).toBe(false);
-  });
-  it('宽松模式，"310115600985" => false', () => {
-    expect(isBusinessLicense('310115600985', { loose: true })).toBe(false);
-  });
-  it('"310115600985535" => false', () => {
     expect(isBusinessLicense('310115600985535')).toBe(false);
   });
-  it('宽松模式，"310115600985535" => true', () => {
-    expect(isBusinessLicense('310115600985535', { loose: true })).toBe(true);
+
+  it('correct', () => {
+    expect(isBusinessLicense(310115600985533)).toBe(true);
+    expect(isBusinessLicense('310115600985533')).toBe(true);
+
+    // 不校验校验位
+    expect(isBusinessLicense('310115600985532', { checkCode: false })).toBe(true);
+    expect(isBusinessLicense('310115600985535', { checkCode: false })).toBe(true);
+    expect(isBusinessLicense('3101156009855', { checkCode: false })).toBe(false);
   });
 });

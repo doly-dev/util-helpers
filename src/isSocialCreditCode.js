@@ -44,7 +44,7 @@ function sumCheckCode(preCode) {
  * @since 1.1.0
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式。如果为true，不校验校验位。
+ * @param {boolean} [options.checkCode=true] 是否校验最后一位校验码，如果为false，不校验校验位。
  * @returns {boolean} 值是否为统一社会信用代码
  * @example
  *
@@ -54,18 +54,25 @@ function sumCheckCode(preCode) {
  * isSocialCreditCode('91350100M000100Y4A');
  * // => false
  *
- * // 宽松模式，不校验校验位。所以也可以通过
- * isSocialCreditCode('91350100M000100Y4A', {loose: true});
+ * // 不校验校验位
+ * isSocialCreditCode('91350100M000100Y4A', { checkCode: false });
  * // => true
  *
+ * isSocialCreditCode('91350100M000100Y', { checkCode: false });
+ * // => false
+ *
  */
-function isSocialCreditCode(value, { loose = false } = {}) {
+function isSocialCreditCode(value, options = {}) {
   const valueStr = normalizeString(value);
+  // @ts-ignore
+  // TODO 下个版本废弃 loose
+  const { loose = false, checkCode: cc = true } = options;
+  const needCheckCode = !loose && cc;
 
   const passBaseRule = baseReg.test(valueStr);
 
   // 宽松模式 或 基础规则不通过直接返回
-  if (loose || !passBaseRule) {
+  if (!needCheckCode || !passBaseRule) {
     return passBaseRule;
   }
 
