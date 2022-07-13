@@ -52,8 +52,9 @@ export function digitLength(num) {
  * @returns {number}
  */
 export function float2Fixed(num) {
-  if (!isScientificNumber(num.toString())) {
-    return Number(num.toString().replace('.', ''));
+  const strNum = String(num);
+  if (!isScientificNumber(strNum)) {
+    return Number(strNum.replace('.', ''));
   }
   const dLen = digitLength(num);
   return dLen > 0 ? strip(+num * Math.pow(10, dLen)) : +num;
@@ -98,35 +99,61 @@ export function trimLeftZero(num) {
  *  2.小数点前边是0，小数点后十分位（包含十分位）之后连续零的个数大于等于6个
  *
  * @param {string | number} num 科学计数法数字
- * @returns {string} 转换后的数字字符串
+ * @returns {string | number} 转换后的数字字符串
  */
 export function scientificToNumber(num) {
-  if (isScientificNumber(num.toString())) {
-    const zero = '0';
-    const parts = String(num).toLowerCase().split('e');
-    const e = parts.pop(); // 存储指数
-    // @ts-ignore
-    const l = Math.abs(e); // 取绝对值，l-1就是0的个数
-    // @ts-ignore
-    const sign = e / l; //判断正负
-    const coeff_array = parts[0].split('.'); // 将系数按照小数点拆分
+  const strNum = String(num);
 
-    //如果是小数
-    if (sign === -1) {
-      //拼接字符串，如果是小数，拼接0和小数点
-      num = zero + '.' + new Array(l).join(zero) + coeff_array.join('');
-    } else {
-      const dec = coeff_array[1];
+  if (!isScientificNumber(strNum)) {
+    return num;
+  }
 
-      //如果是整数，将整数除第一位之外的非零数字计入位数，相应的减少0的个数
-      if (l - dec.length < 0) {
-        num = trimLeftZero(coeff_array[0] + dec.substring(0, l)) + '.' + dec.substring(l);
-      } else {
-        //拼接字符串，如果是整数，不需要拼接小数点
-        num = coeff_array.join('') + new Array(l - dec.length + 1).join(zero);
+  /** @type string */
+  let ret;
+
+  const zero = '0';
+  const parts = strNum.toLowerCase().split('e');
+  const e = parts.pop(); // 存储指数
+  // @ts-ignore
+  const l = Math.abs(e); // 取绝对值，l-1就是0的个数
+  // @ts-ignore
+  const sign = e / l; //判断正负
+  const coeff_array = parts[0].split('.'); // 将系数按照小数点拆分
+
+  // 如果是小数
+  if (sign === -1) {
+    // 整数部分
+    const intVal = trimLeftZero(coeff_array[0]);
+
+    // 整数部分大于科学计数后面部分
+    // 如: 10e-1, 10.2e-1
+    if (intVal.length > l) {
+      const thanLen = intVal.length - l;
+      const dec = coeff_array[1] || '';
+
+      ret = intVal.slice(0, thanLen);
+
+      // 处理 10e-1, 100e-1
+      if (intVal.slice(thanLen) !== '0' || dec) {
+        ret += '.' + intVal.slice(thanLen) + dec;
       }
+    } else {
+      // 整数部分小于等于科学计数后面部分
+      // 如: 1e-1, 0.2e-1, 1.2e-2, 1.2e-1
+      ret = zero + '.' + new Array(l - intVal.length + 1).join(zero) + coeff_array.join('');
+    }
+  } else {
+    // 小数部分
+    const dec = coeff_array[1] || '';
+
+    // 如果是整数，将整数除第一位之外的非零数字计入位数，相应的减少0的个数
+    if (l - dec.length < 0) {
+      ret = trimLeftZero(coeff_array[0] + dec.substring(0, l)) + '.' + dec.substring(l);
+    } else {
+      // 拼接字符串，如果是整数，不需要拼接小数点
+      ret = coeff_array.join('') + new Array(l - dec.length + 1).join(zero);
     }
   }
-  // @ts-ignore
-  return num;
+
+  return trimLeftZero(ret);
 }

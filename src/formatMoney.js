@@ -138,9 +138,9 @@ const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.'
   decimal = typeof decimal === 'string' ? decimal : '.';
 
   // 转换数字字符串，支持科学记数法
-  const numStr = scientificToNumber(num) + '';
+  const strNum = scientificToNumber(num) + '';
   // 整数和小数部分
-  const [intStr, decStr] = numStr.split('.');
+  const [intStr, decStr] = strNum.split('.');
 
   return symbol + formatInt(intStr, thousand) + formatDec(decStr, precision, decimal);
 };
