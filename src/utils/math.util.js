@@ -6,7 +6,7 @@
  */
 
 import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './constants';
-import { config } from './config';
+import devWarn from './devWarn';
 
 /**
  * 是否为科学计数法数字
@@ -66,9 +66,7 @@ export function float2Fixed(num) {
  */
 export function checkBoundary(num) {
   if (+num > MAX_SAFE_INTEGER || +num < MIN_SAFE_INTEGER) {
-    if (!config.disableWarning) {
-      console.warn(`${num} is beyond boundary when transfer to integer, the results may not be accurate`);
-    }
+    devWarn(`${num} is beyond boundary when transfer to integer, the results may not be accurate`);
   }
 }
 

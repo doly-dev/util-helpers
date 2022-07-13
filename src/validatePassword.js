@@ -1,4 +1,4 @@
-import { config } from './utils/config';
+import devWarn from './utils/devWarn';
 
 const regNumber = /[\d]/;
 const regLowerCaseLetter = /[a-z]/;
@@ -200,9 +200,7 @@ function validatePassword(value, { level = 2, ignoreCase = false, special = '\\x
   let valStr = value;
 
   if (typeof value !== 'string') {
-    if (!config.disableWarning) {
-      console.warn(`[validatePassword] value must be a string.`);
-    }
+    devWarn(`[validatePassword] value must be a string.`);
     valStr = '';
   }
 

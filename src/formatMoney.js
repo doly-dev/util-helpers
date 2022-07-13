@@ -1,7 +1,7 @@
 import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
 import isNaN from './utils/type/isNaN';
 import { trimLeftZero } from './utils/math.util';
-import { config } from './utils/config';
+import devWarn from './utils/devWarn';
 
 const reg = /^[+-]?\d*\.?\d*$/;
 
@@ -14,9 +14,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  */
 function checkNumber(num) {
   if (!(reg.test(num) || isScientificNumber(num)) || isNaN(num) || (typeof num !== 'number' && typeof num !== 'string') || num === '') {
-    if (!config.disableWarning) {
-      console.warn(`${num} invalid parameter.`);
-    }
+    devWarn(`${num} invalid parameter.`);
 
     return false;
   }
