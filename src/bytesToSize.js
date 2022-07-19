@@ -21,13 +21,15 @@
  * // => 1 GB
  */
 function bytesToSize(bytes) {
-  if (bytes === 0) return '0 B';
+  const numBytes = typeof bytes !== 'number' ? Number(bytes) : bytes;
+  if (numBytes === 0 || isNaN(numBytes)) return '0 B';
+
   const k = 1024;
   // 存储单位
   const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const i = Math.floor(Math.log(numBytes) / Math.log(k));
 
-  return sizes[i] ? `${Number((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}` : bytes + '';
+  return sizes[i] ? `${Number((numBytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}` : numBytes + '';
 }
 
 export default bytesToSize;
