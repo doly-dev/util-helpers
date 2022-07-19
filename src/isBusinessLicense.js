@@ -25,8 +25,8 @@ function sumCheckCode(preCode) {
   }
 
   // 反模10计算
-  if (pj === 10 || pj === 1) {
-    retNum = 1;
+  if (pj === 1) {
+    retNum = 0;
   } else {
     retNum = 11 - pj;
   }
@@ -79,6 +79,8 @@ function isBusinessLicense(value, options = {}) {
   const lastCode = valueStr.substring(valueStr.length - 1);
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
+
+  console.log(checkCode);
 
   return lastCode === String(checkCode);
 }
