@@ -26,17 +26,15 @@ const chineseDictionary = {
   chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]'
 };
 
-let looseChineseRegExp = chineseDictionary.chineseBasic + '+';
+const looseChineseRegExp = chineseDictionary.chineseBasic + '+';
+const chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
 
-let chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
+const chineseWithExtend = '(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')';
+const looseChineseExtendRegExp = chineseWithExtend + '+';
+const chineseExtendRegExp = '^' + chineseWithExtend + '+$';
 
 // eslint-disable-next-line no-prototype-builtins
 const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
-
-if (supportRegExpUnicode) {
-  looseChineseRegExp = '(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')+';
-  chineseRegExp = '^(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')+$';
-}
 
 /**
  * 检测值是否为中文
@@ -48,6 +46,7 @@ if (supportRegExpUnicode) {
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
+ * @param {boolean} [options.useExtend=false] 使用统一表意文字扩展A-F。注意：如果不支持 `RegExp.prototype.unicode`，扩展字符集将自动不生效，如IE浏览器。
  * @returns {boolean} 值是否为中文
  * @example
  *
@@ -58,16 +57,30 @@ if (supportRegExpUnicode) {
  * // => false
  *
  * // 宽松模式，只要包含中文即为true
- * isChinese('林A', {loose: true});
+ * isChinese('林A', { loose: true });
  * // => true
  *
- * isChinese('A林A', {loose: true});
+ * isChinese('A林A', { loose: true });
  * // => true
  *
+ * isChinese('𠮷');
+ * // => false
+ *
+ * // 使用中文扩展字符集
+ * isChinese('𠮷', { useExtend: true });
+ * // => true
+ * isChinese('𠮷aa', { useExtend: true, loose: true });
+ * // => true
  */
-function isChinese(value, { loose = false } = {}) {
+function isChinese(value, { loose = false, useExtend = false } = {}) {
   const valueStr = normalizeString(value);
-  const reg = new RegExp(loose ? looseChineseRegExp : chineseRegExp, supportRegExpUnicode ? 'u' : undefined);
+  const basicRegExp = loose ? looseChineseRegExp : chineseRegExp;
+  const extendRegExp = loose ? looseChineseExtendRegExp : chineseExtendRegExp;
+
+  const hasExtend = useExtend && supportRegExpUnicode;
+  const resultRegExp = hasExtend ? extendRegExp : basicRegExp;
+  const flag = hasExtend ? 'u' : undefined;
+  const reg = new RegExp(resultRegExp, flag);
   return reg.test(valueStr);
 }
 
