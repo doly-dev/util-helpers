@@ -80,8 +80,6 @@ function isBusinessLicense(value, options = {}) {
   // 计算校验码
   const checkCode = sumCheckCode(preCode);
 
-  console.log(checkCode);
-
   return lastCode === String(checkCode);
 }
 
