@@ -1,3 +1,5 @@
+import normalizeString from './normalizeString';
+
 /**
  * 替换字符，应用场景如：脱敏
  *
@@ -44,12 +46,13 @@
  * // => 林**
  *
  */
-function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclude } = {}) {
-  const strLen = str.length;
+function replaceChar(str, { start = 3, end = -4, char = '*', repeat, exclude } = {}) {
+  const realStr = normalizeString(str);
+  const strLen = realStr.length;
 
   // 开始位置超过str长度
   if (Math.abs(start) >= strLen) {
-    return str;
+    return realStr;
   }
 
   start = start >= 0 ? start : strLen + start;
@@ -57,10 +60,10 @@ function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclud
 
   // 开始位置大于结束位置
   if (start >= end) {
-    return str;
+    return realStr;
   }
 
-  let middleStr = str.substring(start, end);
+  let middleStr = realStr.substring(start, end);
 
   if (exclude) {
     const reg = new RegExp(`[^${exclude}]`, 'g');
@@ -70,7 +73,7 @@ function replaceChar(str = '', { start = 3, end = -4, char = '*', repeat, exclud
     middleStr = char.repeat(repeat);
   }
 
-  return str.substring(0, start) + middleStr + str.substring(end);
+  return realStr.substring(0, start) + middleStr + realStr.substring(end);
 }
 
 export default replaceChar;
