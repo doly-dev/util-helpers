@@ -8,11 +8,12 @@
   "types": "types/index.d.ts",
   "scripts": {
     "test": "jest --verbose",
+    "test:coverage": "jest --coverage",
     "test:math": "jest --verbose test/math",
     "test:type": "jest --verbose test/type",
     "test:validator": "jest --verbose test/validator",
     "test:processor": "jest --verbose test/processor",
-    "build": "npm test && npm run build:lib && npm run build:esm && npm run build:dist && npm run types",
+    "build": "npm run build:lib && npm run build:esm && npm run build:dist && npm run types",
     "build:lib": "rm -rf lib && cross-env MODULE_TYPE=cjs babel src --out-dir lib",
     "build:esm": "rm -rf esm && cross-env MODULE_TYPE=esm babel src --out-dir esm",
     "build:dist": "rm -rf dist && rollup -c",

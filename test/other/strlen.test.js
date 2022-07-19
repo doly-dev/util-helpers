@@ -22,6 +22,8 @@ describe('strlen', () => {
     expect(strlen('你好a')).toBe(5);
     expect(strlen('你好，世界！')).toBe(12);
     expect(strlen('严両丞丽')).toBe(8);
+    expect(strlen('｠')).toBe(1); // String.fromCodePoint(0xff60)
+    expect(strlen('｡')).toBe(1); // String.fromCodePoint(0xff61)
 
     // 特殊
     expect(strlen('𠮷')).toBe(4);

@@ -10,4 +10,7 @@ describe('isObject', () => {
   it('null => false', () => {
     expect(isObject(null)).toBe(false);
   });
+  it('()=>{} => true', () => {
+    expect(isObject(() => {})).toBe(true);
+  });
 });
