@@ -14,6 +14,7 @@ describe('parseIdCard', () => {
     expect(parseIdCard('13070193103022')).toBe(null);
     expect(parseIdCard('9999999999999999999')).toBe(null);
     expect(parseIdCard('9999999999999999999')).toBe(null);
+    expect(parseIdCard('920302198912097944')).toEqual(null);
   });
 
   it('15位身份证号码', () => {

@@ -138,30 +138,16 @@ function parseIdCard(id) {
    * @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }}
    *
    */
-  let origin = {
-    province: '',
-    city: '',
-    area: '',
-    year: '',
-    month: '',
-    day: '',
-    gender: ''
+  // @ts-ignore
+  const origin = info?.groups || {
+    province: info[1],
+    city: info[2],
+    area: info[3],
+    year: info[4],
+    month: info[5],
+    day: info[6],
+    gender: info[7]
   };
-
-  if (info.groups) {
-    // @ts-ignore
-    origin = info.groups;
-  } else {
-    origin = {
-      province: info[1],
-      city: info[2],
-      area: info[3],
-      year: info[4],
-      month: info[5],
-      day: info[6],
-      gender: info[7]
-    };
-  }
 
   const province = Provinces.find((item) => item[0] === origin.province);
 
