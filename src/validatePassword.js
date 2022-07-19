@@ -54,15 +54,20 @@ function hasHex(val) {
  *
  * @private
  * @param {string} val 检测的值
- * @param {string} [chars] 特殊字符
+ * @param {string} chars 特殊字符
  * @returns {boolean} 是否包含特殊字符
  */
-function hasSpecialCharacter(val, chars = '') {
-  if (!chars) {
+function hasSpecialCharacter(val, chars) {
+  if (!chars || !val) {
     return false;
   }
 
   const specialChars = val.replace(regAllNumberAndLetter, '');
+
+  if (!specialChars) {
+    return false;
+  }
+
   const regChars = hasHex(chars) ? new RegExp(`[${chars}]`) : null;
 
   if (regChars) {
@@ -84,13 +89,19 @@ function hasSpecialCharacter(val, chars = '') {
  *
  * @private
  * @param {string} val 检测的值
- * @param {string} chars 非法字符
+ * @param {string} chars 特殊字符
  * @returns {boolean} 是否包含非法字符
  */
-function hasUnallowableCharacter(val, chars = '') {
+function hasUnallowableCharacter(val, chars) {
+  if (!val) {
+    return false;
+  }
+
   const specialChars = val.replace(regAllNumberAndLetter, '');
 
-  if (!chars && specialChars) {
+  if (!specialChars) {
+    return false;
+  } else if (!chars) {
     return true;
   }
 
@@ -153,7 +164,7 @@ function hasUnallowableCharacter(val, chars = '') {
  *   }
  * }
  *
- * validatePassword('a12345678', {level: 3});
+ * validatePassword('a12345678', { level: 3 });
  * // =>
  * {
  *   validated: false,
@@ -167,7 +178,7 @@ function hasUnallowableCharacter(val, chars = '') {
  *   }
  * }
  *
- * validatePassword('_Aa一二三45678', {level: 3, ignoreCase: true});
+ * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true });
  * // =>
  * {
  *   validated: false,
@@ -182,7 +193,7 @@ function hasUnallowableCharacter(val, chars = '') {
  * }
  *
  * // 自定义特殊字符
- * validatePassword('_Aa一二三45678', {level: 3, ignoreCase: true, special: '_一二三'});
+ * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_一二三' });
  * // =>
  * {
  *   validated: true,
@@ -214,15 +225,15 @@ function validatePassword(value, { level = 2, ignoreCase = false, special = '\\x
   const containesUpperCaseLetter = hasUpperCaseLetter(valStr);
   // 包含特殊字符
   const containesSpecialCharacter = hasSpecialCharacter(valStr, special);
-  // 包含非法字符
+  // 包含非法字符，即含有非数字字母特殊字符以外的其他字符
   const containesUnallowableCharacter = hasUnallowableCharacter(valStr, special);
 
   if (containesNumber) {
     currentLevel += 1;
   }
 
+  // 不区分大小写
   if (ignoreCase) {
-    // 不区分大小写
     if (containesLowerCaseLetter || containesUpperCaseLetter) {
       currentLevel += 1;
     }
