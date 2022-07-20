@@ -1,5 +1,6 @@
 import divide from './divide';
 import times from './times';
+import { isNumber, isString, isNaN } from './utils/type';
 
 /**
  * 四舍五入，支持设置精度
@@ -22,6 +23,12 @@ import times from './times';
  * // => 4100
  */
 function round(num, precision = 0) {
+  // 兼容处理，如果参数为非数字或字符串时，直接返回
+  if ((!isNumber(num) || isNaN(num)) && !isString(num)) {
+    // @ts-ignore
+    return num;
+  }
+
   const base = Math.pow(10, precision);
   return divide(Math.round(times(num, base)), base);
 }

@@ -66,7 +66,7 @@ const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
  * isChinese('𠮷');
  * // => false
  *
- * // 使用中文扩展字符集
+ * // 使用中文扩展字符集，需要浏览器支持 RegExp.prototype.unicode 才生效。
  * isChinese('𠮷', { useExtend: true });
  * // => true
  * isChinese('𠮷aa', { useExtend: true, loose: true });

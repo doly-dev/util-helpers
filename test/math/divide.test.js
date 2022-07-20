@@ -7,11 +7,14 @@ describe('divide', () => {
 
   it('非数字', () => {
     expect(divide()).toBeUndefined();
-    expect(divide('1', '1')).toBe(1);
     expect(divide(0.1, null)).toBe(0.1);
     expect(divide(0.1, [])).toBe(0.1);
     expect(divide(0.1)).toBe(0.1);
     expect(divide(0.1, undefined)).toBe(0.1);
+
+    // 特殊处理，第二个参数非数字或字符串，将直接返回第一个参数
+    expect(divide('1', true)).toBe('1');
+    expect(divide(null, true)).toBe(null);
   });
 
   it('科学计数', () => {
@@ -20,6 +23,7 @@ describe('divide', () => {
   });
 
   it('数字', () => {
+    expect(divide('1', '1')).toBe(1);
     expect(divide(1.21, 1.1)).toBe(1.1);
     expect(divide(4750.49269435, 4)).toBe(1187.6231735875);
     expect(divide(0.9, 3)).toBe(0.3);

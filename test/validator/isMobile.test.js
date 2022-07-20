@@ -5,17 +5,21 @@ describe('isMobile', () => {
     expect(isMobile).toBeDefined();
   });
 
-  it('非字符串', () => {
+  it('incorrect', () => {
     expect(isMobile(true)).toBe(false);
     expect(isMobile(123)).toBe(false);
-  });
-  it('"13000000000" => true', () => {
-    expect(isMobile('13000000000')).toBe(true);
-  });
-  it('"13000" => false', () => {
     expect(isMobile('13000')).toBe(false);
-  });
-  it('"10000000000" => false', () => {
     expect(isMobile('10000000000')).toBe(false);
+    expect(isMobile('11000000000')).toBe(false);
+    expect(isMobile('12000000000')).toBe(false);
+  });
+  it('correct', () => {
+    expect(isMobile('13000000000')).toBe(true);
+    expect(isMobile('13333333333')).toBe(true);
+    expect(isMobile('15000000000')).toBe(true);
+    expect(isMobile('16000000000')).toBe(true);
+    expect(isMobile('17000000000')).toBe(true);
+    expect(isMobile('18000000000')).toBe(true);
+    expect(isMobile('19000000000')).toBe(true);
   });
 });

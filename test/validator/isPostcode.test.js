@@ -5,14 +5,15 @@ describe('isPostcode', () => {
     expect(isPostcode).toBeDefined();
   });
 
-  it('非字符串', () => {
+  it('incorrect', () => {
     expect(isPostcode(true)).toBe(false);
     expect(isPostcode(123)).toBe(false);
-  });
-  it('"101111" => true', () => {
-    expect(isPostcode('101111')).toBe(true);
-  });
-  it('"123" => false', () => {
     expect(isPostcode('123')).toBe(false);
+  });
+
+  it('correct', () => {
+    expect(isPostcode('101111')).toBe(true);
+    expect(isPostcode('200000')).toBe(true);
+    expect(isPostcode('300450')).toBe(true);
   });
 });

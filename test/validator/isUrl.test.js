@@ -17,7 +17,7 @@ describe('isUrl', () => {
     expect(isUrl()).toBe(false);
     expect(isUrl('')).toBe(false);
   });
-  it('无效url => false', () => {
+  it('无效url', () => {
     expect(isUrl('foo')).toBe(false);
     expect(isUrl('bar')).toBe(false);
     expect(isUrl('/bar/test')).toBe(false);
@@ -29,7 +29,7 @@ describe('isUrl', () => {
     expect(isUrl('http://www.baidu.com/?a=1&b=网络')).toBe(false);
   });
 
-  it('正常url => true', () => {
+  it('正常url', () => {
     expect(isUrl('http://example.com')).toBe(true);
     expect(isUrl('http://example.com/')).toBe(true);
     expect(isUrl('https://example.com/')).toBe(true);
