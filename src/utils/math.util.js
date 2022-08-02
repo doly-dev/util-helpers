@@ -7,6 +7,37 @@
 
 import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './constants';
 import devWarn from './devWarn';
+import { isNumber, isString } from './type';
+
+/**
+ * 值是否为有效的数值
+ * 
+ * @param {*} value 待检测的值
+ * @returns {boolean} 是否为有效的数值
+ */
+export function isEffectiveNumeric(value) {
+  if (isNumber(value) && !isNaN(value)) {
+    return true;
+  }
+
+  // 避免空字符串 或 带空格的字符串
+  if (isString(value)) {
+    const fmtStrValue = value.trim();
+
+    // 带空格的字符串也不转换数字
+    // Number(' ') => 0
+    if (fmtStrValue === value) {
+      const numValue = fmtStrValue ? Number(fmtStrValue) : NaN;
+      if (isNumber(numValue) && !isNaN(numValue)) {
+        return true;
+      }
+    }
+  }
+
+  devWarn(`${value} is not a valid number.`);
+
+  return false;
+}
 
 /**
  * 是否为科学计数法数字
@@ -157,3 +188,4 @@ export function scientificToNumber(num) {
 
   return trimLeftZero(ret);
 }
+

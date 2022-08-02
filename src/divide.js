@@ -1,6 +1,5 @@
-import { strip, digitLength, float2Fixed, checkBoundary } from './utils/math.util';
+import { strip, digitLength, float2Fixed, checkBoundary, isEffectiveNumeric } from './utils/math.util';
 import times from './times';
-import { isNumber, isNaN, isString } from './utils/type';
 
 /**
  * 精确除法，支持多个数相除
@@ -28,10 +27,11 @@ function divide(...nums) {
     return divide(divide(num1, num2), ...rest);
   }
 
-  // 兼容处理，如果第2个参数为非数字或字符串时，返回第一个参数
-  if ((!isNumber(num2) || isNaN(num2)) && !isString(num2)) {
-    // @ts-ignore
-    return num1;
+  // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数
+  if (!isEffectiveNumeric(num1)) {
+    return isEffectiveNumeric(num2) ? Number(num2) : NaN;
+  } else if (!isEffectiveNumeric(num2)) {
+    return Number(num1);
   }
 
   const num1Changed = float2Fixed(num1);

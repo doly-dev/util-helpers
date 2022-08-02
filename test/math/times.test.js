@@ -5,16 +5,22 @@ describe('times', () => {
     expect(times).toBeDefined();
   });
 
-  it('非数字', () => {
-    expect(times()).toBe();
+  it('incorrect', () => {
+    expect(times()).toBe(NaN);
+    expect(times(true)).toBe(NaN);
+    expect(times(null)).toBe(NaN);
     expect(times(0.1)).toBe(0.1);
     expect(times(0.1, null)).toBe(0.1);
     expect(times(0.1, [])).toBe(0.1);
     expect(times(0.1, undefined)).toBe(0.1);
 
-    // 特殊处理，第二个参数非数字或字符串，将直接返回第一个参数
-    expect(times('1', true)).toBe('1');
-    expect(times(null, true)).toBe(null);
+    // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数，否则返回NaN
+    expect(times('1', true)).toBe(1);
+    expect(times(true, '1')).toBe(1);
+    expect(times(null, true)).toBe(NaN);
+    expect(times(true, null)).toBe(NaN);
+    expect(times(null, '1', true)).toBe(1);
+    expect(times(true, null, '1')).toBe(1);
   });
 
   it(`correct`, () => {
@@ -43,6 +49,16 @@ describe('times', () => {
     expect(times(2, 2, 3, 0.1)).toBe(1.2);
     expect(times(0.000000123456, 0.000000123456)).toBe(1.5241383936e-14);
     expect(times(1.23456e-7, 1.23456e-7)).toBe(1.5241383936e-14);
+
+    // 兼容以下场景
+    expect(times(2, 2, 3, 0.1,)).toBe(1.2);
+    expect(times(2, 2, 3, 0.1, null, 2)).toBe(2.4);
+    expect(times(2, 2, 3, 0.1, true, 2)).toBe(2.4);
+    expect(times(2, 2, 3, 0.1, false)).toBe(1.2);
+    expect(times(2, 2, 3, 0.1, '')).toBe(1.2);
+    expect(times(2, 2, 3, 0.1, ' ')).toBe(1.2);
+    expect(times(2, 2, 3, 0.1, 'abc')).toBe(1.2);
+    expect(times(2, 2, 3, 0.1, '123abc')).toBe(1.2);
 
     // 无限循环小数问题暂时没处理，本身输入的值就是个无理数
     // expect(times(divide(7, 3), 3)).toBe(7); // 7.000000000000001

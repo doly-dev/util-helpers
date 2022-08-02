@@ -6,15 +6,19 @@ describe('minus', () => {
   });
 
   it('含非数字', () => {
-    expect(minus()).toBe();
+    expect(minus()).toBe(NaN);
     expect(minus(0.1)).toBe(0.1);
     expect(minus(0.1, null)).toBe(0.1);
     expect(minus(0.1, [])).toBe(0.1);
     expect(minus(0.1, undefined)).toBe(0.1);
 
-    // 特殊处理，第二个参数非数字或字符串，将直接返回第一个参数
-    expect(minus('1', true)).toBe('1');
-    expect(minus(null, true)).toBe(null);
+    // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数，否则返回NaN
+    expect(minus('1', true)).toBe(1);
+    expect(minus(true, '1')).toBe(1);
+    expect(minus(null, true)).toBe(NaN);
+    expect(minus(true, null)).toBe(NaN);
+    expect(minus(true, '1', null)).toBe(1);
+    expect(minus(true, null, '1')).toBe(1);
   });
 
   it(`correct`, () => {
@@ -40,5 +44,15 @@ describe('minus', () => {
     expect(minus(1.7e-30, 0.1e-30)).toBe(1.6e-30);
     expect(minus(6, 3, 2)).toBe(1);
     expect(minus(6, 3, 2, 1, 2, 3)).toBe(-5);
+
+    // 兼容以下场景
+    expect(minus(6, 3, 2, 1, 2, 3,)).toBe(-5);
+    expect(minus(6, 3, 2, 1, 2, 3, null, 2)).toBe(-7);
+    expect(minus(6, 3, 2, 1, 2, 3, true, 2)).toBe(-7);
+    expect(minus(6, 3, 2, 1, 2, 3, false)).toBe(-5);
+    expect(minus(6, 3, 2, 1, 2, 3, '')).toBe(-5);
+    expect(minus(6, 3, 2, 1, 2, 3, ' ')).toBe(-5);
+    expect(minus(6, 3, 2, 1, 2, 3, 'acb')).toBe(-5);
+    expect(minus(6, 3, 2, 1, 2, 3, '123acb')).toBe(-5);
   });
 });

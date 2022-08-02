@@ -6,12 +6,13 @@ describe('round', () => {
   });
 
   it('incorrect', () => {
-    expect(round()).toBeUndefined();
-    expect(round(null)).toBe(null);
-    expect(round(true)).toBe(true);
+    expect(round()).toBe(NaN);
+    expect(round(null)).toBe(NaN);
+    expect(round(true)).toBe(NaN);
     expect(round(NaN)).toBe(NaN);
-    expect(round(true)).toBe(true);
-    expect(round([])).toEqual([]);
+    expect(round(false)).toBe(NaN);
+    expect(round([])).toEqual(NaN);
+    expect(round('10.2.3')).toBe(NaN); // 无效数值
   });
 
   it(`correct`, () => {
