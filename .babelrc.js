@@ -2,6 +2,10 @@ const { MODULE_TYPE, NODE_ENV } = process.env;
 
 const plugins = [];
 
+if (MODULE_TYPE === 'cjs' || MODULE_TYPE === 'esm') {
+  plugins.push(["inline-json", { "matchPattern": "config" }]);
+}
+
 if (MODULE_TYPE === 'cjs') {
   plugins.push('@babel/transform-modules-commonjs');
 }

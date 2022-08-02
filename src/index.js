@@ -113,4 +113,4 @@ export { default as strlen } from './strlen';
  * @ignore
  * @since 3.6.1
  */
-export { setDisableWarning } from './utils/config';
+export { setDisableWarning, version } from './utils/config';

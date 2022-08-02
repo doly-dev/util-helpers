@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 const config = {
   // 禁用warning提示
   disableWarning: true
@@ -14,4 +16,4 @@ function setDisableWarning(bool) {
   config.disableWarning = !!bool;
 }
 
-export { config, setDisableWarning };
+export { config, setDisableWarning, version };

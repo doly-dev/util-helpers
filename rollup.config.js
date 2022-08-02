@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import babel from '@rollup/plugin-babel';
+import json from '@rollup/plugin-json';
 
 import pkg from './package.json';
 
@@ -31,5 +32,5 @@ export default {
       plugins: [terser()]
     }
   ],
-  plugins: [resolve(), commonjs(), babel({ babelHelpers: 'bundled' })]
+  plugins: [json({ preferConst: true }), resolve(), commonjs(), babel({ babelHelpers: 'bundled' })]
 };
