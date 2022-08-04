@@ -20,6 +20,7 @@ describe('plus', () => {
     expect(plus(true, '1', null)).toBe(1);
     expect(plus(true, null, '1')).toBe(1);
     expect(plus('0.1', '', ' ', null, '1')).toBe(1.1);
+    expect(plus(' 0.1', '', ' ', null, '1')).toBe(1); // ' 0.1' 包含空格不是有效数值
   });
 
   it(`correct`, () => {
@@ -39,6 +40,11 @@ describe('plus', () => {
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5)).toBe(1.5);
 
     // 兼容以下场景
+    expect(plus(0.1)).toBe(0.1);
+    expect(plus('0.1', ' ', true)).toBe(0.1);
+    expect(plus(true, 0.1)).toBe(0.1);
+    expect(plus('', true, 0.1, ' ', new Date(), 0.2)).toBe(0.3);
+    expect(plus(0.1, true, '0.2', null)).toBe(0.3);
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5,)).toBe(1.5);
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, null, 2)).toBe(3.5);
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, true, 2)).toBe(3.5);

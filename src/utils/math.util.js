@@ -28,7 +28,7 @@ export function isEffectiveNumeric(value) {
     // Number(' ') => 0
     if (fmtStrValue === value) {
       const numValue = fmtStrValue ? Number(fmtStrValue) : NaN;
-      if (isNumber(numValue) && !isNaN(numValue)) {
+      if (!isNaN(numValue)) {
         return true;
       }
     }
