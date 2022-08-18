@@ -88,6 +88,11 @@ export { default as padZero } from './padZero';
  * plus(0.1, 0.2); // 0.3
  * plus(0.1, 0.2, 0.3); // 0.6
  * 
+ * 
+ * // 注意以下的结果，可能不符合预期：（未来可能会将存在无效数值的计算结果返回 NaN ，这样可能会更符合预期。）
+ * divide('', 100); // 100
+ * minus(null, 100); // 100
+ * 
  */
 export { default as plus } from './plus';
 export { default as minus } from './minus';
