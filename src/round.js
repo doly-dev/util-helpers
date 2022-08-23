@@ -1,6 +1,6 @@
 import divide from './divide';
 import times from './times';
-import { isEffectiveNumeric } from './utils/math.util';
+import { transformEffectiveNumber } from './utils/math.util';
 
 /**
  * 四舍五入，支持设置精度
@@ -23,9 +23,12 @@ import { isEffectiveNumeric } from './utils/math.util';
  * // => 4100
  */
 function round(num, precision = 0) {
-  // 兼容处理，如果参数包含无效数值时，返回第一个参数
-  if (!isEffectiveNumeric(num)) {
-    return NaN;
+  num = transformEffectiveNumber(num);
+
+  // 兼容处理，如果参数包含无效数值时，返回 NaN
+  // @ts-ignore
+  if (isNaN(num)) {
+    return Number.NaN;
   }
 
   const base = Math.pow(10, precision);

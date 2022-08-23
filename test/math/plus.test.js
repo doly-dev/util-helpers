@@ -5,22 +5,53 @@ describe('plus', () => {
     expect(plus).toBeDefined();
   });
 
-  it('非数字', () => {
+  it('异常参数输入', () => {
+    // 0个参数时，被加数转换为 Number(undefined) NaN ，NaN+0 = NaN
     expect(plus()).toBe(NaN);
+
+    // 1个参数时，加数默认为 0
+    expect(plus(0)).toBe(0);
     expect(plus(0.1)).toBe(0.1);
+    expect(plus(1)).toBe(1);
+    expect(plus(-1)).toBe(-1);
+    expect(plus(' ')).toBe(0);
+    expect(plus(' ')).toBe(0);
+    expect(plus(true)).toBe(1);
+    expect(plus(Infinity)).toBe(Infinity);
+    expect(plus(-Infinity)).toBe(-Infinity);
+    expect(plus(false)).toBe(0);
+    expect(plus([])).toBe(0);
+    expect(plus(null)).toBe(0);
+    expect(plus(undefined)).toBe(NaN);
+    expect(plus({})).toBe(NaN);
+    expect(plus(Symbol())).toBe(NaN);
+    expect(plus(' a')).toBe(NaN);
+
     expect(plus(0.1, null)).toBe(0.1);
     expect(plus(0.1, [])).toBe(0.1);
     expect(plus(0.1, undefined)).toBe(0.1);
-
-    // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数，否则返回NaN
-    expect(plus('1', true)).toBe(1);
-    expect(plus(true, '1')).toBe(1);
-    expect(plus(null, true)).toBe(NaN);
-    expect(plus(true, null)).toBe(NaN);
-    expect(plus(true, '1', null)).toBe(1);
-    expect(plus(true, null, '1')).toBe(1);
+    expect(plus(Infinity, [])).toBe(Infinity);
+    expect(plus(Infinity, 10000)).toBe(Infinity);
+    expect(plus(10000, -Infinity)).toBe(-Infinity);
+    expect(plus(10000, Infinity)).toBe(Infinity);
+    expect(plus('1', true)).toBe(2);
+    expect(plus(true, '1')).toBe(2);
+    expect(plus(null, true)).toBe(1);
+    expect(plus(true, null)).toBe(1);
+    expect(plus(true, '1', null)).toBe(2);
+    expect(plus(true, null, '1')).toBe(2);
     expect(plus('0.1', '', ' ', null, '1')).toBe(1.1);
-    expect(plus(' 0.1', '', ' ', null, '1')).toBe(1); // ' 0.1' 包含空格不是有效数值
+    expect(plus(' 0.1', '', ' ', null, '1')).toBe(1.1);
+    expect(plus('0.1', ' ', true)).toBe(1.1);
+    expect(plus(true, 0.1)).toBe(1.1);
+    expect(plus(0.1, true, '0.2', null)).toBe(1.3);
+    expect(plus(0.1, null, 2)).toBe(2.1);
+    expect(plus(0.1, true, 2)).toBe(3.1);
+    expect(plus(0.1, false)).toBe(0.1);
+    expect(plus(0.1, '')).toBe(0.1);
+    expect(plus(0.1, ' ')).toBe(0.1);
+    expect(plus(0.1, 'abc')).toBe(NaN);
+    expect(plus(0.1, '123abc')).toBe(NaN);
   });
 
   it(`correct`, () => {
@@ -38,20 +69,5 @@ describe('plus', () => {
     expect(plus(0.1, 0.2, 0.3)).toBe(0.6);
     expect(plus(0.1, 0.2, 0.3, 0.4)).toBe(1);
     expect(plus(0.1, 0.2, 0.3, 0.4, 0.5)).toBe(1.5);
-
-    // 兼容以下场景
-    expect(plus(0.1)).toBe(0.1);
-    expect(plus('0.1', ' ', true)).toBe(0.1);
-    expect(plus(true, 0.1)).toBe(0.1);
-    expect(plus('', true, 0.1, ' ', new Date(), 0.2)).toBe(0.3);
-    expect(plus(0.1, true, '0.2', null)).toBe(0.3);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5,)).toBe(1.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, null, 2)).toBe(3.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, true, 2)).toBe(3.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, false)).toBe(1.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, '')).toBe(1.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, ' ')).toBe(1.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, 'abc')).toBe(1.5);
-    expect(plus(0.1, 0.2, 0.3, 0.4, 0.5, '123abc')).toBe(1.5);
   });
 });

@@ -5,20 +5,53 @@ describe('divide', () => {
     expect(divide).toBeDefined();
   });
 
-  it('非数字', () => {
+  it('异常参数输入', () => {
+    // 0个参数时，被除数转换为 Number(undefined) NaN ，NaN/1 = NaN
     expect(divide()).toBe(NaN);
-    expect(divide(0.1, null)).toBe(0.1);
-    expect(divide(0.1, [])).toBe(0.1);
-    expect(divide(0.1)).toBe(0.1);
-    expect(divide(0.1, undefined)).toBe(0.1);
 
-    // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数，否则返回NaN
+    // 1个参数时，除数默认为 1
+    expect(divide(0)).toBe(0);
+    expect(divide(0.1)).toBe(0.1);
+    expect(divide(1)).toBe(1);
+    expect(divide(-1)).toBe(-1);
+    expect(divide(' ')).toBe(0);
+    expect(divide(' ')).toBe(0);
+    expect(divide(true)).toBe(1);
+    expect(divide(Infinity)).toBe(Infinity);
+    expect(divide(-Infinity)).toBe(-Infinity);
+    expect(divide(false)).toBe(0);
+    expect(divide([])).toBe(0);
+    expect(divide(null)).toBe(0);
+    expect(divide(undefined)).toBe(NaN);
+    expect(divide({})).toBe(NaN);
+    expect(divide(Symbol())).toBe(NaN);
+    expect(divide(' a')).toBe(NaN);
+
+    expect(divide(0.1, null)).toBe(Infinity);
+    expect(divide(0.1, [])).toBe(Infinity);
+    expect(divide(0.1, undefined)).toBe(0.1);
+    expect(divide(Infinity, [])).toBe(Infinity);
+    expect(divide(Infinity, 10000)).toBe(Infinity);
+    expect(divide(10000, -Infinity)).toBe(0);
+    expect(divide(10000, Infinity)).toBe(0);
     expect(divide('1', true)).toBe(1);
     expect(divide(true, '1')).toBe(1);
-    expect(divide(null, true)).toBe(NaN);
-    expect(divide(true, null)).toBe(NaN);
-    expect(divide(true, '1', null)).toBe(1);
-    expect(divide(true, null, '1')).toBe(1);
+    expect(divide(null, true)).toBe(0);
+    expect(divide(true, null)).toBe(Infinity);
+    expect(divide(true, '1', null)).toBe(Infinity);
+    expect(divide(true, null, '1')).toBe(Infinity);
+    expect(divide('0.1', '', ' ', null, '1')).toBe(Infinity);
+    expect(divide(' 0.1', '', ' ', null, '1')).toBe(Infinity);
+    expect(divide('0.1', ' ', true)).toBe(Infinity);
+    expect(divide(true, 0.1)).toBe(10);
+    expect(divide(0.1, true, '0.2', null)).toBe(Infinity);
+    expect(divide(0.1, null, 2)).toBe(Infinity);
+    expect(divide(0.1, true, 2)).toBe(0.05);
+    expect(divide(0.1, false)).toBe(Infinity);
+    expect(divide(0.1, '')).toBe(Infinity);
+    expect(divide(0.1, ' ')).toBe(Infinity);
+    expect(divide(0.1, 'abc')).toBe(NaN);
+    expect(divide(0.1, '123abc')).toBe(NaN);
   });
 
   it('科学计数', () => {
@@ -46,15 +79,5 @@ describe('divide', () => {
     expect(divide(33.3333, 100)).toBe(0.333333);
     expect(divide(83.42894732749, 100)).toBe(0.8342894732749);
     expect(divide(1, 3)).toBe(0.3333333333333333);
-
-    // 兼容以下场景
-    expect(divide(1, 3,)).toBe(0.3333333333333333);
-    expect(divide(10, 5, null, 2)).toBe(1);
-    expect(divide(10, 5, true, 2, 2)).toBe(0.5);
-    expect(divide(1, 3, false)).toBe(0.3333333333333333);
-    expect(divide(1, 3, '')).toBe(0.3333333333333333);
-    expect(divide(1, 3, ' ')).toBe(0.3333333333333333);
-    expect(divide(1, 3, 'abc')).toBe(0.3333333333333333);
-    expect(divide(1, 3, '123abc')).toBe(0.3333333333333333);
   });
 });

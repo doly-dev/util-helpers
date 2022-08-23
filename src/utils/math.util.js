@@ -7,15 +7,16 @@
 
 import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from './constants';
 import devWarn from './devWarn';
-import { isNumber, isString } from './type';
+import { isNumber, isString, isSymbol } from './type';
 
 /**
  * 值是否为有效的数值
  * 
+ * @deprecated 已废弃
  * @param {*} value 待检测的值
  * @returns {boolean} 是否为有效的数值
  */
-export function isEffectiveNumeric(value) {
+export function isEffectiveNumeric(value = '') {
   if (isNumber(value) && !isNaN(value)) {
     return true;
   }
@@ -37,6 +38,49 @@ export function isEffectiveNumeric(value) {
   devWarn(`${value} is not a valid number.`);
 
   return false;
+}
+
+/**
+ * 将值转换为有效数值
+ * 
+ * @param {*} value 要转换的值
+ * @returns {number|string} 有效数值
+ */
+export function transformEffectiveNumber(value) {
+  /** @type {string|number|undefined} */
+  let ret;
+  if (isString(value)) {
+    ret = value.trim(); // ' 15'  ' 15  ' 兼容 Number(string) 处理
+
+    if (ret === '') {
+      ret = Number(ret);
+    } else if (Number.isNaN(Number(ret))) { // string如果可以转换为number，默认不转换为number类型
+      ret = Number.NaN;
+    }
+  } else if (isSymbol(value)) {
+    ret = Number.NaN;
+  } else if (!isNumber(value)) {
+    // 其余非数字类型通过 Number 转换
+
+    // 例如 Symbol 包装器对象将会报错
+    // symObj = Object(Symbol());
+    // Number(symObj); // TypeError: Cannot convert a Symbol value to a number
+    try {
+      ret = Number(value);
+    } catch (err) {
+      ret = Number.NaN;
+      console.error(err);
+    }
+  } else {
+    ret = value;
+  }
+
+  if (Number.isNaN(ret)) {
+    return Number.NaN;
+  }
+
+  // @ts-ignore
+  return ret;
 }
 
 /**

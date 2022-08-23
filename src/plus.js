@@ -1,8 +1,8 @@
-import { digitLength, isEffectiveNumeric } from './utils/math.util';
+import { digitLength, transformEffectiveNumber } from './utils/math.util';
 import times from './times';
 
 /**
- * 精确加法，支持多个数相加
+ * 精确加法，支持多个数相加，加数默认为 0 。
  *
  * @static
  * @alias module:Math.plus
@@ -21,17 +21,19 @@ import times from './times';
  * // => 1
  */
 function plus(...nums) {
-  const [num1, num2, ...rest] = nums;
+  let [num1, num2 = 0, ...rest] = nums;
 
   if (rest.length > 0) {
     return plus(plus(num1, num2), ...rest);
   }
 
-  // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数
-  if (!isEffectiveNumeric(num1)) {
-    return isEffectiveNumeric(num2) ? Number(num2) : NaN;
-  } else if (!isEffectiveNumeric(num2)) {
-    return Number(num1);
+  num1 = transformEffectiveNumber(num1);
+  num2 = transformEffectiveNumber(num2);
+
+  // 兼容处理，如果参数包含无效数值时，返回 NaN
+  // @ts-ignore
+  if (isNaN(num1) || isNaN(num2)) {
+    return Number.NaN;
   }
 
   const baseNum = Math.pow(10, Math.max(digitLength(num1), digitLength(num2)));

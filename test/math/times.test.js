@@ -6,21 +6,60 @@ describe('times', () => {
   });
 
   it('incorrect', () => {
+    // 0个参数时，被乘数转换为 Number(undefined) NaN ，NaN*1 = NaN
     expect(times()).toBe(NaN);
-    expect(times(true)).toBe(NaN);
-    expect(times(null)).toBe(NaN);
-    expect(times(0.1)).toBe(0.1);
-    expect(times(0.1, null)).toBe(0.1);
-    expect(times(0.1, [])).toBe(0.1);
-    expect(times(0.1, undefined)).toBe(0.1);
 
-    // 兼容处理，如果参数包含无效数值时，尝试取出有效数值参数，否则返回NaN
+    // 1个参数时，乘数默认为 1
+    expect(times(0)).toBe(0);
+    expect(times(0.1)).toBe(0.1);
+    expect(times(1)).toBe(1);
+    expect(times(-1)).toBe(-1);
+    expect(times(' ')).toBe(0);
+    expect(times(' ')).toBe(0);
+    expect(times(true)).toBe(1);
+    expect(times(Infinity)).toBe(Infinity);
+    expect(times(-Infinity)).toBe(-Infinity);
+    expect(times(false)).toBe(0);
+    expect(times([])).toBe(0);
+    expect(times(null)).toBe(0);
+    expect(times(undefined)).toBe(NaN);
+    expect(times({})).toBe(NaN);
+    expect(times(Symbol())).toBe(NaN);
+    expect(times(' a')).toBe(NaN);
+
+    expect(times(0.1, null)).toBe(0);
+    expect(times(0.1, [])).toBe(0);
+    expect(times(0.1, undefined)).toBe(0.1);
+    expect(times(Infinity, [])).toBe(NaN); // 特殊 Infinity * 0 = NaN
+    expect(times(Infinity, 10000)).toBe(Infinity);
+    expect(times(10000, -Infinity)).toBe(-Infinity);
+    expect(times(10000, Infinity)).toBe(Infinity);
     expect(times('1', true)).toBe(1);
     expect(times(true, '1')).toBe(1);
-    expect(times(null, true)).toBe(NaN);
-    expect(times(true, null)).toBe(NaN);
-    expect(times(null, '1', true)).toBe(1);
-    expect(times(true, null, '1')).toBe(1);
+    expect(times(null, true)).toBe(0);
+    expect(times(true, null)).toBe(0);
+    expect(times(true, '1', null)).toBe(0);
+    expect(times(true, null, '1')).toBe(0);
+    expect(times('0.1', '', ' ', null, '1')).toBe(0);
+    expect(times(' 0.1', '', ' ', null, '1')).toBe(0);
+    expect(times('0.1', ' ', true)).toBe(0);
+    expect(times(true, 0.1)).toBe(0.1);
+    expect(times(0.1, true, '0.2', null)).toBe(0);
+    expect(times(0.1, null, 2)).toBe(0);
+    expect(times(0.1, true, 2)).toBe(0.2);
+    expect(times(0.1, false)).toBe(0);
+    expect(times(0.1, '')).toBe(0);
+    expect(times(0.1, ' ')).toBe(0);
+    expect(times(0.1, 'abc')).toBe(NaN);
+    expect(times(0.1, '123abc')).toBe(NaN);
+
+    // 无限循环小数问题暂时没处理，本身输入的值就是个无理数
+    // expect(times(divide(7, 3), 3)).toBe(7); // 7.000000000000001
+    // expect(times(times(divide(1, 3), 10), 3)).toBe(10); // 9.999999999999998
+
+    // 其他异常输入输出
+    // expect(times(-3, 2.3333333333333335)).toBe(-7); // 6.999999999999999
+    // expect(times(-0.076, -92.10526315789471)).toBe(7); // 6.999999999999999
   });
 
   it(`correct`, () => {
@@ -49,23 +88,5 @@ describe('times', () => {
     expect(times(2, 2, 3, 0.1)).toBe(1.2);
     expect(times(0.000000123456, 0.000000123456)).toBe(1.5241383936e-14);
     expect(times(1.23456e-7, 1.23456e-7)).toBe(1.5241383936e-14);
-
-    // 兼容以下场景
-    expect(times(2, 2, 3, 0.1,)).toBe(1.2);
-    expect(times(2, 2, 3, 0.1, null, 2)).toBe(2.4);
-    expect(times(2, 2, 3, 0.1, true, 2)).toBe(2.4);
-    expect(times(2, 2, 3, 0.1, false)).toBe(1.2);
-    expect(times(2, 2, 3, 0.1, '')).toBe(1.2);
-    expect(times(2, 2, 3, 0.1, ' ')).toBe(1.2);
-    expect(times(2, 2, 3, 0.1, 'abc')).toBe(1.2);
-    expect(times(2, 2, 3, 0.1, '123abc')).toBe(1.2);
-
-    // 无限循环小数问题暂时没处理，本身输入的值就是个无理数
-    // expect(times(divide(7, 3), 3)).toBe(7); // 7.000000000000001
-    // expect(times(times(divide(1, 3), 10), 3)).toBe(10); // 9.999999999999998
-
-    // 其他异常输入输出
-    // expect(times(-3, 2.3333333333333335)).toBe(-7); // 6.999999999999999
-    // expect(times(-0.076, -92.10526315789471)).toBe(7); // 6.999999999999999
   });
 });
