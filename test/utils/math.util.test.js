@@ -1,5 +1,5 @@
 // import { setDisableWarning } from '../../src/utils/config';
-import { strip, digitLength, float2Fixed, trimLeftZero, scientificToNumber, checkBoundary, isEffectiveNumeric, transformEffectiveNumber } from '../../src/utils/math.util';
+import { strip, digitLength, float2Fixed, trimLeftZero, scientificToNumber, checkBoundary, transformEffectiveNumber } from '../../src/utils/math.util';
 
 describe('math.util', () => {
   it('strip', () => {
