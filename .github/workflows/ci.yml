@@ -19,7 +19,15 @@ jobs:
       - name: Install
         run: npm install
       - name: Test
-        run: npm test
+        run: npm run test:coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/cobertura-coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          verbose: true
       - name: Build docs
         run: npm run build:doc
       - name: Deploy
