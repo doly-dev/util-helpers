@@ -1,6 +1,6 @@
 # util-helpers
 
-[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
+[![npm][npm]][npm-url] [![Build and Deploy Docs](https://github.com/doly-dev/util-helpers/actions/workflows/ci.yml/badge.svg)](https://github.com/doly-dev/util-helpers/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/doly-dev/util-helpers/branch/master/graph/badge.svg?token=nhm6Zrmmyq)](https://codecov.io/gh/doly-dev/util-helpers) ![npm](https://img.shields.io/npm/dt/util-helpers) ![GitHub](https://img.shields.io/github/license/doly-dev/util-helpers.svg)
 
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库。
 
