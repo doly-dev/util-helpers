@@ -27,19 +27,13 @@ export function transformEffectiveNumber(value) {
       ret = Number.NaN;
     }
   } else if (isSymbol(value)) {
-    ret = Number.NaN;
-  } else if (!isNumber(value)) {
-    // 其余非数字类型通过 Number 转换
-
     // 例如 Symbol 包装器对象将会报错
     // symObj = Object(Symbol());
     // Number(symObj); // TypeError: Cannot convert a Symbol value to a number
-    try {
-      ret = Number(value);
-    } catch (err) {
-      ret = Number.NaN;
-      console.error(err);
-    }
+    ret = Number.NaN;
+  } else if (!isNumber(value)) {
+    // 其余非数字类型通过 Number 转换
+    ret = Number(value);
   } else {
     ret = value;
   }
