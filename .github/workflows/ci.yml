@@ -26,7 +26,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/
-          files: ./cobertura-coverage.xml
+          files: ./clover.xml
           flags: unittests
           name: codecov-umbrella
           verbose: true
