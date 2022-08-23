@@ -154,7 +154,7 @@ describe('math.util', () => {
     expect(isEffectiveNumeric(1.7976931348623157e+308)).toBe(true);
   });
 
-  it.only('transformEffectiveNumber', () => {
+  it('transformEffectiveNumber', () => {
     // 不能转换为有效数值
     expect(transformEffectiveNumber()).toBe(NaN);
     expect(transformEffectiveNumber(undefined)).toBe(NaN);
