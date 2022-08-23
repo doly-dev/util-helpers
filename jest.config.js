@@ -1,3 +1,7 @@
 module.exports = {
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  coverageReporters: [
+    "text",
+    "cobertura"
+  ]
 };

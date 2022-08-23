@@ -25,11 +25,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/
-          files: ./clover.xml
-          flags: unittests
-          name: codecov-umbrella
-          verbose: true
       - name: Build docs
         run: npm run build:doc
       - name: Deploy
