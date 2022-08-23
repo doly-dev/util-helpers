@@ -110,50 +110,6 @@ describe('math.util', () => {
     expect(checkBoundary(Number.MIN_SAFE_INTEGER)).toBeUndefined();
   });
 
-  it('isEffectiveNumeric', () => {
-    // incorrect
-    expect(isEffectiveNumeric('10.2.2')).toBe(false);
-    expect(isEffectiveNumeric('-10.2.2')).toBe(false);
-    expect(isEffectiveNumeric('0.2.2')).toBe(false);
-    expect(isEffectiveNumeric(' 0.2.2')).toBe(false);
-    expect(isEffectiveNumeric('10e0.2')).toBe(false);
-    expect(isEffectiveNumeric('10e2.0')).toBe(false);
-    expect(isEffectiveNumeric(new Date().toString())).toBe(false);
-    expect(isEffectiveNumeric({})).toBe(false);
-    expect(isEffectiveNumeric(function () { })).toBe(false);
-    expect(isEffectiveNumeric(NaN)).toBe(false);
-
-    // correct
-    expect(isEffectiveNumeric('')).toBe(true);
-    expect(isEffectiveNumeric(' ')).toBe(true);
-    expect(isEffectiveNumeric(' 0')).toBe(true);
-    expect(isEffectiveNumeric('  0')).toBe(true);
-    expect(isEffectiveNumeric('0 ')).toBe(true);
-    expect(isEffectiveNumeric('0  ')).toBe(true);
-    expect(isEffectiveNumeric()).toBe(true);
-    expect(isEffectiveNumeric(undefined)).toBe(true);
-    expect(isEffectiveNumeric(null)).toBe(true);
-    expect(isEffectiveNumeric([])).toBe(true);
-    expect(isEffectiveNumeric(new Date())).toBe(true);
-
-    expect(isEffectiveNumeric(1)).toBe(true);
-    expect(isEffectiveNumeric(-1)).toBe(true);
-    expect(isEffectiveNumeric(0.1)).toBe(true);
-    expect(isEffectiveNumeric(-0.1)).toBe(true);
-    expect(isEffectiveNumeric('1')).toBe(true);
-    expect(isEffectiveNumeric('-1')).toBe(true);
-    expect(isEffectiveNumeric('-0.1')).toBe(true);
-    expect(isEffectiveNumeric('10.22')).toBe(true);
-    expect(isEffectiveNumeric('-10.22')).toBe(true);
-    expect(isEffectiveNumeric(10e22)).toBe(true);
-    expect(isEffectiveNumeric('10e22')).toBe(true);
-    expect(isEffectiveNumeric('-10e22')).toBe(true);
-    expect(isEffectiveNumeric('10e-22')).toBe(true);
-    expect(isEffectiveNumeric(Infinity)).toBe(true);
-    expect(isEffectiveNumeric(-Infinity)).toBe(true);
-    expect(isEffectiveNumeric(1.7976931348623157e+308)).toBe(true);
-  });
-
   it('transformEffectiveNumber', () => {
     // 不能转换为有效数值
     expect(transformEffectiveNumber()).toBe(NaN);
