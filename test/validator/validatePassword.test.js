@@ -207,6 +207,17 @@ describe('validatePassword', () => {
         unallowableCharacter: false
       }
     });
+    expect(validatePassword('12345678', { level: 3, ignoreCase: true })).toEqual({
+      validated: false,
+      level: 1,
+      containes: {
+        number: true,
+        lowerCaseLetter: false,
+        upperCaseLetter: false,
+        specialCharacter: false,
+        unallowableCharacter: false
+      }
+    });
     expect(validatePassword('aa12345678', { level: 3, ignoreCase: true })).toEqual({
       validated: false,
       level: 2,

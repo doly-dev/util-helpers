@@ -21,6 +21,26 @@ describe('blobToDataURL', () => {
     expect(data).toBe('data:text/plain;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=');
   });
 
+  it('error', async () => {
+    let errMsg = '';
+    jest.spyOn(globalThis, 'FileReader').mockImplementation(function () {
+      this.readAsDataURL = () => {
+        setTimeout(() => {
+          this.onerror(new Error('mock error'));
+        }, 100);
+      }
+    });
+
+    try {
+      await blobToDataURL('');
+    } catch (err) {
+      // console.log(err);
+      errMsg = err.message;
+    }
+
+    expect(errMsg).toBe('mock error');
+  });
+
   // TODO: dom select file transform
   // TODO: other type e.g zip/rap/...
 });
