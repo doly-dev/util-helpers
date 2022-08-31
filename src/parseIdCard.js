@@ -1,5 +1,3 @@
-import isIdCard from './isIdCard';
-
 const regIdCard = /^(?<province>\d{2})(?<city>\d{2})(?<area>\d{2})(?<year>(?:\d{2})?\d{2})(?<month>\d{2})(?<day>\d{2})\d{2}(?<gender>\d)(?:\d|X)?$/i;
 
 const Provinces = [
@@ -124,20 +122,15 @@ const Provinces = [
  *
  */
 function parseIdCard(id) {
-  if (!isIdCard(id, { loose: true })) {
+  if (!regIdCard.test(id)) {
     return null;
   }
 
+  /** @type {RegExpExecArray} */
+  // @ts-ignore
   const info = regIdCard.exec(id);
 
-  if (!info) {
-    return null;
-  }
-
-  /**
-   * @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }}
-   *
-   */
+  /** @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }} */
   // @ts-ignore
   const origin = info?.groups || {
     province: info[1],
