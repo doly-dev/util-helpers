@@ -14,7 +14,7 @@ describe('times', () => {
     expect(times(0.1)).toBe(0.1);
     expect(times(1)).toBe(1);
     expect(times(-1)).toBe(-1);
-    expect(times(' ')).toBe(0);
+    expect(times('')).toBe(0);
     expect(times(' ')).toBe(0);
     expect(times(true)).toBe(1);
     expect(times(Infinity)).toBe(Infinity);

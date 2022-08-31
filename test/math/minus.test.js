@@ -14,7 +14,7 @@ describe('minus', () => {
     expect(minus(0.1)).toBe(0.1);
     expect(minus(1)).toBe(1);
     expect(minus(-1)).toBe(-1);
-    expect(minus(' ')).toBe(0);
+    expect(minus('')).toBe(0);
     expect(minus(' ')).toBe(0);
     expect(minus(true)).toBe(1);
     expect(minus(Infinity)).toBe(Infinity);

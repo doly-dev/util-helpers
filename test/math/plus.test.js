@@ -14,7 +14,7 @@ describe('plus', () => {
     expect(plus(0.1)).toBe(0.1);
     expect(plus(1)).toBe(1);
     expect(plus(-1)).toBe(-1);
-    expect(plus(' ')).toBe(0);
+    expect(plus('')).toBe(0);
     expect(plus(' ')).toBe(0);
     expect(plus(true)).toBe(1);
     expect(plus(Infinity)).toBe(Infinity);

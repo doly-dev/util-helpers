@@ -14,7 +14,7 @@ describe('divide', () => {
     expect(divide(0.1)).toBe(0.1);
     expect(divide(1)).toBe(1);
     expect(divide(-1)).toBe(-1);
-    expect(divide(' ')).toBe(0);
+    expect(divide('')).toBe(0);
     expect(divide(' ')).toBe(0);
     expect(divide(true)).toBe(1);
     expect(divide(Infinity)).toBe(Infinity);

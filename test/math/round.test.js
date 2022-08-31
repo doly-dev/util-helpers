@@ -9,6 +9,8 @@ describe('round', () => {
     expect(round()).toBe(NaN);
     expect(round(null)).toBe(0);
     expect(round(true)).toBe(1);
+    expect(round('')).toBe(0);
+    expect(round(' ')).toBe(0);
     expect(round(NaN)).toBe(NaN);
     expect(round(false)).toBe(0);
     expect(round([])).toEqual(0);
