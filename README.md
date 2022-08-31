@@ -6,21 +6,25 @@
 
 ## 使用
 
-**`npm` 或 `yarn` 安装**
+### `es` 或 `node` 开发环境
+
+安装依赖
 
 ```shell
 npm install util-helpers
 ```
 
+或者你使用 `yarn`
+
 ```shell
 yarn add util-helpers
 ```
 
-**浏览器引入**
+### 浏览器引入
 
-在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
+如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
 
-`npm` 包的 `util-helpers/dist` 目录下提供了 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
+`npm` 包的 `util-helpers/dist` 目录下提供了 `UMD` 包 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/util-helpers@latest/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers@latest/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
 
 ## 示例
 
