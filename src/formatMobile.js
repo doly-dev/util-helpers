@@ -11,17 +11,19 @@ import normalizeString from './normalizeString';
  * @param {string} [options.char=' '] 间隔字符
  * @returns {string} 格式化后的手机号码
  * @example
- * formatMobile('13345678900') // '133 4567 8900'
- * formatMobile('13345678900', { char: '-' }) // '133-4567-8900'
+ * 
+ * formatMobile('13345678900'); // 133 4567 8900
+ * formatMobile('13345678900', { char: '-' }); // 133-4567-8900
  *
  * // 脱敏手机号码
- * formatMobile('133****1234') // '133 **** 1234'
- * formatMobile('133****1234', { char: '-' }) // '133-****-1234'
+ * formatMobile('133****1234'); // 133 **** 1234
+ * formatMobile('133****1234', { char: '-' }); // 133-****-1234
  *
  * // 手机号码位数不够
- * formatMobile('133') // '133'
- * formatMobile('133456') // '133 456'
- * formatMobile('13345678') // '133 4567 8'
+ * formatMobile('133'); // 133
+ * formatMobile('133456'); // 133 456
+ * formatMobile('13345678'); // 133 4567 8
+ * 
  */
 function formatMobile(mobileNo, { char = ' ' } = {}) {
   const regChar = new RegExp(char, 'g');

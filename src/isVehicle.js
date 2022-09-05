@@ -14,20 +14,15 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  * @returns {boolean} 值是否为车牌号
  * @example
  *
- * isVehicle('京L12345');
- * // => true
- *
- * isVehicle('粤BD12345');
- * // => true
- *
- * isVehicle('粤BF12345');
- * // => true
- *
- * isVehicle('粤B12345D');
- * // => true
- *
- * isVehicle('粤B12345F');
- * // => true
+ * isVehicle('京L12345'); // true
+ * isVehicle('京L1234学'); // true
+ * isVehicle('BL1234警'); // true
+ * 
+ * // 新能源车牌
+ * isVehicle('粤BD12345'); // true
+ * isVehicle('粤BF12345'); // true
+ * isVehicle('粤B12345D'); // true
+ * isVehicle('粤B12345F'); // true
  *
  */
 function isVehicle(value) {

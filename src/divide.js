@@ -19,6 +19,7 @@ import times from './times';
  * divide(); // NaN  如果没有传入参数，被除数默认为 undefined 。 Number(undefined) 转换为 NaN ，NaN/1 = NaN
  * divide(null); // 0  Number(null) 转换为 0 ， 0/1 = 0
  * divide('1.5 ', 0.5); // 3  Number('1.5 ') 转换为 1.5 ，1.5/0.5 = 3
+ * 
  */
 function divide(...nums) {
   let [num1, num2 = 1, ...rest] = nums;

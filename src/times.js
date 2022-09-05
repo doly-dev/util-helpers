@@ -10,14 +10,10 @@ import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } fro
  * @returns {number} 乘积
  * @example
  *
- * times(3, 0.6);
- * // => 1.8
- *
- * times(3, 0.6, 2);
- * // => 3.6
- *
- * times(3, 0.6, 2, 10);
- * // => 36
+ * times(3, 0.6); // 1.8
+ * times(3, 0.6, 2); // 3.6
+ * times(3, 0.6, 2, 10); // 36
+ * 
  */
 function times(...nums) {
   let [num1, num2 = 1, ...rest] = nums;

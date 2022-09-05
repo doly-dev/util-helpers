@@ -1,6 +1,6 @@
 import normalizeString from './normalizeString';
 
-// ref: https://github.com/ant-design/ant-design-mobile/blob/v2/components/input-item/index.tsx#L240
+// 参考了: https://github.com/ant-design/ant-design-mobile/blob/v2/components/input-item/index.tsx#L240
 
 /**
  * 计算输入框的值格式化后光标位置

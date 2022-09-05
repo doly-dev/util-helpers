@@ -11,14 +11,10 @@ import times from './times';
  * @returns {number} 差
  * @example
  *
- * minus(1, 0.9);
- * // => 0.1
- *
- * minus(1, 0.9, 0.02);
- * // => 0.08
- *
- * minus(1, 0.9, 0.02, 0.08);
- * // => 0
+ * minus(1, 0.9); // 0.1
+ * minus(1, 0.9, 0.02); // 0.08
+ * minus(1, 0.9, 0.02, 0.08); // 0
+ * 
  */
 function minus(...nums) {
   let [num1, num2 = 0, ...rest] = nums;

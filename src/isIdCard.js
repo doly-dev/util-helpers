@@ -38,20 +38,17 @@ function check(id) {
  * @returns {boolean} 值是否为身份证号
  * @example
  *
- * isIdCard('130701199310302288');
- * // => true
+ * isIdCard('130701199310302288'); // true
+ * isIdCard('13070119931030228X'); // false
  *
- * isIdCard('13070119931030228X');
- * // => false
+ * // 不校验校验码
+ * isIdCard('13070119931030228X', { checkCode: false }); // true
  *
- * isIdCard('13070119931030228X', { checkCode: false }); // 不校验校验码
- * // => true
- *
- * isIdCard('320311770706001');
- * // => false
- *
- * isIdCard('320311770706001', { loose: true });
- * // => true
+ * // 默认不支持15位身份证号码
+ * isIdCard('320311770706001'); // false
+ * 
+ * // 宽松模式，支持15位身份证号
+ * isIdCard('320311770706001', { loose: true }); // true
  *
  */
 function isIdCard(value, { loose = false, checkCode = true } = {}) {

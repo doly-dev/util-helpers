@@ -8,17 +8,11 @@
  * @returns {string} 存储单位值
  * @example
  *
- * bytesToSize(0);
- * // => 0 B
- *
- * bytesToSize(1024);
- * // => 1 KB
- *
- * bytesToSize(3.213243*1024*1024);
- * // => 3.21 MB
- *
- * bytesToSize(1024*1024*1024);
- * // => 1 GB
+ * bytesToSize(0); // 0 B
+ * bytesToSize(1024); // 1 KB
+ * bytesToSize(3.213243*1024*1024); // 3.21 MB
+ * bytesToSize(1024*1024*1024); // 1 GB
+ * 
  */
 function bytesToSize(bytes) {
   const numBytes = typeof bytes !== 'number' ? Number(bytes) : bytes;

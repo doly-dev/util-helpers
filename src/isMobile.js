@@ -13,11 +13,8 @@ const reg = /^1[3456789]\d{9}$/;
  * @returns {boolean} 值是否为手机号码
  * @example
  *
- * isMobile('13000000000');
- * // => true
- *
- * isMobile('13000');
- * // => false
+ * isMobile('13000000000'); // true
+ * isMobile('13000'); // false
  *
  */
 function isMobile(value) {

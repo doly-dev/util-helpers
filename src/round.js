@@ -13,14 +13,10 @@ import { transformEffectiveNumber } from './utils/math.util';
  * @returns {number} 四舍五入的数字
  * @example
  *
- * round(4.006);
- * // => 4
- *
- * round(4.006, 2);
- * // => 4.01
- *
- * round(4060, -2);
- * // => 4100
+ * round(4.006); // 4
+ * round(4.006, 2); // 4.01
+ * round(4060, -2); // 4100
+ * 
  */
 function round(num, precision = 0) {
   num = transformEffectiveNumber(num);

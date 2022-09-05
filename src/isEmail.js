@@ -13,11 +13,8 @@ const reg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,
  * @returns {boolean} 值是否为Email
  * @example
  *
- * isEmail('1232@qq.com');
- * // => true
- *
- * isEmail('123@');
- * // => false
+ * isEmail('1232@qq.com'); // true
+ * isEmail('123@'); // false
  *
  */
 function isEmail(value) {

@@ -7,6 +7,7 @@
  * @param {number} [time=1000] 延时时间，单位毫秒
  * @returns {Promise<void>}
  * @example
+ * 
  * const test = async ()=>{
  *   await waitTime();
  *   // do something
@@ -14,7 +15,8 @@
  *
  * waitTime(500).then(()=>{
  *   // do something
- * })
+ * });
+ * 
  */
 function waitTime(time = 1000) {
   return new Promise((resolve) => {

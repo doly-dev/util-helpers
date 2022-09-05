@@ -93,32 +93,26 @@ function formatDec(decStr, precision, decimal) {
  * @example
  *
  * // 整数
- * formatMoney('1000');
- * // => 1,000.00
+ * formatMoney('1000'); // 1,000.00
  *
  * // 小数（默认保留2位小数）
- * formatMoney('3000.03');
- * // => 3,000.03
+ * formatMoney('3000.03'); // 3,000.03
  *
  * // 保留4位小数
- * formatMoney('3000.0300', { precision: 4 });
- * // => 3,000.0300
+ * formatMoney('3000.0300', { precision: 4 }); // 3,000.0300
  *
  * // 保留10位小数
- * formatMoney('1500.2', { precision: 10 });
- * // => 1,500.2000000000
+ * formatMoney('1500.2', { precision: 10 }); // 1,500.2000000000
  *
  * // 自定义单位符号
- * formatMoney(1000.00, { symbol: '$' });
- * // => $1,000.00
+ * formatMoney(1000.00, { symbol: '$' }); // $1,000.00
  *
  * // 自定义千位分割符（默认','）
- * formatMoney(1000.00, { thousand: '|' });
- * // => 1|000.00
+ * formatMoney(1000.00, { thousand: '|' }); // 1|000.00
  *
  * // 自定义小数位分割符(默认'.')
- * formatMoney(1000.00, { decimal: '&' });
- * // => 1,000&00
+ * formatMoney(1000.00, { decimal: '&' }); // 1,000&00
+ * 
  */
 const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.' } = {}) => {
   // 数字参数不正确，返回空字符串

@@ -14,26 +14,14 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(
  * @returns {boolean} 值是否为url
  * @example
  *
- * isUrl('');
- * // => false
- *
- * isUrl('8.8.8.8');
- * // => false
- *
- * isUrl('example.com');
- * // => true
- *
- * isUrl('http://example.com');
- * // => true
- *
- * isUrl('https://example.com:8080');
- * // => true
- *
- * isUrl('http://www.example.com/test/123');
- * // => true
- *
- * isUrl('http://www.example.com/test/123?foo=bar');
- * // => true
+ * isUrl(''); // false
+ * isUrl('8.8.8.8'); // false
+ * isUrl('example.com'); // true
+ * isUrl('http://example.com'); // true
+ * isUrl('https://example.com:8080'); // true
+ * isUrl('http://www.example.com/test/123'); // true
+ * isUrl('http://www.example.com/test/123?foo=bar'); // true
+ * 
  */
 function isUrl(value) {
   const valueStr = normalizeString(value);

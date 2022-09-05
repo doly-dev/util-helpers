@@ -13,11 +13,8 @@ const reg = /^[1-9]\d{4,10}$/;
  * @returns {boolean} 值是否为QQ号
  * @example
  *
- * isQQ('12345');
- * // => true
- *
- * isQQ('123');
- * // => false
+ * isQQ('12345'); // true
+ * isQQ('123'); // false
  *
  */
 function isQQ(value) {

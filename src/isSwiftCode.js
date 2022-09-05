@@ -13,13 +13,13 @@ const reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
  * @returns {boolean} 值是否为 Swift Code
  * @example
  *
- * isSwiftCode('DEUTDEFF') //  true
- * isSwiftCode('deutdeff') //  false
+ * isSwiftCode('DEUTDEFF'); // true
+ * isSwiftCode('deutdeff'); // false
  *
- * isSwiftCode('BKTWTWTP010') //  true
- * isSwiftCode('010BKTWTWTP') //  false
+ * isSwiftCode('BKTWTWTP010'); // true
+ * isSwiftCode('010BKTWTWTP'); // false
  *
- * isSwiftCode('ICBKCNBJBJM') //  true
+ * isSwiftCode('ICBKCNBJBJM'); // true
  *
  */
 function isSwiftCode(value) {

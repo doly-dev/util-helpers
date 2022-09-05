@@ -8,14 +8,10 @@
  * @returns {boolean} 是否类似Promise对象
  * @example
  *
- * isPromiseLike([]);
- * => false
- *
- * isPromiseLike({then:()=>{}});
- * => true
- *
- * isPromiseLike(Promise.resolve());
- * => true
+ * isPromiseLike([]); // false
+ * isPromiseLike({ then: () => { } }); // true
+ * isPromiseLike(Promise.resolve()); // true
+ * 
  */
 function isPromiseLike(obj) {
   return obj !== null && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';

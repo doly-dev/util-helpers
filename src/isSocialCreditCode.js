@@ -48,18 +48,13 @@ function sumCheckCode(preCode) {
  * @returns {boolean} 值是否为统一社会信用代码
  * @example
  *
- * isSocialCreditCode('91350100M000100Y43');
- * // => true
+ * isSocialCreditCode('91350100M000100Y43'); // true
+ * isSocialCreditCode('91350100M000100Y4A'); // false
  *
- * isSocialCreditCode('91350100M000100Y4A');
- * // => false
- *
- * // 不校验校验位
- * isSocialCreditCode('91350100M000100Y4A', { checkCode: false });
- * // => true
- *
- * isSocialCreditCode('91350100M000100Y', { checkCode: false });
- * // => false
+ * // 不校验校验位，长度和类型还是有校验的
+ * isSocialCreditCode('91350100M000100Y4A', { checkCode: false }); // true
+ * isSocialCreditCode('91350100M000100YIO', { checkCode: false }); // false
+ * isSocialCreditCode('91350100M000100Y', { checkCode: false }); // false
  *
  */
 function isSocialCreditCode(value, options = {}) {

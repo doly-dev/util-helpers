@@ -15,11 +15,8 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|([khm][\da-z]))[\da-z]{7}$/i;
  * @returns {boolean} 值是否为护照号
  * @example
  *
- * isPassport('E12345678');
- * // => true
- *
- * isPassport('abc');
- * // => false
+ * isPassport('E12345678'); // true
+ * isPassport('abc'); // false
  *
  */
 function isPassport(value) {

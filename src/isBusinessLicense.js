@@ -47,17 +47,14 @@ function sumCheckCode(preCode) {
  * @returns {boolean} 值是否为营业执照号
  * @example
  *
- * isBusinessLicense('310115600985533');
- * // => true
+ * isBusinessLicense('310115600985533'); // true
+ * isBusinessLicense('310115600985535'); // false
  *
- * isBusinessLicense('310115600985535');
- * // => false
- *
- * isBusinessLicense('310115600985535', { checkCode: false });
- * // => true
- *
- * isBusinessLicense('31011560098', { checkCode: false });
- * // => false
+ * // 不校验验证码，长度和类型还是有校验
+ * isBusinessLicense('310115600985535', { checkCode: false }); // true
+ * isBusinessLicense('ac115600985535', { checkCode: false }); // false
+ * isBusinessLicense('31011560098', { checkCode: false }); // false
+ * 
  */
 function isBusinessLicense(value, options = {}) {
   const valueStr = normalizeString(value);

@@ -14,20 +14,16 @@ import normalizeString from './normalizeString';
  * @example
  *
  * // 19位银行卡
- * formatBankCard('6228480402564890018');
- * // => 6228 4804 0256 4890 018
+ * formatBankCard('6228480402564890018'); // 6228 4804 0256 4890 018
  *
  * // 16位银行卡
- * formatBankCard('6228480402564890');
- * // => 6228 4804 0256 4890
+ * formatBankCard('6228480402564890'); // 6228 4804 0256 4890
  *
  * // 脱敏银行卡
- * formatBankCard('6228********890');
- * // => 6228 **** **** 890
+ * formatBankCard('6228********890'); // 6228 **** **** 890
  *
  * // 16位银行卡，"-"间隔
- * formatBankCard('6228480402564890', {char: '-'});
- * // => 6228-4804-0256-4890
+ * formatBankCard('6228480402564890', {char: '-'}); // 6228-4804-0256-4890
  *
  */
 function formatBankCard(bankCardNo = '', { char = ' ', length = 4 } = {}) {

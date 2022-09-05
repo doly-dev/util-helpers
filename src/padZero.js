@@ -10,17 +10,18 @@ import normalizeString from './normalizeString';
  * @param {number} [size=2] 指定字符串长度
  * @returns {string} 用零填充数字到给定长度的字符串
  * @example
- * padZero(5); // '05'
- * padZero('5'); // '05'
+ * padZero(5); // 05
+ * padZero('5'); // 05
  *
- * padZero(12); // '12'
- * padZero('12'); // '12'
+ * padZero(12); // 12
+ * padZero('12'); // 12
  *
- * padZero(688); // '688'
- * padZero('688'); // '688'
+ * padZero(688); // 688
+ * padZero('688'); // 688
  *
- * padZero(688, 5); // '00688'
- * padZero('688', 5); // '00688'
+ * padZero(688, 5); // 00688
+ * padZero('688', 5); // 00688
+ * 
  */
 function padZero(value, size = 2) {
   const str = normalizeString(value);

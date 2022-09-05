@@ -13,11 +13,8 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
  * @returns {boolean} 值是否为微信号
  * @example
  *
- * isWX('a12345');
- * // => true
- *
- * isWX('123');
- * // => false
+ * isWX('a12345'); // true
+ * isWX('123'); // false
  *
  */
 function isWX(value) {

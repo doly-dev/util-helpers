@@ -22,6 +22,7 @@ describe('isSocialCreditCode', () => {
 
     // 不校验校验位
     expect(isSocialCreditCode('91350100M000100Y4A', { checkCode: false })).toBe(true);
+    expect(isSocialCreditCode('91350100M000100YIO', { checkCode: false })).toBe(false);
     expect(isSocialCreditCode('91350100M000100Y', { checkCode: false })).toBe(false);
   });
 });

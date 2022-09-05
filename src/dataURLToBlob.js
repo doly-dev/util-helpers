@@ -9,7 +9,7 @@
  * @returns {Blob} Blob 对象
  * @example
  * const dataurl = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
- * dataURLToBlob(dataurl);
+ * dataURLToBlob(dataurl); // Blob {size: 32, type: 'text/html'}
  */
 function dataURLToBlob(dataurl) {
   const arr = dataurl.split(',');

@@ -27,12 +27,14 @@ function internalRandomString(len = 0, optionalChars = defaultChars, prefix = ''
  * @param {string} [optionalChars='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 允许的字符，默认为数字和大小写字母
  * @returns {string} 随机字符串
  * @example
+ * 
  * randomString(5); // slk23
  * randomString(8); // 71mHqo2A
  *
  * // 自定义允许的字符
  * randomString(5, 'abc'); // ccbcb
  * randomString(8, 'abcefg'); // bcgcfabg
+ * 
  */
 function randomString(len = 0, optionalChars) {
   let realLen = typeof len === 'number' ? len : Number(len);

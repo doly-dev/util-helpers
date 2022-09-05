@@ -14,12 +14,14 @@ import isNil from './utils/type/isNil';
  * @param {...number} args 月/日/时/分/秒/毫秒
  * @returns {Date} Date 实例日期对象
  * @example
+ * 
  * safeDate('2022-1-1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
  * safeDate('2022/1/1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
  * safeDate('2022.1.1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
  * safeDate('2022.1.1 11:11'); // Sat Jan 01 2022 11:11:00 GMT+0800 (中国标准时间)
  * safeDate(99, 1); // Mon Feb 01 1999 00:00:00 GMT+0800 (中国标准时间)
  * safeDate(1646711233171); // Tue Mar 08 2022 11:47:13 GMT+0800 (中国标准时间)
+ * 
  *
  */
 function safeDate(value, ...args) {

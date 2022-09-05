@@ -97,11 +97,11 @@ const Provinces = [
  * @param {string} id 身份证号码，支持15位
  * @returns {null|IdCardInfo} null 或 省份、生日、性别，省/市/区/年/月/日/性别编码
  * @example
- * parseIdCard('123456789123456');
- * // => null
+ * 
+ * parseIdCard('123456789123456'); // null
  *
  * // 18位身份证号码
- * parseIdCard('130701199310302288')
+ * parseIdCard('130701199310302288'); 
  * // =>
  * {
  *   birthday: "1993-10-30",

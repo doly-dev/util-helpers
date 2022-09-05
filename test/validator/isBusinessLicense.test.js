@@ -47,6 +47,7 @@ describe('isBusinessLicense', () => {
   it('不校验校验位', () => {
     expect(isBusinessLicense('310115600985532', { checkCode: false })).toBe(true);
     expect(isBusinessLicense('310115600985535', { checkCode: false })).toBe(true);
+    expect(isBusinessLicense('ac0115600985535', { checkCode: false })).toBe(false);
     expect(isBusinessLicense('3101156009855', { checkCode: false })).toBe(false);
   });
 });

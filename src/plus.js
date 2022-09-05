@@ -11,14 +11,10 @@ import times from './times';
  * @returns {number} 总和
  * @example
  *
- * plus(0.1, 0.2);
- * // => 0.3
- *
- * plus(0.1, 0.2, 0.3);
- * // => 0.6
- *
- * plus(0.1, 0.2, 0.3, 0.4);
- * // => 1
+ * plus(0.1, 0.2); // 0.3
+ * plus(0.1, 0.2, 0.3); // 0.6
+ * plus(0.1, 0.2, 0.3, 0.4); // 1
+ * 
  */
 function plus(...nums) {
   let [num1, num2 = 0, ...rest] = nums;

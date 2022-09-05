@@ -13,11 +13,8 @@ const reg = /^\d{6}$/;
  * @returns {boolean} 值是否为邮政编码
  * @example
  *
- * isPostcode('101111');
- * // => true
- *
- * isPostcode('123');
- * // => false
+ * isPostcode('101111'); // true
+ * isPostcode('123'); // false
  *
  */
 function isPostcode(value) {
