@@ -388,7 +388,7 @@ blobToDataURL(textBlob).then(data=>{
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bytesToSize.js.html">bytesToSize.js</a>, <a href="bytesToSize.js.html#line23">line 23</a>
+        <a href="bytesToSize.js.html">bytesToSize.js</a>, <a href="bytesToSize.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -444,17 +444,10 @@ blobToDataURL(textBlob).then(data=>{
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>bytesToSize(0);
-// => 0 B
-
-bytesToSize(1024);
-// => 1 KB
-
-bytesToSize(3.213243*1024*1024);
-// => 3.21 MB
-
-bytesToSize(1024*1024*1024);
-// => 1 GB</code></pre>
+    <pre class="prettyprint"><code>bytesToSize(0); // 0 B
+bytesToSize(1024); // 1 KB
+bytesToSize(3.213243*1024*1024); // 3.21 MB
+bytesToSize(1024*1024*1024); // 1 GB</code></pre>
 
 
 
@@ -628,7 +621,7 @@ bytesToSize(1024*1024*1024);
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>const dataurl = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
-dataURLToBlob(dataurl);</code></pre>
+dataURLToBlob(dataurl); // Blob {size: 32, type: 'text/html'}</code></pre>
 
 
 
@@ -738,7 +731,7 @@ dataURLToBlob(dataurl);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formatBankCard.js.html">formatBankCard.js</a>, <a href="formatBankCard.js.html#line33">line 33</a>
+        <a href="formatBankCard.js.html">formatBankCard.js</a>, <a href="formatBankCard.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -795,20 +788,16 @@ dataURLToBlob(dataurl);</code></pre>
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>// 19位银行卡
-formatBankCard('6228480402564890018');
-// => 6228 4804 0256 4890 018
+formatBankCard('6228480402564890018'); // 6228 4804 0256 4890 018
 
 // 16位银行卡
-formatBankCard('6228480402564890');
-// => 6228 4804 0256 4890
+formatBankCard('6228480402564890'); // 6228 4804 0256 4890
 
 // 脱敏银行卡
-formatBankCard('6228********890');
-// => 6228 **** **** 890
+formatBankCard('6228********890'); // 6228 **** **** 890
 
 // 16位银行卡，"-"间隔
-formatBankCard('6228480402564890', {char: '-'});
-// => 6228-4804-0256-4890</code></pre>
+formatBankCard('6228480402564890', {char: '-'}); // 6228-4804-0256-4890</code></pre>
 
 
 
@@ -1069,7 +1058,7 @@ formatBankCard('6228480402564890', {char: '-'});
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formatMobile.js.html">formatMobile.js</a>, <a href="formatMobile.js.html#line26">line 26</a>
+        <a href="formatMobile.js.html">formatMobile.js</a>, <a href="formatMobile.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -1125,17 +1114,17 @@ formatBankCard('6228480402564890', {char: '-'});
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>formatMobile('13345678900') // '133 4567 8900'
-formatMobile('13345678900', { char: '-' }) // '133-4567-8900'
+    <pre class="prettyprint"><code>formatMobile('13345678900'); // 133 4567 8900
+formatMobile('13345678900', { char: '-' }); // 133-4567-8900
 
 // 脱敏手机号码
-formatMobile('133****1234') // '133 **** 1234'
-formatMobile('133****1234', { char: '-' }) // '133-****-1234'
+formatMobile('133****1234'); // 133 **** 1234
+formatMobile('133****1234', { char: '-' }); // 133-****-1234
 
 // 手机号码位数不够
-formatMobile('133') // '133'
-formatMobile('133456') // '133 456'
-formatMobile('13345678') // '133 4567 8'</code></pre>
+formatMobile('133'); // 133
+formatMobile('133456'); // 133 456
+formatMobile('13345678'); // 133 4567 8</code></pre>
 
 
 
@@ -1357,7 +1346,7 @@ formatMobile('13345678') // '133 4567 8'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="formatMoney.js.html">formatMoney.js</a>, <a href="formatMoney.js.html#line123">line 123</a>
+        <a href="formatMoney.js.html">formatMoney.js</a>, <a href="formatMoney.js.html#line117">line 117</a>
     </li></ul></dd>
     
 
@@ -1414,32 +1403,25 @@ formatMobile('13345678') // '133 4567 8'</code></pre>
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>// 整数
-formatMoney('1000');
-// => 1,000.00
+formatMoney('1000'); // 1,000.00
 
 // 小数（默认保留2位小数）
-formatMoney('3000.03');
-// => 3,000.03
+formatMoney('3000.03'); // 3,000.03
 
 // 保留4位小数
-formatMoney('3000.0300', { precision: 4 });
-// => 3,000.0300
+formatMoney('3000.0300', { precision: 4 }); // 3,000.0300
 
 // 保留10位小数
-formatMoney('1500.2', { precision: 10 });
-// => 1,500.2000000000
+formatMoney('1500.2', { precision: 10 }); // 1,500.2000000000
 
 // 自定义单位符号
-formatMoney(1000.00, { symbol: '$' });
-// => $1,000.00
+formatMoney(1000.00, { symbol: '$' }); // $1,000.00
 
 // 自定义千位分割符（默认','）
-formatMoney(1000.00, { thousand: '|' });
-// => 1|000.00
+formatMoney(1000.00, { thousand: '|' }); // 1|000.00
 
 // 自定义小数位分割符(默认'.')
-formatMoney(1000.00, { decimal: '&amp;' });
-// => 1,000&amp;00</code></pre>
+formatMoney(1000.00, { decimal: '&amp;' }); // 1,000&amp;00</code></pre>
 
 
 
@@ -1782,7 +1764,7 @@ formatMoney(1000.00, { decimal: '&amp;' });
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="normalizeString.js.html">normalizeString.js</a>, <a href="normalizeString.js.html#line24">line 24</a>
+        <a href="normalizeString.js.html">normalizeString.js</a>, <a href="normalizeString.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -1963,7 +1945,7 @@ normalizeString('a'); // 'a'</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="numberToChinese.js.html">numberToChinese.js</a>, <a href="numberToChinese.js.html#line185">line 185</a>
+        <a href="numberToChinese.js.html">numberToChinese.js</a>, <a href="numberToChinese.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -2020,29 +2002,21 @@ normalizeString('a'); // 'a'</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>numberToChinese(100);
-// => 一百
-
-numberToChinese(100.3);
-// => 一百点三
+    <pre class="prettyprint"><code>numberToChinese(100); // 一百
+numberToChinese(100.3); // 一百点三
+numberToChinese(1234567890); // 一十二亿三千四百五十六万七千八百九十
+numberToChinese(1234567890.11); // 一十二亿三千四百五十六万七千八百九十点一一
 
 // 繁体
-numberToChinese(100, {big5: true});
-// => 壹佰
-
-numberToChinese(100.3, {big5: true});
-// => 壹佰点叁
-
-numberToChinese(1234567890, {big5: true});
-// => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
+numberToChinese(100, {big5: true}); // 壹佰
+numberToChinese(100.3, {big5: true}); // 壹佰點叁
+numberToChinese(1234567890.11, {big5: true}); // 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾點壹壹
 
 // 不带计数单位
-numberToChinese(1990, {unit: false});
-// => 一九九零
+numberToChinese(1990, {unit: false}); // 一九九零
 
 // 不带计数单位，修改0
-numberToChinese(1990, {unit: false, zero:'〇'});
-// => 一九九〇</code></pre>
+numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
 
 
 
@@ -2271,7 +2245,7 @@ numberToChinese(1990, {unit: false, zero:'〇'});
                 </td>
             
 
-            <td class="description last">中文小数点</td>
+            <td class="description last">中文小数点，繁体字为點</td>
         </tr>
 
     
@@ -2565,7 +2539,7 @@ numberToChinese(1990, {unit: false, zero:'〇'});
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="padZero.js.html">padZero.js</a>, <a href="padZero.js.html#line25">line 25</a>
+        <a href="padZero.js.html">padZero.js</a>, <a href="padZero.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -2621,17 +2595,17 @@ numberToChinese(1990, {unit: false, zero:'〇'});
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>padZero(5); // '05'
-padZero('5'); // '05'
+    <pre class="prettyprint"><code>padZero(5); // 05
+padZero('5'); // 05
 
-padZero(12); // '12'
-padZero('12'); // '12'
+padZero(12); // 12
+padZero('12'); // 12
 
-padZero(688); // '688'
-padZero('688'); // '688'
+padZero(688); // 688
+padZero('688'); // 688
 
-padZero(688, 5); // '00688'
-padZero('688', 5); // '00688'</code></pre>
+padZero(688, 5); // 00688
+padZero('688', 5); // 00688</code></pre>
 
 
 
@@ -2862,11 +2836,10 @@ padZero('688', 5); // '00688'</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>parseIdCard('123456789123456');
-// => null
+    <pre class="prettyprint"><code>parseIdCard('123456789123456'); // null
 
 // 18位身份证号码
-parseIdCard('130701199310302288')
+parseIdCard('130701199310302288'); 
 // =>
 {
   birthday: "1993-10-30",
@@ -2996,7 +2969,7 @@ parseIdCard('130701931030228');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="replaceChar.js.html">replaceChar.js</a>, <a href="replaceChar.js.html#line49">line 49</a>
+        <a href="replaceChar.js.html">replaceChar.js</a>, <a href="replaceChar.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -3053,33 +3026,25 @@ parseIdCard('130701931030228');
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>// 手机号
-replaceChar('13000000000');
-// => 130****0000
+replaceChar('13000000000'); // 130****0000
 
 // 身份证
-replaceChar('130701199310302288');
-// => 130***********2288
+replaceChar('130701199310302288'); // 130***********2288
 
 // 邮箱
 const email = '12345@qq.com'
-replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4});
-// => 12****@qq.com
+replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4}); // 12****@qq.com
 
 // 银行卡号
-replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4});
-// => ****0018
+replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4}); // ****0018
 
-// 带格式的银行卡号
-replaceChar('6228 4804 0256 4890 018', {start: 4, end: -4, exclude: ' '});
-// => 6228 **** **** **** 018
+// 带格式的银行卡号，忽略空字符串
+replaceChar('6228 4804 0256 4890 018', {start: 4, end: -4, exclude: ' '}); // 6228 **** **** **** 018
 
 // 用户名
-replaceChar('林某某', {start: 1, end: Infinity, repeat: 2});
-// => 林**
-replaceChar('林某', {start: 1, end: Infinity, repeat: 2});
-// => 林**
-replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2});
-// => 林**</code></pre>
+replaceChar('林某某', {start: 1, end: Infinity, repeat: 2}); // 林**
+replaceChar('林某', {start: 1, end: Infinity, repeat: 2}); // 林**
+replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2}); // 林**</code></pre>
 
 
 
@@ -3453,7 +3418,7 @@ replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2});
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="safeDate.js.html">safeDate.js</a>, <a href="safeDate.js.html#line25">line 25</a>
+        <a href="safeDate.js.html">safeDate.js</a>, <a href="safeDate.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -3683,7 +3648,7 @@ safeDate(1646711233171); // Tue Mar 08 2022 11:47:13 GMT+0800 (中国标准时�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="setDataURLPrefix.js.html">setDataURLPrefix.js</a>, <a href="setDataURLPrefix.js.html#line23">line 23</a>
+        <a href="setDataURLPrefix.js.html">setDataURLPrefix.js</a>, <a href="setDataURLPrefix.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -3962,7 +3927,7 @@ setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9i
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Wed Aug 31 2022 07:27:31 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Sep 05 2022 13:52:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -204,7 +204,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBankCard.js.html">isBankCard.js</a>, <a href="isBankCard.js.html#line54">line 54</a>
+        <a href="isBankCard.js.html">isBankCard.js</a>, <a href="isBankCard.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -267,17 +267,12 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isBankCard('6228480402564890018');
-// => true
+    <pre class="prettyprint"><code>isBankCard('6228480402564890018'); // true
+isBankCard('6228480402564890'); // true
+isBankCard('123456789'); // false
 
-isBankCard('6228480402564890');
-// => true
-
-isBankCard('123456789');
-// => false
-
-isBankCard('123456789', { loose: true });
-// => true</code></pre>
+// 宽松模式
+isBankCard('123456789', { loose: true }); // true</code></pre>
 
 
 
@@ -538,7 +533,7 @@ isBankCard('123456789', { loose: true });
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBusinessLicense.js.html">isBusinessLicense.js</a>, <a href="isBusinessLicense.js.html#line62">line 62</a>
+        <a href="isBusinessLicense.js.html">isBusinessLicense.js</a>, <a href="isBusinessLicense.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -601,17 +596,13 @@ isBankCard('123456789', { loose: true });
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isBusinessLicense('310115600985533');
-// => true
+    <pre class="prettyprint"><code>isBusinessLicense('310115600985533'); // true
+isBusinessLicense('310115600985535'); // false
 
-isBusinessLicense('310115600985535');
-// => false
-
-isBusinessLicense('310115600985535', { checkCode: false });
-// => true
-
-isBusinessLicense('31011560098', { checkCode: false });
-// => false</code></pre>
+// 不校验验证码，长度和类型还是有校验
+isBusinessLicense('310115600985535', { checkCode: false }); // true
+isBusinessLicense('ac115600985535', { checkCode: false }); // false
+isBusinessLicense('31011560098', { checkCode: false }); // false</code></pre>
 
 
 
@@ -833,7 +824,7 @@ isBusinessLicense('31011560098', { checkCode: false });
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isChinese.js.html">isChinese.js</a>, <a href="isChinese.js.html#line75">line 75</a>
+        <a href="isChinese.js.html">isChinese.js</a>, <a href="isChinese.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -896,27 +887,19 @@ isBusinessLicense('31011560098', { checkCode: false });
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isChinese('林某某');
-// => true
-
-isChinese('林A');
-// => false
+    <pre class="prettyprint"><code>isChinese('林某某'); // true
+isChinese('林A'); // false
 
 // 宽松模式，只要包含中文即为true
-isChinese('林A', { loose: true });
-// => true
+isChinese('林A', { loose: true }); // true
+isChinese('A林A', { loose: true }); // true
 
-isChinese('A林A', { loose: true });
-// => true
-
-isChinese('𠮷');
-// => false
+// 扩展字符集的字符
+isChinese('𠮷'); // false
 
 // 使用中文扩展字符集，需要浏览器支持 RegExp.prototype.unicode 才生效。
-isChinese('𠮷', { useExtend: true });
-// => true
-isChinese('𠮷aa', { useExtend: true, loose: true });
-// => true</code></pre>
+isChinese('𠮷', { useExtend: true }); // true
+isChinese('𠮷aa', { useExtend: true, loose: true }); // true</code></pre>
 
 
 
@@ -1177,7 +1160,7 @@ isChinese('𠮷aa', { useExtend: true, loose: true });
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isEmail.js.html">isEmail.js</a>, <a href="isEmail.js.html#line23">line 23</a>
+        <a href="isEmail.js.html">isEmail.js</a>, <a href="isEmail.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -1233,11 +1216,8 @@ isChinese('𠮷aa', { useExtend: true, loose: true });
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isEmail('1232@qq.com');
-// => true
-
-isEmail('123@');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isEmail('1232@qq.com'); // true
+isEmail('123@'); // false</code></pre>
 
 
 
@@ -1411,16 +1391,16 @@ isEmail('123@');
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>// 第一代 11 位
-isHMCard('h3203117707') // true
-isHMCard('H3203117707') // true
-isHMCard('m3203117707') // true
-isHMCard('M3203117707') // true
+isHMCard('h3203117707'); // true
+isHMCard('H3203117707'); // true
+isHMCard('m3203117707'); // true
+isHMCard('M3203117707'); // true
 
 // 第二代 9 位
-isHMCard('h32031177') // true
-isHMCard('H32031177') // true
-isHMCard('m32031177') // true
-isHMCard('M32031177') // true</code></pre>
+isHMCard('h32031177'); // true
+isHMCard('H32031177'); // true
+isHMCard('m32031177'); // true
+isHMCard('M32031177'); // true</code></pre>
 
 
 
@@ -1530,7 +1510,7 @@ isHMCard('M32031177') // true</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isIdCard.js.html">isIdCard.js</a>, <a href="isIdCard.js.html#line57">line 57</a>
+        <a href="isIdCard.js.html">isIdCard.js</a>, <a href="isIdCard.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -1586,20 +1566,17 @@ isHMCard('M32031177') // true</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isIdCard('130701199310302288');
-// => true
+    <pre class="prettyprint"><code>isIdCard('130701199310302288'); // true
+isIdCard('13070119931030228X'); // false
 
-isIdCard('13070119931030228X');
-// => false
+// 不校验校验码
+isIdCard('13070119931030228X', { checkCode: false }); // true
 
-isIdCard('13070119931030228X', { checkCode: false }); // 不校验校验码
-// => true
+// 默认不支持15位身份证号码
+isIdCard('320311770706001'); // false
 
-isIdCard('320311770706001');
-// => false
-
-isIdCard('320311770706001', { loose: true });
-// => true</code></pre>
+// 宽松模式，支持15位身份证号
+isIdCard('320311770706001', { loose: true }); // true</code></pre>
 
 
 
@@ -1860,7 +1837,7 @@ isIdCard('320311770706001', { loose: true });
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isIPv4.js.html">isIPv4.js</a>, <a href="isIPv4.js.html#line29">line 29</a>
+        <a href="isIPv4.js.html">isIPv4.js</a>, <a href="isIPv4.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -1916,17 +1893,10 @@ isIdCard('320311770706001', { loose: true });
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isIPv4('192.168.1.1');
-// => true
-
-isIPv4('255.255.255.255');
-// => true
-
-isIPv4('256.256.256.256');
-// => false
-
-isIPv4('0.0');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isIPv4('192.168.1.1'); // true
+isIPv4('255.255.255.255'); // true
+isIPv4('256.256.256.256'); // false
+isIPv4('0.0'); // false</code></pre>
 
 
 
@@ -2036,7 +2006,7 @@ isIPv4('0.0');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isIPv6.js.html">isIPv6.js</a>, <a href="isIPv6.js.html#line54">line 54</a>
+        <a href="isIPv6.js.html">isIPv6.js</a>, <a href="isIPv6.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -2093,41 +2063,23 @@ isIPv4('0.0');
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>// 冒分十六进制表示法
-isIPv6('2001:0DB8:0000:0023:0008:0800:200C:417A');
-// => true
+isIPv6('2001:0DB8:0000:0023:0008:0800:200C:417A'); // true
 
 // 前导0省略
-isIPv6('2001:DB8:0:23:8:800:200C:417A');
-// => true
-
-isIPv6('FF01:0:0:0:0:0:0:1101');
-// => true
+isIPv6('2001:DB8:0:23:8:800:200C:417A'); // true
+isIPv6('FF01:0:0:0:0:0:0:1101'); // true
 
 // 0位压缩表示法
-isIPv6('FF01::1101');
-// => true
-
-isIPv6('::1');
-// => true
-
-isIPv6('::');
-// => true
-
-isIPv6('0:0:0:0:0:0:0:1');
-// => true
-
-isIPv6('0:0:0:0:0:0:0:0');
-// => true
+isIPv6('FF01::1101'); // true
+isIPv6('::1'); // true
+isIPv6('::'); // true
+isIPv6('0:0:0:0:0:0:0:1'); // true
+isIPv6('0:0:0:0:0:0:0:0'); // true
 
 // 内嵌IPv4地址表示法
-isIPv6('::192.168.1.1');
-// => true
-
-isIPv6('::FFFF:192.168.1.1');
-// => true
-
-isIPv6('192.168.1.1');
-// => false</code></pre>
+isIPv6('::192.168.1.1'); // true
+isIPv6('::FFFF:192.168.1.1'); // true
+isIPv6('192.168.1.1'); // false</code></pre>
 
 
 
@@ -2237,7 +2189,7 @@ isIPv6('192.168.1.1');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isMobile.js.html">isMobile.js</a>, <a href="isMobile.js.html#line23">line 23</a>
+        <a href="isMobile.js.html">isMobile.js</a>, <a href="isMobile.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -2293,11 +2245,8 @@ isIPv6('192.168.1.1');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isMobile('13000000000');
-// => true
-
-isMobile('13000');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isMobile('13000000000'); // true
+isMobile('13000'); // false</code></pre>
 
 
 
@@ -2407,7 +2356,7 @@ isMobile('13000');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isPassport.js.html">isPassport.js</a>, <a href="isPassport.js.html#line25">line 25</a>
+        <a href="isPassport.js.html">isPassport.js</a>, <a href="isPassport.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -2471,11 +2420,8 @@ isMobile('13000');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isPassport('E12345678');
-// => true
-
-isPassport('abc');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isPassport('E12345678'); // true
+isPassport('abc'); // false</code></pre>
 
 
 
@@ -2585,7 +2531,7 @@ isPassport('abc');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isPassword.js.html">isPassword.js</a>, <a href="isPassword.js.html#line43">line 43</a>
+        <a href="isPassword.js.html">isPassword.js</a>, <a href="isPassword.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -2650,27 +2596,19 @@ isPassport('abc');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isPassword('a12345678');
-// => true
+    <pre class="prettyprint"><code>isPassword('a12345678'); // true
 
-isPassword('a12345678', {level: 3});
-// => false
+// 3级密码强度
+isPassword('a12345678', {level: 3}); // false
+isPassword('Aa12345678', {level: 3}); // true
 
-isPassword('Aa12345678', {level: 3});
-// => true
+// 3级密码强度，大小写字符仅计算1级强度
+isPassword('Aa12345678', {level: 3, ignoreCase: true}); // false
+isPassword('_Aa12345678', {level: 3, ignoreCase: true}); // true
 
-isPassword('Aa12345678', {level: 3, ignoreCase: true});
-// => false
-
-isPassword('_Aa12345678', {level: 3, ignoreCase: true});
-// => true
-
-// 仅支持 数字、字母、特殊字符，其他字符如中文字符是校验不通过的
-isPassword('_Aa一二三45678', {level: 3, ignoreCase: true});
-// => false
-
-isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
-// => false</code></pre>
+// 仅支持 数字、字母、特殊字符，其他非法字符如中文字符是校验不通过的
+isPassword('_Aa一二三45678', {level: 3, ignoreCase: true}); // false
+isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false</code></pre>
 
 
 
@@ -2975,7 +2913,7 @@ isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isPostcode.js.html">isPostcode.js</a>, <a href="isPostcode.js.html#line23">line 23</a>
+        <a href="isPostcode.js.html">isPostcode.js</a>, <a href="isPostcode.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -3031,11 +2969,8 @@ isPassword(' _Aa12345678', {level: 3, ignoreCase: true});
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isPostcode('101111');
-// => true
-
-isPostcode('123');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isPostcode('101111'); // true
+isPostcode('123'); // false</code></pre>
 
 
 
@@ -3145,7 +3080,7 @@ isPostcode('123');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isPromiseLike.js.html">isPromiseLike.js</a>, <a href="isPromiseLike.js.html#line20">line 20</a>
+        <a href="isPromiseLike.js.html">isPromiseLike.js</a>, <a href="isPromiseLike.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3201,14 +3136,9 @@ isPostcode('123');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isPromiseLike([]);
-=> false
-
-isPromiseLike({then:()=>{}});
-=> true
-
-isPromiseLike(Promise.resolve());
-=> true</code></pre>
+    <pre class="prettyprint"><code>isPromiseLike([]); // false
+isPromiseLike({ then: () => { } }); // true
+isPromiseLike(Promise.resolve()); // true</code></pre>
 
 
 
@@ -3318,7 +3248,7 @@ isPromiseLike(Promise.resolve());
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isQQ.js.html">isQQ.js</a>, <a href="isQQ.js.html#line23">line 23</a>
+        <a href="isQQ.js.html">isQQ.js</a>, <a href="isQQ.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -3374,11 +3304,8 @@ isPromiseLike(Promise.resolve());
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isQQ('12345');
-// => true
-
-isQQ('123');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isQQ('12345'); // true
+isQQ('123'); // false</code></pre>
 
 
 
@@ -3488,7 +3415,7 @@ isQQ('123');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isSocialCreditCode.js.html">isSocialCreditCode.js</a>, <a href="isSocialCreditCode.js.html#line65">line 65</a>
+        <a href="isSocialCreditCode.js.html">isSocialCreditCode.js</a>, <a href="isSocialCreditCode.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -3551,18 +3478,13 @@ isQQ('123');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isSocialCreditCode('91350100M000100Y43');
-// => true
+    <pre class="prettyprint"><code>isSocialCreditCode('91350100M000100Y43'); // true
+isSocialCreditCode('91350100M000100Y4A'); // false
 
-isSocialCreditCode('91350100M000100Y4A');
-// => false
-
-// 不校验校验位
-isSocialCreditCode('91350100M000100Y4A', { checkCode: false });
-// => true
-
-isSocialCreditCode('91350100M000100Y', { checkCode: false });
-// => false</code></pre>
+// 不校验校验位，长度和类型还是有校验的
+isSocialCreditCode('91350100M000100Y4A', { checkCode: false }); // true
+isSocialCreditCode('91350100M000100YIO', { checkCode: false }); // false
+isSocialCreditCode('91350100M000100Y', { checkCode: false }); // false</code></pre>
 
 
 
@@ -3847,13 +3769,13 @@ isSocialCreditCode('91350100M000100Y', { checkCode: false });
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isSwiftCode('DEUTDEFF') //  true
-isSwiftCode('deutdeff') //  false
+    <pre class="prettyprint"><code>isSwiftCode('DEUTDEFF'); // true
+isSwiftCode('deutdeff'); // false
 
-isSwiftCode('BKTWTWTP010') //  true
-isSwiftCode('010BKTWTWTP') //  false
+isSwiftCode('BKTWTWTP010'); // true
+isSwiftCode('010BKTWTWTP'); // false
 
-isSwiftCode('ICBKCNBJBJM') //  true</code></pre>
+isSwiftCode('ICBKCNBJBJM'); // true</code></pre>
 
 
 
@@ -3963,7 +3885,7 @@ isSwiftCode('ICBKCNBJBJM') //  true</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isTelephone.js.html">isTelephone.js</a>, <a href="isTelephone.js.html#line29">line 29</a>
+        <a href="isTelephone.js.html">isTelephone.js</a>, <a href="isTelephone.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -4019,17 +3941,14 @@ isSwiftCode('ICBKCNBJBJM') //  true</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isTelephone('22033212');
-// => true
+    <pre class="prettyprint"><code>isTelephone('22033212'); // true
+isTelephone('13000000000'); // false
 
-isTelephone('021-22033212');
-// => true
+// 含区号
+isTelephone('021-22033212'); // true
 
-isTelephone('021-22033212-123');
-// => true
-
-isTelephone('13000000000');
-// => false</code></pre>
+// 含区号和分机号
+isTelephone('021-22033212-123'); // true</code></pre>
 
 
 
@@ -4139,7 +4058,7 @@ isTelephone('13000000000');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isTWCard.js.html">isTWCard.js</a>, <a href="isTWCard.js.html#line28">line 28</a>
+        <a href="isTWCard.js.html">isTWCard.js</a>, <a href="isTWCard.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -4202,12 +4121,14 @@ isTelephone('13000000000');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isTWCard('12345678') // true
-isTWCard('07257456') // true
+    <pre class="prettyprint"><code>isTWCard('12345678'); // true
+isTWCard('07257456'); // true
 
 // 一次性短期
-isTWCard('F290299977') // false
-isTWCard('F290299977', { loose: true }) // true</code></pre>
+isTWCard('F290299977'); // false
+
+// 宽松模式，支持一次性短期通行证
+isTWCard('F290299977', { loose: true }); // true</code></pre>
 
 
 
@@ -4429,7 +4350,7 @@ isTWCard('F290299977', { loose: true }) // true</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isUrl.js.html">isUrl.js</a>, <a href="isUrl.js.html#line38">line 38</a>
+        <a href="isUrl.js.html">isUrl.js</a>, <a href="isUrl.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -4492,26 +4413,13 @@ isTWCard('F290299977', { loose: true }) // true</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isUrl('');
-// => false
-
-isUrl('8.8.8.8');
-// => false
-
-isUrl('example.com');
-// => true
-
-isUrl('http://example.com');
-// => true
-
-isUrl('https://example.com:8080');
-// => true
-
-isUrl('http://www.example.com/test/123');
-// => true
-
-isUrl('http://www.example.com/test/123?foo=bar');
-// => true</code></pre>
+    <pre class="prettyprint"><code>isUrl(''); // false
+isUrl('8.8.8.8'); // false
+isUrl('example.com'); // true
+isUrl('http://example.com'); // true
+isUrl('https://example.com:8080'); // true
+isUrl('http://www.example.com/test/123'); // true
+isUrl('http://www.example.com/test/123?foo=bar'); // true</code></pre>
 
 
 
@@ -4621,7 +4529,7 @@ isUrl('http://www.example.com/test/123?foo=bar');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isVehicle.js.html">isVehicle.js</a>, <a href="isVehicle.js.html#line33">line 33</a>
+        <a href="isVehicle.js.html">isVehicle.js</a>, <a href="isVehicle.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -4684,20 +4592,15 @@ isUrl('http://www.example.com/test/123?foo=bar');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isVehicle('京L12345');
-// => true
+    <pre class="prettyprint"><code>isVehicle('京L12345'); // true
+isVehicle('京L1234学'); // true
+isVehicle('BL1234警'); // true
 
-isVehicle('粤BD12345');
-// => true
-
-isVehicle('粤BF12345');
-// => true
-
-isVehicle('粤B12345D');
-// => true
-
-isVehicle('粤B12345F');
-// => true</code></pre>
+// 新能源车牌
+isVehicle('粤BD12345'); // true
+isVehicle('粤BF12345'); // true
+isVehicle('粤B12345D'); // true
+isVehicle('粤B12345F'); // true</code></pre>
 
 
 
@@ -4807,7 +4710,7 @@ isVehicle('粤B12345F');
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isWX.js.html">isWX.js</a>, <a href="isWX.js.html#line23">line 23</a>
+        <a href="isWX.js.html">isWX.js</a>, <a href="isWX.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -4863,11 +4766,8 @@ isVehicle('粤B12345F');
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>isWX('a12345');
-// => true
-
-isWX('123');
-// => false</code></pre>
+    <pre class="prettyprint"><code>isWX('a12345'); // true
+isWX('123'); // false</code></pre>
 
 
 
@@ -5398,7 +5298,7 @@ validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_�
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Wed Aug 31 2022 07:27:31 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Mon Sep 05 2022 13:52:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
