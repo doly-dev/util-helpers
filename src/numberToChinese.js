@@ -148,7 +148,7 @@ function mapNumberChar(num) {
  * @param {Object} [options] 配置项
  * @param {boolean} [options.big5=false] 繁体
  * @param {boolean} [options.unit=true] 计数单位
- * @param {string} [options.decimal="点"] 中文小数点
+ * @param {string} [options.decimal="点"] 中文小数点，繁体字为點
  * @param {string} [options.zero="零"] 设置0。常用配置 〇
  * @param {string} [options.negative="负"] 负数前面的字
  * @param {Object} [options.unitConfig] 节点单位配置
@@ -157,32 +157,24 @@ function mapNumberChar(num) {
  * @returns {string} 中文数字
  * @example
  *
- * numberToChinese(100);
- * // => 一百
- *
- * numberToChinese(100.3);
- * // => 一百点三
+ * numberToChinese(100); // 一百
+ * numberToChinese(100.3); // 一百点三
+ * numberToChinese(1234567890); // 一十二亿三千四百五十六万七千八百九十
+ * numberToChinese(1234567890.11); // 一十二亿三千四百五十六万七千八百九十点一一
  *
  * // 繁体
- * numberToChinese(100, {big5: true});
- * // => 壹佰
- *
- * numberToChinese(100.3, {big5: true});
- * // => 壹佰点叁
- *
- * numberToChinese(1234567890, {big5: true});
- * // => 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾
+ * numberToChinese(100, {big5: true}); // 壹佰
+ * numberToChinese(100.3, {big5: true}); // 壹佰點叁
+ * numberToChinese(1234567890.11, {big5: true}); // 壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾點壹壹
  *
  * // 不带计数单位
- * numberToChinese(1990, {unit: false});
- * // => 一九九零
+ * numberToChinese(1990, {unit: false}); // 一九九零
  *
  * // 不带计数单位，修改0
- * numberToChinese(1990, {unit: false, zero:'〇'});
- * // => 一九九〇
+ * numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇
  *
  */
-function numberToChinese(num, { big5 = false, unit = true, decimal = '点', zero = '', negative = '负', unitConfig = {} } = {}) {
+function numberToChinese(num, { big5 = false, unit = true, decimal = '', zero = '', negative = '负', unitConfig = {} } = {}) {
   // 非数字 或 NaN 不处理
   if (typeof num !== 'number' || isNaN(num)) {
     devWarn(`参数错误 ${num}，请传入数字`);
@@ -197,9 +189,11 @@ function numberToChinese(num, { big5 = false, unit = true, decimal = '点', zero
   if (big5) {
     numberChar = big5NumberChar.slice();
     unitChar = big5UnitChar.slice();
+    decimal = decimal || '點';
   } else {
     numberChar = chnNumberChar.slice();
     unitChar = chnUnitChar.slice();
+    decimal = decimal || '点';
   }
 
   // 设置节点计数单位，万、亿、万亿

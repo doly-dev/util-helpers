@@ -26,9 +26,11 @@ describe('numberToChinese', () => {
   it('小数', () => {
     expect(numberToChinese(0.1)).toBe('零点一');
     expect(numberToChinese(100.1)).toBe('一百点一');
+    expect(numberToChinese(1234567890.11)).toBe('一十二亿三千四百五十六万七千八百九十点一一');
+    expect(numberToChinese(1234567890.112)).toBe('一十二亿三千四百五十六万七千八百九十点一一二');
   });
 
-  it('负整数', () => {
+  it('负数', () => {
     expect(numberToChinese(-0)).toBe('零');
     expect(numberToChinese(-100)).toBe('负一百');
     expect(numberToChinese(-10000)).toBe('负一万');
@@ -37,21 +39,23 @@ describe('numberToChinese', () => {
     expect(numberToChinese(-1234567890)).toBe('负一十二亿三千四百五十六万七千八百九十');
     expect(numberToChinese(-0.1)).toBe('负零点一');
     expect(numberToChinese(-100.1)).toBe('负一百点一');
+    expect(numberToChinese(-1234567890.11)).toBe('负一十二亿三千四百五十六万七千八百九十点一一');
   });
 
   it('繁体', () => {
     expect(numberToChinese(100, { big5: true })).toBe('壹佰');
-    expect(numberToChinese(0.1, { big5: true })).toBe('零点壹');
-    expect(numberToChinese(100.1, { big5: true })).toBe('壹佰点壹');
+    expect(numberToChinese(0.1, { big5: true })).toBe('零點壹');
+    expect(numberToChinese(100.1, { big5: true })).toBe('壹佰點壹');
     expect(numberToChinese(1234567890, { big5: true })).toBe('壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾');
+    expect(numberToChinese(1234567890.11, { big5: true })).toBe('壹拾贰亿叁仟肆佰伍拾陆万柒仟捌佰玖拾點壹壹');
   });
 
   it('不带单位', () => {
     expect(numberToChinese(1990, { unit: false })).toBe('一九九零');
     expect(numberToChinese(1990, { unit: false, zero: '〇' })).toBe('一九九〇');
     expect(numberToChinese(1990, { unit: false, big5: true })).toBe('壹玖玖零');
-    expect(numberToChinese(0.3, { unit: false, big5: true })).toBe('零点叁');
-    expect(numberToChinese(1990.3, { unit: false, big5: true })).toBe('壹玖玖零点叁');
+    expect(numberToChinese(0.3, { unit: false, big5: true })).toBe('零點叁');
+    expect(numberToChinese(1990.3, { unit: false, big5: true })).toBe('壹玖玖零點叁');
   });
 
   it(`自定义万亿单位`, () => {
