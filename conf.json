@@ -43,13 +43,13 @@
     },
     "search": true,
     "menu": {
-      "Github repo": {
+      "Github": {
         "href": "https://github.com/doly-dev/util-helpers",
         "target": "_blank",
         "class": "menu-item",
         "id": "repo_link"
       },
-      "Change log": {
+      "Changelog": {
         "href": "https://github.com/doly-dev/util-helpers/releases",
         "target": "_blank",
         "class": "menu-item",
