@@ -15,6 +15,8 @@ function toCamel(str) {
 
 const globalVarName = toCamel(pkg.name);
 
+// TODO cjs/es/types 使用 rollup 构建
+
 export default {
   input: './src/index.js',
   output: [
