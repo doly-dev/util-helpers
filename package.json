@@ -4,6 +4,7 @@
   "description": "一个基于业务场景的工具方法库",
   "main": "lib/index.js",
   "module": "esm/index.js",
+  "unpkg": "dist/util-helpers.min.js",
   "sideEffects": false,
   "types": "types/index.d.ts",
   "scripts": {
