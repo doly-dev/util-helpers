@@ -105,6 +105,7 @@ formatMoney('1000'); // => 1,000.00
 - [store2] - 丰富了 localStorage 和 sessionStorage 功能（JSON，命名空间，扩展等）
 - [uuid] - 生成通用唯一识别码（Universally Unique Identifier）
 - [JSZip] - 创建、读取和编辑 zip 文件
+- [ua-parser-js] - 用于从用户代理数据中检测浏览器、引擎、操作系统、CPU 和设备类型/型号
 
 [lodash]: https://www.npmjs.com/package/lodash
 [query-string]: https://www.npmjs.com/package/query-string
@@ -123,3 +124,4 @@ formatMoney('1000'); // => 1,000.00
 [npm]: https://img.shields.io/npm/v/util-helpers.svg
 [npm-url]: https://npmjs.com/package/util-helpers
 [what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
+[ua-parser-js]: https://www.npmjs.com/package/ua-parser-js
