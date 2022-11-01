@@ -28,7 +28,9 @@ const singleRegTWCard = /^[\da-z]{10,12}$/i;
  * // 宽松模式，支持一次性短期通行证
  * isTWCard('F290299977', { loose: true }); // true
  */
-function isTWCard(value, { loose = false } = {}) {
+function isTWCard(value, options = {}) {
+  const { loose = false } = options;
+
   const valueStr = normalizeString(value);
   if (regTWCard.test(valueStr)) {
     return true;

@@ -33,7 +33,9 @@ import validatePassword from './validatePassword';
  * isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false
  * 
  */
-function isPassword(value, { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = {}) {
+function isPassword(value, options = {}) {
+  const { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = options;
+
   return validatePassword(value, { level, ignoreCase, special }).validated;
 }
 

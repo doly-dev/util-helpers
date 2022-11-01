@@ -38,7 +38,10 @@ import normalizeString from './normalizeString';
  * replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2}); // 林**
  *
  */
-function replaceChar(str, { start = 3, end = -4, char = '*', repeat, exclude } = {}) {
+function replaceChar(str, options = {}) {
+  const { char = '*', exclude } = options;
+  let { start = 3, end = -4, repeat } = options;
+
   const realStr = normalizeString(str);
   const strLen = realStr.length;
 

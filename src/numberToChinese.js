@@ -174,7 +174,10 @@ function mapNumberChar(num) {
  * numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇
  *
  */
-function numberToChinese(num, { big5 = false, unit = true, decimal = '', zero = '', negative = '负', unitConfig = {} } = {}) {
+function numberToChinese(num, options = {}) {
+  const { big5 = false, unit = true, zero = '', negative = '负', unitConfig = {} } = options;
+  let { decimal = '' } = options;
+
   // 非数字 或 NaN 不处理
   if (typeof num !== 'number' || isNaN(num)) {
     devWarn(`参数错误 ${num}，请传入数字`);

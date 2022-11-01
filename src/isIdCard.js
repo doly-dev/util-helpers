@@ -51,7 +51,9 @@ function check(id) {
  * isIdCard('320311770706001', { loose: true }); // true
  *
  */
-function isIdCard(value, { loose = false, checkCode = true } = {}) {
+function isIdCard(value, options = {}) {
+  const { loose = false, checkCode = true } = options;
+
   const valueStr = normalizeString(value);
   if (valueStr.length === 15 && loose) {
     return regIdCard.test(valueStr);

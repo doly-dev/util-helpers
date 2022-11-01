@@ -26,7 +26,9 @@ import normalizeString from './normalizeString';
  * formatBankCard('6228480402564890', {char: '-'}); // 6228-4804-0256-4890
  *
  */
-function formatBankCard(bankCardNo = '', { char = ' ', length = 4 } = {}) {
+function formatBankCard(bankCardNo = '', options = {}) {
+  const { char = ' ', length = 4 } = options;
+
   const reg = new RegExp(`(.{${length}})`, 'g');
   const regChar = new RegExp(`${char}`, 'g');
 

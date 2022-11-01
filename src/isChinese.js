@@ -65,7 +65,9 @@ const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
  * isChinese('𠮷aa', { useExtend: true, loose: true }); // true
  * 
  */
-function isChinese(value, { loose = false, useExtend = false } = {}) {
+function isChinese(value, options = {}) {
+  const { loose = false, useExtend = false } = options;
+
   const valueStr = normalizeString(value);
   const basicRegExp = loose ? looseChineseRegExp : chineseRegExp;
   const extendRegExp = loose ? looseChineseExtendRegExp : chineseExtendRegExp;

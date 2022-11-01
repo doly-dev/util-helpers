@@ -207,7 +207,9 @@ function hasUnallowableCharacter(val, chars) {
  *   }
  * }
  */
-function validatePassword(value, { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = {}) {
+function validatePassword(value, options = {}) {
+  const { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = options;
+
   let valStr = value;
 
   if (typeof value !== 'string') {

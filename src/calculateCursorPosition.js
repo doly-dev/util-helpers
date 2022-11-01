@@ -22,7 +22,9 @@ import normalizeString from './normalizeString';
  * @param {'mobile'|'bankCard'} [options.type] 格式化类型，内置手机号码和银行卡号特殊处理
  * @returns {number} 格式化后的光标位置
  */
-function calculateCursorPosition(prevPos, prevCtrlValue, rawValue, ctrlValue, { placeholderChar = ' ', maskReg = /\D/g, type } = {}) {
+function calculateCursorPosition(prevPos, prevCtrlValue, rawValue, ctrlValue, options = {}) {
+  const { placeholderChar = ' ', maskReg = /\D/g, type } = options;
+
   const realCtrlValue = normalizeString(prevCtrlValue);
   const realRawValue = normalizeString(rawValue);
   const placeholderChars = Array.isArray(placeholderChar) ? placeholderChar : [placeholderChar];

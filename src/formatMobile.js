@@ -25,7 +25,9 @@ import normalizeString from './normalizeString';
  * formatMobile('13345678'); // 133 4567 8
  * 
  */
-function formatMobile(mobileNo, { char = ' ' } = {}) {
+function formatMobile(mobileNo, options = {}) {
+  const { char = ' ' } = options;
+
   const regChar = new RegExp(char, 'g');
   const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
 

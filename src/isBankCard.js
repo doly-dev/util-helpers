@@ -46,7 +46,9 @@ function sumCheckCode(numStr) {
  * isBankCard('123456789', { loose: true }); // true
  *
  */
-function isBankCard(value, { loose = false, luhn = false } = {}) {
+function isBankCard(value, options = {}) {
+  const { loose = false, luhn = false } = options;
+
   const valueStr = normalizeString(value);
   const validateResult = loose ? regLoose.test(valueStr) : reg.test(valueStr);
 

@@ -114,7 +114,9 @@ function formatDec(decStr, precision, decimal) {
  * formatMoney(1000.00, { decimal: '&' }); // 1,000&00
  * 
  */
-const formatMoney = (num, { precision = 2, symbol, thousand = ',', decimal = '.' } = {}) => {
+const formatMoney = (num, options = {}) => {
+  let { precision = 2, symbol, thousand = ',', decimal = '.' } = options;
+
   // 数字参数不正确，返回空字符串
   // @ts-ignore
   if (!checkNumber(num)) {
