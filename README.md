@@ -125,3 +125,8 @@ formatMoney('1000'); // => 1,000.00
 [npm-url]: https://npmjs.com/package/util-helpers
 [what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 [ua-parser-js]: https://www.npmjs.com/package/ua-parser-js
+[numeral]: http://numeraljs.com/
+[rxjs]: https://www.npmjs.com/package/rxjs
+[immutable]: https://www.npmjs.com/package/immutable
+[classnames]: https://www.npmjs.com/package/classnames
+[ramda]: https://www.npmjs.com/package/ramda
