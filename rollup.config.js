@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import babel from '@rollup/plugin-babel';
-import json from '@rollup/plugin-json';
+import replace from '@rollup/plugin-replace';
 
 import pkg from './package.json';
 
@@ -15,7 +15,7 @@ function toCamel(str) {
 
 const globalVarName = toCamel(pkg.name);
 
-// TODO cjs/es/types 使用 rollup 构建
+// TODO cjs/es 使用 rollup 构建
 
 export default {
   input: './src/index.js',
@@ -34,5 +34,15 @@ export default {
       plugins: [terser()]
     }
   ],
-  plugins: [json({ preferConst: true }), resolve(), commonjs(), babel({ babelHelpers: 'bundled' })]
+  plugins: [
+    replace({
+      preventAssignment: true,
+      values: {
+        BUILD_VERSION: JSON.stringify(pkg.version)
+      }
+    }),
+    resolve(),
+    commonjs(),
+    babel({ babelHelpers: 'bundled' })
+  ]
 };

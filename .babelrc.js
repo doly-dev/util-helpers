@@ -1,6 +1,19 @@
+const { version } = require('./package.json');
 const { MODULE_TYPE, NODE_ENV } = process.env;
 
-const plugins = [];
+const plugins = [
+  ["minify-replace", {
+    replacements: [
+      {
+        identifierName: "BUILD_VERSION",
+        replacement: {
+          type: "stringLiteral",
+          value: version,
+        },
+      }
+    ]
+  }]
+];
 
 if (MODULE_TYPE === 'cjs' || MODULE_TYPE === 'esm') {
   plugins.push(["inline-json", { "matchPattern": "config" }]);

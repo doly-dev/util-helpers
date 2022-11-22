@@ -1,10 +1,12 @@
-import { config, setDisableWarning } from '../../src/utils/config';
+import pkg from '../../package.json';
+import { config, setDisableWarning, version } from '../../src/utils/config';
 import devWarn from '../../src/utils/devWarn';
 
 describe('config', () => {
   it('should be defined', () => {
     expect(config).toBeDefined();
     expect(setDisableWarning).toBeDefined();
+    expect(version).toBeDefined();
   });
 
   it('test config', () => {
@@ -17,5 +19,9 @@ describe('config', () => {
     expect(config.disableWarning).toBe(false);
 
     errorSpy.mockRestore();
+  });
+
+  it('equal package.json version', () => {
+    expect(version).toBe(pkg.version);
   });
 });

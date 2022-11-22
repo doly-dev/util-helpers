@@ -1,6 +1,3 @@
-// @ts-ignore
-import { version } from '../../package.json';
-
 const config = {
   // 禁用warning提示
   disableWarning: true
@@ -16,5 +13,8 @@ const config = {
 function setDisableWarning(bool) {
   config.disableWarning = !!bool;
 }
+
+// eslint-disable-next-line no-undef
+const version = BUILD_VERSION;
 
 export { config, setDisableWarning, version };
