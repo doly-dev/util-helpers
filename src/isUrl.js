@@ -46,6 +46,8 @@ const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg}
  * isUrl('a.b:8080'); // true
  * isUrl('p://a.b'); // true
  * isUrl('p://a.b:8888'); // true
+ * isUrl('中文域名.中文后缀'); // true
+ * isUrl('中文域名.cn'); // true
  * 
  */
 function isUrl(value) {
