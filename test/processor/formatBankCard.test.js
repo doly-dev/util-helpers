@@ -15,10 +15,10 @@ describe('formatBankCard', () => {
   });
   it(`16位银行卡`, () => {
     expect(formatBankCard('6228480402564890')).toBe('6228 4804 0256 4890');
-    expect(formatBankCard('6228480402564890', { char: '-' })).toBe('6228-4804-0256-4890');
+    expect(formatBankCard('6228480402564890', { spaceMark: '-' })).toBe('6228-4804-0256-4890');
   });
   it(`脱敏银行卡`, () => {
     expect(formatBankCard('6228********890')).toBe('6228 **** **** 890');
-    expect(formatBankCard('6228********890', { char: '-' })).toBe('6228-****-****-890');
+    expect(formatBankCard('6228********890', { spaceMark: '-' })).toBe('6228-****-****-890');
   });
 });

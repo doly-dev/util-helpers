@@ -29,12 +29,12 @@ yarn add util-helpers
 ## 示例
 
 ```javascript
-import { formatBankCard, formatMoney } from 'util-helpers';
+import { formatMoney, formatBankCard } from 'util-helpers';
 
-formatBankCard('6228480402564890018'); // => 6228 4804 0256 4890 018
-formatBankCard('6228480402564890018', { char: '-' }); // => 6228-4804-0256-4890-018
+formatMoney('1000'); // 1,000.00
 
-formatMoney('1000'); // => 1,000.00
+formatBankCard('6228480402564890018'); // 6228 4804 0256 4890 018
+formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-4890-018
 ```
 
 ## 文档

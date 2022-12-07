@@ -8,7 +8,7 @@ import normalizeString from './normalizeString';
  * @since 1.1.0
  * @param {string} bankCardNo 要处理的字符串
  * @param {Object} [options] 配置项
- * @param {string} [options.char=" "] 间隔字符
+ * @param {string} [options.spaceMark=' '] 间隔字符
  * @param {number} [options.length=4] 间隔长度
  * @returns {string} 格式化的银行卡号
  * @example
@@ -23,17 +23,20 @@ import normalizeString from './normalizeString';
  * formatBankCard('6228********890'); // 6228 **** **** 890
  *
  * // 16位银行卡，"-"间隔
- * formatBankCard('6228480402564890', {char: '-'}); // 6228-4804-0256-4890
+ * formatBankCard('6228480402564890', {spaceMark: '-'}); // 6228-4804-0256-4890
  *
  */
 function formatBankCard(bankCardNo = '', options = {}) {
+  // @ts-ignore
+  // TODO 下个版本废弃 char
   const { char = ' ', length = 4 } = options;
+  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
 
   const reg = new RegExp(`(.{${length}})`, 'g');
-  const regChar = new RegExp(`${char}`, 'g');
+  const regChar = new RegExp(`${realSpaceMark}`, 'g');
 
   const realValue = normalizeString(bankCardNo).replace(regChar, '');
-  const str = realValue.replace(reg, `$1${char}`);
+  const str = realValue.replace(reg, `$1${realSpaceMark}`);
 
   return realValue.length % length === 0 ? str.substring(0, str.length - 1) : str;
 }
