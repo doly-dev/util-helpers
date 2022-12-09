@@ -8,7 +8,9 @@
       "README.md"
     ],
     "exclude": [
-      "./src/utils"
+      "./src/utils",
+      "./src/transformFieldNames.js",
+      "./src/transformFieldNames.type.js"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"

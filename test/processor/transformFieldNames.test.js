@@ -12,7 +12,14 @@ const options = [
 ];
 
 const options2 = [
-  ...options,
+  {
+    code: '1',
+    name: 'one',
+  },
+  {
+    code: '2',
+    name: 'two',
+  },
   {
     code: '3',
     name: 'three',
@@ -36,7 +43,14 @@ const options2 = [
 ];
 
 const options3 = [
-  ...options,
+  {
+    code: '1',
+    name: 'one',
+  },
+  {
+    code: '2',
+    name: 'two',
+  },
   {
     code: '3',
     name: 'three',
@@ -92,7 +106,7 @@ describe('transformFieldNames', () => {
   });
 
   it('recusion', () => {
-    const newOpts = transformFieldNames(options2, { label: 'name', value: 'code' });
+    const newOpts = transformFieldNames(options2, { label: 'name', value: 'code' }, 'children');
     expect(newOpts).toMatchObject([{ label: 'one', value: '1' }, { label: 'two', value: '2' }, {
       value: '3',
       label: 'three',

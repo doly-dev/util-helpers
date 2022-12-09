@@ -2,6 +2,9 @@
   "include": [
     "src"
   ],
+  "exclude": [
+    "src/*.doc.js"
+  ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Basic Options */
