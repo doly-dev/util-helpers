@@ -54,6 +54,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
   - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
+  - [listToTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.listToTree) - 列表数据转树结构
   - [normalizeString](https://doly-dev.github.io/util-helpers/module-Processor.html#.normalizeString) - 规整化字符串，如果值为 `undefined` `null` 转为 ''，如果不是字符串类型则转为字符串
   - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
   - [padZero](https://doly-dev.github.io/util-helpers/module-Processor.html#.padZero) - 前置补零
