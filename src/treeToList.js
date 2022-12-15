@@ -50,4 +50,38 @@ function treeToList(tree, childrenField) {
   return list;
 }
 
+// function treeToList(tree, childrenField) {
+//   /** @type {R[]} */
+//   const list = [];
+
+//   // 深度优先
+//   /** @type {T[]} */
+//   const stack = [];
+//   for (const item of tree) {
+//     if (isObject(item)) {
+//       stack.push(item);
+
+//       while (stack.length) {
+//         /** @type {T} */
+//         // @ts-ignore
+//         const temp = stack.shift();
+
+//         // @ts-ignore
+//         list.push(temp);
+
+//         if (temp[childrenField]) {
+//           if (Array.isArray(temp[childrenField]) && temp[childrenField].length > 0) {
+//             stack.push(...temp[childrenField]);
+//           }
+//           delete temp[childrenField];
+//         }
+//       }
+//     } else {
+//       // @ts-ignore
+//       list.push(item);
+//     }
+//   }
+//   return list;
+// }
+
 export default treeToList;
