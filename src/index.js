@@ -48,6 +48,7 @@ export { default as formatMobile } from './formatMobile';
 export { default as padZero } from './padZero';
 export { default as transformFieldNames } from './transformFieldNames';
 export { default as listToTree } from './listToTree';
+export { default as treeToList } from './treeToList';
 
 /**
  * 数学计算，修正浮点数计算问题

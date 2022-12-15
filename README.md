@@ -63,6 +63,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
   - [setDataURLPrefix](https://doly-dev.github.io/util-helpers/module-Processor.html#.setDataURLPrefix) - 设置 DataURL 前缀、MIME 类型、base64 标识
   - [transformFieldNames](https://doly-dev.github.io/util-helpers/module-Processor.html#.transformFieldNames) - 转换字段名
+  - [treeToList](https://doly-dev.github.io/util-helpers/module-Processor.html#.treeToList) - 树结构转列表数据
 - 数据验证
   - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
   - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
