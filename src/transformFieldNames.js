@@ -1,6 +1,8 @@
 // 修改类型，请同步到 transformFieldNames.type.js
 // 修改文档，请同步到 transformFieldNames.doc.js
 
+import { isObject } from './utils/type';
+
 /**
  * 转换字段名，返回一个转换字段后的值，不改变原值。
  * 
@@ -51,7 +53,7 @@ function transformFieldNames(data, fieldNames, childrenFieldName) {
    */
   function recusion(arr = []) {
     return arr.map(item => {
-      if (typeof item !== 'object' || !item) {
+      if (!isObject(item)) {
         return item;
       }
 
