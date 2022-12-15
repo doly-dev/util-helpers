@@ -8,7 +8,7 @@
  * @alias module:Processor.transformFieldNames
  * @since 4.14.0
  * @template {*} D
- * @template {Object.<string, keyof D>} F
+ * @template {Record<string, keyof D>} F
  * @template {string} C
  * @param {D[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenFieldName
  * @param {F} fieldNames 字段名映射

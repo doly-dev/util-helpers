@@ -15,9 +15,15 @@ const plugins = [
   }]
 ];
 
-if (MODULE_TYPE === 'cjs' || MODULE_TYPE === 'esm') {
-  plugins.push(["inline-json", { "matchPattern": "config" }]);
-}
+const presets = [
+  [
+    '@babel/env',
+    {
+      modules: MODULE_TYPE === 'esm' ? false : 'auto',
+      targets: NODE_ENV === 'test' ? { node: 'current' } : ['> 1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9']
+    }
+  ]
+];
 
 if (MODULE_TYPE === 'cjs') {
   plugins.push('@babel/transform-modules-commonjs');
@@ -27,15 +33,11 @@ if (MODULE_TYPE === 'esm' || NODE_ENV === 'test') {
   plugins.push('@babel/transform-runtime');
 }
 
+if (NODE_ENV === 'test') {
+  presets.push('@babel/preset-typescript');
+}
+
 module.exports = {
-  presets: [
-    [
-      '@babel/env',
-      {
-        modules: MODULE_TYPE === 'esm' ? false : 'auto',
-        targets: ['> 1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9']
-      }
-    ]
-  ],
+  presets,
   plugins
 };
