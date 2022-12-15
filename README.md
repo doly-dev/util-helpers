@@ -4,6 +4,8 @@
 
 [util-helpers](https://doly-dev.github.io/util-helpers/index.html) 是一个基于业务场景的工具方法库。
 
+[点击查看在线文档](https://doly-dev.github.io/util-helpers/index.html)。
+
 ## 使用
 
 ### `es` 或 `node` 开发环境
