@@ -102,7 +102,7 @@ const menus = [
 ];
 
 describe('findTreeSelect', () => {
-  it.only('basic', () => {
+  it('basic', () => {
     const basicMenus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
 
     console.log(JSON.stringify(findTreeSelect(basicMenus, item => item.id === '2')));
