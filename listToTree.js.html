@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>formatMobile.js - util-helpers </title>
+    <title>listToTree.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMobile.js</h1>
+    <h1 class="page-title">listToTree.js</h1>
     
 
     
@@ -71,53 +71,119 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
+            <pre class="prettyprint source linenums"><code>import { isObject } from "./utils/type";
 
 /**
- * 格式化手机号码
- *
- * @static
- * @alias module:Processor.formatMobile
- * @since 4.5.0
- * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @returns {string} 格式化后的手机号码
- * @example
+ * 递归处理空子级
  * 
- * formatMobile('13345678900'); // 133 4567 8900
- * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
- *
- * // 脱敏手机号码
- * formatMobile('133****1234'); // 133 **** 1234
- * formatMobile('133****1234', { spaceMark: '-' }); // 133-****-1234
- *
- * // 手机号码位数不够
- * formatMobile('133'); // 133
- * formatMobile('133456'); // 133 456
- * formatMobile('13345678'); // 133 4567 8
- * 
+ * @private
+ * @template {Record&lt;string,any>} [T=Record&lt;string,any>]
+ * @param {T[]} arr 列表数据
+ * @param {object} options 配置项
+ * @param {string} [options.childrenField='children'] 子级字段名称
+ * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
  */
-function formatMobile(mobileNo, options = {}) {
-  // @ts-ignore
-  // TODO 下个版本废弃 char
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
-
-  const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
-
-  if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
-  }
-  if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
-  }
-  return realValue;
+function processEmptyChildren(arr, options = {}) {
+  const { childrenField = 'children', emptyChildrenValue = 'none' } = options;
+  arr.forEach(item => {
+    if (isObject(item) &amp;&amp; Array.isArray(item[childrenField])) {
+      if (item[childrenField].length &lt;= 0) {
+        if (emptyChildrenValue === 'null') {
+          // @ts-ignore
+          item[childrenField] = null;
+        } else if (emptyChildrenValue === 'none') {
+          delete item[childrenField];
+        }
+      } else {
+        processEmptyChildren(item[childrenField], options);
+      }
+    }
+  });
 }
 
-export default formatMobile;
-</code></pre>
+/**
+ * 列表数据转树结构
+ * 
+ * @static
+ * @alias module:Processor.listToTree
+ * @since 4.14.0
+ * @template {Record&lt;string,any>} [T=Record&lt;string,any>]
+ * @template {*} [R=T&amp;Record&lt;string,any>]
+ * @param {T[]} list 列表数据
+ * @param {object} options 配置项
+ * @param {string} [options.keyField='id'] 当前数据的键值字段名称
+ * @param {string} [options.parentField='pid'] 当前数据的父级字段名称
+ * @param {string} [options.childrenField='children'] 子级字段名称
+ * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
+ * @returns {R[]} 树结构
+ * @example
+ * 
+ * const menus = [
+ *   { id: '1', name: '首页', code: 'trade', pid: null },
+ *   { id: '2', name: '交易管理', code: 'trade', pid: null },
+ *   { id: '3', name: '交易查询', code: 'trade-1', pid: '2' },
+ *   { id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' },
+ *   { id: '5', name: '权限管理', code: 'authorization', pid: null },
+ *   { id: '6', name: '角色管理', code: 'authorization-1', pid: '5' },
+ *   { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
+ * ];
+ * listToTree(menus); 
+ * // [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
+ * 
+ * // 自定义子级字段名
+ * listToTree(basicMenus, { childrenField: 'childs' });
+ * // [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null,"childs":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","childs":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"childs":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
+ * 
+ */
+function listToTree(list, options = {}) {
+  const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none' } = options;
+
+  /** @type {R[]} */
+  const tree = [];
+
+  /** @type {Object.&lt;string, T[]>} */
+  const record = {};
+
+  list.forEach(item => {
+    if (isObject(item)) {
+      const newItem = { ...item };
+
+      /** @type {string} */
+      const id = newItem[keyField];
+
+      /** @type {string} */
+      const pid = newItem[parentField];
+
+      if (record[id]) {
+        // @ts-ignore
+        newItem[childrenField] = record[id];
+      } else {
+        // @ts-ignore
+        newItem[childrenField] = record[id] = [];
+      }
+
+      if (pid) {
+        if (!record[pid]) {
+          record[pid] = [newItem];
+        } else {
+          record[pid].push(newItem);
+        }
+      } else {
+        // @ts-ignore
+        tree.push(newItem);
+      }
+    }
+  });
+
+  if (emptyChildrenValue !== 'array') {
+    // @ts-ignore
+    processEmptyChildren(tree, options);
+  }
+
+  return tree;
+}
+
+export default listToTree;</code></pre>
         </article>
     </section>
 

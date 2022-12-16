@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>formatMobile.js - util-helpers </title>
+    <title>findTreeNode.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMobile.js</h1>
+    <h1 class="page-title">findTreeNode.js</h1>
     
 
     
@@ -71,53 +71,63 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
-
-/**
- * 格式化手机号码
- *
+            <pre class="prettyprint source linenums"><code>/**
+ * 查找树结构数据节点
+ * 
  * @static
- * @alias module:Processor.formatMobile
- * @since 4.5.0
- * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @returns {string} 格式化后的手机号码
+ * @alias module:Other.findTreeNode
+ * @since 4.14.0
+ * @template {any} T
+ * @template {(item: T) => boolean} F
+ * @param {T[]} tree 树结构数据
+ * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回该节点
+ * @param {string} [childrenField='children'] 子级字段名
+ * @returns {T|undefined}
  * @example
+ * const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
  * 
- * formatMobile('13345678900'); // 133 4567 8900
- * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
- *
- * // 脱敏手机号码
- * formatMobile('133****1234'); // 133 **** 1234
- * formatMobile('133****1234', { spaceMark: '-' }); // 133-****-1234
- *
- * // 手机号码位数不够
- * formatMobile('133'); // 133
- * formatMobile('133456'); // 133 456
- * formatMobile('13345678'); // 133 4567 8
+ * findTreeNode(menus, item=>item.id === '2');
+ * // {"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}
  * 
+ * findTreeNode(menus, item=>item.id === '7');
+ * // {"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}
+ * 
+ * findTreeNode(menus, item=>item.id === 'not found');
+ * // undefined
  */
-function formatMobile(mobileNo, options = {}) {
-  // @ts-ignore
-  // TODO 下个版本废弃 char
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
+function findTreeNode(tree, predicate, childrenField = 'children') {
+  const stack = [];
 
-  const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
+  /** @type {T|undefined} */
+  let node;
 
-  if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
+  for (const item of tree) {
+    stack.push(item);
+
+    while (stack.length) {
+      /** @type {T} */
+      // @ts-ignore
+      const temp = stack.pop();
+      if (predicate(temp)) {
+        node = temp;
+        break;
+      }
+
+      /** @type {T[]} */
+      // @ts-ignore
+      const children = temp[childrenField] || [];
+      stack.push(...children);
+    }
+
+    if (node) {
+      break;
+    }
   }
-  if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
-  }
-  return realValue;
+
+  return node;
 }
 
-export default formatMobile;
-</code></pre>
+export default findTreeNode;</code></pre>
         </article>
     </section>
 

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>formatMobile.js - util-helpers </title>
+    <title>findTreeSelect.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMobile.js</h1>
+    <h1 class="page-title">findTreeSelect.js</h1>
     
 
     
@@ -71,53 +71,76 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
+            <pre class="prettyprint source linenums"><code>import { isObject } from "./utils/type";
 
 /**
- * 格式化手机号码
- *
- * @static
- * @alias module:Processor.formatMobile
- * @since 4.5.0
- * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @returns {string} 格式化后的手机号码
- * @example
+ * 内部实现
  * 
- * formatMobile('13345678900'); // 133 4567 8900
- * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
- *
- * // 脱敏手机号码
- * formatMobile('133****1234'); // 133 **** 1234
- * formatMobile('133****1234', { spaceMark: '-' }); // 133-****-1234
- *
- * // 手机号码位数不够
- * formatMobile('133'); // 133
- * formatMobile('133456'); // 133 456
- * formatMobile('13345678'); // 133 4567 8
- * 
+ * @private
+ * @template {any} T
+ * @template {(item: T) => boolean} F
+ * @param {T[]} tree 树结构数据
+ * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回包含该节点的所有父级节点
+ * @param {string} [childrenField='children'] 子级字段名
+ * @param {T[]} [path=[]] 当前遍历路径
+ * @returns {T[]}
  */
-function formatMobile(mobileNo, options = {}) {
-  // @ts-ignore
-  // TODO 下个版本废弃 char
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
-
-  const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
-
-  if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
+function internalFindTreeSelect(tree, predicate, childrenField = 'children', path = []) {
+  if (!tree) {
+    return [];
   }
-  if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
+
+  for (const item of tree) {
+    path.push(item);
+
+    if (predicate(item)) {
+      return path;
+    }
+
+    // @ts-ignore
+    if (isObject(item) &amp;&amp; Array.isArray(item[childrenField]) &amp;&amp; item[childrenField].length > 0) {
+      // @ts-ignore
+      const findChildren = internalFindTreeSelect(item[childrenField], predicate, childrenField, path);
+      if (findChildren.length > 0) {
+        return findChildren;
+      }
+    }
+
+    path.pop();
   }
-  return realValue;
+
+  return [];
 }
 
-export default formatMobile;
-</code></pre>
+/**
+ * 查找包含当前节点的所有父级节点
+ * 
+ * @static
+ * @alias module:Other.findTreeSelect
+ * @since 4.14.0
+ * @template {any} T
+ * @template {(item: T) => boolean} F
+ * @param {T[]} tree 树结构数据
+ * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回包含该节点的所有父级节点
+ * @param {string} [childrenField='children'] 子级字段名
+ * @returns {T[]}
+ * @example
+ * const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+ * 
+ * findTreeSelect(menus, item => item.id === '2');
+ * // [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}]
+ * 
+ * findTreeSelect(menus, item => item.id === '7');
+ * // [{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]
+ * 
+ * findTreeSelect(menus, item => item.id === 'not found');
+ * // []
+ */
+function findTreeSelect(tree, predicate, childrenField = 'children') {
+  return internalFindTreeSelect(tree, predicate, childrenField);
+}
+
+export default findTreeSelect;</code></pre>
         </article>
     </section>
 

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>formatMobile.js - util-helpers </title>
+    <title>treeToList.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMobile.js</h1>
+    <h1 class="page-title">treeToList.js</h1>
     
 
     
@@ -71,53 +71,93 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
+            <pre class="prettyprint source linenums"><code>import { isObject } from "./utils/type";
 
 /**
- * 格式化手机号码
- *
+ * 树结构转列表数据
+ * 
  * @static
- * @alias module:Processor.formatMobile
- * @since 4.5.0
- * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @returns {string} 格式化后的手机号码
+ * @alias module:Processor.treeToList
+ * @since 4.14.0
+ * @template {Record&lt;string,any>} T
+ * @template {keyof T} K
+ * @template {Omit&lt;T, K>} R
+ * @param {T[]} tree 列表数据
+ * @param {K} childrenField 子级字段名称
+ * @returns {R[]} 列表数据
  * @example
+ * const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
  * 
- * formatMobile('13345678900'); // 133 4567 8900
- * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
- *
- * // 脱敏手机号码
- * formatMobile('133****1234'); // 133 **** 1234
- * formatMobile('133****1234', { spaceMark: '-' }); // 133-****-1234
- *
- * // 手机号码位数不够
- * formatMobile('133'); // 133
- * formatMobile('133456'); // 133 456
- * formatMobile('13345678'); // 133 4567 8
- * 
+ * treeToList(menus, 'children'));
+ * // [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null},{"id":"3","name":"交易查询","code":"trade-1","pid":"2"},{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"},{"id":"5","name":"权限管理","code":"authorization","pid":null},{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]
  */
-function formatMobile(mobileNo, options = {}) {
-  // @ts-ignore
-  // TODO 下个版本废弃 char
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
+function treeToList(tree, childrenField) {
+  /** @type {R[]} */
+  const list = [];
 
-  const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
+  /**
+   * 递归遍历
+   * @param {T[]} arr 列表数据
+   */
+  function recusion(arr) {
+    arr.forEach(item => {
+      if (isObject(item)) {
+        const newItem = { ...item };
+        // @ts-ignore
+        list.push(newItem);
 
-  if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
+        if (newItem?.[childrenField]) {
+          if (Array.isArray(newItem[childrenField]) &amp;&amp; newItem[childrenField].length > 0) {
+            recusion(newItem[childrenField]);
+          }
+          delete newItem[childrenField];
+        }
+      } else {
+        // @ts-ignore
+        list.push(item);
+      }
+    });
   }
-  if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
-  }
-  return realValue;
+
+  recusion(tree);
+  return list;
 }
 
-export default formatMobile;
-</code></pre>
+// function treeToList(tree, childrenField) {
+//   /** @type {R[]} */
+//   const list = [];
+
+//   // 深度优先
+//   /** @type {T[]} */
+//   const stack = [];
+//   for (const item of tree) {
+//     if (isObject(item)) {
+//       stack.push(item);
+
+//       while (stack.length) {
+//         /** @type {T} */
+//         // @ts-ignore
+//         const temp = stack.shift();
+
+//         // @ts-ignore
+//         list.push(temp);
+
+//         if (temp[childrenField]) {
+//           if (Array.isArray(temp[childrenField]) &amp;&amp; temp[childrenField].length > 0) {
+//             stack.push(...temp[childrenField]);
+//           }
+//           delete temp[childrenField];
+//         }
+//       }
+//     } else {
+//       // @ts-ignore
+//       list.push(item);
+//     }
+//   }
+//   return list;
+// }
+
+export default treeToList;</code></pre>
         </article>
     </section>
 

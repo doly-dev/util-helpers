@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>formatMobile.js - util-helpers </title>
+    <title>transformFieldNames.doc.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">formatMobile.js</h1>
+    <h1 class="page-title">transformFieldNames.doc.js</h1>
     
 
     
@@ -71,52 +71,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
+            <pre class="prettyprint source linenums"><code>/* eslint-disable no-unused-vars */
+// 该文件用于 jsdoc 生成文件。因为一些 typescript 语法， jsdoc 不支持，导致生成文档报错。
 
 /**
- * 格式化手机号码
- *
+ * 转换字段名，返回一个转换字段后的值，不改变原值。
+ * 
  * @static
- * @alias module:Processor.formatMobile
- * @since 4.5.0
- * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @returns {string} 格式化后的手机号码
+ * @alias module:Processor.transformFieldNames
+ * @since 4.14.0
+ * @param {object[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenFieldName
+ * @param {object} fieldNames 字段名映射
+ * @param {string} [childrenFieldName] 子级数据字段名
+ * @returns {object[]}
  * @example
  * 
- * formatMobile('13345678900'); // 133 4567 8900
- * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
- *
- * // 脱敏手机号码
- * formatMobile('133****1234'); // 133 **** 1234
- * formatMobile('133****1234', { spaceMark: '-' }); // 133-****-1234
- *
- * // 手机号码位数不够
- * formatMobile('133'); // 133
- * formatMobile('133456'); // 133 456
- * formatMobile('13345678'); // 133 4567 8
+ * const options = [{code: '1', name: 'one'},{code:'2', name:'two'}];
+ * const newOptions = transformFieldNames(options, {label: 'name', value: 'code'});
+ * // [{value: '1', label: 'one'},{value:'2', label:'two'}]
  * 
+ * // 嵌套数据，指定子级字段名 children
+ * const options2 = [{code: '1', name: 'one'},{code:'2', name:'two', children: [{code:'2-1', name:'two-one', children: [{code: '2-1-1', name:'two-one-one'}]}]}];
+ * const newOptions2 = transformFieldNames(options2, {label: 'name', value: 'code'}, 'children');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one', children: [{value: '2-1-1', label:'two-one-one'}]}]}]
+ * 
+ * const options3 = [{code: '1', name: 'one'},{code:'2', name:'two', childs: [{code:'2-1', name:'two-one'}]}];
+ * const newOptions3 = transformFieldNames(options3, {label: 'name', value: 'code'}, 'childs');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', childs: [{value: '2-1', label:'two-one'}]}]
+ * 
+ * // 嵌套数据，并替换子集字段名
+ * const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code', children: 'childs'}, 'childs');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
-function formatMobile(mobileNo, options = {}) {
-  // @ts-ignore
-  // TODO 下个版本废弃 char
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? options.spaceMark : char;
+function transformFieldNames(data, fieldNames, childrenFieldName) { }
 
-  const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
-
-  if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
-  }
-  if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
-  }
-  return realValue;
-}
-
-export default formatMobile;
+export default transformFieldNames;
 </code></pre>
         </article>
     </section>
