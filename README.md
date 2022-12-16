@@ -91,6 +91,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
+  - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
   - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
   - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise
@@ -125,13 +126,16 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 [store2]: https://www.npmjs.com/package/store2
 [uuid]: https://www.npmjs.com/package/uuid
 [jszip]: https://www.npmjs.com/package/jszip
-[data-urls]: https://www.npmjs.com/package/data-urls
 [npm]: https://img.shields.io/npm/v/util-helpers.svg
 [npm-url]: https://npmjs.com/package/util-helpers
-[what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 [ua-parser-js]: https://www.npmjs.com/package/ua-parser-js
+
+<!--
+[data-urls]: https://www.npmjs.com/package/data-urls
+[what is commitlint]: https://github.com/conventional-changelog/commitlint#what-is-commitlint
 [numeral]: http://numeraljs.com/
 [rxjs]: https://www.npmjs.com/package/rxjs
 [immutable]: https://www.npmjs.com/package/immutable
 [classnames]: https://www.npmjs.com/package/classnames
 [ramda]: https://www.npmjs.com/package/ramda
+-->
