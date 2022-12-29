@@ -10,6 +10,7 @@
  * @param {object[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenFieldName
  * @param {object} fieldNames 字段名映射
  * @param {string} [childrenFieldName] 子级数据字段名
+ * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
  * @returns {object[]}
  * @example
  * 

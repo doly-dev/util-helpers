@@ -15,6 +15,7 @@ import { isObject } from './utils/type';
  * @param {D[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenFieldName
  * @param {F} fieldNames 字段名映射
  * @param {C} [childrenFieldName] 子级数据字段名
+ * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
  * @returns {import('./transformFieldNames.type.js').TransformFieldNames<D, F, C>}
  * @example
  * 
@@ -35,7 +36,7 @@ import { isObject } from './utils/type';
  * const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code', children: 'childs'}, 'childs');
  * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
-function transformFieldNames(data, fieldNames, childrenFieldName) {
+function transformFieldNames(data, fieldNames, childrenFieldName, nodeAssign = 'spread') {
   if (!Array.isArray(data)) {
     return data;
   }
@@ -57,7 +58,7 @@ function transformFieldNames(data, fieldNames, childrenFieldName) {
         return item;
       }
 
-      const newItem = { ...item };
+      const newItem = nodeAssign === 'spread' ? { ...item } : item;
       /** @type {Array.<string>} */
       const delKeys = [];
 
