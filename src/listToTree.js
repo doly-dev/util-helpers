@@ -42,6 +42,7 @@ function processEmptyChildren(arr, options = {}) {
  * @param {string} [options.parentField='pid'] 当前数据的父级字段名称
  * @param {string} [options.childrenField='children'] 子级字段名称
  * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
+ * @param {'spread'|'self'} [options.nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
  * @returns {R[]} 树结构
  * @example
  * 
@@ -63,7 +64,7 @@ function processEmptyChildren(arr, options = {}) {
  * 
  */
 function listToTree(list, options = {}) {
-  const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none' } = options;
+  const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none', nodeAssign = 'spread' } = options;
 
   /** @type {R[]} */
   const tree = [];
@@ -73,7 +74,7 @@ function listToTree(list, options = {}) {
 
   list.forEach(item => {
     if (isObject(item)) {
-      const newItem = { ...item };
+      const newItem = nodeAssign === 'spread' ? { ...item } : item;
 
       /** @type {string} */
       const id = newItem[keyField];
