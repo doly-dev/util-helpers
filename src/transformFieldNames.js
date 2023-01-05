@@ -12,9 +12,9 @@ import { isObject } from './utils/type';
  * @template {*} D
  * @template {Record<string, keyof D>} F
  * @template {string} C
- * @param {D[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenFieldName
+ * @param {D[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenField
  * @param {F} fieldNames 字段名映射
- * @param {C} [childrenFieldName] 子级数据字段名
+ * @param {C} [childrenField] 子级数据字段名
  * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
  * @returns {import('./transformFieldNames.type.js').TransformFieldNames<D, F, C>}
  * @example
@@ -36,7 +36,7 @@ import { isObject } from './utils/type';
  * const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code', children: 'childs'}, 'childs');
  * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
-function transformFieldNames(data, fieldNames, childrenFieldName, nodeAssign = 'spread') {
+function transformFieldNames(data, fieldNames, childrenField, nodeAssign = 'spread') {
   if (!Array.isArray(data)) {
     return data;
   }
@@ -64,9 +64,9 @@ function transformFieldNames(data, fieldNames, childrenFieldName, nodeAssign = '
 
       // 树形数据子节点
       // @ts-ignore
-      if (childrenFieldName && Array.isArray(newItem[childrenFieldName]) && newItem[childrenFieldName].length > 0) {
+      if (childrenField && Array.isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
         // @ts-ignore
-        newItem[childrenFieldName] = recusion(newItem[childrenFieldName].slice());
+        newItem[childrenField] = recusion(newItem[childrenField].slice());
       }
 
       // 替换字段名
