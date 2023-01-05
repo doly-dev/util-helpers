@@ -1,3 +1,5 @@
+import { isObject } from "./utils/type";
+
 /**
  * 查找树结构数据节点
  * 
@@ -7,7 +9,7 @@
  * @template {any} T
  * @template {(item: T) => boolean} F
  * @param {T[]} tree 树结构数据
- * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回该节点
+ * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy ，将返回该节点
  * @param {string} [childrenField='children'] 子级字段名
  * @returns {T|undefined}
  * @example
@@ -40,10 +42,14 @@ function findTreeNode(tree, predicate, childrenField = 'children') {
         break;
       }
 
-      /** @type {T[]} */
-      // @ts-ignore
-      const children = temp[childrenField] || [];
-      stack.push(...children);
+      if (isObject(temp)) {
+        /** @type {T[]} */
+        // @ts-ignore
+        const childs = temp[childrenField];
+        if (Array.isArray(childs) && childs.length > 0) {
+          stack.push(...childs);
+        }
+      }
     }
 
     if (node) {

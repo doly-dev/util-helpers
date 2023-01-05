@@ -49,8 +49,6 @@ export { default as padZero } from './padZero';
 export { default as transformFieldNames } from './transformFieldNames';
 export { default as listToTree } from './listToTree';
 export { default as treeToList } from './treeToList';
-export { default as findTreeNode } from './findTreeNode';
-export { default as findTreeSelect } from './findTreeSelect';
 
 /**
  * 数学计算，修正浮点数计算问题
@@ -107,6 +105,8 @@ export { default as waitTime } from './waitTime';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
+export { default as findTreeNode } from './findTreeNode';
+export { default as findTreeSelect } from './findTreeSelect';
 
 /**
  * 调试相关
