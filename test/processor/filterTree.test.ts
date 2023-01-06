@@ -1,4 +1,4 @@
-import { findTreeNode, transformFieldNames } from '../../src';
+import { filterTree, transformFieldNames } from '../../src';
 
 const menus = [
   {
@@ -101,27 +101,41 @@ const menus = [
   }
 ];
 
-describe('findTreeNode', () => {
+const obj = [{ "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+
+describe('filterTree', () => {
   it('basic', () => {
     const basicMenus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
 
-    // console.log(JSON.stringify(findTreeNode(basicMenus, item => item.id === '2')));
-    // console.log(JSON.stringify(findTreeNode(basicMenus, item => item.id === '7')));
-    expect(findTreeNode(basicMenus, item => item.id === '2')).toBe(basicMenus[1]);
-    expect(findTreeNode(basicMenus, item => item.id === '7')).toBe(basicMenus[2].children?.[1]);
-    expect(findTreeNode(basicMenus, item => item.id === 'not found')).toBeUndefined();
-  })
+    // console.log(JSON.stringify(filterTree(basicMenus, item => item.name.indexOf('管理') > -1)));
+    // console.log(JSON.stringify(filterTree(basicMenus, item => item.id === '7')));
+    expect(filterTree(basicMenus, item => item.name.indexOf('管理') > -1)).toMatchObject([{ "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }]);
+    expect(filterTree(basicMenus, item => item.id === '7')).toMatchObject([]);
+    expect(filterTree(basicMenus, item => item.id === 'not found')).toMatchObject([]);
+  });
 
   it('default', () => {
-    expect(findTreeNode(menus, item => item.id === '1000')).toBeUndefined();
-    expect(findTreeNode(menus, item => item.id === '1')).toBe(menus[0]);
-    expect(findTreeNode(menus, item => item.id === '2')).toBe(menus[1]);
-    expect(findTreeNode(menus, item => item.id === '13')).toBe(menus[2]!.children![4].children![0]);
+    expect(filterTree(menus, item => item.name.indexOf('管理') > -1)).toMatchSnapshot();
+    expect(filterTree(menus, item => item.id === '1')).toMatchSnapshot();
+    expect(filterTree(menus, item => item.name.indexOf('交易') > -1)).toMatchSnapshot();
+    expect(filterTree(menus, item => !!item)).toMatchSnapshot();
   });
 
   it('custom children field name', () => {
     const menus2 = transformFieldNames(menus, { childs: 'children' }, 'children');
-    expect(findTreeNode(menus2, item => item.id === '1', 'childs')).toBe(menus2[0]);
-    expect(findTreeNode(menus2, item => item.id === '13', 'childs')).toBe(menus2[2]!.childs![4].childs![0]);
+    expect(filterTree(menus2, item => item.name.indexOf('管理') > -1, 'childs')).toMatchSnapshot();
+    expect(filterTree(menus2, item => item.id === '1', 'childs')).toMatchSnapshot();
+    expect(filterTree(menus2, item => item.name.indexOf('交易') > -1, 'childs')).toMatchSnapshot();
+    expect(filterTree(menus2, item => !!item, 'childs')).toMatchSnapshot();
+  });
+
+  it('node assign self', () => {
+    const menus2 = transformFieldNames(menus, {}, 'children');
+    const ret = filterTree(menus2, item => item.name.indexOf('管理') > -1, 'children', 'self');
+    expect(ret[0]).toEqual(menus2[1]);
+    expect(ret[0]).toMatchSnapshot();
+    expect(ret[1]).toEqual(menus2[2]);
+    expect(ret[1]).toMatchSnapshot();
+    expect(menus2).toMatchSnapshot();
   });
 });

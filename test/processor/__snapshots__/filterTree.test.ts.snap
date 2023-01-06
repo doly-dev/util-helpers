@@ -1,0 +1,594 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filterTree custom children field name 1`] = `
+[
+  {
+    "childs": [],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+  {
+    "childs": [
+      {
+        "code": "authorization-1",
+        "id": "8",
+        "name": "角色管理",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-1",
+        "id": "9",
+        "name": "角色管理-查询操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-2",
+        "id": "10",
+        "name": "角色管理-新增/修改操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-3",
+        "id": "11",
+        "name": "角色管理-删除操作",
+        "pid": "7",
+      },
+      {
+        "childs": [
+          {
+            "code": "authorization-2-1",
+            "id": "13",
+            "name": "用户管理-查询操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-2",
+            "id": "14",
+            "name": "用户管理-新增/修改操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-3",
+            "id": "15",
+            "name": "用户管理-删除操作",
+            "pid": "12",
+          },
+        ],
+        "code": "authorization-2",
+        "id": "12",
+        "name": "用户管理",
+        "pid": "7",
+      },
+    ],
+    "code": "authorization",
+    "id": "7",
+    "name": "权限管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree custom children field name 2`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "name": "首页",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree custom children field name 3`] = `
+[
+  {
+    "childs": [
+      {
+        "childs": [
+          {
+            "code": "trade-1-1",
+            "id": "4",
+            "name": "交易查询-查询操作",
+            "pid": "3",
+          },
+          {
+            "code": "trade-1-2",
+            "id": "5",
+            "name": "交易查询-下载操作",
+            "pid": "3",
+          },
+        ],
+        "code": "trade-1",
+        "id": "3",
+        "name": "交易查询",
+        "pid": "2",
+      },
+      {
+        "code": "trade-2",
+        "id": "6",
+        "name": "新增交易",
+        "pid": "2",
+      },
+    ],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree custom children field name 4`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "name": "首页",
+    "pid": null,
+  },
+  {
+    "childs": [
+      {
+        "childs": [
+          {
+            "code": "trade-1-1",
+            "id": "4",
+            "name": "交易查询-查询操作",
+            "pid": "3",
+          },
+          {
+            "code": "trade-1-2",
+            "id": "5",
+            "name": "交易查询-下载操作",
+            "pid": "3",
+          },
+        ],
+        "code": "trade-1",
+        "id": "3",
+        "name": "交易查询",
+        "pid": "2",
+      },
+      {
+        "code": "trade-2",
+        "id": "6",
+        "name": "新增交易",
+        "pid": "2",
+      },
+    ],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+  {
+    "childs": [
+      {
+        "code": "authorization-1",
+        "id": "8",
+        "name": "角色管理",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-1",
+        "id": "9",
+        "name": "角色管理-查询操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-2",
+        "id": "10",
+        "name": "角色管理-新增/修改操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-3",
+        "id": "11",
+        "name": "角色管理-删除操作",
+        "pid": "7",
+      },
+      {
+        "childs": [
+          {
+            "code": "authorization-2-1",
+            "id": "13",
+            "name": "用户管理-查询操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-2",
+            "id": "14",
+            "name": "用户管理-新增/修改操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-3",
+            "id": "15",
+            "name": "用户管理-删除操作",
+            "pid": "12",
+          },
+        ],
+        "code": "authorization-2",
+        "id": "12",
+        "name": "用户管理",
+        "pid": "7",
+      },
+    ],
+    "code": "authorization",
+    "id": "7",
+    "name": "权限管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree default 1`] = `
+[
+  {
+    "children": [],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+  {
+    "children": [
+      {
+        "code": "authorization-1",
+        "id": "8",
+        "name": "角色管理",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-1",
+        "id": "9",
+        "name": "角色管理-查询操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-2",
+        "id": "10",
+        "name": "角色管理-新增/修改操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-3",
+        "id": "11",
+        "name": "角色管理-删除操作",
+        "pid": "7",
+      },
+      {
+        "children": [
+          {
+            "code": "authorization-2-1",
+            "id": "13",
+            "name": "用户管理-查询操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-2",
+            "id": "14",
+            "name": "用户管理-新增/修改操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-3",
+            "id": "15",
+            "name": "用户管理-删除操作",
+            "pid": "12",
+          },
+        ],
+        "code": "authorization-2",
+        "id": "12",
+        "name": "用户管理",
+        "pid": "7",
+      },
+    ],
+    "code": "authorization",
+    "id": "7",
+    "name": "权限管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree default 2`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "name": "首页",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree default 3`] = `
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "code": "trade-1-1",
+            "id": "4",
+            "name": "交易查询-查询操作",
+            "pid": "3",
+          },
+          {
+            "code": "trade-1-2",
+            "id": "5",
+            "name": "交易查询-下载操作",
+            "pid": "3",
+          },
+        ],
+        "code": "trade-1",
+        "id": "3",
+        "name": "交易查询",
+        "pid": "2",
+      },
+      {
+        "code": "trade-2",
+        "id": "6",
+        "name": "新增交易",
+        "pid": "2",
+      },
+    ],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree default 4`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "name": "首页",
+    "pid": null,
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "code": "trade-1-1",
+            "id": "4",
+            "name": "交易查询-查询操作",
+            "pid": "3",
+          },
+          {
+            "code": "trade-1-2",
+            "id": "5",
+            "name": "交易查询-下载操作",
+            "pid": "3",
+          },
+        ],
+        "code": "trade-1",
+        "id": "3",
+        "name": "交易查询",
+        "pid": "2",
+      },
+      {
+        "code": "trade-2",
+        "id": "6",
+        "name": "新增交易",
+        "pid": "2",
+      },
+    ],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+  {
+    "children": [
+      {
+        "code": "authorization-1",
+        "id": "8",
+        "name": "角色管理",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-1",
+        "id": "9",
+        "name": "角色管理-查询操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-2",
+        "id": "10",
+        "name": "角色管理-新增/修改操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-3",
+        "id": "11",
+        "name": "角色管理-删除操作",
+        "pid": "7",
+      },
+      {
+        "children": [
+          {
+            "code": "authorization-2-1",
+            "id": "13",
+            "name": "用户管理-查询操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-2",
+            "id": "14",
+            "name": "用户管理-新增/修改操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-3",
+            "id": "15",
+            "name": "用户管理-删除操作",
+            "pid": "12",
+          },
+        ],
+        "code": "authorization-2",
+        "id": "12",
+        "name": "用户管理",
+        "pid": "7",
+      },
+    ],
+    "code": "authorization",
+    "id": "7",
+    "name": "权限管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`filterTree node assign self 1`] = `
+{
+  "children": [],
+  "code": "trade",
+  "id": "2",
+  "name": "交易管理",
+  "pid": null,
+}
+`;
+
+exports[`filterTree node assign self 2`] = `
+{
+  "children": [
+    {
+      "code": "authorization-1",
+      "id": "8",
+      "name": "角色管理",
+      "pid": "7",
+    },
+    {
+      "code": "authorization-1-1",
+      "id": "9",
+      "name": "角色管理-查询操作",
+      "pid": "7",
+    },
+    {
+      "code": "authorization-1-2",
+      "id": "10",
+      "name": "角色管理-新增/修改操作",
+      "pid": "7",
+    },
+    {
+      "code": "authorization-1-3",
+      "id": "11",
+      "name": "角色管理-删除操作",
+      "pid": "7",
+    },
+    {
+      "children": [
+        {
+          "code": "authorization-2-1",
+          "id": "13",
+          "name": "用户管理-查询操作",
+          "pid": "12",
+        },
+        {
+          "code": "authorization-2-2",
+          "id": "14",
+          "name": "用户管理-新增/修改操作",
+          "pid": "12",
+        },
+        {
+          "code": "authorization-2-3",
+          "id": "15",
+          "name": "用户管理-删除操作",
+          "pid": "12",
+        },
+      ],
+      "code": "authorization-2",
+      "id": "12",
+      "name": "用户管理",
+      "pid": "7",
+    },
+  ],
+  "code": "authorization",
+  "id": "7",
+  "name": "权限管理",
+  "pid": null,
+}
+`;
+
+exports[`filterTree node assign self 3`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "name": "首页",
+    "pid": null,
+  },
+  {
+    "children": [],
+    "code": "trade",
+    "id": "2",
+    "name": "交易管理",
+    "pid": null,
+  },
+  {
+    "children": [
+      {
+        "code": "authorization-1",
+        "id": "8",
+        "name": "角色管理",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-1",
+        "id": "9",
+        "name": "角色管理-查询操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-2",
+        "id": "10",
+        "name": "角色管理-新增/修改操作",
+        "pid": "7",
+      },
+      {
+        "code": "authorization-1-3",
+        "id": "11",
+        "name": "角色管理-删除操作",
+        "pid": "7",
+      },
+      {
+        "children": [
+          {
+            "code": "authorization-2-1",
+            "id": "13",
+            "name": "用户管理-查询操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-2",
+            "id": "14",
+            "name": "用户管理-新增/修改操作",
+            "pid": "12",
+          },
+          {
+            "code": "authorization-2-3",
+            "id": "15",
+            "name": "用户管理-删除操作",
+            "pid": "12",
+          },
+        ],
+        "code": "authorization-2",
+        "id": "12",
+        "name": "用户管理",
+        "pid": "7",
+      },
+    ],
+    "code": "authorization",
+    "id": "7",
+    "name": "权限管理",
+    "pid": null,
+  },
+]
+`;
