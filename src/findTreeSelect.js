@@ -24,12 +24,16 @@ function internalFindTreeSelect(tree, predicate, childrenField = 'children', pat
       return path;
     }
 
-    // @ts-ignore
-    if (isObject(item) && Array.isArray(item[childrenField]) && item[childrenField].length > 0) {
+    if (isObject(item)) {
+      /** @type {T[]} */
       // @ts-ignore
-      const findChildren = internalFindTreeSelect(item[childrenField], predicate, childrenField, path);
-      if (findChildren.length > 0) {
-        return findChildren;
+      const childs = item[childrenField];
+
+      if (Array.isArray(childs) && childs.length > 0) {
+        const findChildren = internalFindTreeSelect(childs, predicate, childrenField, path);
+        if (findChildren.length > 0) {
+          return findChildren;
+        }
       }
     }
 
