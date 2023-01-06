@@ -107,6 +107,7 @@ export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
 export { default as findTreeNode } from './findTreeNode';
+export { default as findTreeNodes } from './findTreeNodes';
 export { default as findTreeSelect } from './findTreeSelect';
 
 /**
