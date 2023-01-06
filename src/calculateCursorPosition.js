@@ -1,6 +1,6 @@
 import normalizeString from './normalizeString';
 
-// 参考了: https://github.com/ant-design/ant-design-mobile/blob/v2/components/input-item/index.tsx#L240
+// ref: https://github.com/ant-design/ant-design-mobile/blob/v2/components/input-item/index.tsx#L240
 
 /**
  * 计算输入框的值格式化后光标位置
@@ -8,8 +8,6 @@ import normalizeString from './normalizeString';
  * @static
  * @alias module:Other.calculateCursorPosition
  * @since 4.6.0
- * @see 格式化手机号码 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile|formatMobile}
- * @see 格式化银行卡号 {@link https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard|formatBankCard}
  * @see h5示例 {@link https://2950v9.csb.app/|点击查看}
  * @see react示例 {@link https://33ccy9.csb.app/|点击查看}
  * @param {number} prevPos 赋值前的光标位置，onChange/onInput的光标位置 e.target.selectionEnd
