@@ -4,12 +4,12 @@ const defaultChars = numberChars + letterChars + letterChars.toUpperCase();
 
 /**
  * @private
- * @param {number} [len=0] 长度
- * @param {string} [optionalChars] 允许的字符，默认为数字和大小写字母
+ * @param {number} len 长度
+ * @param {string} optionalChars 允许的字符，默认为数字和大小写字母
  * @param {string} [prefix=''] 前缀部分，不计入长度
  * @returns {string}
  */
-function internalRandomString(len = 0, optionalChars = defaultChars, prefix = '') {
+function internalRandomString(len, optionalChars, prefix = '') {
   while (len-- > 0) {
     const r = optionalChars[Math.floor(Math.random() * optionalChars.length)];
     return internalRandomString(len, optionalChars, prefix + r);

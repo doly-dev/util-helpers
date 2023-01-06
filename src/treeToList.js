@@ -22,6 +22,10 @@ function treeToList(tree, childrenField) {
   /** @type {R[]} */
   const list = [];
 
+  if (!Array.isArray(tree)) {
+    return list;
+  }
+
   /**
    * 递归遍历
    * @param {T[]} arr 列表数据
@@ -33,7 +37,7 @@ function treeToList(tree, childrenField) {
         // @ts-ignore
         list.push(newItem);
 
-        if (newItem?.[childrenField]) {
+        if (newItem[childrenField]) {
           if (Array.isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
             recusion(newItem[childrenField]);
           }

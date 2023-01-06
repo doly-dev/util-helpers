@@ -27,12 +27,12 @@ import { isObject } from "./utils/type";
  * // []
  */
 function filterTree(tree, predicate, childrenField = 'children', nodeAssign = 'spread') {
-  if (!Array.isArray(tree)) {
-    return tree;
-  }
-
   /** @type {T[]} */
   const result = [];
+
+  if (!Array.isArray(tree)) {
+    return result;
+  }
 
   tree.forEach(item => {
     let newItem = item;

@@ -105,11 +105,18 @@ describe('findTreeSelect', () => {
   it('basic', () => {
     const basicMenus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
 
-    console.log(JSON.stringify(findTreeSelect(basicMenus, item => item.id === '2')));
-    console.log(JSON.stringify(findTreeSelect(basicMenus, item => item.id === '7')));
+    // console.log(JSON.stringify(findTreeSelect(basicMenus, item => item.id === '2')));
+    // console.log(JSON.stringify(findTreeSelect(basicMenus, item => item.id === '7')));
     expect(findTreeSelect(basicMenus, item => item.id === '2')).toMatchSnapshot();
     expect(findTreeSelect(basicMenus, item => item.id === '7')).toMatchSnapshot();
     expect(findTreeSelect(basicMenus, item => item.id === 'not found')).toMatchObject([]);
+  });
+
+  it('incorrect', () => {
+    const treeData = [{ a: 1, children: ['1'] }];
+    expect(findTreeSelect(treeData, item => item.a == 2)).toMatchObject([]);
+    // @ts-ignore
+    expect(findTreeSelect({}, item => item.a == 2)).toMatchObject([]);
   });
 
   it('default', () => {

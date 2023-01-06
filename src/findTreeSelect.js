@@ -8,12 +8,12 @@ import { isObject } from "./utils/type";
  * @template {(item: T) => boolean} F
  * @param {T[]} tree 树结构数据
  * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回包含该节点的所有父级节点
- * @param {string} [childrenField='children'] 子级字段名
+ * @param {string} [childrenField] 子级字段名
  * @param {T[]} [path=[]] 当前遍历路径
  * @returns {T[]}
  */
-function internalFindTreeSelect(tree, predicate, childrenField = 'children', path = []) {
-  if (!tree) {
+function internalFindTreeSelect(tree, predicate, childrenField, path = []) {
+  if (!Array.isArray(tree)) {
     return [];
   }
 

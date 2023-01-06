@@ -84,4 +84,33 @@ describe('parseIdCard', () => {
       province: '贵州省'
     });
   });
+
+  it('unsupported groups', () => {
+    const regexpSpy = jest.spyOn(RegExp.prototype, 'exec').mockImplementationOnce(function (str: string) {
+      // console.log('type: ', typeof this);
+      // console.log('result: ', this.exec(str));
+      const result = this.exec(str);
+      if (result) {
+        delete result.groups;
+      }
+      return result as unknown as (RegExpExecArray | null);
+    });
+
+    expect(parseIdCard('520302198912097931')).toEqual({
+      birthday: '1989-12-09',
+      gender: '男',
+      origin: {
+        area: '02',
+        city: '03',
+        day: '09',
+        gender: '3',
+        month: '12',
+        province: '52',
+        year: '1989'
+      },
+      province: '贵州省'
+    });
+
+    regexpSpy.mockRestore();
+  });
 });

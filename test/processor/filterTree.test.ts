@@ -114,6 +114,24 @@ describe('filterTree', () => {
     expect(filterTree(basicMenus, item => item.id === 'not found')).toMatchObject([]);
   });
 
+  it('incorrect', () => {
+    const obj = {};
+    const treeData = [{ a: 1, children: ['1'] }, 2];
+    // @ts-ignore
+    expect(filterTree(treeData, item => item.a === 2)).toMatchObject([]);
+    // @ts-ignore
+    expect(filterTree(treeData, item => item === 2)).toMatchObject([2]);
+
+    // @ts-ignore
+    expect(filterTree(obj, item => item => item.id === '1')).toEqual([]);
+    // @ts-ignore
+    expect(filterTree(true, item => item => item.id === '1')).toEqual([]);
+    // @ts-ignore
+    expect(filterTree(undefined, item => item => item.id === '1')).toEqual([]);
+    // @ts-ignore
+    expect(filterTree(null, item => item => item.id === '1')).toEqual([]);
+  });
+
   it('default', () => {
     expect(filterTree(menus, item => item.name.indexOf('管理') > -1)).toMatchSnapshot();
     expect(filterTree(menus, item => item.id === '1')).toMatchSnapshot();

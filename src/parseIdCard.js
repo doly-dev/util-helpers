@@ -122,24 +122,22 @@ const Provinces = [
  *
  */
 function parseIdCard(id) {
-  if (!regIdCard.test(id)) {
+  const match = regIdCard.exec(id);
+
+  if (!match) {
     return null;
   }
 
-  /** @type {RegExpExecArray} */
-  // @ts-ignore
-  const info = regIdCard.exec(id);
-
   /** @type {{ province: string, city: string, area: string, year: string, month: string, day: string, gender: string }} */
   // @ts-ignore
-  const origin = info?.groups || {
-    province: info[1],
-    city: info[2],
-    area: info[3],
-    year: info[4],
-    month: info[5],
-    day: info[6],
-    gender: info[7]
+  const origin = match.groups || {
+    province: match[1],
+    city: match[2],
+    area: match[3],
+    year: match[4],
+    month: match[5],
+    day: match[6],
+    gender: match[7]
   };
 
   const province = Provinces.find((item) => item[0] === origin.province);

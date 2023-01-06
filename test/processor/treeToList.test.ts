@@ -117,6 +117,14 @@ describe('treeToList', () => {
     ]);
   });
 
+  it('incorrect', () => {
+    const treeData = [{ a: 1, children: ['1'] }, { a: 2, children: [] }, '3'];
+    // @ts-ignore
+    expect(treeToList(treeData, 'children')).toMatchObject([{ a: 1 }, '1', { a: 2 }, '3']);
+    // @ts-ignore
+    expect(treeToList({}, 'children')).toMatchObject([]);
+  });
+
   it('default', () => {
     const result = treeToList(menus, 'children');
 

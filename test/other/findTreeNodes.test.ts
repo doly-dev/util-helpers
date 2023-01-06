@@ -113,6 +113,13 @@ describe('findTreeNodes', () => {
     expect(findTreeNodes(basicMenus, item => item.id === 'not found')).toMatchSnapshot();
   });
 
+  it('incorrect', () => {
+    const treeData = [{ a: 1, children: ['1'] }];
+    expect(findTreeNodes(treeData, item => item.a === 2)).toMatchObject([]);
+    // @ts-ignore
+    expect(findTreeNodes({}, item => item.a === 2)).toMatchObject([]);
+  });
+
   it('default', () => {
     expect(findTreeNodes(menus, item => item.id === '2')).toMatchSnapshot();
     expect(findTreeNodes(menus, item => item.name.indexOf('管理') > -1)).toMatchSnapshot();
@@ -120,7 +127,7 @@ describe('findTreeNodes', () => {
     expect(findTreeNodes(menus, item => item.id === 'not found')).toMatchSnapshot();
   });
 
-  it.only('custom children field name', () => {
+  it('custom children field name', () => {
     const menus2 = transformFieldNames(menus, { childs: 'children' }, 'children');
     expect(findTreeNodes(menus2, item => item.id === '2', 'childs')).toMatchSnapshot();
     expect(findTreeNodes(menus2, item => item.name.indexOf('管理') > -1, 'childs')).toMatchSnapshot();

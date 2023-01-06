@@ -110,7 +110,14 @@ describe('findTreeNode', () => {
     expect(findTreeNode(basicMenus, item => item.id === '2')).toBe(basicMenus[1]);
     expect(findTreeNode(basicMenus, item => item.id === '7')).toBe(basicMenus[2].children?.[1]);
     expect(findTreeNode(basicMenus, item => item.id === 'not found')).toBeUndefined();
-  })
+  });
+
+  it('incorrect', () => {
+    const treeData = [{ a: 1, children: ['1'] }];
+    expect(findTreeNode(treeData, item => item.a === 2)).toBeUndefined();
+    // @ts-ignore
+    expect(findTreeNode({}, item => item.a === 2)).toBeUndefined();
+  });
 
   it('default', () => {
     expect(findTreeNode(menus, item => item.id === '1000')).toBeUndefined();

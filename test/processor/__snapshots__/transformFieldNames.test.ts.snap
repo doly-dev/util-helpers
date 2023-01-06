@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transformFieldNames complex data and custom children field name. 1`] = `
+[
+  {
+    "code": "1",
+    "label": "one",
+  },
+  {
+    "code": "2",
+    "label": "two",
+  },
+  {
+    "arrowFunc": [Function],
+    "bigN": 1n,
+    "children": [
+      {
+        "code": "3-1",
+        "label": "three-one",
+      },
+      {
+        "children": [
+          {
+            "code": "3-2-1",
+            "label": "three-two-one",
+          },
+          {
+            "code": "3-2-2",
+            "label": "three-two-two",
+          },
+        ],
+        "code": "3-2",
+        "label": "three-two",
+      },
+    ],
+    "code": "3",
+    "func": [Function],
+    "label": "three",
+    "max": Infinity,
+    "min": -Infinity,
+    "nan": NaN,
+    "symbol": Symbol(),
+    "undef": undefined,
+  },
+]
+`;
+
+exports[`transformFieldNames nodeAssign 1`] = `
+[
+  {
+    "code": "trade",
+    "id": "1",
+    "label": "首页",
+    "pid": null,
+  },
+  {
+    "childs": [
+      {
+        "childs": [
+          {
+            "code": "trade-1-1",
+            "id": "4",
+            "label": "交易查询-查询操作",
+            "pid": "3",
+          },
+        ],
+        "code": "trade-1",
+        "id": "3",
+        "label": "交易查询",
+        "pid": "2",
+      },
+    ],
+    "code": "trade",
+    "id": "2",
+    "label": "交易管理",
+    "pid": null,
+  },
+  {
+    "childs": [
+      {
+        "code": "authorization-1",
+        "id": "6",
+        "label": "角色管理",
+        "pid": "5",
+      },
+      {
+        "code": "authorization-2",
+        "id": "7",
+        "label": "用户管理",
+        "pid": "5",
+      },
+    ],
+    "code": "authorization",
+    "id": "5",
+    "label": "权限管理",
+    "pid": null,
+  },
+]
+`;
+
+exports[`transformFieldNames recusion 1`] = `
+[
+  {
+    "label": "one",
+    "value": "1",
+  },
+  {
+    "label": "two",
+    "value": "2",
+  },
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "label": "three-one-one",
+            "value": "3-1-1",
+          },
+          {
+            "value": "3-1-2",
+          },
+        ],
+        "label": "three-one",
+        "value": "3-1",
+      },
+    ],
+    "label": "three",
+    "value": "3",
+  },
+]
+`;

@@ -6,25 +6,26 @@ import { isObject } from "./utils/type";
  * @private
  * @template {Record<string,any>} [T=Record<string,any>]
  * @param {T[]} arr 列表数据
- * @param {object} options 配置项
+ * @param {object} [options] 配置项
  * @param {string} [options.childrenField='children'] 子级字段名称
- * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
+ * @param {'none'|'null'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
  */
-function processEmptyChildren(arr, options = {}) {
-  const { childrenField = 'children', emptyChildrenValue = 'none' } = options;
+function processEmptyChildren(arr, options) {
+  const { childrenField = 'children', emptyChildrenValue = 'none' } = options || {};
   arr.forEach(item => {
-    if (isObject(item) && Array.isArray(item[childrenField])) {
-      if (item[childrenField].length <= 0) {
-        if (emptyChildrenValue === 'null') {
-          // @ts-ignore
-          item[childrenField] = null;
-        } else if (emptyChildrenValue === 'none') {
-          delete item[childrenField];
-        }
+    // if (isObject(item) && Array.isArray(item[childrenField])) {
+    if (item[childrenField].length <= 0) {
+      if (emptyChildrenValue === 'null') {
+        // @ts-ignore
+        item[childrenField] = null;
+        // } else if (emptyChildrenValue === 'none') { // emptyChildrenValue='array' 不会执行该内部方法 
       } else {
-        processEmptyChildren(item[childrenField], options);
+        delete item[childrenField];
       }
+    } else {
+      processEmptyChildren(item[childrenField], options);
     }
+    // }
   });
 }
 
@@ -37,7 +38,7 @@ function processEmptyChildren(arr, options = {}) {
  * @template {Record<string,any>} [T=Record<string,any>]
  * @template {*} [R=T&Record<string,any>]
  * @param {T[]} list 列表数据
- * @param {object} options 配置项
+ * @param {object} [options] 配置项
  * @param {string} [options.keyField='id'] 当前数据的键值字段名称
  * @param {string} [options.parentField='pid'] 当前数据的父级字段名称
  * @param {string} [options.childrenField='children'] 子级字段名称
@@ -63,14 +64,18 @@ function processEmptyChildren(arr, options = {}) {
  * // [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null,"childs":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","childs":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"childs":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
  * 
  */
-function listToTree(list, options = {}) {
-  const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none', nodeAssign = 'spread' } = options;
+function listToTree(list, options) {
+  const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none', nodeAssign = 'spread' } = options || {};
 
   /** @type {R[]} */
   const tree = [];
 
   /** @type {Object.<string, T[]>} */
   const record = {};
+
+  if (!Array.isArray(list)) {
+    return tree;
+  }
 
   list.forEach(item => {
     if (isObject(item)) {

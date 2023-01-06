@@ -30,6 +30,10 @@ function findTreeNode(tree, predicate, childrenField = 'children') {
   /** @type {T|undefined} */
   let node;
 
+  if (!Array.isArray(tree)) {
+    return node;
+  }
+
   for (const item of tree) {
     stack.push(item);
 

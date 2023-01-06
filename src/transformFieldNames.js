@@ -52,7 +52,7 @@ function transformFieldNames(data, fieldNames, childrenField, nodeAssign = 'spre
    * @param {Array.<object>} arr 列表数据
    * @returns {*}
    */
-  function recusion(arr = []) {
+  function recusion(arr) {
     return arr.map(item => {
       if (!isObject(item)) {
         return item;
