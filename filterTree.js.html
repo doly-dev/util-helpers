@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>isPassword.js - util-helpers </title>
+    <title>filterTree.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isPassword.js</h1>
+    <h1 class="page-title">filterTree.js</h1>
     
 
     
@@ -71,49 +71,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import validatePassword from './validatePassword';
+            <pre class="prettyprint source linenums"><code>import { isObject } from "./utils/type";
 
 /**
- * 检测值是否符合密码强度
- * &lt;p>&lt;strong>注意：该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。&lt;/strong>&lt;/p>
- * &lt;p>&lt;i>如果需要更细致的验证，请使用 &lt;a href="#.validatePassword">validatePassword&lt;/a>&lt;/i>&lt;/p>
- *
- * @see 参考 {@link https://baike.baidu.com/item/ASCII#3|ASCII}
+ * 过滤/筛选树节点。&lt;br/>&lt;br/>如果某节点被过滤掉，它的子节点也一并抛弃
+ * 
  * @static
- * @alias module:Validator.isPassword
- * @since 1.1.0
- * @requires module:Validator.validatePassword
- * @param {*} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
- * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符
- * @param {string} [options.special="!@#$%^&amp;*()-=_+[]\|{},./?&lt;>~"] 支持的特殊字符
- * @returns {boolean} 值是否符合密码强度
+ * @alias module:Processor.filterTree
+ * @since 4.15.0
+ * @template {any} T
+ * @template {(item: T) => boolean} F
+ * @param {T[]} tree 树结构数据
+ * @param {F} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy ，结果将包含该节点
+ * @param {string} [childrenField='children'] 子级字段名
+ * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
+ * @returns {T[]}
  * @example
- *
- * isPassword('a12345678'); // true
+ * const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
  * 
- * // 3级密码强度
- * isPassword('a12345678', {level: 3}); // false
- * isPassword('Aa12345678', {level: 3}); // true
+ * filterTree(menus, item=>item.name.indexOf('管理') > -1);
+ * // [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
  * 
- * // 3级密码强度，大小写字符仅计算1级强度
- * isPassword('Aa12345678', {level: 3, ignoreCase: true}); // false
- * isPassword('_Aa12345678', {level: 3, ignoreCase: true}); // true
- *
- * // 仅支持 数字、字母、特殊字符，其他非法字符如中文字符是校验不通过的
- * isPassword('_Aa一二三45678', {level: 3, ignoreCase: true}); // false
- * isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false
+ * // 如果某节点被过滤掉，它的子节点也一并抛弃
+ * filterTree(menus, item=>item.id === '7');
+ * // []
  * 
+ * filterTree(menus, item=>item.id === 'not found');
+ * // []
  */
-function isPassword(value, options = {}) {
-  const { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = options;
+function filterTree(tree, predicate, childrenField = 'children', nodeAssign = 'spread') {
+  if (!Array.isArray(tree)) {
+    return tree;
+  }
 
-  return validatePassword(value, { level, ignoreCase, special }).validated;
+  /** @type {T[]} */
+  const result = [];
+
+  tree.forEach(item => {
+    let newItem = item;
+
+    if (isObject(item)) {
+      // @ts-ignore
+      newItem = nodeAssign === 'spread' ? { ...item } : item;
+    }
+
+    if (predicate(newItem)) {
+      if (isObject(newItem)) {
+        /** @type {T[]|undefined} */
+        // @ts-ignore
+        const childs = newItem[childrenField];
+
+        if (Array.isArray(childs) &amp;&amp; childs.length > 0) {
+          // @ts-ignore
+          newItem[childrenField] = filterTree(childs, predicate, childrenField, nodeAssign);
+        }
+      }
+
+      result.push(newItem);
+    }
+  });
+
+  return result;
 }
 
-export default isPassword;
-</code></pre>
+export default filterTree;</code></pre>
         </article>
     </section>
 
