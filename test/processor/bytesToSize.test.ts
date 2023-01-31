@@ -37,5 +37,12 @@ describe('bytesToSize', () => {
     expect(bytesToSize(1024, { spaceMark: '' })).toBe('1KB');
     expect(bytesToSize(1024, { spaceMark: ' - ' })).toBe('1 - KB');
     expect(bytesToSize(1025, { spaceMark: '%' })).toBe('1%KB');
-  })
+  });
+
+  it('precision', () => {
+    expect(bytesToSize(1425, { precision: 0 })).toBe('1 KB');
+    expect(bytesToSize(1425, { precision: 1 })).toBe('1.4 KB');
+    expect(bytesToSize(1425, { precision: 2 })).toBe('1.39 KB');
+    expect(bytesToSize(1425, { precision: 3 })).toBe('1.392 KB');
+  });
 });
