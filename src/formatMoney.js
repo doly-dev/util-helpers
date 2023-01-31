@@ -84,25 +84,25 @@ function formatDec(decStr, precision, decimal) {
  * @alias module:Processor.formatMoney
  * @since 1.1.0
  * @param {string | number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
- * @param {Object} [options] - 金额格式化配置
- * @param {string | number} [options.precision=2] - 保留位数 （最高：10位）
- * @param {string} [options.symbol] - 货币符号
- * @param {string} [options.thousand=","] - 千分位符号
- * @param {string} [options.decimal="."] - 小数位符号
+ * @param {Object} [options] 金额格式化配置
+ * @param {number} [options.precision=2] 保留位数 （最高：10位）
+ * @param {string} [options.symbol] 货币符号
+ * @param {string} [options.thousand=","] 千分位符号
+ * @param {string} [options.decimal="."] 小数位符号
  * @returns {string} 格式化的金额
  * @example
  *
  * // 整数
- * formatMoney('1000'); // 1,000.00
+ * formatMoney(1000); // 1,000.00
  *
  * // 小数（默认保留2位小数）
- * formatMoney('3000.03'); // 3,000.03
+ * formatMoney(3000.03); // 3,000.03
  *
  * // 保留4位小数
- * formatMoney('3000.0300', { precision: 4 }); // 3,000.0300
+ * formatMoney(3000.03, { precision: 4 }); // 3,000.0300
  *
  * // 保留10位小数
- * formatMoney('1500.2', { precision: 10 }); // 1,500.2000000000
+ * formatMoney(1500.2, { precision: 10 }); // 1,500.2000000000
  *
  * // 自定义单位符号
  * formatMoney(1000.00, { symbol: '$' }); // $1,000.00
@@ -113,6 +113,8 @@ function formatDec(decStr, precision, decimal) {
  * // 自定义小数位分割符(默认'.')
  * formatMoney(1000.00, { decimal: '&' }); // 1,000&00
  * 
+ * // 字符串数字
+ * formatMoney('3000.03', { precision: 4 }); // 3,000.0300
  */
 const formatMoney = (num, options = {}) => {
   let { precision = 2, symbol, thousand = ',', decimal = '.' } = options;
