@@ -1,10 +1,6 @@
 import { padZero } from '../../src';
 
 describe('padZero', () => {
-  it('should be defined', () => {
-    expect(padZero).toBeDefined();
-  });
-
   it('correct', () => {
     expect(padZero(0)).toBe('00');
     expect(padZero(0.2)).toBe('0.2');

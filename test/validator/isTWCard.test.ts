@@ -1,10 +1,6 @@
 import { isTWCard } from '../../src';
 
 describe('isTWCard', () => {
-  it('should be defined', () => {
-    expect(isTWCard).toBeDefined();
-  });
-
   it('incorrect', () => {
     // @ts-ignore
     expect(isTWCard()).toBe(false);

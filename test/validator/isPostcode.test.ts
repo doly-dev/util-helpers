@@ -1,10 +1,6 @@
 import { isPostcode } from '../../src';
 
 describe('isPostcode', () => {
-  it('should be defined', () => {
-    expect(isPostcode).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isPostcode(true)).toBe(false);
     expect(isPostcode(123)).toBe(false);

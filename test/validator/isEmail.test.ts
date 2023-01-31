@@ -1,10 +1,6 @@
 import { isEmail } from '../../src';
 
 describe('isEmail', () => {
-  it('should be defined', () => {
-    expect(isEmail).toBeDefined();
-  });
-
   it('非字符串', () => {
     expect(isEmail(true)).toBe(false);
     expect(isEmail(123)).toBe(false);

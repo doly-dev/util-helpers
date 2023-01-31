@@ -1,10 +1,6 @@
 import { divide } from '../../src';
 
 describe('divide', () => {
-  it('should be defined', () => {
-    expect(divide).toBeDefined();
-  });
-
   it('异常参数输入', () => {
     // 0个参数时，被除数转换为 Number(undefined) NaN ，NaN/1 = NaN
     expect(divide()).toBe(NaN);

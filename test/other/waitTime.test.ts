@@ -1,10 +1,6 @@
 import { waitTime } from '../../src';
 
 describe('waitTime', () => {
-  it('should be defined', () => {
-    expect(waitTime).toBeDefined();
-  });
-
   it('default time', async () => {
     let start, end, elapsedTime;
 

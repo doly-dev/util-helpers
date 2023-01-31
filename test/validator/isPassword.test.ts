@@ -1,10 +1,6 @@
 import { isPassword } from '../../src';
 
 describe('isPassword', () => {
-  it('should be defined', () => {
-    expect(isPassword).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isPassword(true)).toBe(false);
     expect(isPassword(123)).toBe(false);

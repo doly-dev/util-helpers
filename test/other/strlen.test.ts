@@ -1,10 +1,6 @@
 import { strlen } from '../../src';
 
 describe('strlen', () => {
-  it('should be defined', () => {
-    expect(strlen).toBeDefined();
-  });
-
   it('incorrect params', () => {
     // @ts-ignore
     expect(strlen(null)).toBe(0);

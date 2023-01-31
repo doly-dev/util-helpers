@@ -5,10 +5,6 @@ import { isChinese } from '../../src';
 // const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
 
 describe('isChinese', () => {
-  it('should be defined', () => {
-    expect(isChinese).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isChinese(true)).toBe(false);
     expect(isChinese(123)).toBe(false);

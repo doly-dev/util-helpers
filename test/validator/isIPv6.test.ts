@@ -1,10 +1,6 @@
 import { isIPv6 } from '../../src';
 
 describe('isIPv6', () => {
-  it('should be defined', () => {
-    expect(isIPv6).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isIPv6(true)).toBe(false);
     expect(isIPv6(123)).toBe(false);

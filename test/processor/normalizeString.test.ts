@@ -1,10 +1,6 @@
 import { normalizeString } from '../../src';
 
 describe('normalizeString', () => {
-  it('should be defined', () => {
-    expect(normalizeString).toBeDefined();
-  });
-
   it('null, undefined => ""', () => {
     // @ts-ignore
     expect(normalizeString()).toBe('');

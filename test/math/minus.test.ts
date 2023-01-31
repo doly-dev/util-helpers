@@ -1,10 +1,6 @@
 import { minus } from '../../src';
 
 describe('minus', () => {
-  it('should be defined', () => {
-    expect(minus).toBeDefined();
-  });
-
   it('异常参数输入', () => {
     // 0个参数时，被减数转换为 Number(undefined) NaN ，NaN-0 = NaN
     expect(minus()).toBe(NaN);

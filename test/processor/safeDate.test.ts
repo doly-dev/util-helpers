@@ -1,10 +1,6 @@
 import { safeDate } from '../../src';
 
 describe('safeDate', () => {
-  it('should be defined', () => {
-    expect(safeDate).toBeDefined();
-  });
-
   it('null, undefined => new Date()', () => {
     expect(safeDate().toString()).not.toBe('Invalid Date');
     expect(safeDate(undefined).toString()).not.toBe('Invalid Date');

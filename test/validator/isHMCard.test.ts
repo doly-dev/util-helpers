@@ -1,14 +1,6 @@
 import { isHMCard } from '../../src';
 
 describe('isHMCard', () => {
-  it('should be defined', () => {
-    expect(isHMCard).toBeDefined();
-  });
-
-  it('should be defined', () => {
-    expect(isHMCard).toBeDefined();
-  });
-
   it('错误数据', () => {
     // @ts-ignore
     expect(isHMCard()).toBe(false);

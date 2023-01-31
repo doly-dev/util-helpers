@@ -1,10 +1,6 @@
 import { isPassport } from '../../src';
 
 describe('isPassport', () => {
-  it('should be defined', () => {
-    expect(isPassport).toBeDefined();
-  });
-
   it('非字符串', () => {
     // @ts-ignore
     expect(isPassport()).toBe(false);

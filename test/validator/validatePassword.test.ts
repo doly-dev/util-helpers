@@ -1,10 +1,6 @@
 import { validatePassword } from '../../src';
 
 describe('validatePassword', () => {
-  it('should be defined', () => {
-    expect(validatePassword).toBeDefined();
-  });
-
   it('非字符串', () => {
     // @ts-ignore
     expect(validatePassword(true)).toEqual({

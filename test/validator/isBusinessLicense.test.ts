@@ -1,10 +1,6 @@
 import { isBusinessLicense } from '../../src';
 
 describe('isBusinessLicense', () => {
-  it('should be defined', () => {
-    expect(isBusinessLicense).toBeDefined();
-  });
-
   it('非字符串', () => {
     expect(isBusinessLicense(true)).toBe(false);
     expect(isBusinessLicense(123)).toBe(false);

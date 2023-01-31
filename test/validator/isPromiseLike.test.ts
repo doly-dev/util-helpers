@@ -4,10 +4,6 @@ const fn = () => { };
 fn.then = () => { };
 
 describe('isPromiseLike', () => {
-  it('should be defined', () => {
-    expect(isPromiseLike).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isPromiseLike(null)).toBe(false);
     expect(isPromiseLike(undefined)).toBe(false);

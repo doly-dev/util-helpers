@@ -1,10 +1,6 @@
 import { numberToChinese } from '../../src';
 
 describe('numberToChinese', () => {
-  it('should be defined', () => {
-    expect(numberToChinese).toBeDefined();
-  });
-
   it(`incorrect`, () => {
     // @ts-ignore
     expect(numberToChinese()).toBe('');
@@ -22,8 +18,12 @@ describe('numberToChinese', () => {
 
   it('整数', () => {
     expect(numberToChinese(0)).toBe('零');
+    expect(numberToChinese(10)).toBe('一十');
+    expect(numberToChinese(11)).toBe('一十一');
     expect(numberToChinese(100)).toBe('一百');
+    expect(numberToChinese(101)).toBe('一百零一');
     expect(numberToChinese(10000)).toBe('一万');
+    expect(numberToChinese(10001)).toBe('一万零一');
     expect(numberToChinese(100000000)).toBe('一亿');
     expect(numberToChinese(1000101)).toBe('一百万零一百零一');
     expect(numberToChinese(1234567890)).toBe('一十二亿三千四百五十六万七千八百九十');

@@ -1,10 +1,6 @@
 import { isMobile } from '../../src';
 
 describe('isMobile', () => {
-  it('should be defined', () => {
-    expect(isMobile).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isMobile(true)).toBe(false);
     expect(isMobile(123)).toBe(false);

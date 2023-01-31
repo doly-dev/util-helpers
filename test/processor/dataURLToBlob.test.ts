@@ -4,10 +4,6 @@
 import { dataURLToBlob } from '../../src';
 
 describe('dataURLToBlob', () => {
-  it('should be defined', () => {
-    expect(dataURLToBlob).toBeDefined();
-  });
-
   const dataurl = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
   const dataurl2 = 'data:text/plain;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
 

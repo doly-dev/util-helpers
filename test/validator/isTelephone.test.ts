@@ -1,10 +1,6 @@
 import { isTelephone } from '../../src';
 
 describe('isTelephone', () => {
-  it('should be defined', () => {
-    expect(isTelephone).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isTelephone(true)).toBe(false);
     expect(isTelephone(123)).toBe(false);

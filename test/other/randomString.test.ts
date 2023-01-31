@@ -1,10 +1,6 @@
 import { randomString } from '../../src';
 
 describe('randomString', () => {
-  it('should be defined', () => {
-    expect(randomString).toBeDefined();
-  });
-
   it('incorrent', () => {
     // @ts-ignore
     expect(randomString('x')).toBe('');

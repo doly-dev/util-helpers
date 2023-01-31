@@ -1,10 +1,6 @@
 import { times } from '../../src';
 
 describe('times', () => {
-  it('should be defined', () => {
-    expect(times).toBeDefined();
-  });
-
   it('incorrect', () => {
     // 0个参数时，被乘数转换为 Number(undefined) NaN ，NaN*1 = NaN
     expect(times()).toBe(NaN);

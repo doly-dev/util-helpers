@@ -1,10 +1,6 @@
 import { formatMobile } from '../../src';
 
 describe('formatMobile', () => {
-  it('should be defined', () => {
-    expect(formatMobile).toBeDefined();
-  });
-
   it('undefined null', () => {
     // @ts-ignore
     expect(formatMobile(null)).toBe('');

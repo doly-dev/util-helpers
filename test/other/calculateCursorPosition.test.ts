@@ -1,10 +1,6 @@
 import { calculateCursorPosition } from '../../src';
 
 describe('calculateCursorPosition', () => {
-  it('should be defined', () => {
-    expect(calculateCursorPosition).toBeDefined();
-  });
-
   it('input & delete', () => {
     // input mobile
     expect(calculateCursorPosition(1, '', '1', '1')).toBe(1);

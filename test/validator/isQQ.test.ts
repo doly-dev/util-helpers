@@ -1,10 +1,6 @@
 import { isQQ } from '../../src';
 
 describe('isQQ', () => {
-  it('should be defined', () => {
-    expect(isQQ).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isQQ(true)).toBe(false);
     expect(isQQ(123)).toBe(false);

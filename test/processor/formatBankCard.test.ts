@@ -1,10 +1,6 @@
 import { formatBankCard } from '../../src';
 
 describe('formatBankCard', () => {
-  it('should be defined', () => {
-    expect(formatBankCard).toBeDefined();
-  });
-
   it('incorrect', () => {
     // @ts-ignore
     expect(formatBankCard(null)).toBe('');

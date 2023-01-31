@@ -1,10 +1,6 @@
 import { isVehicle } from '../../src';
 
 describe('isVehicle', () => {
-  it('should be defined', () => {
-    expect(isVehicle).toBeDefined();
-  });
-
   it('incorrect', () => {
     expect(isVehicle(true)).toBe(false);
     expect(isVehicle(123)).toBe(false);

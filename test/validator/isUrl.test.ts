@@ -1,10 +1,6 @@
 import { isUrl } from '../../src';
 
 describe('isUrl', () => {
-  it('should be defined', () => {
-    expect(isUrl).toBeDefined();
-  });
-
   it('非字符串', () => {
     expect(isUrl([])).toBe(false);
     expect(isUrl({})).toBe(false);

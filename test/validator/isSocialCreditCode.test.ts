@@ -1,10 +1,6 @@
 import { isSocialCreditCode } from '../../src';
 
 describe('isSocialCreditCode', () => {
-  it('should be defined', () => {
-    expect(isSocialCreditCode).toBeDefined();
-  });
-
   it('非字符串', () => {
     expect(isSocialCreditCode(true)).toBe(false);
     expect(isSocialCreditCode(123)).toBe(false);

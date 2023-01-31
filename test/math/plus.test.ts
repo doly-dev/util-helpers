@@ -1,10 +1,6 @@
 import { plus } from '../../src';
 
 describe('plus', () => {
-  it('should be defined', () => {
-    expect(plus).toBeDefined();
-  });
-
   it('异常参数输入', () => {
     // 0个参数时，被加数转换为 Number(undefined) NaN ，NaN+0 = NaN
     expect(plus()).toBe(NaN);

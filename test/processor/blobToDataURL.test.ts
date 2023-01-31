@@ -4,10 +4,6 @@
 import { blobToDataURL } from '../../src';
 
 describe('blobToDataURL', () => {
-  it('should be defined', () => {
-    expect(blobToDataURL).toBeDefined();
-  });
-
   // ref: https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob#示例
   const aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // 一个包含DOMString的数组
   const htmlBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob

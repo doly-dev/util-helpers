@@ -1,10 +1,6 @@
 import { parseIdCard } from '../../src';
 
 describe('parseIdCard', () => {
-  it('should be defined', () => {
-    expect(parseIdCard).toBeDefined();
-  });
-
   it('错误数据', () => {
     // @ts-ignore
     expect(parseIdCard()).toBe(null);

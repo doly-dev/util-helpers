@@ -1,10 +1,6 @@
 import { replaceChar } from '../../src';
 
 describe('replaceChar', () => {
-  it('should be defined', () => {
-    expect(replaceChar).toBeDefined();
-  });
-
   it('手机号显示前三后四', () => {
     expect(replaceChar('13000000000')).toBe('130****0000');
   });

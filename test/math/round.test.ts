@@ -1,10 +1,6 @@
 import { round } from '../../src';
 
 describe('round', () => {
-  it('should be defined', () => {
-    expect(round).toBeDefined();
-  });
-
   it('incorrect', () => {
     // @ts-ignore
     expect(round()).toBe(NaN);

@@ -1,12 +1,6 @@
 import { formatMoney } from '../../src';
 
-// console.log(formatMoney('-1000.123456', {precision:10}))
-
 describe('formatMoney', () => {
-  it('should be defined', () => {
-    expect(formatMoney).toBeDefined();
-  });
-
   it('输入金额 - string', () => {
     expect(formatMoney('010')).toBe('10.00');
     expect(formatMoney('0010')).toBe('10.00');

@@ -1,10 +1,6 @@
 import { isSwiftCode } from '../../src';
 
 describe('isSwiftCode', () => {
-  it('should be defined', () => {
-    expect(isSwiftCode).toBeDefined();
-  });
-
   it('错误数据', () => {
     // @ts-ignore
     expect(isSwiftCode()).toBe(false);

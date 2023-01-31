@@ -1,10 +1,6 @@
 import { setDataURLPrefix } from '../../src';
 
 describe('setDataURLPrefix', () => {
-  it('should be defined', () => {
-    expect(setDataURLPrefix).toBeDefined();
-  });
-
   const data = 'PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
 
   it('prefix', () => {
