@@ -1,29 +1,37 @@
 import { waitTime } from '../../src';
 
 describe('waitTime', () => {
-  it('default time', async () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
+  it('default time', () => {
     let start, end, elapsedTime;
 
     // 默认时间
     start = Date.now(); // 使用 performance.now() 可以得到更精确的时间
-    await waitTime();
-    end = Date.now();
-    elapsedTime = end - start;
+    waitTime().then(() => {
+      end = Date.now();
+      elapsedTime = end - start;
+      expect(elapsedTime).toEqual(1000);
+    });
 
-    // 允许误差20ms内
-    expect(elapsedTime).toBeGreaterThanOrEqual(980);
-    expect(elapsedTime).toBeLessThanOrEqual(1020);
+    jest.runAllTimers();
   });
 
-  it('custom time', async () => {
+  it('custom time', () => {
     let start, end, elapsedTime;
 
     start = Date.now();
-    await waitTime(300);
-    end = Date.now();
-    elapsedTime = end - start;
-
-    expect(elapsedTime).toBeGreaterThanOrEqual(280);
-    expect(elapsedTime).toBeLessThanOrEqual(320);
+    waitTime(300).then(() => {
+      end = Date.now();
+      elapsedTime = end - start;
+      expect(elapsedTime).toEqual(300);
+    });
+    jest.runAllTimers();
   });
 });
