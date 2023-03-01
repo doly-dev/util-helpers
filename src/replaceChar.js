@@ -16,20 +16,22 @@ import normalizeString from './normalizeString';
  * @returns {string} 处理后的字符
  * @example
  *
- * // 手机号
+ * // 手机号 前3后4
  * replaceChar('13000000000'); // 130****0000
  *
- * // 身份证
- * replaceChar('130701199310302288'); // 130***********2288
+ * // 身份证 前6后4
+ * replaceChar('130701199310302288', { start: 6, end: -4 }); // 130701********2288
  *
- * // 邮箱
+ * // 邮箱 @前两位
  * const email = '12345@qq.com'
- * replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4}); // 12****@qq.com
+ * const emailAtIndex = email.indexOf('@');
+ * replaceChar(email, { start: emailAtIndex - 2, end: emailAtIndex }); // 123**@qq.com
  *
- * // 银行卡号
+ * // 银行卡号 只展示后4位，固定替换字符4位
  * replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4}); // ****0018
- *
- * // 带格式的银行卡号，忽略空字符串
+ * // 银行卡号 前6后4
+ * replaceChar('6228480402564890018', { start: 6, end: -4 }); // 622848*********0018
+ * // 银行卡号 前4后3 忽略格式的空格
  * replaceChar('6228 4804 0256 4890 018', {start: 4, end: -4, exclude: ' '}); // 6228 **** **** **** 018
  *
  * // 用户名

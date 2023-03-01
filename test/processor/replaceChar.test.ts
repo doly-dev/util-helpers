@@ -1,29 +1,26 @@
 import { replaceChar } from '../../src';
 
 describe('replaceChar', () => {
-  it('手机号显示前三后四', () => {
+  it('general', () => {
+    // 手机号码 前3后4
     expect(replaceChar('13000000000')).toBe('130****0000');
-  });
-
-  it(`身份证号显示前三后四`, () => {
-    expect(replaceChar('130701199310302288')).toBe('130***********2288');
-  });
-
-  it(`邮箱显示前两位和@后面内容，替换字符固定4位`, () => {
+    // 身份证号 前6后4
+    expect(replaceChar('130701199310302288', { start: 6, end: -4 })).toBe('130701********2288');
+    // 邮箱 @前两位和@后缀
     const email = '12345@qq.com';
+    const emailAtIndex = email.indexOf('@');
+    expect(replaceChar(email, { start: emailAtIndex - 2, end: emailAtIndex })).toBe('123**@qq.com');
+
+    // 邮箱 前2和@后面的内容，替换字符固定4位
     expect(replaceChar(email, { start: 2, end: email.indexOf('@'), repeat: 4 })).toBe('12****@qq.com');
-  });
-
-  it(`邮箱显示前两位和@后面内容，替换字符改为"."，固定4位`, () => {
-    const email = '12345@qq.com';
+    // 邮箱显示前两位和@后面内容，替换字符改为"."，固定4位
     expect(replaceChar(email, { start: 2, end: email.indexOf('@'), char: '.', repeat: 4 })).toBe('12....@qq.com');
-  });
 
-  it(`银行卡号显示后四位，替换字符固定4位`, () => {
+    // 银行卡号 银行卡号显示后4位，替换字符固定4位
     expect(replaceChar('6228480402564890018', { start: 0, end: -4, repeat: 4 })).toBe('****0018');
-  });
-
-  it(`带格式的银行卡号显示前四后四，排除空格`, () => {
+    // 银行卡号 前6后4
+    expect(replaceChar('6228480402564890018', { start: 6, end: -4 })).toBe('622848*********0018');
+    // 银行卡号 前6后4 忽略空格
     expect(replaceChar('6228 4804 0256 4890 018', { start: 4, end: -4, exclude: ' ' })).toBe('6228 **** **** **** 018');
   });
 
