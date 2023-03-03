@@ -26,6 +26,8 @@ import normalizeString from './normalizeString';
  * const email = '12345@qq.com'
  * const emailAtIndex = email.indexOf('@');
  * replaceChar(email, { start: emailAtIndex - 2, end: emailAtIndex }); // 123**@qq.com
+ * // 邮箱 前2和@后面内容，固定替换字符4位
+ * replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4}); // 12****@qq.com
  *
  * // 银行卡号 只展示后4位，固定替换字符4位
  * replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4}); // ****0018
