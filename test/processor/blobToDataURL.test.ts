@@ -23,7 +23,7 @@ describe('blobToDataURL', () => {
   it('error', async () => {
     let errMsg = '';
     // @ts-ignore
-    jest.spyOn(globalThis, 'FileReader').mockImplementation(function () {
+    const errorSpy = jest.spyOn(globalThis, 'FileReader').mockImplementation(function () {
       this.readAsDataURL = () => {
         setTimeout(() => {
           this.onerror(new Error('mock error'));
@@ -40,6 +40,8 @@ describe('blobToDataURL', () => {
     }
 
     expect(errMsg).toBe('mock error');
+
+    errorSpy.mockRestore();
   });
 
   // TODO: dom select file transform
