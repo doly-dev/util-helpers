@@ -4,7 +4,7 @@ import { isObject } from "./utils/type";
  * 树结构转列表数据
  * 
  * @static
- * @alias module:Processor.treeToList
+ * @alias module:Tree.treeToList
  * @since 4.14.0
  * @template {Record<string,any>} T
  * @template {keyof T} K

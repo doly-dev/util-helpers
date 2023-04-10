@@ -46,10 +46,6 @@ export { default as normalizeString } from './normalizeString';
 export { default as safeDate } from './safeDate';
 export { default as formatMobile } from './formatMobile';
 export { default as padZero } from './padZero';
-export { default as transformFieldNames } from './transformFieldNames';
-export { default as listToTree } from './listToTree';
-export { default as treeToList } from './treeToList';
-export { default as filterTree } from './filterTree';
 
 /**
  * 数学计算，修正浮点数计算问题
@@ -106,6 +102,17 @@ export { default as waitTime } from './waitTime';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
+
+/**
+ * 树结构数据查询、过滤、转换等处理方法
+ *
+ * @module Tree
+ * @since 4.14.0
+ */
+export { default as transformFieldNames } from './transformFieldNames';
+export { default as listToTree } from './listToTree';
+export { default as treeToList } from './treeToList';
+export { default as filterTree } from './filterTree';
 export { default as findTreeNode } from './findTreeNode';
 export { default as findTreeNodes } from './findTreeNodes';
 export { default as findTreeSelect } from './findTreeSelect';

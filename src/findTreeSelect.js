@@ -47,7 +47,7 @@ function internalFindTreeSelect(tree, predicate, childrenField, path = []) {
  * 查找包含当前节点的所有父级节点
  * 
  * @static
- * @alias module:Other.findTreeSelect
+ * @alias module:Tree.findTreeSelect
  * @since 4.14.0
  * @template {any} T
  * @template {(item: T) => boolean} F

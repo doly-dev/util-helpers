@@ -4,7 +4,7 @@ import { isObject } from "./utils/type";
  * 查找树结构数据节点
  * 
  * @static
- * @alias module:Other.findTreeNode
+ * @alias module:Tree.findTreeNode
  * @since 4.14.0
  * @template {any} T
  * @template {(item: T) => boolean} F

@@ -33,7 +33,7 @@ function processEmptyChildren(arr, options) {
  * 列表数据转树结构
  * 
  * @static
- * @alias module:Processor.listToTree
+ * @alias module:Tree.listToTree
  * @since 4.14.0
  * @template {Record<string,any>} [T=Record<string,any>]
  * @template {*} [R=T&Record<string,any>]

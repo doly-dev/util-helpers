@@ -5,7 +5,7 @@
  * 转换字段名，返回一个转换字段后的值，不改变原值。
  * 
  * @static
- * @alias module:Processor.transformFieldNames
+ * @alias module:Tree.transformFieldNames
  * @since 4.14.0
  * @param {object[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenField
  * @param {object} fieldNames 字段名映射

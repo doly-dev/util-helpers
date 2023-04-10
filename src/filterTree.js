@@ -4,7 +4,7 @@ import { isObject } from "./utils/type";
  * 过滤/筛选树节点。<br/><br/>如果某节点被过滤掉，它的子节点也一并抛弃
  * 
  * @static
- * @alias module:Processor.filterTree
+ * @alias module:Tree.filterTree
  * @since 4.15.0
  * @template {any} T
  * @template {(item: T) => boolean} F
