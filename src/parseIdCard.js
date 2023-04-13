@@ -95,7 +95,7 @@ const Provinces = [
  * @since 4.0.0
  * @see 参考 {@link https://baike.baidu.com/item/居民身份证号码|居民身份证号码}
  * @param {string} id 身份证号码，支持15位
- * @returns {null|IdCardInfo} null 或 省份、生日、性别，省/市/区/年/月/日/性别编码
+ * @returns {IdCardInfo | null} 省份、生日、性别，省/市/区/年/月/日/性别编码。如果解析失败将返回 null 。
  * @example
  * 
  * parseIdCard('123456789123456'); // null

@@ -3,8 +3,9 @@ import isNil from './utils/type/isNil';
 // TODO: 函数重载，类型参照 Date
 
 /**
- * 创建一个 Date 实例日期对象，同 new Date() 。<br/>
- * 规避了苹果设备浏览器不支持部分格式（YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
+ * 创建一个 Date 实例日期对象，同 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()</a> <br/><br/>
+ * 
+ * 规避了苹果设备浏览器不支持部分格式（例如，YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
  *
  * @static
  * @alias module:Processor.safeDate

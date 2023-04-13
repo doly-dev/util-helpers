@@ -3,7 +3,9 @@
 //  方法2：使用 window.URL.createObjectURL(blob) 为blob、file 创建一个指向该参数对象的URL
 
 /**
- * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串。
+ * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串<br/><br/>
+ * 
+ * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @static
  * @alias module:Processor.blobToDataURL
