@@ -1,12 +1,22 @@
 import { safeDate } from '../../src';
 
 describe('safeDate', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   it('null, undefined => new Date()', () => {
-    expect(safeDate().toString()).not.toBe('Invalid Date');
-    expect(safeDate(undefined).toString()).not.toBe('Invalid Date');
-    expect(safeDate(void 0).toString()).not.toBe('Invalid Date');
+    expect(safeDate()).toEqual(new Date());
     // @ts-ignore
-    expect(safeDate(null).toString()).not.toBe('Invalid Date');
+    expect(safeDate(undefined)).toEqual(new Date());
+    expect(safeDate(0)).toEqual(new Date(0));
+
+    // Invalid Date
+    expect(safeDate('').toString()).toEqual(new Date('').toString());
   });
 
   it('number', () => {
