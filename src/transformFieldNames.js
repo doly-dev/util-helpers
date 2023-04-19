@@ -1,5 +1,4 @@
-// 修改类型，请同步到 transformFieldNames.type.js
-// 修改文档，请同步到 transformFieldNames.doc.js
+// 如果修改文档，请同步修改 interface.doc.js
 
 import { isObject } from './utils/type';
 
@@ -16,7 +15,7 @@ import { isObject } from './utils/type';
  * @param {F} fieldNames 字段名映射
  * @param {C} [childrenField] 子级数据字段名
  * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
- * @returns {import('./transformFieldNames.type.js').TransformFieldNames<D, F, C>}
+ * @returns {import('./interface.type.js').TransformFieldNames<D, F, C>}
  * @example
  * 
  * const options = [{code: '1', name: 'one'},{code:'2', name:'two'}];

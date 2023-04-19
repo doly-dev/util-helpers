@@ -32,5 +32,3 @@
  * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
 function transformFieldNames(data, fieldNames, childrenField) { }
-
-export default transformFieldNames;

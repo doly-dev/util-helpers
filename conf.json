@@ -9,8 +9,8 @@
     ],
     "exclude": [
       "./src/utils",
-      "./src/transformFieldNames.js",
-      "./src/transformFieldNames.type.js"
+      "./src/interface.type.js",
+      "./src/transformFieldNames.js"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
