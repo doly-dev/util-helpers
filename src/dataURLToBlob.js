@@ -12,10 +12,11 @@
  * dataURLToBlob(dataurl); // Blob {size: 32, type: 'text/html'}
  */
 function dataURLToBlob(dataurl) {
-  const arr = dataurl.split(',');
+  const parts = dataurl.split(/[:;,]/);
+  const mime = parts[1];
+  const decoder = parts[2] === 'base64' ? atob : decodeURIComponent;
   // @ts-ignore
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const bstr = atob(arr[1]);
+  const bstr = decoder(parts.pop());
   let n = bstr.length;
   const u8arr = new Uint8Array(n);
 

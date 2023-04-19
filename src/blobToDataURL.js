@@ -2,6 +2,8 @@
 //  方法1：将file或者blob类型文件转成base64数据，再作为src赋值给img标签
 //  方法2：使用 window.URL.createObjectURL(blob) 为blob、file 创建一个指向该参数对象的URL
 
+import fileReader from "./fileReader";
+
 /**
  * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串<br/><br/>
  * 
@@ -11,6 +13,8 @@
  * @alias module:Processor.blobToDataURL
  * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL|FileReader.readAsDataURL()}
  * @since 4.1.0
+ * @ignore
+ * @deprecated 请使用 `fileReader` 方法
  * @param {Blob} blob Blob 或 File 对象
  * @returns {Promise<string>} data:URL 格式的 Base64 字符串。
  * @example
@@ -28,13 +32,7 @@
  * });
  */
 function blobToDataURL(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    // @ts-ignore
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
+  return fileReader(blob);
 }
 
 export default blobToDataURL;

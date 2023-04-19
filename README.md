@@ -53,11 +53,9 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [blobToDataURL](https://doly-dev.github.io/util-helpers/module-Processor.html#.blobToDataURL) - 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串
   - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
   - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
-  - [filterTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.filterTree) - 过滤树节点
   - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
   - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
-  - [listToTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.listToTree) - 列表数据转树结构
   - [normalizeString](https://doly-dev.github.io/util-helpers/module-Processor.html#.normalizeString) - 规整化字符串，如果值为 `undefined` `null` 转为 ''，如果不是字符串类型则转为字符串
   - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
   - [padZero](https://doly-dev.github.io/util-helpers/module-Processor.html#.padZero) - 前置补零
@@ -65,6 +63,12 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
   - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
   - [setDataURLPrefix](https://doly-dev.github.io/util-helpers/module-Processor.html#.setDataURLPrefix) - 设置 DataURL 前缀、MIME 类型、base64 标识
+- 树结构数据操作
+  - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
+  - [findTreeNodes](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNodes) - 查找树结构数据多个节点
+  - [findTreeSelect](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeSelect) - 查找包含当前节点的所有父级节点
+  - [filterTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.filterTree) - 过滤树节点
+  - [listToTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.listToTree) - 列表数据转树结构
   - [transformFieldNames](https://doly-dev.github.io/util-helpers/module-Processor.html#.transformFieldNames) - 转换字段名
   - [treeToList](https://doly-dev.github.io/util-helpers/module-Processor.html#.treeToList) - 树结构转列表数据
 - 数据验证
@@ -92,9 +96,6 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
-  - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
-  - [findTreeNodes](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNodes) - 查找树结构数据多个节点
-  - [findTreeSelect](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeSelect) - 查找包含当前节点的所有父级节点
   - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
   - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise
