@@ -1,5 +1,7 @@
 import isArguments from './isArguments';
 import isArray from './isArray';
+import isArrayBuffer from './isArrayBuffer';
+import isBlob from './isBlob';
 import isBoolean from './isBoolean';
 import isDate from './isDate';
 import isError from './isError';
@@ -24,4 +26,4 @@ import isUndefined from './isUndefined';
  * @ignore
  * @since 1.1.0
  */
-export { isArguments, isArray, isBoolean, isDate, isError, isFunction, isObject, isNull, isNaN, isNumber, isRegExp, isString, isSymbol, isMap, isWeakMap, isSet, isWeakSet, isUndefined };
+export { isArguments, isArray, isArrayBuffer, isBlob, isBoolean, isDate, isError, isFunction, isObject, isNull, isNaN, isNumber, isRegExp, isString, isSymbol, isMap, isWeakMap, isSet, isWeakSet, isUndefined };
