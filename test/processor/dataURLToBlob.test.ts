@@ -24,5 +24,13 @@ describe('dataURLToBlob', () => {
 
     const text = await fileReader(data, 'text');
     expect(text).toBe('hello world');
-  })
+  });
+
+  it('more dataURL string', () => {
+    const dataurl = 'data:text/plain;charset=utf-8;base64,w4FydsOtenTFsXLFkXTDvGvDtnJmw7p0w7Nnw6lwLg==';
+    const data = dataURLToBlob(dataurl);
+
+    expect(data.type).toBe('text/plain');
+    expect(data.size).toBe(31);
+  });
 });
