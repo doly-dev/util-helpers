@@ -99,10 +99,12 @@ export { default as round } from './round';
  * @module Other
  * @since 4.2.0
  */
-export { default as waitTime } from './waitTime';
+export { default as ajax } from './ajax';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
+export { default as download } from './download';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
+export { default as waitTime } from './waitTime';
 
 /**
  * 树结构数据查询、过滤、转换等处理方法

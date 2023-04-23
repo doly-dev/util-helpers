@@ -10,7 +10,9 @@
     "exclude": [
       "./src/utils",
       "./src/interface.type.js",
-      "./src/transformFieldNames.js"
+      "./src/transformFieldNames.js",
+      "./src/ajax.js",
+      "./src/download.js"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
