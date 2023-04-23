@@ -107,6 +107,7 @@ function ajax(url, options) { }
  * @alias module:Other.download
  * @since 4.16.0
  * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展|MIME}
+ * @see {@link https://9ykc9s.csb.app/|在线示例}
  * @param {string|Blob|TypedArray} data 字符串、blob数据或url地址
  * @param {string|DownloadOptions} [options] 文件名称 或 配置项
  * @returns {Promise<void>}

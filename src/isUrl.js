@@ -25,7 +25,7 @@ const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg}
  * @static
  * @alias module:Validator.isUrl
  * @since 3.4.0
- * @see 参考 {@link https://zh.wikipedia.org/wiki/统一资源定位符|统一资源定位符}
+ * @see {@link https://zh.wikipedia.org/wiki/统一资源定位符|统一资源定位符}
  * @param {*} value 要检测的值
  * @returns {boolean} 值是否为url
  * @example

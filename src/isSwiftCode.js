@@ -7,8 +7,8 @@ const reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
  *
  * @static
  * @alias module:Validator.isSwiftCode
- * @see 参考 {@link https://zh.wikipedia.org/wiki/ISO_9362|ISO 9362}
  * @since 4.9.0
+ * @see {@link https://zh.wikipedia.org/wiki/ISO_9362|ISO 9362}
  * @param {*} value 要检测的值
  * @returns {boolean} 值是否为 Swift Code
  * @example

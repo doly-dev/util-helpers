@@ -5,11 +5,11 @@ import validatePassword from './validatePassword';
  * <p><strong>注意：该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。</strong></p>
  * <p><i>如果需要更细致的验证，请使用 <a href="#.validatePassword">validatePassword</a></i></p>
  *
- * @see 参考 {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @static
  * @alias module:Validator.isPassword
- * @since 1.1.0
  * @requires module:Validator.validatePassword
+ * @since 1.1.0
+ * @see {@link https://baike.baidu.com/item/ASCII#3|ASCII}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）

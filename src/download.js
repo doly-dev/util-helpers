@@ -67,7 +67,8 @@ function saver(blobUrl, fileName) {
  * @static
  * @alias module:Other.download
  * @since 4.16.0
- * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展|多用途互联网邮件扩展}
+ * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展|MIME}
+ * @see {@link https://9ykc9s.csb.app/|在线示例}
  * @param {string|Blob|ArrayBuffer|Int8Array|Uint8Array|Uint8ClampedArray|Int16Array|Uint16Array|Int32Array|Uint32Array|Float32Array|Float64Array|BigInt64Array|BigUint64Array} data 字符串、blob数据或url地址
  * @param {string|DownloadOptions} [options] 文件名称 或 配置项
  * @returns {Promise<void>}

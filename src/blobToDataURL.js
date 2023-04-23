@@ -9,11 +9,11 @@ import fileReader from "./fileReader";
  * 
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
+ * @ignore
  * @static
  * @alias module:Processor.blobToDataURL
- * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL|FileReader.readAsDataURL()}
  * @since 4.1.0
- * @ignore
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL|FileReader.readAsDataURL()}
  * @deprecated 请使用 `fileReader` 方法
  * @param {Blob} blob Blob 或 File 对象
  * @returns {Promise<string>} data:URL 格式的 Base64 字符串。

@@ -20,13 +20,13 @@ const FileReaderMethodMap = {
  */
 
 /**
- * 读取 Blob 或 File 对象<br/><br/>
+ * 读取 Blob 或 File 对象，可以将 Blob 转为 Base64/String/ArrayBuffer<br/><br/>
  * 
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @static
  * @alias module:Processor.fileReader
- * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader|FileReader}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader|FileReader}
  * @since 4.16.0
  * @param {Blob} blob Blob 或 File 对象
  * @param {'arrayBuffer'|'binaryString'|'dataURL'|'text'} [type='dataURL'] Blob 或 File 对象

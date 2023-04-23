@@ -3,8 +3,8 @@
  *
  * @static
  * @alias module:Processor.dataURLToBlob
- * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64|Base64}
  * @since 4.1.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64|Base64}
  * @param {string} dataurl data: 协议的URL
  * @returns {Blob} Blob 对象
  * @example

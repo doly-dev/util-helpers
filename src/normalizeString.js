@@ -6,8 +6,8 @@ import convertToString from './utils/convertToString';
  *
  * @static
  * @alias module:Processor.normalizeString
- * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#string_instances|String}
  * @since 4.3.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#string_instances|String}
  * @param {*} value 待处理的值
  * @returns {string} 规整化的值
  * @example
