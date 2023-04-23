@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>isTWCard.js - util-helpers </title>
+    <title>fileReader.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isTWCard.js</h1>
+    <h1 class="page-title">fileReader.js</h1>
     
 
     
@@ -71,47 +71,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import normalizeString from './normalizeString';
-
-// 台湾居民来往大陆通行证正则
-const regTWCard = /^\d{8}$/i;
-
-// 一次性短期台胞证
-const singleRegTWCard = /^[\da-z]{10,12}$/i;
-
-/**
- * 检测值是否为台湾居民来往大陆通行证，俗称台胞证。
- *
- * @static
- * @alias module:Validator.isTWCard
- * @since 4.0.0
- * @see 参考 {@link https://zh.wikipedia.org/wiki/台湾居民来往大陆通行证|台湾居民来往大陆通行证}
- * @param {*} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式。如果为true，表示支持一次性短期通行证
- * @returns {boolean} 是否为台湾居民来往大陆通行证
- * @example
- * 
- * isTWCard('12345678'); // true
- * isTWCard('07257456'); // true
- *
- * // 一次性短期
- * isTWCard('F290299977'); // false
- * 
- * // 宽松模式，支持一次性短期通行证
- * isTWCard('F290299977', { loose: true }); // true
- */
-function isTWCard(value, options = {}) {
-  const { loose = false } = options;
-
-  const valueStr = normalizeString(value);
-  if (regTWCard.test(valueStr)) {
-    return true;
-  }
-  return loose ? singleRegTWCard.test(valueStr) : false;
+            <pre class="prettyprint source linenums"><code>const FileReaderMethodMap = {
+  arrayBuffer: 'readAsArrayBuffer',
+  binaryString: 'readAsBinaryString',
+  dataURL: 'readAsDataURL',
+  text: 'readAsText'
 }
 
-export default isTWCard;
+/**
+ * @overload
+ * @param {Blob} blob
+ * @param {'arrayBuffer'} type
+ * @returns {Promise&lt;ArrayBuffer>}
+ */
+
+/**
+ * @overload
+ * @param {Blob} blob
+ * @param {'binaryString'|'binaryString'|'dataURL'|'text'} [type='dataURL']
+ * @returns {Promise&lt;string>}
+ */
+
+/**
+ * 读取 Blob 或 File 对象&lt;br/>&lt;br/>
+ * 
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
+ *
+ * @static
+ * @alias module:Processor.fileReader
+ * @see 参考 {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader|FileReader}
+ * @since 4.16.0
+ * @param {Blob} blob Blob 或 File 对象
+ * @param {'arrayBuffer'|'binaryString'|'dataURL'|'text'} [type='dataURL'] Blob 或 File 对象
+ * @returns {Promise&lt;string|ArrayBuffer>} 文件的内容
+ * @example
+ * const aFileParts = ['&lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>']; // 一个包含DOMString的数组
+ * const htmlBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
+ *
+ * fileReader(htmlBlob).then(data=>{
+ *   console.log(data); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * });
+ *
+ * const textBlob = new Blob(aFileParts, { type: 'text/plain' });
+ *
+ * fileReader(textBlob, 'text').then(data=>{
+ *   console.log(data); // &lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>
+ * });
+ */
+function fileReader(blob, type = 'dataURL') {
+  let method = FileReaderMethodMap[type];
+  if (!method) {
+    method = FileReaderMethodMap.dataURL;
+  }
+
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    // @ts-ignore
+    reader[method](blob);
+    // @ts-ignore
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}
+
+export default fileReader;
 </code></pre>
         </article>
     </section>
