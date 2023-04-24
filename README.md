@@ -50,9 +50,9 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [divide](https://doly-dev.github.io/util-helpers/module-Math.html#.divide) - 除
   - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
 - 数据处理
-  - [blobToDataURL](https://doly-dev.github.io/util-helpers/module-Processor.html#.blobToDataURL) - 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串
   - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
   - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
+  - [fileReader](https://doly-dev.github.io/util-helpers/module-Processor.html#.fileReader) - 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
   - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
   - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
@@ -95,7 +95,9 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
+  - [ajax](https://doly-dev.github.io/util-helpers/module-Other.html#.ajax) - 请求
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
+  - [download](https://doly-dev.github.io/util-helpers/module-Other.html#.download) - 下载
   - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
   - [waitTime](https://doly-dev.github.io/util-helpers/module-Other.html#.waitTime) - 等待时间返回 Promise

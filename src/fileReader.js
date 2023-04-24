@@ -20,7 +20,7 @@ const FileReaderMethodMap = {
  */
 
 /**
- * 读取 Blob 或 File 对象，可以将 Blob 转为 Base64/String/ArrayBuffer<br/><br/>
+ * 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer<br/><br/>
  * 
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
