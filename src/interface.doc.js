@@ -80,13 +80,13 @@ function ajax(url, options) { }
 /**
  * @callback TransformRequest
  * @param {AjaxOptions} options ajax 配置项
- * @returns {AjaxOptions}
+ * @returns {AjaxOptions | Promise<AjaxOptions>}
  */
 
 /**
  * @callback TransformResponse
  * @param {Blob} res 响应的Blob对象。如果你通过 transformRequest 修改了 responseType ，该参数将是该类型响应值。
- * @returns {Blob}
+ * @returns {Blob | Promise<Blob>}
  */
 
 /**

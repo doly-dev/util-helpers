@@ -4,6 +4,7 @@ import dataURLToBlob from "./dataURLToBlob";
 import isUrl from "./isUrl";
 import ajax from "./ajax";
 import { isBlob } from "./utils/type";
+import isPromiseLike from "./isPromiseLike";
 
 /**
  * 下载文件
@@ -41,13 +42,13 @@ function saver(blobUrl, fileName) {
 /**
  * @callback TransformRequest
  * @param {AjaxOptions} options ajax 配置项
- * @returns {AjaxOptions}
+ * @returns {AjaxOptions | Promise<AjaxOptions>}
  */
 
 /**
  * @callback TransformResponse
  * @param {Blob} res 响应的Blob对象。如果你通过 transformRequest 修改了 responseType ，该参数将是该类型响应值。
- * @returns {Blob}
+ * @returns {Blob | Promise<Blob>}
  */
 
 /**
@@ -104,19 +105,31 @@ function download(data, options) {
       payload = dataURLToBlob(data);
     } else if (dataType === 'url' || (!dataType && isUrl(data))) {
       // url
-      /** @type {AjaxOptions} */
-      const defaultAjaxOptions = { responseType: 'blob' };
-      // 请求前配置调整
-      const ajaxOptions = typeof transformRequest === 'function' ? transformRequest(defaultAjaxOptions) : defaultAjaxOptions;
-
-      return ajax(data, ajaxOptions).then(e => {
-        /** @type {Blob} */
+      // 包装为异步方法
+      /** @type {(opts: AjaxOptions)=>Promise<AjaxOptions>} */
+      const asyncTransformRequest = (opts) => {
+        // 请求前配置调整
+        const tempOptions = typeof transformRequest === 'function' ? transformRequest(opts) : opts;
         // @ts-ignore
-        // 响应结果调整
-        const res = typeof transformResponse === 'function' ? transformResponse(e.target.response) : e.target.response;
-        const currentFileName = fileName || data.split("?")[0].split("#")[0].split("/").pop();
-        return download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : undefined) });
-      });
+        return isPromiseLike(tempOptions) ? tempOptions : Promise.resolve(tempOptions);
+      }
+      /** @type {(res: Blob)=>Promise<Blob>} */
+      const asyncTransformResponse = (res) => {
+        const tempRes = typeof transformResponse === 'function' ? transformResponse(res) : res;
+        // @ts-ignore
+        return isPromiseLike(tempRes) ? tempRes : Promise.resolve(tempRes);
+      }
+
+      // 此处如果使用 async/await 语法糖，编译后的umd代码过大
+      return asyncTransformRequest({ responseType: 'blob' }).then(ajaxOptions => {
+        return ajax(data, ajaxOptions).then(e => {
+          // @ts-ignore
+          return asyncTransformResponse(e.target.response).then(res => {
+            const currentFileName = fileName || data.split("?")[0].split("#")[0].split("/").pop();
+            return download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : undefined) });
+          });
+        });
+      })
     } else {
       // string
       payload = new Blob([data], { type: type || 'text/plain' });

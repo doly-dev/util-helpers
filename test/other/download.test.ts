@@ -12,6 +12,11 @@ describe('download', () => {
     Error
   }
   let resMethod = ResponseMethod.Load; // 将要触发的响应方法
+  const xhrMock = {
+    open: jest.fn(),
+    send: jest.fn(),
+    setRequestHeader: jest.fn()
+  }
   const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
     const methods: Record<string, () => void> = {}
 
@@ -45,10 +50,10 @@ describe('download', () => {
       addEventListener: jest.fn().mockImplementation(function (fnName, fn) {
         methods[fnName] = fn;
       }),
-      open: jest.fn(),
+      open: xhrMock.open,
       removeEventListener: jest.fn(),
-      send: jest.fn().mockImplementation(send),
-      setRequestHeader: jest.fn(),
+      send: xhrMock.send.mockImplementation(send),
+      setRequestHeader: xhrMock.setRequestHeader,
     }) as any
   });
 
@@ -136,12 +141,39 @@ describe('download', () => {
     await download('/test.txt', {
       dataType: 'url',
       transformRequest(options) {
-        return options;
+        return {
+          ...options,
+          method: 'post',
+          data: 'a=1&b=2'
+        };
       },
       transformResponse(res) {
         return '' as any;
       }
     });
+
+    expect(xhrMock.open).toHaveBeenCalledWith('post', '/test.txt', true, null, null);
+    expect(xhrMock.send).toHaveBeenCalledWith('a=1&b=2');
+    expect(xhrMock.setRequestHeader).not.toHaveBeenCalled();
+
+    await download('/test.txt', {
+      dataType: 'url',
+      transformRequest: async (options) => {
+        await waitTime(100);
+        return {
+          ...options,
+          method: 'post',
+          data: 'a=1&b=2'
+        };
+      },
+      transformResponse: async (res) => {
+        return res;
+      }
+    });
+
+    expect(xhrMock.open).toHaveBeenCalledWith('post', '/test.txt', true, null, null);
+    expect(xhrMock.send).toHaveBeenCalledWith('a=1&b=2');
+    expect(xhrMock.setRequestHeader).not.toHaveBeenCalled();
   });
 
   it('mock ie', async () => {
