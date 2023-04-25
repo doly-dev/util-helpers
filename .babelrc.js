@@ -1,3 +1,10 @@
+// ref: https://my.oschina.net/linsk1998/blog/5593389
+const babelRuntimePath = require.resolve("@babel/runtime/package.json", {
+  paths: [process.cwd()]
+});
+const babelRuntimePackage = require(babelRuntimePath);
+const babelRuntimeVersion = babelRuntimePackage.version;
+
 const { version } = require('./package.json');
 const { MODULE_TYPE, NODE_ENV } = process.env;
 
@@ -30,7 +37,9 @@ if (MODULE_TYPE === 'cjs') {
 }
 
 if (MODULE_TYPE === 'esm' || NODE_ENV === 'test') {
-  plugins.push('@babel/transform-runtime');
+  plugins.push(['@babel/transform-runtime', {
+    version: babelRuntimeVersion
+  }]);
 }
 
 if (NODE_ENV === 'test') {
