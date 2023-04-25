@@ -1,4 +1,5 @@
 // ref: https://my.oschina.net/linsk1998/blog/5593389
+// ref: https://babeljs.io/docs/babel-plugin-transform-runtime#version
 const babelRuntimePath = require.resolve("@babel/runtime/package.json", {
   paths: [process.cwd()]
 });
