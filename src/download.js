@@ -134,13 +134,13 @@ function download(data, options) {
       // string
       payload = new Blob([data], { type: type || 'text/plain' });
     }
-  } else if (isBlob(data)) {
-    // @ts-ignore
+  } else if (data instanceof Blob) {
+    // File or Blob
     payload = data;
   }
 
   // html、TypedArray
-  if (!(payload instanceof Blob)) {
+  if (!payload) {
     payload = new Blob([data], { type });
   }
 
