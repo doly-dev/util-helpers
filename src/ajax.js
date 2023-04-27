@@ -1,26 +1,27 @@
 /**
- * @typedef {XMLHttpRequest['onloadstart']} XMLHttpRequestEvent XMLHttpRequest 事件对象
+ * @typedef {XMLHttpRequest['onloadstart']} XMLHttpRequestListener XMLHttpRequest 事件对象
  */
 
 /**
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest|XMLHttpRequest}
  * @typedef {Object} AjaxOptions ajax配置项
  * @property {string} [method="get"] 创建请求时使用的方法
- * @property {Document | XMLHttpRequestBodyInit | null} [data=null] 请求体被发送的数据
+ * @property {boolean} [async=true] 是否异步执行操作
+ * @property {string|null} [user=null] 用户名，用于认证用途
+ * @property {string|null} [password=null] 密码，用于认证用途
  * @property {Object.<string, string>} [headers] 自定义请求头
  * @property {XMLHttpRequestResponseType} [responseType] 响应类型
  * @property {number} [timeout] 请求超时的毫秒数
  * @property {boolean} [withCredentials=false] 跨域请求时是否需要使用凭证
- * @property {boolean} [async=true] 是否异步执行操作
- * @property {string|null} [user=null] 用户名，用于认证用途
- * @property {string|null} [password=null] 密码，用于认证用途
- * @property {XMLHttpRequestEvent} [onLoadStart] 接收到响应数据时触发
- * @property {XMLHttpRequestEvent} [onProgress] 请求接收到更多数据时，周期性地触发
- * @property {XMLHttpRequestEvent} [onAbort] 当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时
- * @property {XMLHttpRequestEvent} [onTimeout] 在预设时间内没有接收到响应时触发
- * @property {XMLHttpRequestEvent} [onError] 当 request 遭遇错误时触发
- * @property {XMLHttpRequestEvent} [onLoad] 请求成功完成时触发
- * @property {XMLHttpRequestEvent} [onLoadEnd] 请求结束时触发，无论请求成功 (load) 还是失败 (abort 或 error)
+ * @property {Parameters<XMLHttpRequest['send']>[0]} [data=null] 请求体被发送的数据
+ * @property {XMLHttpRequest['onreadystatechange']} [options.onReadyStateChange] 当 readyState 属性发生变化时触发
+ * @property {XMLHttpRequestListener} [onLoadStart] 接收到响应数据时触发
+ * @property {XMLHttpRequestListener} [onProgress] 请求接收到更多数据时，周期性地触发
+ * @property {XMLHttpRequestListener} [onAbort] 当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时
+ * @property {XMLHttpRequestListener} [onTimeout] 在预设时间内没有接收到响应时触发
+ * @property {XMLHttpRequestListener} [onError] 当 request 遭遇错误时触发
+ * @property {XMLHttpRequestListener} [onLoad] 请求成功完成时触发
+ * @property {XMLHttpRequestListener} [onLoadEnd] 请求结束时触发，无论请求成功 (load) 还是失败 (abort 或 error)
  */
 
 /**
@@ -34,7 +35,7 @@
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest|XMLHttpRequest}
  * @param {string} url 地址
  * @param {AjaxOptions} [options] 配置项
- * @returns {Promise<ProgressEvent<EventTarget>>}
+ * @returns {Promise<ProgressEvent>}
  * @example
  * ajax('/somefile').then(res=>{
  *   // do something
@@ -55,13 +56,14 @@ function ajax(url, options) {
     user = null,
     password = null,
     responseType,
-    onAbort,
-    onError,
-    onLoad,
-    onLoadEnd,
+    onReadyStateChange,
     onLoadStart,
     onProgress,
-    onTimeout
+    onAbort,
+    onTimeout,
+    onError,
+    onLoad,
+    onLoadEnd
   } = options || {};
 
   return new Promise((resolve, reject) => {
@@ -71,6 +73,10 @@ function ajax(url, options) {
     // 设置请求超时
     if (typeof timeout === 'number' && timeout > 0) {
       xhr.timeout = timeout;
+    }
+
+    if (onReadyStateChange) {
+      xhr.onreadystatechange = onReadyStateChange;
     }
 
     // 跨域请求时是否需要使用凭证
@@ -90,12 +96,12 @@ function ajax(url, options) {
 
     /**
      * 请求成功异步调用
-     * @param {XMLHttpRequestEvent} [cb] 回调方法
+     * @param {XMLHttpRequestListener} [cb] 回调方法
      */
     const wrapSuccess = (cb) => {
       /**
        * 内部方法
-       * @param {ProgressEvent<EventTarget>} e 事件对象
+       * @param {ProgressEvent} e 事件对象
        */
       return (e) => {
         resolve(e);
@@ -105,12 +111,12 @@ function ajax(url, options) {
 
     /**
      * 请求失败（中断/超时/失败）处理
-       * @param {XMLHttpRequestEvent} [cb] 回调方法
+       * @param {XMLHttpRequestListener} [cb] 回调方法
      */
     const wrapError = (cb) => {
       /**
        * 内部方法
-       * @param {ProgressEvent<EventTarget>} e 事件对象
+       * @param {ProgressEvent} e 事件对象
        */
       return (e) => {
         reject(e);
@@ -119,7 +125,7 @@ function ajax(url, options) {
     }
 
     // 事件处理
-    /**@type {Object.<keyof XMLHttpRequestEventTargetEventMap, XMLHttpRequestEvent | undefined>} */
+    /**@type {Object.<keyof XMLHttpRequestEventTargetEventMap, XMLHttpRequestListener | undefined>} */
     const events = {
       loadstart: onLoadStart,
       progress: onProgress,

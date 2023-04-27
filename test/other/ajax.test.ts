@@ -101,6 +101,7 @@ describe('ajax', () => {
   });
 
   it('callback', async () => {
+    const readyStateChangeFn = jest.fn();
     const loadstartFn = jest.fn();
     const abortFn = jest.fn();
     const timeoutFn = jest.fn();
@@ -113,6 +114,7 @@ describe('ajax', () => {
 
     try {
       await ajax('/test', {
+        onReadyStateChange: readyStateChangeFn,
         onLoadStart: loadstartFn,
         onAbort: abortFn,
         onTimeout: timeoutFn,

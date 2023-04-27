@@ -37,14 +37,15 @@ function transformFieldNames(data, fieldNames, childrenField) { }
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest|XMLHttpRequest}
  * @typedef {Object} AjaxOptions ajax配置项
  * @property {string} [method="get"] 创建请求时使用的方法
- * @property {*} [data=null] 请求体被发送的数据
+ * @property {boolean} [async=true] 是否异步执行操作
+ * @property {string|null} [user=null] 用户名，用于认证用途
+ * @property {string|null} [password=null] 密码，用于认证用途
  * @property {object} [headers] 自定义请求头
  * @property {string} [responseType] 响应类型
  * @property {number} [timeout] 请求超时的毫秒数
  * @property {boolean} [withCredentials=false] 跨域请求时是否需要使用凭证
- * @property {boolean} [async=true] 是否异步执行操作
- * @property {string|null} [user=null] 用户名，用于认证用途
- * @property {string|null} [password=null] 密码，用于认证用途
+ * @property {*} [data=null] 请求体被发送的数据
+ * @property {function} [options.onReadyStateChange] 当 readyState 属性发生变化时触发
  * @property {function} [onLoadStart] 接收到响应数据时触发
  * @property {function} [onProgress] 请求接收到更多数据时，周期性地触发
  * @property {function} [onAbort] 当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时
