@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>setDataURLPrefix.js - util-helpers </title>
+    <title>safeDate.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">setDataURLPrefix.js</h1>
+    <h1 class="page-title">safeDate.js</h1>
     
 
     
@@ -71,36 +71,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 设置 DataURL 前缀、MIME 类型、base64 标识。&lt;br/>
- * 如果你需要获取DataURL 的 MIME 类型和数据本身，推荐使用 &lt;a href="https://www.npmjs.com/package/data-urls">data-urls&lt;/a>。
+            <pre class="prettyprint source linenums"><code>import { __read, __spreadArray } from "tslib";
+/**
+ * 创建一个 Date 实例日期对象，同 &lt;a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()&lt;/a> &lt;br/>&lt;br/>
+ *
+ * 规避了苹果设备浏览器不支持部分格式（例如，YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。&lt;br/>
+ * 如果参数为 undefined 正常返回 Date 。
  *
  * @static
- * @alias module:Processor.setDataURLPrefix
- * @since 4.1.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs | Data URLs}
- * @see {@link https://mimesniff.spec.whatwg.org/#understanding-mime-types | MIME types}
- * @param {string} data 数据本身
- * @param {string} [mimeType="image/png"] MIME 类型
- * @param {boolean} [base64=true] 添加 base64 标识
- * @returns {string} DataURL 格式的字符串
+ * @alias module:Processor.safeDate
+ * @since 4.4.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date | Date}
+ * @param {string|number|Date} [value] 日期时间字符串、毫秒数、日期对象
+ * @param {...number} [args] 月/日/时/分/秒/毫秒
+ * @returns {Date} Date 实例日期对象
  * @example
  *
- * const data = 'PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
- * setDataURLPrefix(data); // data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'image/png', false); // data:image/png,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'image/jpg'); // data:image/jpg;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'text/html'); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, ''); // data:;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- *
+ * safeDate('2022-1-1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
+ * safeDate('2022/1/1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
+ * safeDate('2022.1.1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
+ * safeDate('2022.1.1 11:11'); // Sat Jan 01 2022 11:11:00 GMT+0800 (中国标准时间)
+ * safeDate(99, 1); // Mon Feb 01 1999 00:00:00 GMT+0800 (中国标准时间)
+ * safeDate(1646711233171); // Tue Mar 08 2022 11:47:13 GMT+0800 (中国标准时间)
  */
-function setDataURLPrefix(data, mimeType, base64) {
-    if (mimeType === void 0) { mimeType = 'image/png'; }
-    if (base64 === void 0) { base64 = true; }
-    return "data:".concat(mimeType).concat(base64 ? ';base64' : '', ",").concat(data);
+function safeDate(value) {
+    var args = [];
+    for (var _i = 1; _i &lt; arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    var safeValue = typeof value === 'string' ? value.replace(/[\\.-]/g, '/') : value;
+    if (args &amp;&amp; args.length > 0) {
+        // const [monthIndex, date, hours, minutes, seconds, ms] = args;
+        // return new Date(safeValue as number, monthIndex, date, hours, minutes, seconds, ms);
+        // const [monthIndex, date, hours, minutes, seconds, ms] = args;
+        // @ts-ignore
+        return new (Date.bind.apply(Date, __spreadArray([void 0, safeValue], __read(args), false)))();
+    }
+    return typeof safeValue === 'undefined' ? new Date() : new Date(safeValue);
 }
-export default setDataURLPrefix;
+export default safeDate;
 </code></pre>
         </article>
     </section>

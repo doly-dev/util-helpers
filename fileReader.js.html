@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>setDataURLPrefix.js - util-helpers </title>
+    <title>fileReader.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">setDataURLPrefix.js</h1>
+    <h1 class="page-title">fileReader.js</h1>
     
 
     
@@ -71,36 +71,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 设置 DataURL 前缀、MIME 类型、base64 标识。&lt;br/>
- * 如果你需要获取DataURL 的 MIME 类型和数据本身，推荐使用 &lt;a href="https://www.npmjs.com/package/data-urls">data-urls&lt;/a>。
+            <pre class="prettyprint source linenums"><code>var FileReaderMethodMap = {
+    arrayBuffer: 'readAsArrayBuffer',
+    binaryString: 'readAsBinaryString',
+    dataURL: 'readAsDataURL',
+    text: 'readAsText'
+};
+/**
+ * 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer&lt;br/>&lt;br/>
+ *
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
  *
  * @static
- * @alias module:Processor.setDataURLPrefix
- * @since 4.1.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs | Data URLs}
- * @see {@link https://mimesniff.spec.whatwg.org/#understanding-mime-types | MIME types}
- * @param {string} data 数据本身
- * @param {string} [mimeType="image/png"] MIME 类型
- * @param {boolean} [base64=true] 添加 base64 标识
- * @returns {string} DataURL 格式的字符串
+ * @alias module:Processor.fileReader
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader | FileReader}
+ * @since 4.16.0
+ * @param {Blob} blob Blob 或 File 对象
+ * @param {'arrayBuffer'|'binaryString'|'dataURL'|'text'} [type='dataURL'] 读取类型
+ * @returns {Promise&lt;string|ArrayBuffer>} 文件内容
  * @example
+ * const aFileParts = ['&lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>']; // 一个包含DOMString的数组
+ * const htmlBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
  *
- * const data = 'PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
- * setDataURLPrefix(data); // data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'image/png', false); // data:image/png,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'image/jpg'); // data:image/jpg;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, 'text/html'); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, ''); // data:;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * fileReader(htmlBlob).then(data=>{
+ *   console.log(data); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+ * });
  *
+ * const textBlob = new Blob(aFileParts, { type: 'text/plain' });
+ *
+ * fileReader(textBlob, 'text').then(data=>{
+ *   console.log(data); // &lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>
+ * });
  */
-function setDataURLPrefix(data, mimeType, base64) {
-    if (mimeType === void 0) { mimeType = 'image/png'; }
-    if (base64 === void 0) { base64 = true; }
-    return "data:".concat(mimeType).concat(base64 ? ';base64' : '', ",").concat(data);
+function fileReader(blob, type) {
+    if (type === void 0) { type = 'dataURL'; }
+    var method = FileReaderMethodMap[type];
+    if (!method) {
+        method = FileReaderMethodMap.dataURL;
+    }
+    return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader[method](blob);
+        reader.onload = function () { return resolve(reader.result); };
+        reader.onerror = function (error) { return reject(error); };
+    });
 }
-export default setDataURLPrefix;
+export default fileReader;
 </code></pre>
         </article>
     </section>
