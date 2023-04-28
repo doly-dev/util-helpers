@@ -15,7 +15,7 @@ const reg = /^(0\d{2,3}-)?([2-9]\d{6,7})(-\d{1,6})?$/;
  *
  * isTelephone('22033212'); // true
  * isTelephone('13000000000'); // false
- * 
+ *
  * // 含区号
  * isTelephone('021-22033212'); // true
  *

@@ -27,7 +27,7 @@ describe('fileReader', () => {
 
   it('incorrect', async () => {
     const textBlob = new Blob(['hello world'], { type: 'text/plain' });
-    // 如果method方法不存在，默认为 dataURL 
+    // 如果method方法不存在，默认为 dataURL
     // @ts-ignore
     const data = await fileReader(textBlob, 'unsupport');
     expect(data).toBe('data:text/plain;base64,aGVsbG8gd29ybGQ=');
@@ -41,7 +41,7 @@ describe('fileReader', () => {
         setTimeout(() => {
           this.onerror(new Error('mock error'));
         }, 100);
-      }
+      };
     });
 
     try {

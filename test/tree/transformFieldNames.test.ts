@@ -3,22 +3,22 @@ import { transformFieldNames } from '../../src';
 const options = [
   {
     code: '1',
-    name: 'one',
+    name: 'one'
   },
   {
     code: '2',
-    name: 'two',
+    name: 'two'
   }
 ];
 
 const options2 = [
   {
     code: '1',
-    name: 'one',
+    name: 'one'
   },
   {
     code: '2',
-    name: 'two',
+    name: 'two'
   },
   {
     code: '3',
@@ -33,9 +33,9 @@ const options2 = [
             name: 'three-one-one'
           },
           {
-            code: '3-1-2',
+            code: '3-1-2'
             // name: 'three-one-two'
-          },
+          }
         ]
       }
     ]
@@ -45,11 +45,11 @@ const options2 = [
 const options3 = [
   {
     code: '1',
-    name: 'one',
+    name: 'one'
   },
   {
     code: '2',
-    name: 'two',
+    name: 'two'
   },
   {
     code: '3',
@@ -81,12 +81,12 @@ const options3 = [
           {
             code: '3-2-2',
             name: 'three-two-two'
-          },
+          }
         ]
-      },
+      }
     ]
   }
-]
+];
 
 describe('transformFieldNames', () => {
   it('return new object', () => {
@@ -95,8 +95,14 @@ describe('transformFieldNames', () => {
       value: 'code'
     });
 
-    expect(options).toMatchObject([{ code: '1', name: 'one' }, { code: '2', name: 'two' }]);
-    expect(newOpts).toMatchObject([{ label: 'one', value: '1' }, { label: 'two', value: '2' }]);
+    expect(options).toMatchObject([
+      { code: '1', name: 'one' },
+      { code: '2', name: 'two' }
+    ]);
+    expect(newOpts).toMatchObject([
+      { label: 'one', value: '1' },
+      { label: 'two', value: '2' }
+    ]);
     expect(options).not.toEqual(newOpts);
   });
 
@@ -114,7 +120,10 @@ describe('transformFieldNames', () => {
 
   it('assign fields', () => {
     const newOpts = transformFieldNames(options, { label: 'name' });
-    expect(newOpts).toMatchObject([{ label: 'one', code: '1' }, { label: 'two', code: '2' }]);
+    expect(newOpts).toMatchObject([
+      { label: 'one', code: '1' },
+      { label: 'two', code: '2' }
+    ]);
   });
 
   it('recusion', () => {
@@ -128,7 +137,20 @@ describe('transformFieldNames', () => {
   });
 
   it('nodeAssign', () => {
-    const basicMenus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    const basicMenus = [
+      { id: '1', name: '首页', code: 'trade', pid: null },
+      { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }] }] },
+      {
+        id: '5',
+        name: '权限管理',
+        code: 'authorization',
+        pid: null,
+        children: [
+          { id: '6', name: '角色管理', code: 'authorization-1', pid: '5' },
+          { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
+        ]
+      }
+    ];
 
     const result = transformFieldNames(basicMenus, { label: 'name', childs: 'children' }, 'children', 'self');
     // const result = transformFieldNames(basicMenus, { label: 'name' }, undefined, 'self');

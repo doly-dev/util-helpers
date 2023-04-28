@@ -10,13 +10,11 @@ describe('waitTime', () => {
   });
 
   it('default time', () => {
-    let start, end, elapsedTime;
-
     // 默认时间
-    start = Date.now(); // 使用 performance.now() 可以得到更精确的时间
+    const start = Date.now(); // 使用 performance.now() 可以得到更精确的时间
     waitTime().then(() => {
-      end = Date.now();
-      elapsedTime = end - start;
+      const end = Date.now();
+      const elapsedTime = end - start;
       expect(elapsedTime).toEqual(1000);
     });
 
@@ -24,12 +22,10 @@ describe('waitTime', () => {
   });
 
   it('custom time', () => {
-    let start, end, elapsedTime;
-
-    start = Date.now();
+    const start = Date.now();
     waitTime(300).then(() => {
-      end = Date.now();
-      elapsedTime = end - start;
+      const end = Date.now();
+      const elapsedTime = end - start;
       expect(elapsedTime).toEqual(300);
     });
     jest.runAllTimers();

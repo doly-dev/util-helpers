@@ -11,7 +11,7 @@ import convertToString from './utils/convertToString';
  * @param {*} value 待处理的值
  * @returns {string} 规整化的值
  * @example
- * 
+ *
  * normalizeString(); // ''
  * normalizeString(undefined); // ''
  * normalizeString(void 0); // ''
@@ -21,7 +21,7 @@ import convertToString from './utils/convertToString';
  * normalizeString(NaN); // 'NaN'
  * normalizeString(1); // '1'
  * normalizeString('a'); // 'a'
- * 
+ *
  */
 function normalizeString(value: any) {
   if (isNil(value)) {

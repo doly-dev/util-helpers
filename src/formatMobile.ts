@@ -4,7 +4,7 @@ type Options = {
   /** @deprecated */
   char?: string;
   spaceMark?: string;
-}
+};
 
 /**
  * 格式化手机号码
@@ -17,7 +17,7 @@ type Options = {
  * @param {string} [options.spaceMark=' '] 间隔字符
  * @returns {string} 格式化后的手机号码
  * @example
- * 
+ *
  * formatMobile('13345678900'); // 133 4567 8900
  * formatMobile('13345678900', { spaceMark: '-' }); // 133-4567-8900
  *
@@ -29,7 +29,7 @@ type Options = {
  * formatMobile('133'); // 133
  * formatMobile('133456'); // 133 456
  * formatMobile('13345678'); // 133 4567 8
- * 
+ *
  */
 function formatMobile(mobileNo = '', options: Options = {}) {
   const { char = ' ' } = options;

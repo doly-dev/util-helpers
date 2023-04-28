@@ -8,7 +8,7 @@ const singleRegTWCard = /^[\da-z]{10,12}$/i;
 
 type Options = {
   loose?: boolean;
-}
+};
 
 /**
  * 检测值是否为台湾居民来往大陆通行证，俗称台胞证。
@@ -22,13 +22,13 @@ type Options = {
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，表示支持一次性短期通行证
  * @returns {boolean} 是否为台湾居民来往大陆通行证
  * @example
- * 
+ *
  * isTWCard('12345678'); // true
  * isTWCard('07257456'); // true
  *
  * // 一次性短期
  * isTWCard('F290299977'); // false
- * 
+ *
  * // 宽松模式，支持一次性短期通行证
  * isTWCard('F290299977', { loose: true }); // true
  */

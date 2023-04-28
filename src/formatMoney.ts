@@ -13,14 +13,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  * @returns 是否为数字
  */
 function checkNumber(num: string | number) {
-  if (
-    (typeof num !== 'number' && typeof num !== 'string') ||
-    (typeof num === 'number' && isNaN(num)) ||
-    (typeof num === 'string' && (
-      !(reg.test(num) || isScientificNumber(num)) ||
-      num === ''
-    ))
-  ) {
+  if ((typeof num !== 'number' && typeof num !== 'string') || (typeof num === 'number' && isNaN(num)) || (typeof num === 'string' && (!(reg.test(num) || isScientificNumber(num)) || num === ''))) {
     devWarn(`${num} invalid parameter.`);
     return false;
   }
@@ -88,7 +81,7 @@ type Options = {
   symbol?: string;
   thousand?: string;
   decimal?: string;
-}
+};
 
 /**
  * 格式化金额
@@ -125,7 +118,7 @@ type Options = {
  *
  * // 自定义小数位分割符(默认'.')
  * formatMoney(1000.00, { decimal: '&' }); // 1,000&00
- * 
+ *
  * // 字符串数字
  * formatMoney('3000.03', { precision: 4 }); // 3,000.0300
  */

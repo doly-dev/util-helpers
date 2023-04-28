@@ -19,11 +19,11 @@ import validatePassword from './validatePassword';
  * @example
  *
  * isPassword('a12345678'); // true
- * 
+ *
  * // 3级密码强度
  * isPassword('a12345678', {level: 3}); // false
  * isPassword('Aa12345678', {level: 3}); // true
- * 
+ *
  * // 3级密码强度，大小写字符仅计算1级强度
  * isPassword('Aa12345678', {level: 3, ignoreCase: true}); // false
  * isPassword('_Aa12345678', {level: 3, ignoreCase: true}); // true
@@ -31,7 +31,7 @@ import validatePassword from './validatePassword';
  * // 仅支持 数字、字母、特殊字符，其他非法字符如中文字符是校验不通过的
  * isPassword('_Aa一二三45678', {level: 3, ignoreCase: true}); // false
  * isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false
- * 
+ *
  */
 function isPassword(value: any, options: Parameters<typeof validatePassword>[1] = {}) {
   const { level = 2, ignoreCase = false, special = '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' } = options;

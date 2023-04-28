@@ -95,14 +95,14 @@ type IdCardOrigin = {
   month: string;
   day: string;
   gender: string;
-}
+};
 
 type IdCardInfo = {
   province: string;
   birthday: string;
   gender: string;
   origin: IdCardOrigin;
-}
+};
 
 /**
  * 解析身份证号码，支持15、18位身份证号码
@@ -114,11 +114,11 @@ type IdCardInfo = {
  * @param {string} id 身份证号码，支持15位
  * @returns {IdCardInfo | null} 省份、生日、性别，省/市/区/年/月/日/性别编码。如果解析失败将返回 null 。
  * @example
- * 
+ *
  * parseIdCard('123456789123456'); // null
  *
  * // 18位身份证号码
- * parseIdCard('130701199310302288'); 
+ * parseIdCard('130701199310302288');
  * // =>
  * {
  *   birthday: "1993-10-30",

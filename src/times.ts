@@ -15,7 +15,7 @@ import { isNaN } from './utils/type';
  * times(3, 0.6); // 1.8
  * times(3, 0.6, 2); // 3.6
  * times(3, 0.6, 2, 10); // 36
- * 
+ *
  */
 function times(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const

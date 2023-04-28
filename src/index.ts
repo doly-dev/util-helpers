@@ -58,34 +58,34 @@ export { default as padZero } from './padZero';
  * @example
  * // 从 4.12.0 版本开始，规范了有效数值。（注意：4.12.3 对有效数值重新定义）
  * // 有效数值即能通过 Number(value) 转为数字，且不能为 NaN 。
- * 
+ *
  * // 以下为有效数值：
  * // 1. 数字: 1, -1, 1e-2, 1.312, 0.1, Infinity
  * // 2. 字符串: '1', '10e2', '-1', '0.1', '', ' ', '  15', ' 15   '
  * // 4. 其他类型: null, new Date(), [], new Array(), true, false,...
- * 
+ *
  * // 以下为无效数值：
  * // 1. 字符串: '1a', '-12a', '10.2.2', '10e2.1'
  * // 2. 其他类型: undefined, [], {}, Symbol(), function(){}, ()=>{}
- * 
+ *
  * // 计算说明：
  * // 四则运算的第二个参数都是有默认值（乘数和除数默认1，加数和减数默认0）
  * plus(); // NaN  0个参数时，被加数转换为 Number(undefined) NaN ，NaN+0 = NaN 。其他计算方法如果没有参数一样返回 NaN 。
  * plus(0.1); // 0.1  第二个参数，加数默认为 0
  * plus(undefined, 0.1); // NaN  第一个参数被加数转换为 Number(undefined) NaN ，NaN+0 = NaN 。其他计算方法如果第一个参数为无效数值一样返回 NaN 。
  * plus(true, null); // 1  Number(true) 转换为 1 ， Number(null) 转换为 0 ， 1+0=1
- * 
+ *
  * // 2. 参数中包含无效数值，返回NaN
  * plus('0.1', ' a'); // NaN
  * plus(true, {}); // NaN
  * plus(true, 0.1, Symbol()); // NaN
- * 
+ *
  * // 注意：
  * // 如果第二个及后面的参数如果值为 undefined 取默认值，即乘除数取 1 ，加减法取 0 。
- * plus(0.1, undefined); // 0.1  
+ * plus(0.1, undefined); // 0.1
  * plus(0.1, undefined, 0.2, undefined); // 0.3  后面的 undefined 取默认值 0
  * times(0.1, undefined, 0.2, undefined); // 0.02  后面的 undefined 取默认值 1
- * 
+ *
  */
 export { default as plus } from './plus';
 export { default as minus } from './minus';

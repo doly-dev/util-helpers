@@ -4,6 +4,7 @@ import { strip, digitLength, float2Fixed, trimLeftZero, scientificToNumber, chec
 describe('math.util', () => {
   it('strip', () => {
     expect(strip(0.09999999999999998)).toBe(0.1);
+    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
     expect(strip(1.0000000000000001)).toBe(1);
   });
 
@@ -122,9 +123,27 @@ describe('math.util', () => {
     expect(transformEffectiveNumber(undefined)).toBe(NaN);
     expect(transformEffectiveNumber('undefined')).toBe(NaN);
     expect(transformEffectiveNumber({})).toBe(NaN);
-    expect(transformEffectiveNumber({ valueOf() { return 'a' } })).toBe(NaN);
-    expect(transformEffectiveNumber({ toString() { return 'b' } })).toBe(NaN);
-    expect(transformEffectiveNumber({ [Symbol.toPrimitive]() { return 'c' } })).toBe(NaN);
+    expect(
+      transformEffectiveNumber({
+        valueOf() {
+          return 'a';
+        }
+      })
+    ).toBe(NaN);
+    expect(
+      transformEffectiveNumber({
+        toString() {
+          return 'b';
+        }
+      })
+    ).toBe(NaN);
+    expect(
+      transformEffectiveNumber({
+        [Symbol.toPrimitive]() {
+          return 'c';
+        }
+      })
+    ).toBe(NaN);
     expect(transformEffectiveNumber(NaN)).toBe(NaN);
     expect(transformEffectiveNumber(Symbol())).toBe(NaN);
     expect(transformEffectiveNumber(Symbol.for('1324'))).toBe(NaN);
@@ -142,11 +161,50 @@ describe('math.util', () => {
     expect(transformEffectiveNumber(false)).toBe(0);
     expect(transformEffectiveNumber([])).toBe(0);
     expect(transformEffectiveNumber(new Array())).toBe(0);
-    expect(transformEffectiveNumber({ valueOf() { return '123' } })).toBe(123);
-    expect(transformEffectiveNumber({ toString() { return '456' } })).toBe(456);
-    expect(transformEffectiveNumber({ [Symbol.toPrimitive]() { return '789' } })).toBe(789);
-    expect(transformEffectiveNumber({ valueOf() { return '123' }, toString() { return '456' } })).toBe(123);
-    expect(transformEffectiveNumber({ valueOf() { return '123' }, toString() { return '456' }, [Symbol.toPrimitive]() { return '789' } })).toBe(789);
+    expect(
+      transformEffectiveNumber({
+        valueOf() {
+          return '123';
+        }
+      })
+    ).toBe(123);
+    expect(
+      transformEffectiveNumber({
+        toString() {
+          return '456';
+        }
+      })
+    ).toBe(456);
+    expect(
+      transformEffectiveNumber({
+        [Symbol.toPrimitive]() {
+          return '789';
+        }
+      })
+    ).toBe(789);
+    expect(
+      transformEffectiveNumber({
+        valueOf() {
+          return '123';
+        },
+        toString() {
+          return '456';
+        }
+      })
+    ).toBe(123);
+    expect(
+      transformEffectiveNumber({
+        valueOf() {
+          return '123';
+        },
+        toString() {
+          return '456';
+        },
+        [Symbol.toPrimitive]() {
+          return '789';
+        }
+      })
+    ).toBe(789);
     const date = new Date();
     expect(transformEffectiveNumber(date)).toBe(date.getTime());
     expect(transformEffectiveNumber('')).toBe(0);
@@ -163,7 +221,7 @@ describe('math.util', () => {
     expect(transformEffectiveNumber(1.1)).toBe(1.1);
     expect(transformEffectiveNumber(5e2)).toBe(500);
     expect(transformEffectiveNumber(-5e2)).toBe(-500);
-    expect(transformEffectiveNumber(-5e+2)).toBe(-500);
+    expect(transformEffectiveNumber(-5e2)).toBe(-500);
     expect(transformEffectiveNumber(-5e-2)).toBe(-0.05);
     expect(transformEffectiveNumber(Infinity)).toBe(Infinity);
     expect(transformEffectiveNumber(-Infinity)).toBe(-Infinity);

@@ -15,7 +15,7 @@ const menus = [
   { id: '12', name: '用户管理', code: 'authorization-2', pid: '7' },
   { id: '13', name: '用户管理-查询操作', code: 'authorization-2-1', pid: '12' },
   { id: '14', name: '用户管理-新增/修改操作', code: 'authorization-2-2', pid: '12' },
-  { id: '15', name: '用户管理-删除操作', code: 'authorization-2-3', pid: '12' },
+  { id: '15', name: '用户管理-删除操作', code: 'authorization-2-3', pid: '12' }
 ];
 
 describe('listToTree', () => {
@@ -30,10 +30,36 @@ describe('listToTree', () => {
       { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
     ];
     // console.log(JSON.stringify(listToTree(basicMenus)));
-    expect(listToTree(basicMenus)).toMatchObject([{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }]);
+    expect(listToTree(basicMenus)).toMatchObject([
+      { id: '1', name: '首页', code: 'trade', pid: null },
+      { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }] }] },
+      {
+        id: '5',
+        name: '权限管理',
+        code: 'authorization',
+        pid: null,
+        children: [
+          { id: '6', name: '角色管理', code: 'authorization-1', pid: '5' },
+          { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
+        ]
+      }
+    ]);
 
     // console.log(JSON.stringify(listToTree(basicMenus, { childrenField: 'childs' })));
-    expect(listToTree(basicMenus, { childrenField: 'childs' })).toMatchObject([{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "childs": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "childs": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "childs": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }]);
+    expect(listToTree(basicMenus, { childrenField: 'childs' })).toMatchObject([
+      { id: '1', name: '首页', code: 'trade', pid: null },
+      { id: '2', name: '交易管理', code: 'trade', pid: null, childs: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', childs: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }] }] },
+      {
+        id: '5',
+        name: '权限管理',
+        code: 'authorization',
+        pid: null,
+        childs: [
+          { id: '6', name: '角色管理', code: 'authorization-1', pid: '5' },
+          { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
+        ]
+      }
+    ]);
   });
 
   it('incorrect', () => {

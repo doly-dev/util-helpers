@@ -18,10 +18,10 @@ describe('ajax', () => {
     open: jest.fn(),
     send: jest.fn(),
     setRequestHeader: jest.fn()
-  }
+  };
 
   const spy = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
-    const methods: Record<string, () => void> = {}
+    const methods: Record<string, () => void> = {};
 
     async function send() {
       methods.loadstart?.();
@@ -43,7 +43,7 @@ describe('ajax', () => {
       methods.loadend?.();
     }
 
-    return ({
+    return {
       abort: jest.fn().mockImplementation(() => {
         resMethod = ResponseMethod.Abort;
       }),
@@ -72,8 +72,8 @@ describe('ajax', () => {
       statusText: jest.fn(),
       ontimeout: jest.fn(),
       upload: jest.fn(),
-      withCredentials: jest.fn(),
-    }) as any
+      withCredentials: jest.fn()
+    } as any;
   });
 
   afterAll(() => {
@@ -215,5 +215,4 @@ describe('ajax', () => {
     expect(resolveFn).toHaveBeenCalledTimes(1);
     expect(rejectFn).toHaveBeenCalledTimes(3);
   });
-
 });

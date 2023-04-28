@@ -5,7 +5,7 @@ type Options = {
   char?: string;
   spaceMark?: string;
   length?: number;
-}
+};
 
 /**
  * 格式化银行卡号

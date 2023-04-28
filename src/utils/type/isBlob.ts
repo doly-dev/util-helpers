@@ -2,7 +2,7 @@ import isType from './isType';
 
 /**
  * 检查值是否为Blob对象<br/><br/>
- * 
+ *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @static

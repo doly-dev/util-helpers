@@ -21,12 +21,12 @@ describe('constants', () => {
       return {
         MAX_SAFE_INTEGER: undefined,
         MIN_SAFE_INTEGER: undefined
-      }
+      };
     });
 
     // console.log(Number, globalThis.Number);
 
-    const Constants = jest.createMockFromModule<{ MAX_SAFE_INTEGER: number; MIN_SAFE_INTEGER: number; }>('../../src/utils/constants');
+    const Constants = jest.createMockFromModule<{ MAX_SAFE_INTEGER: number; MIN_SAFE_INTEGER: number }>('../../src/utils/constants');
 
     // console.log(Number.MAX_SAFE_INTEGER, Constants);
 
@@ -34,5 +34,5 @@ describe('constants', () => {
     expect(Constants.MIN_SAFE_INTEGER).toBe(-9007199254740991);
 
     numberSpy.mockRestore();
-  })
+  });
 });

@@ -26,7 +26,7 @@ function check(id: string) {
 type Options = {
   loose?: boolean;
   checkCode?: boolean;
-}
+};
 
 /**
  * 检测值是否为18位身份证号码。<br/>宽松模式下，支持15位身份证号码
@@ -51,7 +51,7 @@ type Options = {
  *
  * // 默认不支持15位身份证号码
  * isIdCard('320311770706001'); // false
- * 
+ *
  * // 宽松模式，支持15位身份证号
  * isIdCard('320311770706001', { loose: true }); // true
  *

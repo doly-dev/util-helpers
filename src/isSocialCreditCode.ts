@@ -39,7 +39,7 @@ type Options = {
   /** @deprecated */
   loose?: boolean;
   checkCode?: boolean;
-}
+};
 
 /**
  * 检测值是否为统一社会信用代码，也叫三证合一组织代码。由18位数字和大写字母组成，不使用I、O、Z、S、V。

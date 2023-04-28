@@ -84,7 +84,7 @@
   },
   "lint-staged": {
     "**/*.ts": "eslint",
-    "**/*.{ts,md}": "prettier --write"
+    "**/*.{js,ts,md}": "prettier --write"
   },
   "husky": {
     "hooks": {

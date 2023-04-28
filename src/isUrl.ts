@@ -5,7 +5,7 @@ import normalizeString from './normalizeString';
 
 // 完整格式如下：
 // [协议类型]://[访问资源需要的凭证信息]@[服务器地址]:[端口号]/[资源层级UNIX文件路径][文件名]?[查询]#[片段ID]
-// 
+//
 // 其中[访问凭证信息]、[端口号]、[查询]、[片段ID]都属于选填项。
 
 const protocalReg = '[\\w-.]+:\\/\\/';
@@ -32,7 +32,7 @@ const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg}
  *
  * isUrl(''); // false
  * isUrl('/foo/bar'); // false
- * 
+ *
  * isUrl('8.8.8.8'); // true
  * isUrl('example.com'); // true
  * isUrl('http://example.com'); // true
@@ -48,7 +48,7 @@ const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg}
  * isUrl('p://a.b:8888'); // true
  * isUrl('中文域名.中文后缀'); // true
  * isUrl('中文域名.cn'); // true
- * 
+ *
  */
 function isUrl(value: any) {
   const valueStr = normalizeString(value);

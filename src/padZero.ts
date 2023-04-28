@@ -21,7 +21,7 @@ import normalizeString from './normalizeString';
  *
  * padZero(688, 5); // 00688
  * padZero('688', 5); // 00688
- * 
+ *
  */
 function padZero(value: string | number, size = 2) {
   const str = normalizeString(value);

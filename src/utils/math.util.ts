@@ -11,7 +11,7 @@ import { isNumber, isString, isSymbol } from './type';
 
 /**
  * 将值转换为有效数值
- * 
+ *
  * @param {*} value 要转换的值
  * @returns {number|string} 有效数值
  */
@@ -23,7 +23,8 @@ export function transformEffectiveNumber(value: any) {
 
     if (ret === '') {
       ret = Number(ret);
-    } else if (Number.isNaN(Number(ret))) { // string如果可以转换为number，默认不转换为number类型
+    } else if (Number.isNaN(Number(ret))) {
+      // string如果可以转换为number，默认不转换为number类型
       ret = Number.NaN;
     }
   } else if (isSymbol(value)) {
@@ -100,7 +101,7 @@ export function float2Fixed(num: number | string) {
 
 /**
  * 检测数字是否越界，如果越界给出提示
- * 
+ *
  * @param {number} num 输入数
  */
 export function checkBoundary(num: number) {
@@ -195,4 +196,3 @@ export function scientificToNumber(num: number | string) {
 
   return trimLeftZero(ret);
 }
-

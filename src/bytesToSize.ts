@@ -1,7 +1,7 @@
 type BytesToSizeOptions = {
   spaceMark?: string;
   precision?: number;
-}
+};
 
 /**
  * 字节转换存储单位
@@ -20,11 +20,11 @@ type BytesToSizeOptions = {
  * bytesToSize(1024); // 1 KB
  * bytesToSize(3.213243*1024*1024); // 3.21 MB
  * bytesToSize(1024*1024*1024); // 1 GB
- * 
+ *
  * // 自定义间隔符号
  * bytesToSize(0, { spaceMark: '' }); // 0B
  * bytesToSize(1024, { spaceMark: '' }); // 1KB
- * 
+ *
  */
 function bytesToSize(bytes: number, options: BytesToSizeOptions = {}) {
   const { spaceMark = ' ', precision = 2 } = options;

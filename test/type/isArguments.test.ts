@@ -5,6 +5,7 @@ describe('isArguments', () => {
     expect(
       isArguments(
         (function () {
+          // eslint-disable-next-line prefer-rest-params
           return arguments;
         })()
       )

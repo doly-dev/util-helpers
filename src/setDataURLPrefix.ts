@@ -12,7 +12,7 @@
  * @param {boolean} [base64=true] 添加 base64 标识
  * @returns {string} DataURL 格式的字符串
  * @example
- * 
+ *
  * const data = 'PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
  * setDataURLPrefix(data); // data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
  * setDataURLPrefix(data, 'image/png', false); // data:image/png,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
@@ -20,7 +20,7 @@
  * setDataURLPrefix(data, 'text/html'); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
  * setDataURLPrefix(data, ''); // data:;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
  * setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
- * 
+ *
  */
 function setDataURLPrefix(data: string, mimeType = 'image/png', base64 = true) {
   return `data:${mimeType}${base64 ? ';base64' : ''},${data}`;

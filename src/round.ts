@@ -17,7 +17,7 @@ import { isNaN } from './utils/type';
  * round(4.006); // 4
  * round(4.006, 2); // 4.01
  * round(4060, -2); // 4100
- * 
+ *
  */
 function round(num: string | number, precision = 0) {
   num = transformEffectiveNumber(num);

@@ -1,17 +1,20 @@
 const { version } = require('./package.json');
 
 const plugins = [
-  ["minify-replace", {
-    replacements: [
-      {
-        identifierName: "BUILD_VERSION",
-        replacement: {
-          type: "stringLiteral",
-          value: version,
-        },
-      }
-    ]
-  }]
+  [
+    'minify-replace',
+    {
+      replacements: [
+        {
+          identifierName: 'BUILD_VERSION',
+          replacement: {
+            type: 'stringLiteral',
+            value: version
+          }
+        }
+      ]
+    }
+  ]
 ];
 
 const presets = [

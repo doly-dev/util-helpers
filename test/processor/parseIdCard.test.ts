@@ -89,7 +89,7 @@ describe('parseIdCard', () => {
       if (result) {
         delete result.groups;
       }
-      return result as unknown as (RegExpExecArray | null);
+      return result as unknown as RegExpExecArray | null;
     });
 
     expect(parseIdCard('520302198912097931')).toEqual({

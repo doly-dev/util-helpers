@@ -123,7 +123,7 @@ type Options = {
   level?: number;
   ignoreCase?: boolean;
   special?: string;
-}
+};
 
 /**
  * @typedef {Object} PasswordContaines - 验证密码的包含内容

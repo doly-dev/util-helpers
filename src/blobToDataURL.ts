@@ -2,11 +2,11 @@
 //  方法1：将file或者blob类型文件转成base64数据，再作为src赋值给img标签
 //  方法2：使用 window.URL.createObjectURL(blob) 为blob、file 创建一个指向该参数对象的URL
 
-import fileReader from "./fileReader";
+import fileReader from './fileReader';
 
 /**
  * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串<br/><br/>
- * 
+ *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @ignore

@@ -27,7 +27,7 @@ function sumCheckCode(numStr: string) {
 type Options = {
   loose?: boolean;
   luhn?: boolean;
-}
+};
 
 /**
  * 检测值是否为银行卡号。正常模式（非0开头，10-21位数字）宽松模式（8-30位数字）
@@ -46,7 +46,7 @@ type Options = {
  * isBankCard('6228480402564890018'); // true
  * isBankCard('6228480402564890'); // true
  * isBankCard('123456789'); // false
- * 
+ *
  * // 宽松模式
  * isBankCard('123456789', { loose: true }); // true
  *

@@ -16,7 +16,7 @@ import { isNaN } from './utils/type';
  * plus(0.1, 0.2); // 0.3
  * plus(0.1, 0.2, 0.3); // 0.6
  * plus(0.1, 0.2, 0.3, 0.4); // 1
- * 
+ *
  */
 function plus(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const

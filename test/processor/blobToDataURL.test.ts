@@ -28,7 +28,7 @@ describe('blobToDataURL', () => {
         setTimeout(() => {
           this.onerror(new Error('mock error'));
         }, 100);
-      }
+      };
     });
 
     try {

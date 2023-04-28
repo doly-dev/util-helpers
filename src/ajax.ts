@@ -18,7 +18,7 @@ type AjaxOptions = {
   onError?: XMLHttpRequestListener;
   onLoad?: XMLHttpRequestListener;
   onLoadEnd?: XMLHttpRequestListener;
-}
+};
 
 /**
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
@@ -44,9 +44,9 @@ type AjaxOptions = {
 
 /**
  * 请求<br/><br/>
- * 
+ *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
- * 
+ *
  * @static
  * @alias module:Other.ajax
  * @since 4.16.0
@@ -58,31 +58,13 @@ type AjaxOptions = {
  * ajax('/somefile').then(res=>{
  *   // do something
  * });
- * 
+ *
  * ajax('/api', { method: 'post' }).then(res=>{
  *   // do something
  * });
  */
 function ajax(url: string, options?: AjaxOptions) {
-  const {
-    method = 'get',
-    data = null,
-    timeout,
-    headers,
-    withCredentials = false,
-    async = true,
-    user = null,
-    password = null,
-    responseType,
-    onReadyStateChange,
-    onLoadStart,
-    onProgress,
-    onAbort,
-    onTimeout,
-    onError,
-    onLoad,
-    onLoadEnd
-  } = options || {};
+  const { method = 'get', data = null, timeout, headers, withCredentials = false, async = true, user = null, password = null, responseType, onReadyStateChange, onLoadStart, onProgress, onAbort, onTimeout, onError, onLoad, onLoadEnd } = options || {};
 
   return new Promise<ProgressEvent>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -107,7 +89,7 @@ function ajax(url: string, options?: AjaxOptions) {
 
     // 设置请求头
     if (typeof headers === 'object') {
-      Object.keys(headers).map(item => {
+      Object.keys(headers).map((item) => {
         xhr.setRequestHeader(item, headers[item]);
       });
     }
@@ -118,8 +100,8 @@ function ajax(url: string, options?: AjaxOptions) {
       return (e: ProgressEvent) => {
         resolve(e);
         cb?.call(xhr, e);
-      }
-    }
+      };
+    };
 
     // 请求失败（中断/超时/失败）处理
     const wrapError = (cb?: XMLHttpRequestListener) => {
@@ -127,8 +109,8 @@ function ajax(url: string, options?: AjaxOptions) {
       return (e: ProgressEvent) => {
         reject(e);
         cb?.call(xhr, e);
-      }
-    }
+      };
+    };
 
     // 事件处理
     const events = {
@@ -139,11 +121,11 @@ function ajax(url: string, options?: AjaxOptions) {
       error: wrapError(onError),
       load: wrapSuccess(onLoad),
       loadend: onLoadEnd
-    }
+    };
 
     const eventKeys = Object.keys(events) as unknown as (keyof typeof events)[];
 
-    eventKeys.map(item => {
+    eventKeys.map((item) => {
       const func = events[item];
       if (func) {
         xhr.addEventListener(item, func);

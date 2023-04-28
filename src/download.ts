@@ -1,10 +1,10 @@
 // 如果修改文档，请同步修改 interface.doc.js
 
-import dataURLToBlob from "./dataURLToBlob";
-import isUrl from "./isUrl";
-import ajax from "./ajax";
-import { isBlob } from "./utils/type";
-import isPromiseLike from "./isPromiseLike";
+import dataURLToBlob from './dataURLToBlob';
+import isUrl from './isUrl';
+import ajax from './ajax';
+import { isBlob } from './utils/type';
+import isPromiseLike from './isPromiseLike';
 
 // 下载文件到本地
 function saver(blobUrl: string, fileName = '') {
@@ -38,7 +38,7 @@ type DownloadOptions = {
   dataType?: 'url' | 'text';
   transformRequest?: TransformRequest;
   transformResponse?: TransformResponse;
-}
+};
 
 /**
  * @callback TransformRequest
@@ -63,9 +63,9 @@ type DownloadOptions = {
 
 /**
  * 下载<br/><br/>
- * 
+ *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</em>
- * 
+ *
  * @static
  * @alias module:Other.download
  * @since 4.16.0
@@ -77,19 +77,19 @@ type DownloadOptions = {
  * @example
  * // 文本
  * download('hello world', 'text.txt');
- * 
+ *
  * // 远程文件
  * download('/xxx.jpg', { dataType: 'url' });
- * 
+ *
  * // base64
  * download('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=', 'test.png');
- * 
+ *
  * // blob文件
  * download(new Blob(['hello world']), 'text.txt');
- * 
+ *
  * // 本地文件
  * download(File, 'filename.ext');
- * 
+ *
  */
 async function download(data: DataType, options?: string | DownloadOptions): Promise<void> {
   const config = typeof options === 'object' ? options : {};
@@ -116,17 +116,17 @@ async function download(data: DataType, options?: string | DownloadOptions): Pro
         // 请求前配置调整
         const tempOptions = typeof transformRequest === 'function' ? transformRequest(opts) : opts;
         return isPromiseLike(tempOptions) ? (tempOptions as Promise<AjaxOptions>) : Promise.resolve(tempOptions);
-      }
+      };
       const asyncTransformResponse = (res: Blob) => {
         const tempRes = typeof transformResponse === 'function' ? transformResponse(res) : res;
         return isPromiseLike(tempRes) ? (tempRes as Promise<Blob>) : Promise.resolve(tempRes);
-      }
+      };
 
       const ajaxOptions = await asyncTransformRequest({ responseType: 'blob' });
       const ev = await ajax(data, ajaxOptions);
       // @ts-ignore
       const res = await asyncTransformResponse(ev.target.response);
-      const currentFileName = fileName || data.split("?")[0].split("#")[0].split("/").pop();
+      const currentFileName = fileName || data.split('?')[0].split('#')[0].split('/').pop();
       return download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : undefined) });
     } else {
       // string

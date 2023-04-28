@@ -1,7 +1,7 @@
 import { isPromiseLike } from '../../src';
 
-const fn = () => { };
-fn.then = () => { };
+const fn = () => {};
+fn.then = () => {};
 
 describe('isPromiseLike', () => {
   it('incorrect', () => {
@@ -18,11 +18,11 @@ describe('isPromiseLike', () => {
     expect(isPromiseLike({ then: true })).toBe(false);
     expect(isPromiseLike([])).toBe(false);
     expect(isPromiseLike([true])).toBe(false);
-    expect(isPromiseLike(() => { })).toBe(false);
+    expect(isPromiseLike(() => {})).toBe(false);
   });
 
   it('correct', () => {
-    expect(isPromiseLike({ then: function () { } })).toBe(true);
+    expect(isPromiseLike({ then: function () {} })).toBe(true);
     expect(isPromiseLike(fn)).toBe(true);
     expect(isPromiseLike(new Promise<void>((resolve) => resolve()))).toBe(true);
     expect(isPromiseLike(Promise.resolve())).toBe(true);

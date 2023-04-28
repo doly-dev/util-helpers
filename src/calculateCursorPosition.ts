@@ -4,7 +4,7 @@ type CalculateCursorPositionOptions = {
   placeholderChar?: string;
   maskReg?: RegExp;
   type?: 'mobile' | 'bankCard';
-}
+};
 
 /**
  * 计算输入框的值格式化后光标位置

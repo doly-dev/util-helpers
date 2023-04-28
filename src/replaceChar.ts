@@ -6,7 +6,7 @@ type Options = {
   char?: string;
   repeat?: number;
   exclude?: string;
-}
+};
 
 /**
  * 替换字符，应用场景如：脱敏
@@ -34,16 +34,16 @@ type Options = {
  * const email = '12345@qq.com';
  * const emailAtIndex = email.indexOf('@');
  * replaceChar('email', { start: emailAtIndex - 2, end: emailAtIndex }); // 123**@qq.com
- * 
+ *
  * // 邮箱 前2和@后面内容，固定替换字符4位
  * replaceChar(email, {start: 2, end: email.indexOf('@'), repeat: 4}); // 12****@qq.com
  *
  * // 银行卡号 只展示后4位，固定替换字符4位
  * replaceChar('6228480402564890018', {start: 0, end: -4, repeat: 4}); // ****0018
- * 
+ *
  * // 银行卡号 前6后4
  * replaceChar('6228480402564890018', { start: 6, end: -4 }); // 622848*********0018
- * 
+ *
  * // 银行卡号 前4后3 忽略格式的空格
  * replaceChar('6228 4804 0256 4890 018', {start: 4, end: -4, exclude: ' '}); // 6228 **** **** **** 018
  *

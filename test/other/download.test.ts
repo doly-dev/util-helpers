@@ -11,14 +11,15 @@ describe('download', () => {
     Timeout,
     Error
   }
+  // eslint-disable-next-line prefer-const
   let resMethod = ResponseMethod.Load; // 将要触发的响应方法
   const xhrMock = {
     open: jest.fn(),
     send: jest.fn(),
     setRequestHeader: jest.fn()
-  }
+  };
   const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
-    const methods: Record<string, () => void> = {}
+    const methods: Record<string, () => void> = {};
 
     async function send() {
       methods.loadstart?.();
@@ -39,22 +40,22 @@ describe('download', () => {
           target: {
             response: new Blob(['hello word'])
           }
-        }
+        };
         // @ts-ignore
         methods.load(res);
       }
       methods.loadend?.();
     }
 
-    return ({
+    return {
       addEventListener: jest.fn().mockImplementation(function (fnName, fn) {
         methods[fnName] = fn;
       }),
       open: xhrMock.open,
       removeEventListener: jest.fn(),
       send: xhrMock.send.mockImplementation(send),
-      setRequestHeader: xhrMock.setRequestHeader,
-    }) as any
+      setRequestHeader: xhrMock.setRequestHeader
+    } as any;
   });
 
   function makeAnchor(target) {
@@ -68,7 +69,7 @@ describe('download', () => {
           handler.click({ stopPropagation: jest.fn() });
         }
       }),
-      remove: jest.fn(() => { }),
+      remove: jest.fn(),
       style: {
         display: 'inline'
       },
@@ -86,7 +87,7 @@ describe('download', () => {
   const urlMock = {
     createObejctURL: jest.fn(),
     revokeObjectURL: jest.fn()
-  }
+  };
   let spyCreateObjectURL, spyRevokeObjectURL;
   const hasCreateObjectURL = 'createObjectURL' in URL;
 
@@ -95,8 +96,8 @@ describe('download', () => {
       URL.createObjectURL = urlMock.createObejctURL;
       URL.revokeObjectURL = urlMock.revokeObjectURL;
     } else {
-      spyCreateObjectURL = jest.spyOn(URL, 'createObjectURL').mockImplementation(() => urlMock.createObejctURL as any)
-      spyRevokeObjectURL = jest.spyOn(URL, 'revokeObjectURL').mockImplementation(() => urlMock.revokeObjectURL as any)
+      spyCreateObjectURL = jest.spyOn(URL, 'createObjectURL').mockImplementation(() => urlMock.createObejctURL as any);
+      spyRevokeObjectURL = jest.spyOn(URL, 'revokeObjectURL').mockImplementation(() => urlMock.revokeObjectURL as any);
     }
   }
 
@@ -122,7 +123,7 @@ describe('download', () => {
     await download(new Blob([str]), 'text.txt');
     await download('/robots.txt', { dataType: 'url' });
     const arr = new Uint8Array(str.length);
-    str.split('').forEach((s, i) => arr[i] = str.charCodeAt(i));
+    str.split('').forEach((s, i) => (arr[i] = str.charCodeAt(i)));
     await download(arr, 'text.txt');
 
     // html
@@ -147,7 +148,7 @@ describe('download', () => {
           data: 'a=1&b=2'
         };
       },
-      transformResponse(res) {
+      transformResponse() {
         return '' as any;
       }
     });
@@ -184,5 +185,4 @@ describe('download', () => {
     await download('/test.txt');
     expect(msSaveBlobFn).toHaveBeenCalled();
   });
-
 });

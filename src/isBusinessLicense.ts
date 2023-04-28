@@ -38,7 +38,7 @@ type Options = {
   /** @deprecated */
   loose?: boolean;
   checkCode?: boolean;
-}
+};
 
 /**
  * 检测值是否为营业执照号，也叫工商注册号。由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
@@ -60,7 +60,7 @@ type Options = {
  * isBusinessLicense('310115600985535', { checkCode: false }); // true
  * isBusinessLicense('ac115600985535', { checkCode: false }); // false
  * isBusinessLicense('31011560098', { checkCode: false }); // false
- * 
+ *
  */
 function isBusinessLicense(value: any, options: Options = {}) {
   const valueStr = normalizeString(value);

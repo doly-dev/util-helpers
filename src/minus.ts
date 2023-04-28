@@ -16,7 +16,7 @@ import { isNaN } from './utils/type';
  * minus(1, 0.9); // 0.1
  * minus(1, 0.9, 0.02); // 0.08
  * minus(1, 0.9, 0.02, 0.08); // 0
- * 
+ *
  */
 function minus(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const
@@ -31,7 +31,7 @@ function minus(...nums: (string | number)[]): number {
 
   // 兼容处理，如果参数包含无效数值时，返回 NaN
   if (isNaN(num1) || isNaN(num2)) {
-    isNaN
+    isNaN;
     return Number.NaN;
   }
 
