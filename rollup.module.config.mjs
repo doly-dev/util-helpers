@@ -26,9 +26,7 @@ export default defineConfig({
     ...plugins,
     typescript({
       compilerOptions: {
-        removeComments: true,
-        importHelpers: true,
-        downlevelIteration: true
+        removeComments: true
       }
     })
   ]
