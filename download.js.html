@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
+    <title>download.js - util-helpers </title>
+    
+    <meta name="description" content="一个基于业务场景的工具方法库" />
+    
+        <meta name="keywords" content="util, business-util, business-helpers, util-helpers" />
+        <meta name="keyword" content="util, business-util, business-helpers, util-helpers" />
+    
+    
+    
+    <meta property="og:title" content="util-helpers"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="util-helpers"/>
+    <meta property="og:url" content="https://doly-dev.github.io/util-helpers/index.html"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SNQEJ8N5Z3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SNQEJ8N5Z3');
+</script>
+<script src="https://unpkg.com/util-helpers/dist/util-helpers.min.js"></script>
+<style>.prettyprint{ white-space: pre-wrap; }</style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github</a></h2><h2><a href="https://github.com/doly-dev/util-helpers/releases" target="_blank" class="menu-item" id="repo_link" >Changelog</a></h2><h3>Modules</h3><ul><li><a href="module-Math.html">Math</a><ul class='methods'><li data-type='method'><a href="module-Math.html#.divide">divide</a></li><li data-type='method'><a href="module-Math.html#.minus">minus</a></li><li data-type='method'><a href="module-Math.html#.plus">plus</a></li><li data-type='method'><a href="module-Math.html#.round">round</a></li><li data-type='method'><a href="module-Math.html#.times">times</a></li></ul></li><li><a href="module-Other.html">Other</a><ul class='methods'><li data-type='method'><a href="module-Other.html#.ajax">ajax</a></li><li data-type='method'><a href="module-Other.html#.calculateCursorPosition">calculateCursorPosition</a></li><li data-type='method'><a href="module-Other.html#.download">download</a></li><li data-type='method'><a href="module-Other.html#.randomString">randomString</a></li><li data-type='method'><a href="module-Other.html#.strlen">strlen</a></li><li data-type='method'><a href="module-Other.html#.waitTime">waitTime</a></li></ul></li><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.bytesToSize">bytesToSize</a></li><li data-type='method'><a href="module-Processor.html#.dataURLToBlob">dataURLToBlob</a></li><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMobile">formatMobile</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.normalizeString">normalizeString</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.padZero">padZero</a></li><li data-type='method'><a href="module-Processor.html#.parseIdCard">parseIdCard</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li><li data-type='method'><a href="module-Processor.html#.setDataURLPrefix">setDataURLPrefix</a></li></ul></li><li><a href="module-Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="module-Tree.html#.filterTree">filterTree</a></li><li data-type='method'><a href="module-Tree.html#.findTreeNode">findTreeNode</a></li><li data-type='method'><a href="module-Tree.html#.findTreeNodes">findTreeNodes</a></li><li data-type='method'><a href="module-Tree.html#.findTreeSelect">findTreeSelect</a></li><li data-type='method'><a href="module-Tree.html#.listToTree">listToTree</a></li><li data-type='method'><a href="module-Tree.html#.transformFieldNames">transformFieldNames</a></li><li data-type='method'><a href="module-Tree.html#.treeToList">treeToList</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isBusinessLicense">isBusinessLicense</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isHMCard">isHMCard</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isPromiseLike">isPromiseLike</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isSwiftCode">isSwiftCode</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isTWCard">isTWCard</a></li><li data-type='method'><a href="module-Validator.html#.isUrl">isUrl</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li><li data-type='method'><a href="module-Validator.html#.validatePassword">validatePassword</a></li></ul></li></ul><h3><a href="global.html">Global</a></h3>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">download.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// 如果修改文档，请同步修改 interface.doc.js
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this &amp;&amp; this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] &amp; 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" &amp;&amp; (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (g &amp;&amp; (g = 0, op[0] &amp;&amp; (_ = 0)), _) try {
+            if (f = 1, y &amp;&amp; (t = op[0] &amp; 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) &amp;&amp; t.call(y), 0) : y.next) &amp;&amp; !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] &amp; 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 &amp;&amp; t[t.length - 1]) &amp;&amp; (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 &amp;&amp; (!t || (op[1] > t[0] &amp;&amp; op[1] &lt; t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 &amp;&amp; _.label &lt; t[1]) { _.label = t[1]; t = op; break; }
+                    if (t &amp;&amp; _.label &lt; t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] &amp; 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+import dataURLToBlob from "./dataURLToBlob";
+import isUrl from "./isUrl";
+import ajax from "./ajax";
+import { isBlob } from "./utils/type";
+import isPromiseLike from "./isPromiseLike";
+// 下载文件到本地
+function saver(blobUrl, fileName) {
+    if (fileName === void 0) { fileName = ''; }
+    var anchor = document.createElement('a');
+    // anchor.href = decodeURIComponent(blobUrl);
+    anchor.href = blobUrl;
+    anchor.style.display = 'none';
+    anchor.setAttribute('download', fileName);
+    // 处理点击事件，防止事件冒泡到 body/html 的点击事件。
+    function handleClick(e) {
+        e.stopPropagation();
+        anchor.removeEventListener('click', handleClick);
+    }
+    anchor.addEventListener('click', handleClick);
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+}
+/**
+ * @callback TransformRequest
+ * @param {AjaxOptions} options ajax 配置项
+ * @returns {AjaxOptions | Promise&lt;AjaxOptions>}
+ */
+/**
+ * @callback TransformResponse
+ * @param {Blob} res 响应的Blob对象。如果你通过 transformRequest 修改了 responseType ，该参数将是该类型响应值。
+ * @returns {Blob | Promise&lt;Blob>}
+ */
+/**
+ * @typedef {Object} DownloadOptions 下载配置项
+ * @property {string} [options.fileName] 文件名称
+ * @property {string} [options.type] MIME 类型
+ * @property {'url'|'text'} [options.dataType] 手动设置数据类型，默认会根据传入的数据判断类型，主要是为了区分 url 和 text 。&lt;br/>如果你要下载的文本是 url ，请设置 'text' ；如果你要下载的 url 是绝对/相对路径，请设置 'url' 。
+ * @property {TransformRequest} [options.transformRequest] 请求前触发，XHR 对象或配置调整
+ * @property {TransformResponse} [options.transformResponse] 请求成功后触发，在传递给 then/catch 前，允许修改响应数据
+ */
+/**
+ * 下载&lt;br/>&lt;br/>
+ *
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。&lt;/em>
+ *
+ * @static
+ * @alias module:Other.download
+ * @since 4.16.0
+ * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展 | MIME}
+ * @see {@link https://9ykc9s.csb.app/ | 在线示例}
+ * @param {string|Blob|ArrayBuffer|TypedArray} data 字符串、blob数据或url地址
+ * @param {string|DownloadOptions} [options] 文件名称 或 配置项
+ * @returns {Promise&lt;void>}
+ * @example
+ * // 文本
+ * download('hello world', 'text.txt');
+ *
+ * // 远程文件
+ * download('/xxx.jpg', { dataType: 'url' });
+ *
+ * // base64
+ * download('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=', 'test.png');
+ *
+ * // blob文件
+ * download(new Blob(['hello world']), 'text.txt');
+ *
+ * // 本地文件
+ * download(File, 'filename.ext');
+ *
+ */
+function download(data, options) {
+    return __awaiter(this, void 0, void 0, function () {
+        var config, fileName, type, dataType, transformRequest, transformResponse, payload, asyncTransformRequest, asyncTransformResponse, ajaxOptions, ev, res, currentFileName, url;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    config = typeof options === 'object' ? options : {};
+                    if (typeof options === 'string') {
+                        config.fileName = options;
+                    }
+                    fileName = config.fileName, type = config.type, dataType = config.dataType, transformRequest = config.transformRequest, transformResponse = config.transformResponse;
+                    if (!(typeof data === 'string')) return [3 /*break*/, 8];
+                    if (!(!dataType &amp;&amp; /^blob:.*?\/.*/.test(data))) return [3 /*break*/, 1];
+                    // blob url
+                    saver(data, fileName);
+                    return [2 /*return*/, Promise.resolve()];
+                case 1:
+                    if (!(!dataType &amp;&amp; /^data:([\w+-]+\/[\w+.-]+)?[,;]/.test(data))) return [3 /*break*/, 2];
+                    // dataURLs
+                    payload = dataURLToBlob(data);
+                    return [3 /*break*/, 7];
+                case 2:
+                    if (!(dataType === 'url' || (!dataType &amp;&amp; isUrl(data)))) return [3 /*break*/, 6];
+                    asyncTransformRequest = function (opts) {
+                        // 请求前配置调整
+                        var tempOptions = typeof transformRequest === 'function' ? transformRequest(opts) : opts;
+                        return isPromiseLike(tempOptions) ? tempOptions : Promise.resolve(tempOptions);
+                    };
+                    asyncTransformResponse = function (res) {
+                        var tempRes = typeof transformResponse === 'function' ? transformResponse(res) : res;
+                        return isPromiseLike(tempRes) ? tempRes : Promise.resolve(tempRes);
+                    };
+                    return [4 /*yield*/, asyncTransformRequest({ responseType: 'blob' })];
+                case 3:
+                    ajaxOptions = _a.sent();
+                    return [4 /*yield*/, ajax(data, ajaxOptions)];
+                case 4:
+                    ev = _a.sent();
+                    return [4 /*yield*/, asyncTransformResponse(ev.target.response)];
+                case 5:
+                    res = _a.sent();
+                    currentFileName = fileName || data.split("?")[0].split("#")[0].split("/").pop();
+                    return [2 /*return*/, download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : undefined) })];
+                case 6:
+                    // string
+                    payload = new Blob([data], { type: type || 'text/plain' });
+                    _a.label = 7;
+                case 7: return [3 /*break*/, 9];
+                case 8:
+                    if (data instanceof Blob) {
+                        // File or Blob
+                        payload = data;
+                    }
+                    _a.label = 9;
+                case 9:
+                    // html、TypedArray
+                    if (!payload) {
+                        payload = new Blob([data], { type: type });
+                    }
+                    // @ts-ignore
+                    if (navigator.msSaveBlob) {
+                        // @ts-ignore
+                        navigator.msSaveBlob(payload, fileName || 'download');
+                    }
+                    else {
+                        url = URL.createObjectURL(payload);
+                        saver(url, fileName);
+                        URL.revokeObjectURL(url);
+                    }
+                    return [2 /*return*/, Promise.resolve()];
+            }
+        });
+    });
+}
+export default download;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Fri Apr 28 2023 06:08:23 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

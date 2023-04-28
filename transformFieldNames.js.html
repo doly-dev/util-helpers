@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>findTreeNode.js - util-helpers </title>
+    <title>transformFieldNames.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">findTreeNode.js</h1>
+    <h1 class="page-title">transformFieldNames.js</h1>
     
 
     
@@ -71,60 +71,94 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { isObject } from "./utils/type";
+            <pre class="prettyprint source linenums"><code>var __assign = (this &amp;&amp; this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i &lt; n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+import { isObject } from './utils/type';
 /**
- * 查找树结构数据节点
+ * 转换字段名，返回一个转换字段后的值，不改变原值。
  *
  * @static
- * @alias module:Tree.findTreeNode
+ * @alias module:Tree.transformFieldNames
  * @since 4.14.0
- * @param {object[]} tree 树结构数据
- * @param {function} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy ，将返回该节点
- * @param {string} [childrenField='children'] 子级字段名
- * @returns {object|undefined}
+ * @param {object[]} data 对象数组。如果是树结构数据，需要指定第三个参数 childrenField
+ * @param {function} fieldNames 字段名映射
+ * @param {string} [childrenField] 子级数据字段名
+ * @param {'spread'|'self'} [nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
+ * @returns {object[]}
  * @example
- * const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
  *
- * findTreeNode(menus, item=>item.id === '2');
- * // {"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}
+ * const options = [{code: '1', name: 'one'},{code:'2', name:'two'}];
+ * const newOptions = transformFieldNames(options, {label: 'name', value: 'code'});
+ * // [{value: '1', label: 'one'},{value:'2', label:'two'}]
  *
- * findTreeNode(menus, item=>item.id === '7');
- * // {"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}
+ * // 嵌套数据，指定子级字段名 children
+ * const options2 = [{code: '1', name: 'one'},{code:'2', name:'two', children: [{code:'2-1', name:'two-one', children: [{code: '2-1-1', name:'two-one-one'}]}]}];
+ * const newOptions2 = transformFieldNames(options2, {label: 'name', value: 'code'}, 'children');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one', children: [{value: '2-1-1', label:'two-one-one'}]}]}]
  *
- * findTreeNode(menus, item=>item.id === 'not found');
- * // undefined
+ * const options3 = [{code: '1', name: 'one'},{code:'2', name:'two', childs: [{code:'2-1', name:'two-one'}]}];
+ * const newOptions3 = transformFieldNames(options3, {label: 'name', value: 'code'}, 'childs');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', childs: [{value: '2-1', label:'two-one'}]}]
+ *
+ * // 嵌套数据，并替换子集字段名
+ * const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code', children: 'childs'}, 'childs');
+ * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
-function findTreeNode(tree, predicate, childrenField) {
-    if (childrenField === void 0) { childrenField = 'children'; }
-    var stack = [];
-    var node;
-    if (!Array.isArray(tree)) {
-        return node;
+function transformFieldNames(data, fieldNames, childrenField, nodeAssign) {
+    if (nodeAssign === void 0) { nodeAssign = 'spread'; }
+    if (!Array.isArray(data)) {
+        return data;
     }
-    for (var _i = 0, tree_1 = tree; _i &lt; tree_1.length; _i++) {
-        var item = tree_1[_i];
-        stack.push(item);
-        while (stack.length) {
-            var temp = stack.pop();
-            if (predicate(temp)) {
-                node = temp;
-                break;
+    if (data.length &lt;= 0) {
+        return [];
+    }
+    // 递归处理字段名
+    function recusion(arr) {
+        return arr.map(function (item) {
+            if (!isObject(item)) {
+                return item;
             }
-            if (isObject(temp)) {
+            var newItem = nodeAssign === 'spread' ? __assign({}, item) : item;
+            var delKeys = [];
+            // 树形数据子节点
+            // @ts-ignore
+            if (childrenField &amp;&amp; Array.isArray(newItem[childrenField]) &amp;&amp; newItem[childrenField].length > 0) {
                 // @ts-ignore
-                var childs = temp[childrenField];
-                if (Array.isArray(childs) &amp;&amp; childs.length > 0) {
-                    stack.push.apply(stack, childs);
-                }
+                newItem[childrenField] = recusion(newItem[childrenField].slice());
             }
-        }
-        if (node) {
-            break;
-        }
+            // 替换字段名
+            Object.keys(fieldNames).forEach(function (newKey) {
+                var oldKey = fieldNames[newKey];
+                if (oldKey in newItem) {
+                    // @ts-ignore
+                    newItem[newKey] = newItem[oldKey];
+                    // @ts-ignore
+                    delKeys.push(oldKey);
+                }
+            });
+            // 删除旧字段
+            if (delKeys.length > 0) {
+                delKeys.forEach(function (delKey) {
+                    // @ts-ignore
+                    delete newItem[delKey];
+                });
+            }
+            return newItem;
+        });
     }
-    return node;
+    // @ts-ignore
+    return recusion(data.slice());
 }
-export default findTreeNode;
+export default transformFieldNames;
 </code></pre>
         </article>
     </section>
