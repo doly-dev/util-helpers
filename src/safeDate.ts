@@ -30,9 +30,6 @@ function safeDate(value?: number | string | Date, ...args: any[]) {
   const safeValue = typeof value === 'string' ? value.replace(/[\\.-]/g, '/') : value;
 
   if (args && args.length > 0) {
-    // const [monthIndex, date, hours, minutes, seconds, ms] = args;
-    // return new Date(safeValue as number, monthIndex, date, hours, minutes, seconds, ms);
-    // const [monthIndex, date, hours, minutes, seconds, ms] = args;
     // @ts-ignore
     return new Date(safeValue, ...args);
   }
