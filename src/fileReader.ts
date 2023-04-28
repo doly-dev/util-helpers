@@ -7,6 +7,8 @@ const FileReaderMethodMap = {
 
 type ReadType = keyof typeof FileReaderMethodMap;
 
+function fileReader(blob: Blob, type: 'arrayBuffer'): Promise<ArrayBuffer>;
+function fileReader(blob: Blob, type?: Exclude<ReadType, 'arrayBuffer'>): Promise<string>;
 /**
  * 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer<br/><br/>
  *
@@ -33,8 +35,6 @@ type ReadType = keyof typeof FileReaderMethodMap;
  *   console.log(data); // <a id="a"><b id="b">hey!</b></a>
  * });
  */
-function fileReader(blob: Blob, type: 'arrayBuffer'): Promise<ArrayBuffer>;
-function fileReader(blob: Blob, type?: Exclude<ReadType, 'arrayBuffer'>): Promise<string>;
 function fileReader(blob: Blob, type: keyof typeof FileReaderMethodMap = 'dataURL') {
   let method = FileReaderMethodMap[type];
   if (!method) {
