@@ -1,3 +1,6 @@
+// 关于函数重载导致的注释丢失问题参考：https://github.com/microsoft/TypeScript/issues/27981
+// 目前函数重载方法，将优先保证 jsdoc 文档展示。
+
 const FileReaderMethodMap = {
   arrayBuffer: 'readAsArrayBuffer',
   binaryString: 'readAsBinaryString',
