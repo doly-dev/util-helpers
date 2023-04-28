@@ -12,6 +12,7 @@ zip
 dist
 example
 docs
+docs-src
 types
 esm
 lib

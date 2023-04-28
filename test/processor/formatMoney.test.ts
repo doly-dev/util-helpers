@@ -25,8 +25,8 @@ describe('formatMoney', () => {
     expect(formatMoney(3000.03)).toBe('3,000.03');
     expect(formatMoney(-3000.03)).toBe('-3,000.03');
     expect(formatMoney(1.054e2)).toBe('105.40');
-    expect(formatMoney(Infinity)).toBe('');
-    expect(formatMoney(-Infinity)).toBe('');
+    expect(formatMoney(Infinity)).toBe('Infinity');
+    expect(formatMoney(-Infinity)).toBe('-Infinity');
     expect(formatMoney(0x11)).toBe('17.00');
   });
 

@@ -4,15 +4,11 @@
   },
   "source": {
     "include": [
-      "src",
+      "docs-src",
       "README.md"
     ],
     "exclude": [
-      "./src/utils",
-      "./src/interface.type.js",
-      "./src/transformFieldNames.js",
-      "./src/ajax.js",
-      "./src/download.js"
+      "./docs-src/utils"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
