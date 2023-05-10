@@ -92,6 +92,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
   - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
   - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
+  - [isValidNumber](https://doly-dev.github.io/util-helpers/module-Validator.html#.isValidNumber) - 有效数字
   - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他

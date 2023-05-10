@@ -16,7 +16,6 @@ import { isNumber, isString, isSymbol } from './type';
  * @returns {number|string} 有效数值
  */
 export function transformEffectiveNumber(value: any) {
-  /** @type {string|number|undefined} */
   let ret: string | number;
   if (isString(value)) {
     ret = value.trim(); // ' 15'  ' 15  ' 兼容 Number(string) 处理
@@ -24,7 +23,7 @@ export function transformEffectiveNumber(value: any) {
     if (ret === '') {
       ret = Number(ret);
     } else if (Number.isNaN(Number(ret))) {
-      // string如果可以转换为number，默认不转换为number类型
+      // string如果可以转换为number，默认不转换为number类型。如使用了字符串大数 '12435465768798090897'
       ret = Number.NaN;
     }
   } else if (isSymbol(value)) {
@@ -43,7 +42,6 @@ export function transformEffectiveNumber(value: any) {
     return Number.NaN;
   }
 
-  // @ts-ignore
   return ret;
 }
 
@@ -147,7 +145,6 @@ export function scientificToNumber(num: number | string) {
     return num;
   }
 
-  /** @type string */
   let ret: string;
 
   const zero = '0';
