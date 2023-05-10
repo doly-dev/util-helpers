@@ -1,5 +1,3 @@
-// 如果修改文档，请同步修改 interface.doc.js
-
 import dataURLToBlob from './dataURLToBlob';
 import isUrl from './isUrl';
 import ajax from './ajax';
@@ -78,8 +76,12 @@ type DownloadOptions = {
  * // 文本
  * download('hello world', 'text.txt');
  *
- * // 远程文件
- * download('/xxx.jpg', { dataType: 'url' });
+ * // 远程文件1
+ * // 不带协议的绝对地址，需要通过 dataType 指定为 url 类型
+ * download('/xxx.jpg', { dataType: 'url', fileName: 'test.jpg' });
+ *
+ * // 远程文件2
+ * download('https://example.com/xxx.jpg');
  *
  * // base64
  * download('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=', 'test.png');
