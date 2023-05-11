@@ -58,7 +58,7 @@ describe('download', () => {
     } as any;
   });
 
-  function makeAnchor(target) {
+  function makeAnchor(target: Record<string, any>) {
     const handler: Record<string, (...args: any[]) => void> = {};
 
     return {
@@ -88,7 +88,7 @@ describe('download', () => {
     createObejctURL: jest.fn(),
     revokeObjectURL: jest.fn()
   };
-  let spyCreateObjectURL, spyRevokeObjectURL;
+  let spyCreateObjectURL: jest.SpyInstance, spyRevokeObjectURL: jest.SpyInstance;
   const hasCreateObjectURL = 'createObjectURL' in URL;
 
   function polyfill() {

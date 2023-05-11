@@ -1,7 +1,7 @@
 import normalizeString from './normalizeString';
 
 type CalculateCursorPositionOptions = {
-  placeholderChar?: string;
+  placeholderChar?: string | string[];
   maskReg?: RegExp;
   type?: 'mobile' | 'bankCard';
 };

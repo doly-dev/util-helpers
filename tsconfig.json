@@ -1,6 +1,13 @@
 {
-  "include": [
-    "src"
+  "exclude": [
+    "dist/",
+    "esm/",
+    "lib/",
+    "coverage/",
+    "docs/",
+    "commitlint.config.js",
+    "jest.config.js",
+    "rollup.*.config.mjs"
   ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
@@ -66,6 +73,7 @@
     // "emitDecoratorMetadata": true,               /* Enables experimental support for emitting type metadata for decorators. */
     /* Advanced Options */
     "skipLibCheck": true, /* Skip type checking of declaration files. */
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+    "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+    "resolveJsonModule": true
   }
 }

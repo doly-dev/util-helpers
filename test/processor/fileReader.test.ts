@@ -37,8 +37,10 @@ describe('fileReader', () => {
     let errMsg = '';
     // @ts-ignore
     const errorSpy = jest.spyOn(globalThis, 'FileReader').mockImplementation(function () {
+      // @ts-ignore
       this.readAsDataURL = () => {
         setTimeout(() => {
+          // @ts-ignore
           this.onerror(new Error('mock error'));
         }, 100);
       };
@@ -47,7 +49,7 @@ describe('fileReader', () => {
     try {
       // @ts-ignore
       await fileReader('');
-    } catch (err) {
+    } catch (err: any) {
       // console.log(err);
       errMsg = err.message;
     }

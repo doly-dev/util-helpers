@@ -85,6 +85,7 @@ describe('parseIdCard', () => {
     const regexpSpy = jest.spyOn(RegExp.prototype, 'exec').mockImplementationOnce(function (str: string) {
       // console.log('type: ', typeof this);
       // console.log('result: ', this.exec(str));
+      // @ts-ignore
       const result = this.exec(str);
       if (result) {
         delete result.groups;

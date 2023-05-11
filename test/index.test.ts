@@ -3,7 +3,7 @@ import * as utilHelpers from '../src';
 describe('utilHelpers', () => {
   it('should be defined', () => {
     Object.keys(utilHelpers).forEach((method) => {
-      expect(utilHelpers[method]).toBeDefined();
+      expect(utilHelpers[method as keyof typeof utilHelpers]).toBeDefined();
     });
   });
 

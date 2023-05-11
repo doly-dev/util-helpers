@@ -12,7 +12,6 @@ exports[`transformFieldNames complex data and custom children field name. 1`] = 
   },
   {
     "arrowFunc": [Function],
-    "bigN": 1n,
     "children": [
       {
         "code": "3-1",

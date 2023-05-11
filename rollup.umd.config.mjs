@@ -23,6 +23,7 @@ export default defineConfig({
   plugins: [
     ...plugins,
     typescript({
+      tsconfig: './tsconfig.build.json',
       compilerOptions: {
         removeComments: true
       }

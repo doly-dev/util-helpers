@@ -54,10 +54,10 @@ const options3 = [
   {
     code: '3',
     name: 'three',
-    bigN: 1n,
+    // bigN: 1n,
     nan: NaN,
-    func: function () { },
-    arrowFunc: () => { },
+    func: function () {},
+    arrowFunc: () => {},
     max: Infinity,
     min: -Infinity,
     // date: new Date(),
