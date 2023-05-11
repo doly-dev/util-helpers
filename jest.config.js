@@ -2,12 +2,13 @@
 const { version } = require('./package.json');
 const { COVERAGE_LOCAL } = process.env;
 
-module.exports =
-  COVERAGE_LOCAL === '1'
-    ? {}
-    : {
-        coverageReporters: ['text', 'cobertura'],
-        globals: {
-          BUILD_VERSION: version
-        }
-      };
+const coverageConfig = COVERAGE_LOCAL === '1' ? {} : {
+  coverageReporters: ['text', 'cobertura'],
+}
+
+module.exports = {
+  globals: {
+    BUILD_VERSION: version
+  },
+  ...coverageConfig
+};
