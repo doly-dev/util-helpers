@@ -60,7 +60,7 @@ type DownloadOptions = {
  */
 
 /**
- * 下载<br/><br/>
+ * 下载
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</em>
  *

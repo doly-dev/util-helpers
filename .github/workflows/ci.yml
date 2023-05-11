@@ -19,15 +19,15 @@ jobs:
         with:
           node-version: 16
       - name: Install
-        run: npm install
+        run: yarn install
       - name: Test
-        run: npm run test:coverage && ls ./coverage/
+        run: yarn test:coverage && ls ./coverage/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Build docs
-        run: npm run build:doc
+        run: yarn build:doc
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:

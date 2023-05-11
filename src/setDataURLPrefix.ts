@@ -1,5 +1,6 @@
 /**
- * 设置 DataURL 前缀、MIME 类型、base64 标识。<br/>
+ * 设置 DataURL 前缀、MIME 类型、base64 标识。
+ *
  * 如果你需要获取DataURL 的 MIME 类型和数据本身，推荐使用 <a href="https://www.npmjs.com/package/data-urls">data-urls</a>。
  *
  * @static

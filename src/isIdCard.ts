@@ -29,7 +29,9 @@ type Options = {
 };
 
 /**
- * 检测值是否为18位身份证号码。<br/>宽松模式下，支持15位身份证号码
+ * 检测值是否为18位身份证号码。
+ *
+ * 宽松模式下，支持15位身份证号码。
  *
  * @static
  * @alias module:Validator.isIdCard

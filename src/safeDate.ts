@@ -5,9 +5,10 @@ function safeDate(): Date;
 function safeDate(value: number | string | Date): Date;
 function safeDate(year: number, monthIndex: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number): Date;
 /**
- * 创建一个 Date 实例日期对象，同 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()</a> <br/><br/>
+ * 创建一个 Date 实例日期对象，同 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()</a>
  *
- * 规避了苹果设备浏览器不支持部分格式（例如，YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。<br/>
+ * 规避了苹果设备浏览器不支持部分格式（例如，YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
+ *
  * 如果参数为 undefined 正常返回 Date 。
  *
  * @static

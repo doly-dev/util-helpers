@@ -13,7 +13,7 @@ type ReadType = keyof typeof FileReaderMethodMap;
 function fileReader(blob: Blob, type: 'arrayBuffer'): Promise<ArrayBuffer>;
 function fileReader(blob: Blob, type?: Exclude<ReadType, 'arrayBuffer'>): Promise<string>;
 /**
- * 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer<br/><br/>
+ * 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *

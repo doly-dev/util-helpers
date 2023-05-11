@@ -3,7 +3,9 @@ import { isObject } from './utils/type';
 type NodeAssign = 'spread' | 'self';
 
 /**
- * 过滤/筛选树节点。<br/><br/>如果某节点被过滤掉，它的子节点也一并抛弃
+ * 过滤/筛选树节点。
+ *
+ * 如果某节点被过滤掉，它的子节点也一并抛弃。
  *
  * @static
  * @alias module:Tree.filterTree

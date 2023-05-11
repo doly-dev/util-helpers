@@ -5,7 +5,7 @@
 import fileReader from './fileReader';
 
 /**
- * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串<br/><br/>
+ * 将 Blob 或 File 对象转成 data:URL 格式的 Base64 字符串
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *

@@ -5,7 +5,7 @@ import isNull from './isNull';
  * 检查值是否为 undefined 或 null
  *
  * @static
- * @alias module:Type.isNaN
+ * @alias module:Type.isNil
  * @since 4.3.0
  * @param {*} value 检查值
  * @returns {boolean} 是否为 undefined 或 null

@@ -43,7 +43,7 @@ type AjaxOptions = {
  */
 
 /**
- * 请求<br/><br/>
+ * 请求
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
