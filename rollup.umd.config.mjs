@@ -14,7 +14,7 @@ export default defineConfig({
     },
     {
       format: 'umd',
-      file: `dist/${pkgName}.min.js`,
+      file: `${umdDir}/${pkgName}.min.js`,
       name: globalName,
       sourcemap: true,
       plugins: [terser()]
