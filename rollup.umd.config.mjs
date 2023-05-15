@@ -1,6 +1,5 @@
 import { defineConfig } from 'rollup';
 import terser from '@rollup/plugin-terser';
-import typescript from '@rollup/plugin-typescript';
 import { umdDir, pkgName, globalName, input, plugins } from './rollup.base.config.mjs';
 
 export default defineConfig({
@@ -20,13 +19,5 @@ export default defineConfig({
       plugins: [terser()]
     }
   ],
-  plugins: [
-    ...plugins,
-    typescript({
-      tsconfig: './tsconfig.build.json',
-      compilerOptions: {
-        removeComments: true
-      }
-    })
-  ]
+  plugins
 });

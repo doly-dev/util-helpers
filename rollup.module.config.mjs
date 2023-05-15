@@ -1,5 +1,4 @@
 import { defineConfig } from 'rollup';
-import typescript from '@rollup/plugin-typescript';
 import { esmDir, cjsDir, input, plugins } from './rollup.base.config.mjs';
 
 export default defineConfig({
@@ -22,13 +21,5 @@ export default defineConfig({
       preserveModulesRoot: 'src'
     },
   ],
-  plugins: [
-    ...plugins,
-    typescript({
-      tsconfig: './tsconfig.build.json',
-      compilerOptions: {
-        removeComments: true
-      }
-    })
-  ]
+  plugins
 });

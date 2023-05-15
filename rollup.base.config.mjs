@@ -1,6 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+import typescript from '@rollup/plugin-typescript';
 
 import pkg from './package.json' assert { type: "json" };
 
@@ -26,5 +27,11 @@ export const plugins = [
     }
   }),
   resolve(),
-  commonjs()
+  commonjs(),
+  typescript({
+    tsconfig: './tsconfig.build.json',
+    compilerOptions: {
+      removeComments: true
+    }
+  })
 ];
