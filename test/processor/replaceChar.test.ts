@@ -4,6 +4,8 @@ describe('replaceChar', () => {
   it('general', () => {
     // 手机号码 前3后4
     expect(replaceChar('13000000000')).toBe('130****0000');
+    // 手机号码 前2后4
+    expect(replaceChar('13000000000', { start: 2 })).toBe('13*****0000');
     // 身份证号 前6后4
     expect(replaceChar('130701199310302288', { start: 6, end: -4 })).toBe('130701********2288');
     // 邮箱 @前两位和@后缀
