@@ -26,7 +26,7 @@ yarn add util-helpers
 
 如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
 
-`npm` 包的 `util-helpers/dist` 目录下提供了 `UMD` 包 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/browse/util-helpers/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
+`npm` 包的 [util-helpers/dist](https://www.npmjs.com/package/util-helpers?activeTab=code) 目录下提供了 `UMD` 包 `util-helpers.js` 以及 `util-helpers.min.js`。你也可以通过 [UNPKG](https://unpkg.com/browse/util-helpers/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/util-helpers/dist/util-helpers.min.js)<sup> _注意版本_ </sup>。
 
 ## 示例
 
