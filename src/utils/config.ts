@@ -14,7 +14,4 @@ function setDisableWarning(bool: boolean) {
   config.disableWarning = !!bool;
 }
 
-// eslint-disable-next-line no-undef
-const version = BUILD_VERSION;
-
-export { config, setDisableWarning, version };
+export { config, setDisableWarning };

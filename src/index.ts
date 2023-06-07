@@ -128,4 +128,12 @@ export { default as findTreeSelect } from './findTreeSelect';
  * @ignore
  * @since 3.6.1
  */
-export { setDisableWarning, version } from './utils/config';
+export { setDisableWarning } from './utils/config';
+
+// global
+import VERSION from './VERSION';
+export { VERSION };
+/**
+ * @deprecated 即将废弃，请使用 `VERSION`
+ */
+export const version = BUILD_VERSION;
