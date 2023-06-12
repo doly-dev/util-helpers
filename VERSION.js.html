@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>isSwiftCode.js - util-helpers </title>
+    <title>VERSION.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isSwiftCode.js</h1>
+    <h1 class="page-title">VERSION.js</h1>
     
 
     
@@ -71,33 +71,14 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { toString } from 'ut2';
-var reg = /^[A-Z]{6}[A-Z\d]{2}(?:[A-Z\d]{3})?$/;
-/**
- * 检测值是否为 Swift Code。8位或11位，前6位为大写字母，7-8位为大写字母或数字，9-11位为可选的大写字母或数字。
+            <pre class="prettyprint source linenums"><code>/**
+ * util-helpers 版本号
  *
  * @static
- * @alias module:Validator.isSwiftCode
- * @since 4.9.0
- * @see {@link https://zh.wikipedia.org/wiki/ISO_9362 | ISO 9362}
- * @param {*} value 要检测的值
- * @returns {boolean} 值是否为 Swift Code
- * @example
- *
- * isSwiftCode('DEUTDEFF'); // true
- * isSwiftCode('deutdeff'); // false
- *
- * isSwiftCode('BKTWTWTP010'); // true
- * isSwiftCode('010BKTWTWTP'); // false
- *
- * isSwiftCode('ICBKCNBJBJM'); // true
- *
+ * @since 4.18.0
  */
-function isSwiftCode(value) {
-    var valueStr = toString(value);
-    return reg.test(valueStr);
-}
-export default isSwiftCode;
+var VERSION = BUILD_VERSION;
+export default VERSION;
 </code></pre>
         </article>
     </section>
