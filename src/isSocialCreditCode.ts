@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 基础规则，由18位数字和大写字母组成，不使用I、O、Z、S、V。
 const baseReg = /^[\dA-HJ-NPQRTUWXY]{2}\d{6}[\dA-HJ-NPQRTUWXY]{10}$/;
@@ -64,7 +64,7 @@ type Options = {
  *
  */
 function isSocialCreditCode(value: any, options: Options = {}) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   const { loose = false, checkCode: cc = true } = options;
   const needCheckCode = !loose && cc;
 

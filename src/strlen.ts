@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 /**
  * 获取字符长度。中文汉字占2个字符，英文占1个字符，特殊如emoji占4个字符。
@@ -19,7 +19,7 @@ import normalizeString from './normalizeString';
  *
  */
 function strlen(str: string) {
-  const realStr = normalizeString(str);
+  const realStr = toString(str);
   let len = 0;
   for (let i = 0; i < realStr.length; i++) {
     const c = realStr.charCodeAt(i);

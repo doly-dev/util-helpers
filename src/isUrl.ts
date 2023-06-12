@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 标准格式如下：
 // [协议类型]://[服务器地址]:[端口号]/[资源层级UNIX文件路径][文件名]?[查询]#[片段ID]
@@ -51,7 +51,7 @@ const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg}
  *
  */
 function isUrl(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return regWithProtocal.test(valueStr) || regNonProtocal.test(valueStr);
 }
 

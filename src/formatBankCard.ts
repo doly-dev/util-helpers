@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 type Options = {
   /** @deprecated */
@@ -40,7 +40,7 @@ function formatBankCard(bankCardNo = '', options: Options = {}) {
   const reg = new RegExp(`(.{${length}})`, 'g');
   const regChar = new RegExp(`${realSpaceMark}`, 'g');
 
-  const realValue = normalizeString(bankCardNo).replace(regChar, '');
+  const realValue = toString(bankCardNo).replace(regChar, '');
   const str = realValue.replace(reg, `$1${realSpaceMark}`);
 
   return realValue.length % length === 0 ? str.substring(0, str.length - 1) : str;

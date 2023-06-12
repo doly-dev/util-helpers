@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 台湾居民来往大陆通行证正则
 const regTWCard = /^\d{8}$/i;
@@ -35,7 +35,7 @@ type Options = {
 function isTWCard(value: any, options: Options = {}) {
   const { loose = false } = options;
 
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   if (regTWCard.test(valueStr)) {
     return true;
   }

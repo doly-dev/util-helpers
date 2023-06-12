@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 手机号码 11位数字，以1开头，第二位是3456789其中一个，后面再加9个数字
 const reg = /^1[3456789]\d{9}$/;
@@ -18,7 +18,7 @@ const reg = /^1[3456789]\d{9}$/;
  *
  */
 function isMobile(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return reg.test(valueStr);
 }
 

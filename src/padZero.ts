@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 /**
  * 前置补零
@@ -24,7 +24,7 @@ import normalizeString from './normalizeString';
  *
  */
 function padZero(value: string | number, size = 2) {
-  const str = normalizeString(value);
+  const str = toString(value);
   const len = str.length;
 
   if (typeof size !== 'number' || size < 0) {

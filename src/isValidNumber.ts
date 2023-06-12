@@ -1,8 +1,8 @@
-import { isSymbol } from "./utils/type";
+import { isSymbol } from 'ut2';
 
 /**
  * 检测值是否为有效数值，支持隐式转换。如果返回 true ，表示可以通过 Number() 转为数字。
- * 
+ *
  * @static
  * @alias module:Validator.isValidNumber
  * @since 4.17.2
@@ -10,7 +10,7 @@ import { isSymbol } from "./utils/type";
  * @param {boolean} [strict=false] 严格模式，如果为 true ，仅支持字符串和数字类型，不处理其他类型隐式转换，且空字符串返回 false 。
  * @returns {boolean} 值是否为有效数值
  * @example
- * 
+ *
  * isValidNumber(null); // true
  * isValidNumber(true); // true
  * isValidNumber(''); // true
@@ -18,10 +18,10 @@ import { isSymbol } from "./utils/type";
  * isValidNumber('1234'); // true
  * isValidNumber(' 1234 '); // true
  * isValidNumber(' 1234 '); // true
- * 
+ *
  * isValidNumber(undefined); // false
  * isValidNumber('0.10.1'); // false
- * 
+ *
  * // 严格模式
  * isValidNumber(null, true); // false
  * isValidNumber(true, true); // false

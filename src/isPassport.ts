@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 护照号 9位，包括首字母和数字；支持 普通护照(E*)、外交护照(DE)、公务护照(SE)、公务普通护照(PE)、香港特区护照(K/KJ/H*)、澳门特区护照(MA/MB/M*)
 const reg = /^((e[\da-z])|(de)|(se)|(pe)|([khm][\da-z]))[\da-z]{7}$/i;
@@ -20,7 +20,7 @@ const reg = /^((e[\da-z])|(de)|(se)|(pe)|([khm][\da-z]))[\da-z]{7}$/i;
  *
  */
 function isPassport(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return reg.test(valueStr);
 }
 

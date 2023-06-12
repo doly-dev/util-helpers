@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 邮政编码
 const reg = /^\d{6}$/;
@@ -18,7 +18,7 @@ const reg = /^\d{6}$/;
  *
  */
 function isPostcode(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return reg.test(valueStr);
 }
 

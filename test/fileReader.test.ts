@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
+import { isArrayBuffer } from 'ut2';
 import { fileReader } from '../src';
-import { isArrayBuffer } from '../src/utils/type';
 
 describe('fileReader', () => {
   it('correct', async () => {

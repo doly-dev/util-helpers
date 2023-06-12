@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 邮箱
 const reg = /^[\da-z]+([-._]?[\da-z]+)*@[\da-z]+([-.]?[\da-z]+)*(\.[a-z]{2,})+$/i;
@@ -18,7 +18,7 @@ const reg = /^[\da-z]+([-._]?[\da-z]+)*@[\da-z]+([-.]?[\da-z]+)*(\.[a-z]{2,})+$/
  *
  */
 function isEmail(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return reg.test(valueStr);
 }
 

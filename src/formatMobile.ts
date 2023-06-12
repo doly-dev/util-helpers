@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 type Options = {
   /** @deprecated */
@@ -36,7 +36,7 @@ function formatMobile(mobileNo = '', options: Options = {}) {
   const realSpaceMark = 'spaceMark' in options ? (options.spaceMark as string) : char;
 
   const regChar = new RegExp(realSpaceMark, 'g');
-  const realValue = normalizeString(mobileNo).replace(regChar, '').substring(0, 11);
+  const realValue = toString(mobileNo).replace(regChar, '').substring(0, 11);
 
   if (realValue.length > 7) {
     return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);

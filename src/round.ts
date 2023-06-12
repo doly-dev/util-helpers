@@ -1,7 +1,7 @@
+import { isNaN } from 'ut2';
 import divide from './divide';
 import times from './times';
 import { transformEffectiveNumber } from './utils/math.util';
-import { isNaN } from './utils/type';
 
 /**
  * 四舍五入，支持设置精度

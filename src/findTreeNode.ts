@@ -1,4 +1,4 @@
-import { isObject } from './utils/type';
+import { isObject } from 'ut2';
 
 /**
  * 查找树结构数据节点

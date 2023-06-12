@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 type Options = {
   start?: number;
@@ -60,7 +60,7 @@ function replaceChar(str: string, options: Options = {}) {
   const { char = '*', exclude } = options;
   let { start = 3, end = -4, repeat } = options;
 
-  const realStr = normalizeString(str);
+  const realStr = toString(str);
   const strLen = realStr.length;
 
   // 开始位置超过str长度
@@ -83,7 +83,7 @@ function replaceChar(str: string, options: Options = {}) {
     middleStr = middleStr.replace(reg, char);
   } else {
     repeat = typeof repeat === 'number' && repeat >= 0 ? repeat : middleStr.length;
-    middleStr = char.repeat(repeat);
+    middleStr = char.repeat(repeat!);
   }
 
   return realStr.substring(0, start) + middleStr + realStr.substring(end);

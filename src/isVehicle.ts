@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 车牌号正则
 const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([A-Z0-9]{4}[A-Z0-9挂学警港澳]{1})|([A-Z0-9]{5}[DF])|([DF][A-Z0-9]{5}))$/;
@@ -26,7 +26,7 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  *
  */
 function isVehicle(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return reg.test(valueStr);
 }
 

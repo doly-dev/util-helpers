@@ -1,6 +1,6 @@
+import { isNaN } from 'ut2';
 import { digitLength, transformEffectiveNumber } from './utils/math.util';
 import times from './times';
-import { isNaN } from './utils/type';
 
 /**
  * 精确加法，支持多个数相加，加数默认为 0 。

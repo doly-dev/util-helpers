@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 非0开头，10~21位数字
 const reg = /^[1-9]\d{9,20}$/;
@@ -54,7 +54,7 @@ type Options = {
 function isBankCard(value: any, options: Options = {}) {
   const { loose = false, luhn = false } = options;
 
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   const validateResult = loose ? regLoose.test(valueStr) : reg.test(valueStr);
 
   if (validateResult && luhn) {

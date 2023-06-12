@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 港澳居民来往内地通行证正则
 const regHMCard = /^[hm]{1}([0-9]{10}|[0-9]{8})$/i;
@@ -26,7 +26,7 @@ const regHMCard = /^[hm]{1}([0-9]{10}|[0-9]{8})$/i;
  * isHMCard('M32031177'); // true
  */
 function isHMCard(value: any) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   return regHMCard.test(valueStr);
 }
 

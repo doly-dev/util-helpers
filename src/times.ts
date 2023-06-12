@@ -1,5 +1,5 @@
+import { isNaN } from 'ut2';
 import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } from './utils/math.util';
-import { isNaN } from './utils/type';
 
 /**
  * 精确乘法，支持多个数相乘，乘数默认为 1 。

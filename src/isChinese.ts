@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 const chineseDictionary = {
   // 基本汉字
@@ -75,7 +75,7 @@ type Options = {
 function isChinese(value: any, options: Options = {}) {
   const { loose = false, useExtend = false } = options;
 
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   const basicRegExp = loose ? looseChineseRegExp : chineseRegExp;
   const extendRegExp = loose ? looseChineseExtendRegExp : chineseExtendRegExp;
 

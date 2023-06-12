@@ -1,5 +1,5 @@
+import { isNaN } from 'ut2';
 import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
-import isNaN from './utils/type/isNaN';
 import { trimLeftZero } from './utils/math.util';
 import devWarn from './utils/devWarn';
 

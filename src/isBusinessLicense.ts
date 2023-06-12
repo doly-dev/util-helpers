@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 // 基础规则，由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
 const baseReg = /^\d{15}$/;
@@ -63,7 +63,7 @@ type Options = {
  *
  */
 function isBusinessLicense(value: any, options: Options = {}) {
-  const valueStr = normalizeString(value);
+  const valueStr = toString(value);
   const { loose = false, checkCode: cc = true } = options;
   const needCheckCode = !loose && cc;
 

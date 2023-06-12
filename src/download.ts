@@ -1,8 +1,7 @@
+import { isBlob, isPromiseLike } from 'ut2';
 import dataURLToBlob from './dataURLToBlob';
 import isUrl from './isUrl';
 import ajax from './ajax';
-import { isBlob } from './utils/type';
-import isPromiseLike from './isPromiseLike';
 
 // 下载文件到本地
 function saver(blobUrl: string, fileName = '') {

@@ -1,4 +1,4 @@
-import normalizeString from './normalizeString';
+import { toString } from 'ut2';
 
 type CalculateCursorPositionOptions = {
   placeholderChar?: string | string[];
@@ -27,8 +27,8 @@ type CalculateCursorPositionOptions = {
 function calculateCursorPosition(prevPos: number, prevCtrlValue: string, rawValue: string, ctrlValue: string, options: CalculateCursorPositionOptions = {}) {
   const { placeholderChar = ' ', maskReg = /\D/g, type } = options;
 
-  const realCtrlValue = normalizeString(prevCtrlValue);
-  const realRawValue = normalizeString(rawValue);
+  const realCtrlValue = toString(prevCtrlValue);
+  const realRawValue = toString(rawValue);
   const placeholderChars = Array.isArray(placeholderChar) ? placeholderChar : [placeholderChar];
 
   const editLength = realRawValue.length - realCtrlValue.length;

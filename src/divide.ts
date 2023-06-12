@@ -1,6 +1,6 @@
+import { isNaN } from 'ut2';
 import { strip, digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } from './utils/math.util';
 import times from './times';
-import { isNaN } from './utils/type';
 
 /**
  * 精确除法，支持多个数相除，除数默认为 1 。

@@ -1,4 +1,4 @@
-import { isObject } from './utils/type';
+import { isObject } from 'ut2';
 
 /**
  * 内部实现
