@@ -105,10 +105,12 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 
 ## 精选第三方工具库
 
+- [ut2] - 一个现代 JavaScript 实用工具库
 - [lodash] - 封装了诸多对字符串、数组、对象等常见数据类型的处理函数
 - [query-string] - URL 解析、序列化
 - [qs] - URL 查询字符串解析和序列化库
 - [js-cookie] - 一个简单，轻量级的 JavaScript API，用于处理 cookie
+- [cache2] - 一个简单的 JavaScript 缓存管理，支持浏览器端和 node.js
 - [store2] - 丰富了 localStorage 和 sessionStorage 功能（JSON，命名空间，扩展等）
 - [dayjs] - 一个轻量的处理时间和日期的 JavaScript 库，和 Moment.js 的 API 设计保持完全一样
 - [date-fns] - 提供了最全面、简单且一致的工具集，用于在浏览器和 Node.js 中操作 JavaScript 日期
@@ -122,6 +124,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 - [JSZip] - 创建、读取和编辑 zip 文件
 - [ua-parser-js] - 用于从用户代理数据中检测浏览器、引擎、操作系统、CPU 和设备类型/型号
 
+[ut2]: https://www.npmjs.com/package/ut2
 [lodash]: https://www.npmjs.com/package/lodash
 [query-string]: https://www.npmjs.com/package/query-string
 [qs]: https://www.npmjs.com/package/qs
