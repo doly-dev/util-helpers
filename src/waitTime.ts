@@ -3,6 +3,7 @@ import { sleep } from 'ut2';
 /**
  * 等待时间返回 Promise 。常用于异步方法中延时。
  *
+ * @ignore
  * @static
  * @alias module:Other.waitTime
  * @since 4.2.0

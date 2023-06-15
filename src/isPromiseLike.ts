@@ -3,6 +3,7 @@ import { isPromiseLike as _isPromiseLike } from 'ut2';
 /**
  * 检测值是否类似Promise对象
  *
+ * @ignore
  * @static
  * @alias module:Validator.isPromiseLike
  * @since 3.8.0

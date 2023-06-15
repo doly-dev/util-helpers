@@ -3,6 +3,7 @@ import { toString } from 'ut2';
 /**
  * 规整化字符串。如果值为 undefined 或 null 将转为空字符串，如果值不是字符串类型将转为字符串。
  *
+ * @ignore
  * @static
  * @alias module:Processor.normalizeString
  * @since 4.3.0
