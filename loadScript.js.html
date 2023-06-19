@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>round.js - util-helpers </title>
+    <title>loadScript.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">round.js</h1>
+    <h1 class="page-title">loadScript.js</h1>
     
 
     
@@ -71,37 +71,68 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { isNaN } from 'ut2';
-import divide from './divide';
-import times from './times';
-import { transformEffectiveNumber } from './utils/math.util';
+            <pre class="prettyprint source linenums"><code>import { __assign, __rest } from "tslib";
 /**
- * 四舍五入，支持设置精度
+ * 加载 js 文件。
+ *
+ * 默认属性 `async=true` `type=text/javascript` 。如果加载失败，默认会删除该 `script` 的 `dom` 标签。
+ *
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
  *
  * @static
- * @alias module:Math.round
- * @since 3.1.0
- * @param {number|string} num 要四舍五入的数字
- * @param {number} [precision=0] 四舍五入的精度
- * @returns {number} 四舍五入的数字
+ * @alias module:Other.loadScript
+ * @since 4.19.0
+ * @param {string} src  js 地址。
+ * @param {Object} [options] script 标签属性。比如 `async` `defer` `onload` `onerror` `id` 等。如果需要设置属性，可以使用 `attrs` 。如果加载失败或错误不想删除，可以使用 `destroyOnError=false` 。
+ * @return {Promise&lt;HTMLScriptElement>} 异步返回 script 元素。
  * @example
  *
- * round(4.006); // 4
- * round(4.006, 2); // 4.01
- * round(4060, -2); // 4100
+ * loadScript('some.js').then(script=>{
+ *   // do something
+ * })
+ *
+ * loadScript('some.js', { id: 'xxx', async: false, attrs: { foo: 'bar' } }).then(script=>{
+ *   // do something
+ * })
  *
  */
-function round(num, precision) {
-    if (precision === void 0) { precision = 0; }
-    num = transformEffectiveNumber(num);
-    // 兼容处理，如果参数包含无效数值时，返回 NaN
-    if (isNaN(num)) {
-        return Number.NaN;
-    }
-    var base = Math.pow(10, precision);
-    return divide(Math.round(times(num, base)), base);
+function loadScript(src, options) {
+    return new Promise(function (resolve, reject) {
+        var head = document.head;
+        var script = document.createElement('script');
+        var _a = options || {}, attrs = _a.attrs, _b = _a.destroyOnError, destroyOnError = _b === void 0 ? true : _b, restOptions = __rest(_a, ["attrs", "destroyOnError"]);
+        var props = __assign(__assign({ async: true, type: 'text/javascript' }, restOptions), { src: src });
+        for (var key in props) {
+            if (key === 'onload' || key === 'onerror') {
+                continue;
+            }
+            // @ts-ignore
+            script[key] = props[key];
+        }
+        if (typeof attrs === 'object') {
+            Object.keys(attrs).forEach(function (key) {
+                script.setAttribute(key, attrs[key]);
+            });
+        }
+        script.onload = function (ev) {
+            var _a;
+            this.onerror = this.onload = null;
+            (_a = props.onload) === null || _a === void 0 ? void 0 : _a.call(this, ev);
+            resolve(script);
+        };
+        script.onerror = function (ev) {
+            var _a;
+            this.onerror = this.onload = null;
+            (_a = props.onerror) === null || _a === void 0 ? void 0 : _a.call(this, ev);
+            if (destroyOnError) {
+                head.removeChild(script);
+            }
+            reject(new URIError('Failed to load ' + this.src));
+        };
+        head.appendChild(script);
+    });
 }
-export default round;
+export default loadScript;
 </code></pre>
         </article>
     </section>
