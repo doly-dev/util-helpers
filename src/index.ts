@@ -103,6 +103,7 @@ export { default as round } from './round';
 export { default as ajax } from './ajax';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as download } from './download';
+export { default as loadScript } from './loadScript';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
 export { default as waitTime } from './waitTime';
