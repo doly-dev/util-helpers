@@ -1,7 +1,4 @@
-import { isNaN } from 'ut2';
-import divide from './divide';
-import times from './times';
-import { transformEffectiveNumber } from './utils/math.util';
+import { round } from 'ut2';
 
 /**
  * 四舍五入，支持设置精度
@@ -19,16 +16,8 @@ import { transformEffectiveNumber } from './utils/math.util';
  * round(4060, -2); // 4100
  *
  */
-function round(num: string | number, precision = 0) {
-  num = transformEffectiveNumber(num);
-
-  // 兼容处理，如果参数包含无效数值时，返回 NaN
-  if (isNaN(num)) {
-    return Number.NaN;
-  }
-
-  const base = Math.pow(10, precision);
-  return divide(Math.round(times(num, base)), base);
+function _round(num: string | number, precision = 0) {
+  return round(num as number, precision);
 }
 
-export default round;
+export default _round;
