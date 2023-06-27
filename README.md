@@ -127,6 +127,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 [query-string]: https://www.npmjs.com/package/query-string
 [qs]: https://www.npmjs.com/package/qs
 [js-cookie]: https://www.npmjs.com/package/js-cookie
+[cache2]: https://www.npmjs.com/package/cache2
 [moment]: https://www.npmjs.com/package/moment
 [dayjs]: https://www.npmjs.com/package/dayjs
 [date-fns]: https://www.npmjs.com/package/date-fns
