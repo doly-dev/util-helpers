@@ -19,9 +19,17 @@ import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } fro
  */
 function times(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const
-  let [num1, num2 = 1, ...rest] = nums;
+  // let [num1, num2 = 1, ...rest] = nums;
+
+  let num1 = nums[0];
+  let num2 = nums[1] === void 0 ? 1 : nums[1];
+  const rest = nums.slice(2);
+
   if (rest.length > 0) {
-    return times(times(num1, num2), ...rest);
+    // return times(times(num1, num2), ...rest);
+
+    // eslint-disable-next-line prefer-spread
+    return times.apply(void 0, [times(num1, num2)].concat(rest as number[]));
   }
 
   num1 = transformEffectiveNumber(num1);

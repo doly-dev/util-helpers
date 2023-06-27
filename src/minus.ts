@@ -20,10 +20,17 @@ import times from './times';
  */
 function minus(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const
-  let [num1, num2 = 0, ...rest] = nums;
+  // let [num1, num2 = 0, ...rest] = nums;
+
+  let num1 = nums[0];
+  let num2 = nums[1] === void 0 ? 0 : nums[1];
+  const rest = nums.slice(2);
 
   if (rest.length > 0) {
-    return minus(minus(num1, num2), ...rest);
+    // return minus(minus(num1, num2), ...rest);
+
+    // eslint-disable-next-line prefer-spread
+    return minus.apply(void 0, [minus(num1, num2)].concat(rest as number[]));
   }
 
   num1 = transformEffectiveNumber(num1);

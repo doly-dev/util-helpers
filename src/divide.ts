@@ -24,10 +24,17 @@ import times from './times';
  */
 function divide(...nums: (string | number)[]): number {
   // eslint-disable-next-line prefer-const
-  let [num1, num2 = 1, ...rest] = nums;
+  // let [num1, num2 = 1, ...rest] = nums;
+
+  let num1 = nums[0];
+  let num2 = nums[1] === void 0 ? 1 : nums[1];
+  const rest = nums.slice(2);
 
   if (rest.length > 0) {
-    return divide(divide(num1, num2), ...rest);
+    // return divide(divide(num1, num2), ...rest);
+
+    // eslint-disable-next-line prefer-spread
+    return divide.apply(void 0, [divide(num1, num2)].concat(rest as number[]));
   }
 
   num1 = transformEffectiveNumber(num1);

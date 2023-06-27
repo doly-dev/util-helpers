@@ -7,7 +7,7 @@ import { config } from './config';
  */
 function devWarn(...args: any[]) {
   if (!config.disableWarning) {
-    console.warn(...args);
+    console.warn.apply(void 0, args);
   }
 }
 

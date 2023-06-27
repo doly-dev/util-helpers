@@ -45,7 +45,9 @@ function findTreeNode<T extends any, F extends (item: T) => boolean>(tree: T[], 
         // @ts-ignore
         const childs = temp[childrenField] as T[];
         if (Array.isArray(childs) && childs.length > 0) {
-          stack.push(...childs);
+          childs.forEach((c) => {
+            stack.push(c);
+          });
         }
       }
     }
