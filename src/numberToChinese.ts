@@ -95,10 +95,9 @@ function convertDecimal(num: number) {
   const index = strNum.indexOf('.');
 
   let ret = '';
-
   if (index > -1) {
     const decimalStr = strNum.slice(index + 1);
-    ret = mapNumberChar(parseInt(decimalStr));
+    ret = mapNumberChar(decimalStr);
   }
 
   return ret;
@@ -108,10 +107,10 @@ function convertDecimal(num: number) {
  * 映射为中文数字
  *
  * @private
- * @param {number} num 要处理的数字
+ * @param {number|string} num 要处理的数字
  * @returns {string} 返回中文数字的映射
  */
-function mapNumberChar(num: number) {
+function mapNumberChar(num: number | string) {
   const strNum = num + '';
   let ret = '';
 

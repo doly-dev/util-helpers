@@ -32,6 +32,7 @@ describe('numberToChinese', () => {
   it('小数', () => {
     expect(numberToChinese(0.1)).toBe('零点一');
     expect(numberToChinese(100.1)).toBe('一百点一');
+    expect(numberToChinese(101.001)).toBe('一百零一点零零一');
     expect(numberToChinese(1234567890.11)).toBe('一十二亿三千四百五十六万七千八百九十点一一');
     expect(numberToChinese(1234567890.112)).toBe('一十二亿三千四百五十六万七千八百九十点一一二');
   });
@@ -58,6 +59,9 @@ describe('numberToChinese', () => {
 
   it('不带单位', () => {
     expect(numberToChinese(1990, { unit: false })).toBe('一九九零');
+    expect(numberToChinese(101.001, { unit: false })).toBe('一零一点零零一');
+    expect(numberToChinese(101.001, { unit: false, big5: true })).toBe('壹零壹點零零壹');
+    expect(numberToChinese(101.001, { unit: false, big5: true, decimal: '点' })).toBe('壹零壹点零零壹');
     expect(numberToChinese(1990, { unit: false, zero: '〇' })).toBe('一九九〇');
     expect(numberToChinese(1990, { unit: false, big5: true })).toBe('壹玖玖零');
     expect(numberToChinese(0.3, { unit: false, big5: true })).toBe('零點叁');
