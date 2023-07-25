@@ -122,7 +122,7 @@ type Options = {
  * // 字符串数字
  * formatMoney('3000.03', { precision: 4 }); // 3,000.0300
  */
-const formatMoney = (num: string | number, options: Options = {}) => {
+const formatMoney = (num: string | number = '', options: Options = {}) => {
   let { precision = 2, symbol, thousand = ',', decimal = '.' } = options;
 
   // 数字参数不正确，返回空字符串

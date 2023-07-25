@@ -45,8 +45,8 @@ describe('replaceChar', () => {
     expect(replaceChar('林某某', { start: -1, end: 1 })).toBe('林某某');
 
     // 非法值
-    // @ts-ignore
     expect(replaceChar()).toBe('');
+    expect(replaceChar(undefined)).toBe('');
     // @ts-ignore
     expect(replaceChar(null)).toBe('');
     // @ts-ignore

@@ -52,8 +52,8 @@ describe('formatMoney', () => {
     // @ts-ignore
     expect(formatMoney(false)).toBe('');
     expect(formatMoney(NaN)).toBe('');
-    // @ts-ignore
     expect(formatMoney(undefined)).toBe('');
+    expect(formatMoney()).toBe('');
     // @ts-ignore
     expect(formatMoney(null)).toBe('');
     expect(formatMoney('')).toBe('');

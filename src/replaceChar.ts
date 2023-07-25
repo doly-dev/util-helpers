@@ -53,10 +53,10 @@ type Options = {
  * // 用户名
  * replaceChar('林某某', {start: 1, end: Infinity, repeat: 2}); // 林**
  * replaceChar('林某', {start: 1, end: Infinity, repeat: 2}); // 林**
- * replaceChar('林某某某', {start: 1, end: Infinity, repeat: 2}); // 林**
+ * replaceChar('林某某某', { start: 1, end: -1, repeat: 1 }); // 林*某
  *
  */
-function replaceChar(str: string, options: Options = {}) {
+function replaceChar(str = '', options: Options = {}) {
   const { char = '*', exclude } = options;
   let { start = 3, end = -4, repeat } = options;
 
