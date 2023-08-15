@@ -47,6 +47,8 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [times](https://doly-dev.github.io/util-helpers/module-Math.html#.times) - 乘
   - [divide](https://doly-dev.github.io/util-helpers/module-Math.html#.divide) - 除
   - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
+  - [gcd](https://doly-dev.github.io/util-helpers/module-Math.html#.gcd) - 最大公约数
+  - [lcm](https://doly-dev.github.io/util-helpers/module-Math.html#.lcm) - 最小公倍数
 - 数据处理
   - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
   - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象

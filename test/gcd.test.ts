@@ -9,6 +9,7 @@ describe('gcd', () => {
     expect(gcd(0)).toBe(0);
     expect(gcd(0.1)).toBe(0);
     expect(gcd(1)).toBe(1);
+    expect(gcd(100)).toBe(100);
     expect(gcd(-1)).toBe(1);
     expect(gcd('')).toBe(0);
     expect(gcd(' ')).toBe(0);
@@ -41,6 +42,8 @@ describe('gcd', () => {
     expect(gcd(Infinity, 10000)).toBe(10000);
     expect(gcd(10000, -Infinity)).toBe(10000);
     expect(gcd(10000, Infinity)).toBe(10000);
+    expect(gcd(Infinity, Infinity)).toBe(Infinity);
+    expect(gcd(Infinity, 0)).toBe(Infinity);
     // @ts-ignore
     expect(gcd('1', true)).toBe(1);
     // @ts-ignore
@@ -90,5 +93,11 @@ describe('gcd', () => {
     expect(gcd(140, 21, 42)).toBe(7);
     expect(gcd(140, 21, 77)).toBe(7);
     expect(gcd(2.3, 3.8, 8, -10)).toBe(2);
+
+    expect(gcd(8)).toBe(8);
+    expect(gcd(Number.MAX_SAFE_INTEGER)).toBe(Number.MAX_SAFE_INTEGER);
+    expect(gcd(Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)).toBe(Number.MAX_SAFE_INTEGER);
+    expect(gcd(Number.MAX_VALUE, Number.MAX_VALUE)).toBe(Number.MAX_VALUE);
+    expect(gcd(Number.MAX_VALUE, Number.MAX_SAFE_INTEGER)).toBe(Number.MAX_SAFE_INTEGER);
   });
 });

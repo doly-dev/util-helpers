@@ -94,6 +94,7 @@ export { default as times } from './times';
 export { default as divide } from './divide';
 export { default as round } from './round';
 export { default as gcd } from './gcd';
+export { default as lcm } from './lcm';
 
 /**
  * 其他
