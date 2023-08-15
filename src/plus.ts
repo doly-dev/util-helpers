@@ -8,7 +8,7 @@ import times from './times';
  * @static
  * @alias module:Math.plus
  * @since 3.1.0
- * @param {...number|string} nums 相加的数
+ * @param {...(number|string)} nums 相加的数
  * @returns {number} 总和
  * @example
  *

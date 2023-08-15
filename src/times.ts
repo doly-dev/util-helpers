@@ -7,7 +7,7 @@ import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } fro
  * @static
  * @alias module:Math.times
  * @since 3.1.0
- * @param {...number|string} nums 相乘的数
+ * @param {...(number|string)} nums 相乘的数
  * @returns {number} 乘积
  * @example
  *
