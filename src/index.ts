@@ -93,6 +93,7 @@ export { default as minus } from './minus';
 export { default as times } from './times';
 export { default as divide } from './divide';
 export { default as round } from './round';
+export { default as gcd } from './gcd';
 
 /**
  * 其他
