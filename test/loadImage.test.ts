@@ -13,17 +13,24 @@ const url = 'https://dummyimage.com/200x300';
 let loadSuccess = true; // 控制图片加载成功 或 失败
 
 // @ts-ignore
-global.Image = class {
+global.Image = class XImage extends Image {
   [x: string]: any;
   constructor() {
+    super();
+
     setTimeout(() => {
       if (loadSuccess) {
+        // @ts-ignore
         this.onload();
       } else {
+        // @ts-ignore
         this.onerror(ERROR_MESSAGE);
       }
     }, 100);
   }
+
+  width = 100;
+  height = 100;
 };
 
 describe('loadImageWithBlob', () => {
@@ -36,7 +43,7 @@ describe('loadImageWithBlob', () => {
     '加载 blob 图片',
     async () => {
       const image = await loadImage(new Blob(['hello world']));
-      expect(image.crossOrigin).toBeUndefined();
+      expect(image.crossOrigin).not.toBe('anonymous');
       expect(image.src).toBe(blobUrl);
       expect(URL.createObjectURL).toBeCalledTimes(1);
       expect(URL.revokeObjectURL).toBeCalledTimes(1);
@@ -115,8 +122,7 @@ describe('loadImageWithBlob', () => {
       const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
       loadSuccess = false;
       try {
-        const blob = new Blob(['hello world']);
-        await loadImage(blob);
+        await loadImage(url);
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }

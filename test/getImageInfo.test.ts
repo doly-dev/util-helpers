@@ -14,13 +14,17 @@ const url = 'https://dummyimage.com/200x300';
 let loadSuccess = true; // 控制图片加载成功 或 失败
 
 // @ts-ignore
-global.Image = class {
+global.Image = class XImage extends Image {
   [x: string]: any;
   constructor() {
+    super();
+
     setTimeout(() => {
       if (loadSuccess) {
+        // @ts-ignore
         this.onload();
       } else {
+        // @ts-ignore
         this.onerror(ERROR_MESSAGE);
       }
     }, 100);
