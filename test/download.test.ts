@@ -84,30 +84,10 @@ describe('download', () => {
   const spyAppendChild = jest.spyOn(document.body, 'appendChild').mockImplementation(() => jest.fn() as any);
   const spyRemoveChild = jest.spyOn(document.body, 'removeChild').mockImplementation(() => jest.fn() as any);
 
-  const urlMock = {
-    createObejctURL: jest.fn(),
-    revokeObjectURL: jest.fn()
-  };
-  let spyCreateObjectURL: jest.SpyInstance, spyRevokeObjectURL: jest.SpyInstance;
-  const hasCreateObjectURL = 'createObjectURL' in URL;
-
-  function polyfill() {
-    if (!hasCreateObjectURL) {
-      URL.createObjectURL = urlMock.createObejctURL;
-      URL.revokeObjectURL = urlMock.revokeObjectURL;
-    } else {
-      spyCreateObjectURL = jest.spyOn(URL, 'createObjectURL').mockImplementation(() => urlMock.createObejctURL as any);
-      spyRevokeObjectURL = jest.spyOn(URL, 'revokeObjectURL').mockImplementation(() => urlMock.revokeObjectURL as any);
-    }
-  }
-
-  polyfill();
+  URL.createObjectURL = jest.fn();
+  URL.revokeObjectURL = jest.fn();
 
   afterAll(() => {
-    if (hasCreateObjectURL) {
-      spyCreateObjectURL.mockRestore();
-      spyRevokeObjectURL.mockRestore();
-    }
     spyAjax.mockRestore();
     spyCreateElement.mockRestore();
     spyAppendChild.mockRestore();
