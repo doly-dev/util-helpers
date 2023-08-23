@@ -105,6 +105,8 @@ export { default as lcm } from './lcm';
 export { default as ajax } from './ajax';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as download } from './download';
+export { default as loadImage } from './loadImage';
+export { default as loadImageWithBlob } from './loadImageWithBlob';
 export { default as loadScript } from './loadScript';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
