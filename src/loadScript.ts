@@ -14,7 +14,11 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  * @alias module:Other.loadScript
  * @since 4.19.0
  * @param {string} src  js 地址。
- * @param {Object} [options] script 标签属性。比如 `async` `defer` `onload` `onerror` `id` 等。如果需要设置属性，可以使用 `attrs` 。如果加载失败或错误不想删除，可以使用 `destroyOnError=false` 。
+ * @param {Object} [options] script 标签属性。比如 `defer` `onload` `onerror` `id` 等，下面列举部分带有默认值或额外扩展的配置。
+ * @param {boolean} [options.destroyOnError=true] 如果加载失败或错误，自动删除 dom 中的 script 标签。
+ * @param {Object} [options.attrs] 自定义 script 属性，通过 script.setAttribute 设置。
+ * @param {boolean} [options.async=true] 异步加载。
+ * @param {string} [options.type='text/javascript'] 类型。
  * @return {Promise<HTMLScriptElement>} 异步返回 script 元素。
  * @example
  *
