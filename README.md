@@ -97,6 +97,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [ajax](https://doly-dev.github.io/util-helpers/module-Other.html#.ajax) - 请求
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
   - [download](https://doly-dev.github.io/util-helpers/module-Other.html#.download) - 下载
+  - [getImageInfo](https://doly-dev.github.io/util-helpers/module-Other.html#.getImageInfo) - 获取图片信息
   - [loadImage](https://doly-dev.github.io/util-helpers/module-Other.html#.loadImage) - 加载图片
   - [loadImageWithBlob](https://doly-dev.github.io/util-helpers/module-Other.html#.loadImageWithBlob) - 加载图片和 blob 对象
   - [loadScript](https://doly-dev.github.io/util-helpers/module-Other.html#.loadScript) - 加载 js 文件
