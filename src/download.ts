@@ -63,6 +63,8 @@ type DownloadOptions = {
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</em>
  *
+ * <em style="font-weight: bold;">注意：微信浏览器不支持H5下载文件。</em>
+ *
  * @static
  * @alias module:Other.download
  * @since 4.16.0
