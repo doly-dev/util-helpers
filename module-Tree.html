@@ -179,7 +179,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="filterTree.js.html">filterTree.js</a>, <a href="filterTree.js.html#line29">line 29</a>
+        <a href="filterTree.js.html">filterTree.js</a>, <a href="filterTree.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -229,10 +229,10 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    <pre class="prettyprint"><code>const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];
 
 filterTree(menus, item=>item.name.indexOf('管理') > -1);
-// [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
+// [{ id: '2', name: '交易管理', code: 'trade', pid: null, children: [] }, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}]
 
 // 如果某节点被过滤掉，它的子节点也一并抛弃
 filterTree(menus, item=>item.id === '7');
@@ -338,7 +338,7 @@ filterTree(menus, item=>item.id === 'not found');
                 </td>
             
 
-            <td class="description last"><p>遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy ，结果将包含该节点</p></td>
+            <td class="description last"><p>遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 <code>Truthy</code> ，结果将包含该节点</p></td>
         </tr>
 
     
@@ -536,13 +536,13 @@ filterTree(menus, item=>item.id === 'not found');
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    <pre class="prettyprint"><code>const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];
 
 findTreeNode(menus, item=>item.id === '2');
-// {"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}
+// {id: '2', name: '交易管理', code: 'trade', pid: null, children: [ { id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}
 
 findTreeNode(menus, item=>item.id === '7');
-// {"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}
+// { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
 
 findTreeNode(menus, item=>item.id === 'not found');
 // undefined</code></pre>
@@ -644,7 +644,7 @@ findTreeNode(menus, item=>item.id === 'not found');
                 </td>
             
 
-            <td class="description last"><p>遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy ，将返回该节点</p></td>
+            <td class="description last"><p>遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 <code>Truthy</code> ，将返回该节点</p></td>
         </tr>
 
     
@@ -802,16 +802,16 @@ findTreeNode(menus, item=>item.id === 'not found');
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    <pre class="prettyprint"><code>const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];
 
 findTreeNodes(menus, item=>item.id === '2');
-// [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}]
+// [{id:'2',name:'交易管理',code:'trade',pid:null,children:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',children:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]}]
 
 findTreeNodes(menus, item=>item.name.indexOf('管理') > -1);
-// [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"},{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"}]
+// [{id:'2',name:'交易管理',code:'trade',pid:null,children:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',children:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,children:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'},{id:'6',name:'角色管理',code:'authorization-1',pid:'5'}]
 
 findTreeNodes(menus, item=>item.id === '1' || item.id === '7');
-// [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]
+// [{id:'1',name:'首页',code:'trade',pid:null},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]
 
 findTreeNodes(menus, item=>item.id === 'not found');
 // []</code></pre>
@@ -1068,13 +1068,13 @@ findTreeNodes(menus, item=>item.id === 'not found');
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    <pre class="prettyprint"><code>const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];
 
 findTreeSelect(menus, item => item.id === '2');
-// [{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]}]
+// [{id:'2',name:'交易管理',code:'trade',pid:null,children:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',children:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]}]
 
 findTreeSelect(menus, item => item.id === '7');
-// [{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]
+// [{id:'5',name:'权限管理',code:'authorization',pid:null,children:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]
 
 findTreeSelect(menus, item => item.id === 'not found');
 // []</code></pre>
@@ -1341,11 +1341,11 @@ findTreeSelect(menus, item => item.id === 'not found');
   { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
 ];
 listToTree(menus);
-// [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null,"children":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","children":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"children":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]
+// [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null,children:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',children:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,children:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]}]
 
 // 自定义子级字段名
 listToTree(basicMenus, { childrenField: 'childs' });
-// [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null,"childs":[{"id":"3","name":"交易查询","code":"trade-1","pid":"2","childs":[{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"}]}]},{"id":"5","name":"权限管理","code":"authorization","pid":null,"childs":[{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]}]</code></pre>
+// [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null,childs:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',childs:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,childs:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]}]</code></pre>
 
 
 
@@ -2104,10 +2104,10 @@ const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code',
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const menus = [{ "id": "1", "name": "首页", "code": "trade", "pid": null }, { "id": "2", "name": "交易管理", "code": "trade", "pid": null, "children": [{ "id": "3", "name": "交易查询", "code": "trade-1", "pid": "2", "children": [{ "id": "4", "name": "交易查询-查询操作", "code": "trade-1-1", "pid": "3" }] }] }, { "id": "5", "name": "权限管理", "code": "authorization", "pid": null, "children": [{ "id": "6", "name": "角色管理", "code": "authorization-1", "pid": "5" }, { "id": "7", "name": "用户管理", "code": "authorization-2", "pid": "5" }] }];
+    <pre class="prettyprint"><code>const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];
 
 treeToList(menus, 'children'));
-// [{"id":"1","name":"首页","code":"trade","pid":null},{"id":"2","name":"交易管理","code":"trade","pid":null},{"id":"3","name":"交易查询","code":"trade-1","pid":"2"},{"id":"4","name":"交易查询-查询操作","code":"trade-1-1","pid":"3"},{"id":"5","name":"权限管理","code":"authorization","pid":null},{"id":"6","name":"角色管理","code":"authorization-1","pid":"5"},{"id":"7","name":"用户管理","code":"authorization-2","pid":"5"}]</code></pre>
+// [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null},{id:'3',name:'交易查询',code:'trade-1',pid:'2'},{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'},{id:'5',name:'权限管理',code:'authorization',pid:null},{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]</code></pre>
 
 
 
@@ -2246,7 +2246,7 @@ treeToList(menus, 'children'));
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Aug 24 2023 06:08:30 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu Aug 24 2023 06:47:26 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
