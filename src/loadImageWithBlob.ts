@@ -6,6 +6,7 @@ const SuccessResponseStatus = [200, 304];
 /**
  * 获取图片的 blob 对象
  *
+ * @private
  * @param {string | Blob} img 图片地址或 blob 对象
  * @returns {Blob} blob 对象
  */
@@ -42,6 +43,8 @@ let cacheResult: { image: HTMLImageElement; blob: Blob };
 
 /**
  * 加载图片，返回图片元素和 blob 对象。
+ *
+ * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @method
  * @alias module:Other.loadImageWithBlob

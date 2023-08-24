@@ -6,6 +6,8 @@ let cacheResult: HTMLImageElement;
 /**
  * 加载图片。
  *
+ * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
+ *
  * @static
  * @alias module:Other.loadImage
  * @since 4.20.0

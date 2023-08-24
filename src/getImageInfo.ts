@@ -35,6 +35,8 @@ let cacheResult: any;
 /**
  * 获取图片信息。
  *
+ * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
+ *
  * @static
  * @alias module:Other.getImageInfo
  * @since 4.20.0

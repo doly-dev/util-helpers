@@ -6,8 +6,6 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
 /**
  * 加载 js 文件。
  *
- * 默认属性 `async=true` `type=text/javascript` 。如果加载失败，默认会删除该 `script` 的 `dom` 标签。
- *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @static
