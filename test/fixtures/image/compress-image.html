@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compress image</title>
+  <style>
+    img {
+      max-width: 100%;
+      vertical-align: top;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+      vertical-align: top;
+    }
+
+    .tab-header label {
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .config,
+    .result {
+      flex: 1;
+    }
+
+    .config.hide {
+      display: none;
+    }
+
+    .tab {
+      margin-bottom: 20px;
+    }
+
+    .tab-content {
+      min-height: 55px;
+      margin-top: 10px;
+    }
+
+    .config label {
+      white-space: nowrap;
+    }
+
+    .config input {
+      margin-bottom: 10px;
+    }
+
+    .result {
+      margin-top: 10px;
+    }
+
+    .result table {
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .result table th,
+    .result table td {
+      padding: 4px;
+      vertical-align: top;
+    }
+
+    .result table th {
+      white-space: nowrap;
+    }
+
+    .result table tbody th {
+      text-align: right;
+      font-weight: normal;
+      color: #555;
+    }
+
+    @media (max-width:992px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+
+    .config-more-trigger {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .config-more-content {
+      display: none;
+    }
+
+    .arrow {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-top: 1px solid #999;
+      border-right: 1px solid #999;
+      transform-origin: center;
+      transform: rotate(135deg);
+      margin-top: -3px;
+      margin-left: 5px;
+      transition: all .3s;
+    }
+
+    .config-more.open .arrow {
+      transform: rotate(315deg);
+      margin-top: 3px;
+    }
+
+    .config-more.open .config-more-content {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>压缩图片</h1>
+  <p>图片宽高默认等于自身宽高，画布宽高默认等于图片宽高。<label><input type="checkbox" id="checkbox_toggleConfig" checked />显示配置</label>
+  </p>
+  <div class="container">
+    <div class="config">
+      <fieldset>
+        <legend>配置</legend>
+        <div class="tab">
+          <div class="tab-header">
+            图片来源:
+            <label>
+              <input type="radio" name="source" value="local" checked />
+              本地上传
+            </label>
+            <label>
+              <input type="radio" name="source" value="remote" />
+              远程地址
+            </label>
+          </div>
+          <div class="tab-content">
+            <div class="tab-panel">
+              <input type="file" id="input_file" accept="image/*">
+            </div>
+            <div class="tab-panel" style="display: none;">
+              <textarea placeholder="请输入图片地址" rows="3" id="input_text"></textarea>
+            </div>
+          </div>
+        </div>
+        <form name="configForm">
+          <label>
+            图片宽度: <input type="number" min="0" id="input_width" />
+          </label>
+          <label>
+            图片高度: <input type="number" min="0" id="input_height" />
+          </label>
+          <label>
+            图片类型:
+            <select id="select_type">
+              <option value="image/jpeg">image/jpeg</option>
+              <option value="image/png">image/png</option>
+            </select>
+          </label>
+          <label>
+            质量: <input type="number" max="1" min="0" step="0.01" value="0.8" id="input_quality" />
+          </label>
+          <div class="config-more">
+            <h4 class="config-more-trigger">更多配置<span class="arrow"></span></h4>
+            <div class="config-more-content">
+              <label>
+                画布宽度: <input type="number" min="0" id="input_canvasWidth" />
+              </label>
+              <label>
+                画布高度: <input type="number" min="0" id="input_canvasHeight" />
+              </label>
+              <label>
+                画布背景: <input type="color" value="#ffffff" id="input_background" />
+              </label>
+              <label>
+                旋转: <input type="number" value="0" id="input_rotate" />
+              </label>
+              <label>
+                x轴偏移: <input type="number" value="0" id="input_offsetX" />
+              </label>
+              <label>
+                y轴偏移: <input type="number" value="0" id="input_offsetY" />
+              </label>
+            </div>
+          </div>
+          <button type="reset" id="reset">重置</button>
+        </form>
+      </fieldset>
+    </div>
+    <div class="result">
+      <table border="1" style="border-collapse: collapse; border-spacing: 0;">
+        <thead>
+          <tr>
+            <th width="80"></th>
+            <th>压缩前</th>
+            <th>压缩后</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>宽高</th>
+            <td id="before_measure">-</td>
+            <td id="after_measure">-</td>
+          </tr>
+          <tr>
+            <th>宽高比</th>
+            <td id="before_contrast">-</td>
+            <td id="after_contrast">-</td>
+          </tr>
+          <tr>
+            <th>大小</th>
+            <td id="before_size">-</td>
+            <td id="after_size">-</td>
+          </tr>
+          <tr>
+            <th>压缩率</th>
+            <td colspan="2" id="compress">-</td>
+          </tr>
+          <tr>
+            <th>图片</th>
+            <td id="before_pic">-</td>
+            <td id="after_pic">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../../../node_modules/ut2/dist/ut2.js"></script>
+  <script src="../../../dist/util-helpers.js"></script>
+  <script>
+    function View(el) {
+      this.el = el;
+    }
+    View.prototype = {
+      get classList() {
+        return this.el.className.split(' ').filter(Boolean);
+      },
+      hasClass(className) {
+        return this.classList.indexOf(className) > -1;
+      },
+      addClass(className) {
+        this.el.setAttribute('class', this.classList.concat(className).join(' '));
+      },
+      removeClass(className) {
+        const classes = this.classList;
+        const index = classes.indexOf(className);
+        if (index !== -1) {
+          classes.splice(index, 1);
+          this.el.setAttribute('class', classes);
+        }
+      },
+      toggleClass(className) {
+        if (this.hasClass(className)) {
+          this.removeClass(className);
+        } else {
+          this.addClass(className);
+        }
+      }
+    }
+
+    function calcContrast(w, h) {
+      const n = utilHelpers.gcd(w, h);
+      return `${utilHelpers.divide(ut2.round(w), n)}:${utilHelpers.divide(ut2.round(h), n)}`;
+    }
+
+    let tabCurrent = 0;
+
+    const oInputFile = document.querySelector('#input_file');
+    const oInputText = document.querySelector('#input_text');
+    const oInputWidth = document.querySelector('#input_width');
+    const oInputHeight = document.querySelector('#input_height');
+    const oSelectType = document.querySelector('#select_type');
+    const oInputQuality = document.querySelector('#input_quality');
+    const oInputCanvasWidth = document.querySelector('#input_canvasWidth');
+    const oInputCanvasHeight = document.querySelector('#input_canvasHeight');
+    const oInputBackground = document.querySelector('#input_background');
+    const oInputRotate = document.querySelector('#input_rotate');
+    const oInputOffsetX = document.querySelector('#input_offsetX');
+    const oInputOffsetY = document.querySelector('#input_offsetY');
+
+    const oConfigMore = document.querySelector('.config-more');
+    const oConfigMoreTrigger = oConfigMore.querySelector('.config-more-trigger');
+    const configMoreView = new View(oConfigMore);
+    const openClassName = 'open';
+
+    oConfigMoreTrigger.addEventListener('click', function () {
+      configMoreView.toggleClass(openClassName);
+    });
+
+    async function handleChange() {
+      const imageSource = tabCurrent === 0 ? oInputFile.files[0] : oInputText.value;
+
+      if (!imageSource) {
+        // window.alert(tabCurrent === 0 ? '请选择图片' : '请输入图片地址');
+        updateResult();
+        return;
+      }
+
+      const width = oInputWidth.value;
+      const height = oInputHeight.value;
+      const type = oSelectType.value;
+      const quality = oInputQuality.value;
+      const canvasWidth = oInputCanvasWidth.value;
+      const canvasHeight = oInputCanvasHeight.value;
+      const background = oInputBackground.value;
+      const rotate = oInputRotate.value;
+      const offsetX = oInputOffsetX.value;
+      const offsetY = oInputOffsetY.value;
+
+      try {
+        let beforeInfo;
+        const result = await utilHelpers.compressImage(imageSource, {
+          width,
+          height,
+          type,
+          quality,
+          canvasWidth,
+          canvasHeight,
+          background,
+          rotate,
+          offset: [offsetX, offsetY],
+          beforeCompress(imageInfo) {
+            beforeInfo = imageInfo;
+          }
+        });
+        beforeInfo = await utilHelpers.loadImageWithBlob(beforeInfo.blob);
+        updateResult(beforeInfo.blob, result);
+      } catch (err) {
+        console.error(err);
+        updateResult();
+      }
+    }
+    const debounceChange = ut2.debounce(handleChange, 250);
+
+    const oBeforeMeasure = document.querySelector('#before_measure');
+    const oAfterMeasure = document.querySelector('#after_measure');
+    const oBeforeContrast = document.querySelector('#before_contrast');
+    const oAfterContrast = document.querySelector('#after_contrast');
+    const oBeforeSize = document.querySelector('#before_size');
+    const oAfterSize = document.querySelector('#after_size');
+    const oBeforePic = document.querySelector('#before_pic');
+    const oAfterPic = document.querySelector('#after_pic');
+    const oCompress = document.querySelector('#compress');
+
+    async function updateResult(beforeImage, afterImage) {
+      if (!beforeImage || !afterImage) {
+        oBeforeMeasure.innerHTML = '-';
+        oAfterMeasure.innerHTML = '-';
+        oBeforeContrast.innerHTML = '-';
+        oAfterContrast.innerHTML = '-';
+        oBeforeSize.innerHTML = '-';
+        oAfterSize.innerHTML = '-';
+        oBeforePic.innerHTML = '-';
+        oAfterPic.innerHTML = '-';
+        oCompress.innerHTML = '-';
+      } else {
+        const beforeImageInfo = await utilHelpers.getImageInfo(beforeImage);
+        oBeforeMeasure.innerHTML = beforeImageInfo.measure;
+        oBeforeContrast.innerHTML = beforeImageInfo.contrast;
+        oBeforeSize.innerHTML = beforeImageInfo.size;
+        oBeforePic.innerHTML = '';
+        oBeforePic.appendChild(beforeImageInfo.image);
+
+        const afterImageInfo = await utilHelpers.getImageInfo(afterImage);
+        oAfterMeasure.innerHTML = afterImageInfo.measure;
+        oAfterContrast.innerHTML = afterImageInfo.contrast;
+        oAfterSize.innerHTML = afterImageInfo.size;
+        oAfterPic.innerHTML = '';
+        oAfterPic.appendChild(afterImageInfo.image);
+
+        const compressValue = utilHelpers.divide(afterImageInfo.bytes, beforeImageInfo.bytes);
+        oCompress.innerHTML = `<div style="${compressValue > 1 ? 'font-weight: bold; color: red;' : 'color: green;'}">${compressValue}</div>`;
+      }
+    }
+
+    const inputs = [oInputFile, oInputText, oInputWidth, oInputHeight, oInputQuality, oInputCanvasWidth, oInputCanvasHeight, oInputBackground, oInputRotate, oInputOffsetX, oInputOffsetY];
+
+    inputs.forEach(function (inputItem) {
+      inputItem.addEventListener('input', function () {
+        debounceChange();
+      })
+    });
+    oSelectType.addEventListener('change', function () {
+      debounceChange();
+    });
+
+    const oTab = document.querySelector('.tab');
+    const oTabHeader = oTab.querySelector('.tab-header');
+    const oTabRadios = oTabHeader.querySelectorAll('input[type="radio"]');
+    const oTabContent = oTab.querySelector('.tab-content');
+    const oTabPanels = oTabContent.querySelectorAll('.tab-panel');
+
+    function changeTab(i) {
+      tabCurrent = i;
+      debounceChange();
+      oTabPanels.forEach(function (item, j) {
+        if (j !== i) {
+          item.style.display = 'none';
+        } else {
+          item.style.display = 'block';
+        }
+      });
+    }
+
+    oTabRadios.forEach(function (itemRadio, i) {
+      itemRadio.addEventListener('change', function (e) {
+        if (e.target.checked) {
+          changeTab(i);
+        }
+      });
+    });
+
+    const oButtonReset = document.querySelector('#reset');
+    oButtonReset.addEventListener('click', function () {
+      debounceChange();
+    })
+
+    const oCheckboxToggleConfig = document.querySelector('#checkbox_toggleConfig');
+    const oConfig = document.querySelector('.config');
+    const configView = new View(oConfig);
+    const configHideClass = 'hide';
+
+    oCheckboxToggleConfig.addEventListener('change', function (e) {
+      if (!e.target.checked) {
+        configView.addClass(configHideClass);
+      } else {
+        configView.removeClass(configHideClass);
+      }
+    })
+  </script>
+</body>
+
+</html>

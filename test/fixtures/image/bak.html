@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>image compress</title>
+</head>
+
+<body>
+  <input type="file" id="file">
+
+  <p id="stat"></p>
+
+  <h3>压缩前</h3>
+  <div id="compress-before"></div>
+
+  <h3>压缩后</h3>
+  <div id="compress-after"></div>
+
+  <script src="../../../node_modules/ut2/dist/ut2.js"></script>
+  <script src="../../../dist/util-helpers.js"></script>
+  <script>
+    // 示例代码
+    const oFile = document.querySelector('#file');
+    const oCompressBefore = document.querySelector('#compress-before');
+    const oCompressAfter = document.querySelector('#compress-after');
+    const oStat = document.querySelector('#stat');
+
+    function renderImage(wrapper, file) {
+      wrapper.innerHTML = '';
+      const img = document.createElement('img');
+      const imgIsBlob = ut2.isBlob(file);
+      const url = imgIsBlob ? URL.createObjectURL(file) : file;
+      img.src = url;
+      wrapper.appendChild(img);
+    }
+
+    async function changeFile(fileOrUrl) {
+      renderImage(oCompressBefore, fileOrUrl);
+
+      let beforeSize = '-';
+      const file2 = await utilHelpers.compressImage(fileOrUrl, {
+        beforeCompress({ blob }) {
+          beforeSize = blob.size;
+        },
+        imageWidth: 300,
+        imageHeight: 300
+      });
+      renderImage(oCompressAfter, file2);
+
+      oStat.innerHTML = `
+      压缩前: ${beforeSize} 压缩后: ${file2.size}<br/>
+      压缩前: ${utilHelpers.bytesToSize(beforeSize)} 压缩后: ${utilHelpers.bytesToSize(file2.size)}<br/><br/>
+      压缩率：${file2.size / beforeSize}`;
+    }
+
+    oFile.onchange = async (e) => {
+      const file = e.target.files[0];
+      changeFile(file);
+    }
+
+    function init() {
+      const url = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+      // const url = 'https://fastly.picsum.photos/id/567/320/160.jpg?hmac=4dpFG37kTBS99OMBj70fLZAph_EJ1qSSjowJqTkFpXw';
+      // const url = 'https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff790ce8124542c4899f6680ebd99fa4~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?';
+
+      changeFile(url);
+    }
+    init();
+  </script>
+</body>
+
+</html>
