@@ -55,6 +55,7 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * @static
  * @alias module:Other.compressImage
  * @since 4.20.0
+ * @see {@link https://sytpwg.csb.app/ | 在线示例}
  * @param {string | Blob} img 图片地址或 blob 对象
  * @param {Object} [options] 配置项
  * @param {number} [options.width] 自定义图片宽度，默认图片自身宽度
