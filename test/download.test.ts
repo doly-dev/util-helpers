@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { download, waitTime } from '../src';
+import { sleep } from 'ut2';
+import { download } from '../src';
 
 describe('download', () => {
   // 参考: https://stackoverflow.com/questions/28584773/xmlhttprequest-testing-in-jest
@@ -31,9 +32,9 @@ describe('download', () => {
       } else if (resMethod === ResponseMethod.Timeout) {
         methods.timeout();
       } else {
-        await waitTime(100);
+        await sleep(100);
         methods.progress?.();
-        await waitTime(100);
+        await sleep(100);
         methods.progress?.();
 
         const res = {
@@ -140,7 +141,7 @@ describe('download', () => {
     await download('/test.txt', {
       dataType: 'url',
       transformRequest: async (options) => {
-        await waitTime(100);
+        await sleep(100);
         return {
           ...options,
           method: 'post',

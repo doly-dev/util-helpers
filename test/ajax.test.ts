@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { ajax, waitTime } from '../src';
+import { sleep } from 'ut2';
+import { ajax } from '../src';
 
 describe('ajax', () => {
   enum ResponseMethod {
@@ -33,9 +34,9 @@ describe('ajax', () => {
       } else if (resMethod === ResponseMethod.Timeout) {
         methods.timeout();
       } else {
-        await waitTime(100);
+        await sleep(100);
         methods.progress?.();
-        await waitTime(100);
+        await sleep(100);
         methods.progress?.();
 
         methods.load();
