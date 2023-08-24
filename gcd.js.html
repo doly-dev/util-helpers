@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>validatePassword.js - util-helpers </title>
+    <title>gcd.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validatePassword.js</h1>
+    <h1 class="page-title">gcd.js</h1>
     
 
     
@@ -71,253 +71,75 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import devWarn from './utils/devWarn';
-var regNumber = /[\d]/;
-var regLowerCaseLetter = /[a-z]/;
-var regUpperCaseLetter = /[A-Z]/;
-var regAllNumberAndLetter = /[\d|a-z]/gi;
+            <pre class="prettyprint source linenums"><code>import { isNaN, round, toNumber } from 'ut2';
 /**
- * 是否包含数字
+ * 最大公约数，使用辗转相除法。
  *
- * @private
- * @param {string} val 检查的值
- * @returns {boolean} 是否包含数字
- */
-function hasNumber(val) {
-    return regNumber.test(val);
-}
-/**
- * 是否包含小写字母
+ * 遵循以下约定：
  *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含小写字母
- */
-function hasLowerCaseLetter(val) {
-    return regLowerCaseLetter.test(val);
-}
-/**
- * 是否包含大写字母
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含大写字母
- */
-function hasUpperCaseLetter(val) {
-    return regUpperCaseLetter.test(val);
-}
-/**
- * 是否为十六进制
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否为十六进制
- */
-function hasHex(val) {
-    return val.indexOf('\\x') > -1 || val.indexOf('\\u') > -1;
-}
-/**
- * 是否包含特殊字符
- *
- * @private
- * @param {string} val 检测的值
- * @param {string} chars 特殊字符
- * @returns {boolean} 是否包含特殊字符
- */
-function hasSpecialCharacter(val, chars) {
-    if (!chars || !val) {
-        return false;
-    }
-    var specialChars = val.replace(regAllNumberAndLetter, '');
-    if (!specialChars) {
-        return false;
-    }
-    var regChars = hasHex(chars) ? new RegExp("[".concat(chars, "]")) : null;
-    if (regChars) {
-        return regChars.test(specialChars);
-    }
-    var ret = false;
-    specialChars.split('').some(function (charItem) {
-        if (chars.indexOf(charItem) > -1) {
-            ret = true;
-        }
-        return ret;
-    });
-    return ret;
-}
-/**
- * 是否包含非法字符
- *
- * @private
- * @param {string} val 检测的值
- * @param {string} chars 特殊字符
- * @returns {boolean} 是否包含非法字符
- */
-function hasUnallowableCharacter(val, chars) {
-    if (!val) {
-        return false;
-    }
-    var specialChars = val.replace(regAllNumberAndLetter, '');
-    if (!specialChars) {
-        return false;
-    }
-    else if (!chars) {
-        return true;
-    }
-    var regChars = hasHex(chars) ? new RegExp("[^".concat(chars, "]")) : null;
-    if (regChars) {
-        return regChars.test(specialChars);
-    }
-    var ret = false;
-    specialChars.split('').some(function (charItem) {
-        if (chars.indexOf(charItem) === -1) {
-            ret = true;
-        }
-        return ret;
-    });
-    return ret;
-}
-/**
- * @typedef {Object} PasswordContaines - 验证密码的包含内容
- * @property {boolean} number - 包含数字
- * @property {boolean} lowerCaseLetter - 包含小写字母
- * @property {boolean} upperCaseLetter - 包含大写字母
- * @property {boolean} specialCharacter - 包含特殊字符
- * @property {boolean} unallowableCharacter - 包含非法字符
- */
-/**
- * @typedef {Object} ValidatePasswordReturn - 验证结果
- * @property {boolean} validated - 验证结果，根据密码强度、是否包含非法字符得出
- * @property {number} level - 强度级别，包含数字/大小写字母/特殊字符
- * @property {PasswordContaines} containes - 包含内容
- */
-/**
- * 验证密码（数字、大小写字母、特殊字符、非法字符）
+ * 1. 如果参数中包含无效数值，返回 `NaN` 。
+ * 2. 如果全部参数都为 `0` ，返回 `0` 。
+ * 3. 如果参数包含 `0` ，仅计算非零的数。
+ * 4. 如果参数为负数，将转为绝对值的正数。
+ * 5. 如果参数包含小数点，将转为四舍五入的整数。
  *
  * @static
- * @alias module:Validator.validatePassword
- * @since 3.7.0
- * @see {@link https://baike.baidu.com/item/ASCII#3 | ASCII}
- * @param {string} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
- * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符
- * @param {string} [options.special="!@#$%^&amp;*()-=_+[]\|{},./?&lt;>~"] 支持的特殊字符
- * @returns {ValidatePasswordReturn} 验证结果
+ * @alias module:Math.gcd
+ * @since 4.20.0
+ * @see {@link https://baike.baidu.com/item/最大公约数 | 最大公约数}
+ * @param {...(number|string)} nums 两个或多个整数。
+ * @returns {number} 最大公约数。
  * @example
  *
- * validatePassword('a12345678');
- * // =>
- * {
- *   validated: true, // 验证结果，根据密码强度、是否包含非法字符得出
- *   level: 2, // 强度级别
- *   containes: {
- *     number: true, // 包含数字
- *     lowerCaseLetter: true, // 包含小写字母
- *     upperCaseLetter: false, // 包含大写字母
- *     specialCharacter: false, // 包含特殊字符
- *     unallowableCharacter: false // 包含非法字符
- *   }
- * }
+ * gcd(8, 14); // 2
+ * gcd(57, 48); // 3
+ * gcd(140, 21, 42); // 7
+ * gcd('foo', 'bar'); // NaN
+ * gcd(0, 10); // 10
+ * gcd(2.3, 3.8, 8, -10); // 2
  *
- * validatePassword('a12345678', { level: 3 });
- * // =>
- * {
- *   validated: false,
- *   level: 2,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: false,
- *     specialCharacter: false,
- *     unallowableCharacter: false
- *   }
- * }
- *
- * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true });
- * // =>
- * {
- *   validated: false,
- *   level: 3,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: true,
- *     specialCharacter: true,
- *     unallowableCharacter: true
- *   }
- * }
- *
- * // 自定义特殊字符
- * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_一二三' });
- * // =>
- * {
- *   validated: true,
- *   level: 3,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: true,
- *     specialCharacter: true,
- *     unallowableCharacter: false
- *   }
- * }
  */
-function validatePassword(value, options) {
-    if (options === void 0) { options = {}; }
-    var _a = options.level, level = _a === void 0 ? 2 : _a, _b = options.ignoreCase, ignoreCase = _b === void 0 ? false : _b, _c = options.special, special = _c === void 0 ? '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' : _c;
-    var valStr = value;
-    if (typeof value !== 'string') {
-        devWarn("[validatePassword] value must be a string.");
-        valStr = '';
+function gcd() {
+    var nums = [];
+    for (var _i = 0; _i &lt; arguments.length; _i++) {
+        nums[_i] = arguments[_i];
     }
-    var currentLevel = 0;
-    // 包含数字
-    var containesNumber = hasNumber(valStr);
-    // 包含小写字母
-    var containesLowerCaseLetter = hasLowerCaseLetter(valStr);
-    // 包含大写字母
-    var containesUpperCaseLetter = hasUpperCaseLetter(valStr);
-    // 包含特殊字符
-    var containesSpecialCharacter = hasSpecialCharacter(valStr, special);
-    // 包含非法字符，即含有非数字字母特殊字符以外的其他字符
-    var containesUnallowableCharacter = hasUnallowableCharacter(valStr, special);
-    if (containesNumber) {
-        currentLevel += 1;
+    var num1 = nums[0];
+    var num2 = nums[1] === void 0 ? 0 : nums[1];
+    var rest = nums.slice(2);
+    if (rest.length > 0) {
+        // eslint-disable-next-line prefer-spread
+        return gcd.apply(void 0, [gcd(num1, num2)].concat(rest));
     }
-    // 不区分大小写
-    if (ignoreCase) {
-        if (containesLowerCaseLetter || containesUpperCaseLetter) {
-            currentLevel += 1;
-        }
+    num1 = Math.abs(round(num1));
+    num2 = Math.abs(round(num2));
+    // 兼容处理，如果参数包含无效数值时，返回 NaN
+    if (isNaN(num1) || isNaN(num2)) {
+        return Number.NaN;
     }
-    else {
-        // 区分大小写
-        if (containesLowerCaseLetter) {
-            currentLevel += 1;
-        }
-        if (containesUpperCaseLetter) {
-            currentLevel += 1;
-        }
+    if (num1 === 0 &amp;&amp; num2 === 0) {
+        return 0;
     }
-    if (containesSpecialCharacter) {
-        currentLevel += 1;
+    if (num1 === 0) {
+        return num2;
     }
-    // 验证结果
-    var validated = currentLevel >= level &amp;&amp; !containesUnallowableCharacter;
-    return {
-        validated: validated,
-        level: currentLevel,
-        containes: {
-            number: containesNumber,
-            lowerCaseLetter: containesLowerCaseLetter,
-            upperCaseLetter: containesUpperCaseLetter,
-            specialCharacter: containesSpecialCharacter,
-            unallowableCharacter: containesUnallowableCharacter
-        }
-    };
+    if (num2 === 0) {
+        return num1;
+    }
+    var temp = num2;
+    if (num1 &lt; num2) {
+        temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+    while (temp) {
+        temp = num1 % num2;
+        num1 = num2;
+        num2 = temp;
+    }
+    return toNumber(num1);
 }
-export default validatePassword;
+export default gcd;
 </code></pre>
         </article>
     </section>

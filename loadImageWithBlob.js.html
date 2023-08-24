@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>validatePassword.js - util-helpers </title>
+    <title>loadImageWithBlob.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">validatePassword.js</h1>
+    <h1 class="page-title">loadImageWithBlob.js</h1>
     
 
     
@@ -71,253 +71,104 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import devWarn from './utils/devWarn';
-var regNumber = /[\d]/;
-var regLowerCaseLetter = /[a-z]/;
-var regUpperCaseLetter = /[A-Z]/;
-var regAllNumberAndLetter = /[\d|a-z]/gi;
+            <pre class="prettyprint source linenums"><code>import { isBlob } from 'ut2';
+import ajax from './ajax';
+var SuccessResponseStatus = [200, 304];
 /**
- * 是否包含数字
+ * 获取图片的 blob 对象
  *
  * @private
- * @param {string} val 检查的值
- * @returns {boolean} 是否包含数字
+ * @param {string | Blob} img 图片地址或 blob 对象
+ * @returns {Blob} blob 对象
  */
-function hasNumber(val) {
-    return regNumber.test(val);
-}
-/**
- * 是否包含小写字母
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含小写字母
- */
-function hasLowerCaseLetter(val) {
-    return regLowerCaseLetter.test(val);
-}
-/**
- * 是否包含大写字母
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含大写字母
- */
-function hasUpperCaseLetter(val) {
-    return regUpperCaseLetter.test(val);
-}
-/**
- * 是否为十六进制
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否为十六进制
- */
-function hasHex(val) {
-    return val.indexOf('\\x') > -1 || val.indexOf('\\u') > -1;
-}
-/**
- * 是否包含特殊字符
- *
- * @private
- * @param {string} val 检测的值
- * @param {string} chars 特殊字符
- * @returns {boolean} 是否包含特殊字符
- */
-function hasSpecialCharacter(val, chars) {
-    if (!chars || !val) {
-        return false;
-    }
-    var specialChars = val.replace(regAllNumberAndLetter, '');
-    if (!specialChars) {
-        return false;
-    }
-    var regChars = hasHex(chars) ? new RegExp("[".concat(chars, "]")) : null;
-    if (regChars) {
-        return regChars.test(specialChars);
-    }
-    var ret = false;
-    specialChars.split('').some(function (charItem) {
-        if (chars.indexOf(charItem) > -1) {
-            ret = true;
+function getBlob(img) {
+    return new Promise(function (resolve, reject) {
+        if (isBlob(img)) {
+            resolve(img);
         }
-        return ret;
-    });
-    return ret;
-}
-/**
- * 是否包含非法字符
- *
- * @private
- * @param {string} val 检测的值
- * @param {string} chars 特殊字符
- * @returns {boolean} 是否包含非法字符
- */
-function hasUnallowableCharacter(val, chars) {
-    if (!val) {
-        return false;
-    }
-    var specialChars = val.replace(regAllNumberAndLetter, '');
-    if (!specialChars) {
-        return false;
-    }
-    else if (!chars) {
-        return true;
-    }
-    var regChars = hasHex(chars) ? new RegExp("[^".concat(chars, "]")) : null;
-    if (regChars) {
-        return regChars.test(specialChars);
-    }
-    var ret = false;
-    specialChars.split('').some(function (charItem) {
-        if (chars.indexOf(charItem) === -1) {
-            ret = true;
+        else {
+            ajax(img, { responseType: 'blob' })
+                .then(function (ev) {
+                // @ts-ignore
+                // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
+                var responseStatus = ev.target.status;
+                if (SuccessResponseStatus.indexOf(responseStatus) !== -1) {
+                    // @ts-ignore
+                    resolve(ev.target.response);
+                }
+                else {
+                    reject(new Error("[loadImageWithBlob] The image does not support get requests, responseStatus ".concat(responseStatus, ", '").concat(img, "'.")));
+                }
+            })
+                .catch(reject);
         }
-        return ret;
     });
-    return ret;
 }
+var cacheImage;
+var cacheResult;
 /**
- * @typedef {Object} PasswordContaines - 验证密码的包含内容
- * @property {boolean} number - 包含数字
- * @property {boolean} lowerCaseLetter - 包含小写字母
- * @property {boolean} upperCaseLetter - 包含大写字母
- * @property {boolean} specialCharacter - 包含特殊字符
- * @property {boolean} unallowableCharacter - 包含非法字符
+ * @typedef {Object} ImageWithBlob HTML图片元素和 blob 对象
+ * @property {HTMLImageElement} image HTML图片元素
+ * @property {Blob} blob blob 对象
  */
 /**
- * @typedef {Object} ValidatePasswordReturn - 验证结果
- * @property {boolean} validated - 验证结果，根据密码强度、是否包含非法字符得出
- * @property {number} level - 强度级别，包含数字/大小写字母/特殊字符
- * @property {PasswordContaines} containes - 包含内容
- */
-/**
- * 验证密码（数字、大小写字母、特殊字符、非法字符）
+ * 加载图片，返回图片元素和 blob 对象。
  *
- * @static
- * @alias module:Validator.validatePassword
- * @since 3.7.0
- * @see {@link https://baike.baidu.com/item/ASCII#3 | ASCII}
- * @param {string} value 要检测的值
- * @param {Object} [options] 配置项
- * @param {number} [options.level=2] 密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）
- * @param {boolean} [options.ignoreCase=false] 是否忽略大小写，为 ture 时，大小写字母视为一种字符
- * @param {string} [options.special="!@#$%^&amp;*()-=_+[]\|{},./?&lt;>~"] 支持的特殊字符
- * @returns {ValidatePasswordReturn} 验证结果
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
+ *
+ * @method
+ * @alias module:Other.loadImageWithBlob
+ * @since 4.20.0
+ * @param {string | Blob} img 图片地址或 blob 对象
+ * @param {boolean} [useCache=true] 缓存最近一次成功结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载问题。
+ * @returns {Promise&lt;ImageWithBlob>} HTML图片元素和 blob 对象
  * @example
  *
- * validatePassword('a12345678');
- * // =>
- * {
- *   validated: true, // 验证结果，根据密码强度、是否包含非法字符得出
- *   level: 2, // 强度级别
- *   containes: {
- *     number: true, // 包含数字
- *     lowerCaseLetter: true, // 包含小写字母
- *     upperCaseLetter: false, // 包含大写字母
- *     specialCharacter: false, // 包含特殊字符
- *     unallowableCharacter: false // 包含非法字符
- *   }
- * }
+ * loadImage(file).then(({image, blob})=>{
+ *    // do something
+ * });
  *
- * validatePassword('a12345678', { level: 3 });
- * // =>
- * {
- *   validated: false,
- *   level: 2,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: false,
- *     specialCharacter: false,
- *     unallowableCharacter: false
- *   }
- * }
+ * loadImage('https://dummyimage.com/200x300').then(({image, blob})=>{
+ *   // do something
+ * });
  *
- * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true });
- * // =>
- * {
- *   validated: false,
- *   level: 3,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: true,
- *     specialCharacter: true,
- *     unallowableCharacter: true
- *   }
- * }
+ * loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(({image, blob})=>{
+ *   // do something
+ * });
  *
- * // 自定义特殊字符
- * validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_一二三' });
- * // =>
- * {
- *   validated: true,
- *   level: 3,
- *   containes: {
- *     number: true,
- *     lowerCaseLetter: true,
- *     upperCaseLetter: true,
- *     specialCharacter: true,
- *     unallowableCharacter: false
- *   }
- * }
  */
-function validatePassword(value, options) {
-    if (options === void 0) { options = {}; }
-    var _a = options.level, level = _a === void 0 ? 2 : _a, _b = options.ignoreCase, ignoreCase = _b === void 0 ? false : _b, _c = options.special, special = _c === void 0 ? '\\x21-\\x2F\\x3A-\\x40\\x5B-\\x60\\x7B-\\x7E' : _c;
-    var valStr = value;
-    if (typeof value !== 'string') {
-        devWarn("[validatePassword] value must be a string.");
-        valStr = '';
-    }
-    var currentLevel = 0;
-    // 包含数字
-    var containesNumber = hasNumber(valStr);
-    // 包含小写字母
-    var containesLowerCaseLetter = hasLowerCaseLetter(valStr);
-    // 包含大写字母
-    var containesUpperCaseLetter = hasUpperCaseLetter(valStr);
-    // 包含特殊字符
-    var containesSpecialCharacter = hasSpecialCharacter(valStr, special);
-    // 包含非法字符，即含有非数字字母特殊字符以外的其他字符
-    var containesUnallowableCharacter = hasUnallowableCharacter(valStr, special);
-    if (containesNumber) {
-        currentLevel += 1;
-    }
-    // 不区分大小写
-    if (ignoreCase) {
-        if (containesLowerCaseLetter || containesUpperCaseLetter) {
-            currentLevel += 1;
+function loadImageWithBlob(img, useCache) {
+    if (useCache === void 0) { useCache = true; }
+    return new Promise(function (resolve, reject) {
+        if (useCache &amp;&amp; cacheImage === img &amp;&amp; cacheResult) {
+            resolve(cacheResult);
         }
-    }
-    else {
-        // 区分大小写
-        if (containesLowerCaseLetter) {
-            currentLevel += 1;
+        else {
+            getBlob(img)
+                .then(function (blob) {
+                var url = URL.createObjectURL(blob);
+                var image = new Image();
+                image.onload = function () {
+                    URL.revokeObjectURL(url);
+                    var result = { blob: blob, image: image };
+                    if (useCache) {
+                        cacheImage = img;
+                        cacheResult = result;
+                    }
+                    resolve(result);
+                };
+                image.onerror = function (err) {
+                    URL.revokeObjectURL(url);
+                    console.error("[loadImageWithBlob] The image load failed, '".concat(img, "'."));
+                    reject(err);
+                };
+                image.src = url;
+            })
+                .catch(reject);
         }
-        if (containesUpperCaseLetter) {
-            currentLevel += 1;
-        }
-    }
-    if (containesSpecialCharacter) {
-        currentLevel += 1;
-    }
-    // 验证结果
-    var validated = currentLevel >= level &amp;&amp; !containesUnallowableCharacter;
-    return {
-        validated: validated,
-        level: currentLevel,
-        containes: {
-            number: containesNumber,
-            lowerCaseLetter: containesLowerCaseLetter,
-            upperCaseLetter: containesUpperCaseLetter,
-            specialCharacter: containesSpecialCharacter,
-            unallowableCharacter: containesUnallowableCharacter
-        }
-    };
+    });
 }
-export default validatePassword;
+export default loadImageWithBlob;
 </code></pre>
         </article>
     </section>
