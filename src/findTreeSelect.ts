@@ -1,4 +1,4 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
 
 /**
  * 内部实现
@@ -11,7 +11,7 @@ import { isObject } from 'ut2';
  * @returns {object[]}
  */
 function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField?: string, path: T[] = []): T[] {
-  if (!Array.isArray(tree)) {
+  if (!isArray(tree)) {
     return [];
   }
 
@@ -26,7 +26,7 @@ function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(t
       // @ts-ignore
       const childs = item[childrenField] as T[];
 
-      if (Array.isArray(childs) && childs.length > 0) {
+      if (isArray(childs) && childs.length > 0) {
         const findChildren = internalFindTreeSelect(childs, predicate, childrenField, path);
         if (findChildren.length > 0) {
           return findChildren;

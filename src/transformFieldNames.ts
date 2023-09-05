@@ -1,4 +1,5 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
+import { objectKeys } from './utils/native';
 
 type NodeAssign = 'spread' | 'self';
 
@@ -42,7 +43,7 @@ type TransformFieldNames<D extends any, F extends Record<string, any>, C extends
  * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
 function transformFieldNames<D extends any, F extends Record<string, keyof D>, C extends string>(data: D[], fieldNames: F, childrenField?: C, nodeAssign: NodeAssign = 'spread'): TransformFieldNames<D, F, C> {
-  if (!Array.isArray(data)) {
+  if (!isArray(data)) {
     return data;
   }
 
@@ -62,13 +63,13 @@ function transformFieldNames<D extends any, F extends Record<string, keyof D>, C
 
       // 树形数据子节点
       // @ts-ignore
-      if (childrenField && Array.isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
+      if (childrenField && isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
         // @ts-ignore
         newItem[childrenField] = recusion(newItem[childrenField].slice());
       }
 
       // 替换字段名
-      Object.keys(fieldNames).forEach((newKey) => {
+      objectKeys(fieldNames).forEach((newKey) => {
         const oldKey = fieldNames[newKey];
         if (oldKey in newItem) {
           // @ts-ignore

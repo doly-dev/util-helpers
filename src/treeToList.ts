@@ -1,4 +1,4 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
 
 /**
  * 树结构转列表数据
@@ -18,7 +18,7 @@ import { isObject } from 'ut2';
 function treeToList<T extends Record<string, any>, K extends keyof T, R extends Omit<T, K>>(tree: T[], childrenField: K) {
   const list: R[] = [];
 
-  if (!Array.isArray(tree)) {
+  if (!isArray(tree)) {
     return list;
   }
 
@@ -31,7 +31,7 @@ function treeToList<T extends Record<string, any>, K extends keyof T, R extends 
         list.push(newItem);
 
         if (newItem[childrenField]) {
-          if (Array.isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
+          if (isArray(newItem[childrenField]) && newItem[childrenField].length > 0) {
             recusion(newItem[childrenField]);
           }
           delete newItem[childrenField];
@@ -67,7 +67,7 @@ function treeToList<T extends Record<string, any>, K extends keyof T, R extends 
 //         list.push(temp);
 
 //         if (temp[childrenField]) {
-//           if (Array.isArray(temp[childrenField]) && temp[childrenField].length > 0) {
+//           if (isArray(temp[childrenField]) && temp[childrenField].length > 0) {
 //             stack.push(...temp[childrenField]);
 //           }
 //           delete temp[childrenField];

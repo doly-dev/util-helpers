@@ -1,4 +1,4 @@
-import { toString } from 'ut2';
+import { isArray, toString } from 'ut2';
 
 type CalculateCursorPositionOptions = {
   placeholderChar?: string | string[];
@@ -29,7 +29,7 @@ function calculateCursorPosition(prevPos: number, prevCtrlValue: string, rawValu
 
   const realCtrlValue = toString(prevCtrlValue);
   const realRawValue = toString(rawValue);
-  const placeholderChars = Array.isArray(placeholderChar) ? placeholderChar : [placeholderChar];
+  const placeholderChars = isArray(placeholderChar) ? placeholderChar : [placeholderChar];
 
   const editLength = realRawValue.length - realCtrlValue.length;
   const isAddition = editLength > 0;

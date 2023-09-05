@@ -2,14 +2,23 @@
  * @jest-environment jsdom
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
+const blobUrl = 'blob://xxx';
+const url = 'https://dummyimage.com/200x300';
+jest.mock('../src/utils/native.ts', () => {
+  const originalModule = jest.requireActual('../src/utils/native.ts');
+
+  return {
+    ...originalModule,
+    createObjectURL: jest.fn(() => blobUrl),
+    revokeObjectURL: jest.fn()
+  };
+});
 import { isBlob, isNumber, isString, sleep } from 'ut2';
 import { getImageInfo } from '../src';
+import { createObjectURL, revokeObjectURL } from '../src/utils/native';
 
 const TIMEOUT = 60 * 1000;
 const ERROR_MESSAGE = 'error';
-
-const blobUrl = 'blob://xxx';
-const url = 'https://dummyimage.com/200x300';
 
 let loadSuccess = true; // 控制图片加载成功 或 失败
 
@@ -89,8 +98,10 @@ describe('getImageInfo', () => {
     loadSuccess = true;
     resMethod = ResponseMethod.Load;
     responseStatus = 200;
-    URL.createObjectURL = jest.fn(() => blobUrl);
-    URL.revokeObjectURL = jest.fn();
+    // @ts-ignore
+    createObjectURL.mockClear();
+    // @ts-ignore
+    revokeObjectURL.mockClear();
   });
 
   afterAll(() => {
@@ -110,8 +121,8 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
 
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -128,8 +139,8 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
 
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -138,13 +149,13 @@ describe('getImageInfo', () => {
     '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
     async () => {
       await getImageInfo(url);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await getImageInfo(url);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -154,8 +165,8 @@ describe('getImageInfo', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await getImageInfo(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
 
       loadSuccess = false;
       try {
@@ -166,8 +177,8 @@ describe('getImageInfo', () => {
       loadSuccess = true;
 
       await getImageInfo(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(2);
-      expect(URL.revokeObjectURL).toBeCalledTimes(2);
+      expect(createObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(2);
     },
     TIMEOUT
   );
@@ -176,13 +187,13 @@ describe('getImageInfo', () => {
     '不使用缓存',
     async () => {
       await getImageInfo(url, false);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
 
       // 连续请求同一个资源，还是会发起请求
       await getImageInfo(url, false);
-      expect(URL.createObjectURL).toBeCalledTimes(2);
-      expect(URL.revokeObjectURL).toBeCalledTimes(2);
+      expect(createObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(2);
     },
     TIMEOUT
   );
@@ -194,8 +205,8 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url, false);
       } catch (err) {
-        expect(URL.createObjectURL).toBeCalledTimes(0);
-        expect(URL.revokeObjectURL).toBeCalledTimes(0);
+        expect(createObjectURL).toBeCalledTimes(0);
+        expect(revokeObjectURL).toBeCalledTimes(0);
       }
     },
     TIMEOUT
@@ -208,8 +219,8 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url, false);
       } catch (err) {
-        expect(URL.createObjectURL).toBeCalledTimes(0);
-        expect(URL.revokeObjectURL).toBeCalledTimes(0);
+        expect(createObjectURL).toBeCalledTimes(0);
+        expect(revokeObjectURL).toBeCalledTimes(0);
       }
     },
     TIMEOUT

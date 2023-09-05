@@ -1,3 +1,5 @@
+import { objectKeys } from './utils/native';
+
 type XMLHttpRequestListener = XMLHttpRequest['onloadstart'];
 
 type AjaxOptions = {
@@ -89,7 +91,7 @@ function ajax(url: string, options?: AjaxOptions) {
 
     // 设置请求头
     if (typeof headers === 'object') {
-      Object.keys(headers).map((item) => {
+      objectKeys(headers).map((item) => {
         xhr.setRequestHeader(item, headers[item]);
       });
     }
@@ -123,7 +125,7 @@ function ajax(url: string, options?: AjaxOptions) {
       loadend: onLoadEnd
     };
 
-    const eventKeys = Object.keys(events) as unknown as (keyof typeof events)[];
+    const eventKeys = objectKeys(events) as unknown as (keyof typeof events)[];
 
     eventKeys.map((item) => {
       const func = events[item];

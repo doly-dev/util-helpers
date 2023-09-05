@@ -1,4 +1,4 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
 
 type NodeAssign = 'spread' | 'self';
 
@@ -32,7 +32,7 @@ type NodeAssign = 'spread' | 'self';
 function filterTree<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children', nodeAssign: NodeAssign = 'spread') {
   const result: T[] = [];
 
-  if (!Array.isArray(tree)) {
+  if (!isArray(tree)) {
     return result;
   }
 
@@ -49,7 +49,7 @@ function filterTree<T extends any, F extends (item: T) => boolean>(tree: T[], pr
         // @ts-ignore
         const childs = newItem[childrenField] as T[];
 
-        if (Array.isArray(childs) && childs.length > 0) {
+        if (isArray(childs) && childs.length > 0) {
           // @ts-ignore
           newItem[childrenField] = filterTree(childs, predicate, childrenField, nodeAssign);
         }

@@ -1,3 +1,5 @@
+import { objectKeys } from './utils/native';
+
 type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer' | 'integrity' | 'noModule' | 'referrerPolicy' | 'text' | 'type' | 'onload' | 'onerror' | 'id' | 'className'> & {
   attrs: Record<string, string>;
   destroyOnError: boolean;
@@ -52,7 +54,7 @@ function loadScript(src: string, options?: Partial<ScriptAttribute>) {
     }
 
     if (typeof attrs === 'object') {
-      Object.keys(attrs).forEach((key) => {
+      objectKeys(attrs).forEach((key) => {
         script.setAttribute(key, attrs[key]);
       });
     }

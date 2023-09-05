@@ -2,14 +2,22 @@
  * @jest-environment jsdom
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
+const blobUrl = 'blob://xxx';
+const url = 'https://dummyimage.com/200x300';
+jest.mock('../src/utils/native.ts', () => {
+  const originalModule = jest.requireActual('../src/utils/native.ts');
+
+  return {
+    ...originalModule,
+    createObjectURL: jest.fn(() => blobUrl),
+    revokeObjectURL: jest.fn()
+  };
+});
 import { isBlob, sleep } from 'ut2';
 import { compressImage } from '../src';
 
 const TIMEOUT = 60 * 1000;
 const ERROR_MESSAGE = 'error';
-
-const blobUrl = 'blob://xxx';
-const url = 'https://dummyimage.com/200x300';
 
 let loadSuccess = true; // 控制图片加载成功 或 失败
 
@@ -89,8 +97,6 @@ describe('loadImageWithBlob', () => {
     loadSuccess = true;
     resMethod = ResponseMethod.Load;
     responseStatus = 200;
-    URL.createObjectURL = jest.fn(() => blobUrl);
-    URL.revokeObjectURL = jest.fn();
   });
 
   afterAll(() => {

@@ -1,4 +1,5 @@
 import { isBlob } from 'ut2';
+import { createObjectURL, revokeObjectURL } from './utils/native';
 
 let cacheImage: string | Blob;
 let cacheResult: HTMLImageElement;
@@ -35,14 +36,14 @@ function loadImage(img: string | Blob, useCache = true) {
       resolve(cacheResult);
     } else {
       const imgIsBlob = isBlob(img);
-      const url = imgIsBlob ? URL.createObjectURL(img as Blob) : img;
+      const url = imgIsBlob ? createObjectURL(img as Blob) : img;
       const image = new Image();
       if (!imgIsBlob) {
         image.crossOrigin = 'anonymous';
       }
       image.onload = () => {
         if (imgIsBlob) {
-          URL.revokeObjectURL(url);
+          revokeObjectURL(url);
         }
         if (useCache) {
           cacheImage = img;
@@ -52,7 +53,7 @@ function loadImage(img: string | Blob, useCache = true) {
       };
       image.onerror = (err) => {
         if (imgIsBlob) {
-          URL.revokeObjectURL(url);
+          revokeObjectURL(url);
         }
         console.error(`[loadImage] The image load failed, '${img}'.`);
         reject(err);

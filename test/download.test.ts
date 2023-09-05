@@ -1,6 +1,15 @@
 /**
  * @jest-environment jsdom
  */
+jest.mock('../src/utils/native.ts', () => {
+  const originalModule = jest.requireActual('../src/utils/native.ts');
+
+  return {
+    ...originalModule,
+    createObjectURL: jest.fn(),
+    revokeObjectURL: jest.fn()
+  };
+});
 import { sleep } from 'ut2';
 import { download } from '../src';
 
@@ -84,9 +93,6 @@ describe('download', () => {
   const spyCreateElement = jest.spyOn(document, 'createElement').mockReturnValue(anchor as any);
   const spyAppendChild = jest.spyOn(document.body, 'appendChild').mockImplementation(() => jest.fn() as any);
   const spyRemoveChild = jest.spyOn(document.body, 'removeChild').mockImplementation(() => jest.fn() as any);
-
-  URL.createObjectURL = jest.fn();
-  URL.revokeObjectURL = jest.fn();
 
   afterAll(() => {
     spyAjax.mockRestore();

@@ -1,4 +1,4 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
 
 type NodeAssign = 'spread' | 'self';
 
@@ -75,7 +75,7 @@ function listToTree<T extends Record<string, any> = Record<string, any>, R exten
 
   const record: Record<string, T[]> = {};
 
-  if (!Array.isArray(list)) {
+  if (!isArray(list)) {
     return tree;
   }
 

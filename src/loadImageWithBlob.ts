@@ -1,5 +1,6 @@
 import { isBlob } from 'ut2';
 import ajax from './ajax';
+import { createObjectURL, revokeObjectURL } from './utils/native';
 
 const SuccessResponseStatus = [200, 304];
 
@@ -74,10 +75,10 @@ function loadImageWithBlob(img: string | Blob, useCache = true) {
     } else {
       getBlob(img)
         .then((blob) => {
-          const url = URL.createObjectURL(blob);
+          const url = createObjectURL(blob);
           const image = new Image();
           image.onload = () => {
-            URL.revokeObjectURL(url);
+            revokeObjectURL(url);
             const result = { blob, image };
             if (useCache) {
               cacheImage = img;
@@ -86,7 +87,7 @@ function loadImageWithBlob(img: string | Blob, useCache = true) {
             resolve(result);
           };
           image.onerror = (err) => {
-            URL.revokeObjectURL(url);
+            revokeObjectURL(url);
             console.error(`[loadImageWithBlob] The image load failed, '${img}'.`);
             reject(err);
           };

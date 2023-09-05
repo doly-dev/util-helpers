@@ -1,4 +1,4 @@
-import { isObject } from 'ut2';
+import { isArray, isObject } from 'ut2';
 
 /**
  * 查找树结构数据多个节点
@@ -30,7 +30,7 @@ function findTreeNodes<T extends any, F extends (item: T) => boolean>(tree: T[],
 
   const nodes: T[] = [];
 
-  if (!Array.isArray(tree)) {
+  if (!isArray(tree)) {
     return nodes;
   }
 
@@ -46,7 +46,7 @@ function findTreeNodes<T extends any, F extends (item: T) => boolean>(tree: T[],
       if (isObject(temp)) {
         // @ts-ignore
         const childs = temp[childrenField] as T[];
-        if (Array.isArray(childs) && childs.length > 0) {
+        if (isArray(childs) && childs.length > 0) {
           childs.forEach((c) => {
             stack.push(c);
           });

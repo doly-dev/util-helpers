@@ -2,6 +2,7 @@ import { isBlob, isPromiseLike } from 'ut2';
 import dataURLToBlob from './dataURLToBlob';
 import isUrl from './isUrl';
 import ajax from './ajax';
+import { createObjectURL, revokeObjectURL } from './utils/native';
 
 // 下载文件到本地
 function saver(blobUrl: string, fileName = '') {
@@ -151,9 +152,9 @@ async function download(data: DataType, options?: string | DownloadOptions): Pro
     // @ts-ignore
     navigator.msSaveBlob(payload, fileName || 'download');
   } else {
-    const url = URL.createObjectURL(payload);
+    const url = createObjectURL(payload);
     saver(url, fileName);
-    URL.revokeObjectURL(url);
+    revokeObjectURL(url);
   }
 
   return Promise.resolve();

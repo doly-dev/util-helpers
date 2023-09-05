@@ -2,13 +2,23 @@
  * @jest-environment jsdom
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
+const blobUrl = 'blob://xxx';
+const url = 'https://dummyimage.com/200x300';
+jest.mock('../src/utils/native.ts', () => {
+  const originalModule = jest.requireActual('../src/utils/native.ts');
+
+  return {
+    ...originalModule,
+    createObjectURL: jest.fn(() => blobUrl),
+    revokeObjectURL: jest.fn()
+  };
+});
+
 import { loadImage } from '../src';
+import { createObjectURL, revokeObjectURL } from '../src/utils/native';
 
 const TIMEOUT = 60 * 1000;
 const ERROR_MESSAGE = 'error';
-
-const blobUrl = 'blob://xxx';
-const url = 'https://dummyimage.com/200x300';
 
 let loadSuccess = true; // 控制图片加载成功 或 失败
 
@@ -33,10 +43,20 @@ global.Image = class XImage extends Image {
   height = 100;
 };
 
-describe('loadImageWithBlob', () => {
+const consoleError = jest.fn();
+const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(consoleError);
+
+describe('loadImage', () => {
   beforeEach(() => {
-    URL.createObjectURL = jest.fn(() => blobUrl);
-    URL.revokeObjectURL = jest.fn();
+    // @ts-ignore
+    createObjectURL.mockClear();
+    // @ts-ignore
+    revokeObjectURL.mockClear();
+    consoleError.mockClear();
+  });
+
+  afterAll(() => {
+    spyConsoleError.mockRestore();
   });
 
   it(
@@ -45,8 +65,8 @@ describe('loadImageWithBlob', () => {
       const image = await loadImage(new Blob(['hello world']));
       expect(image.crossOrigin).not.toBe('anonymous');
       expect(image.src).toBe(blobUrl);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -66,13 +86,13 @@ describe('loadImageWithBlob', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await loadImage(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -82,8 +102,9 @@ describe('loadImageWithBlob', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(consoleError).toBeCalledTimes(0);
 
       loadSuccess = false;
       try {
@@ -91,11 +112,13 @@ describe('loadImageWithBlob', () => {
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
+      expect(consoleError).toBeCalledTimes(1);
+
       loadSuccess = true;
 
       await loadImage(blob);
-      expect(URL.createObjectURL).toBeCalledTimes(2);
-      expect(URL.revokeObjectURL).toBeCalledTimes(2);
+      expect(createObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(2);
     },
     TIMEOUT
   );
@@ -105,13 +128,13 @@ describe('loadImageWithBlob', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob, false);
-      expect(URL.createObjectURL).toBeCalledTimes(1);
-      expect(URL.revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(1);
 
       // 连续请求同一个资源，还是会发起请求
       await loadImage(blob, false);
-      expect(URL.createObjectURL).toBeCalledTimes(2);
-      expect(URL.revokeObjectURL).toBeCalledTimes(2);
+      expect(createObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(2);
     },
     TIMEOUT
   );
@@ -119,14 +142,14 @@ describe('loadImageWithBlob', () => {
   it(
     '加载失败',
     async () => {
-      const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+      expect(consoleError).toBeCalledTimes(0);
       loadSuccess = false;
       try {
         await loadImage(url);
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
-      spyConsoleError.mockRestore();
+      expect(consoleError).toBeCalledTimes(1);
     },
     TIMEOUT
   );
