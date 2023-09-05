@@ -179,7 +179,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ajax.js.html">ajax.js</a>, <a href="ajax.js.html#line43">line 43</a>
+        <a href="ajax.js.html">ajax.js</a>, <a href="ajax.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -867,7 +867,7 @@ ajax('/api', { method: 'post' }).then(res=>{
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line66">line 66</a>
+        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -1230,46 +1230,6 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
 
         <tr>
             
-                <td class="name"><code>cacheImage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>缓存最近一次加载成功的图片，当图片地址或 blob 对象一致时，直接使用该缓存图片。避免连续请求同一个图片资源，重复加载问题。</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>background</code></td>
             
 
@@ -1624,6 +1584,84 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>cacheImage</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>缓存最近一次加载成功的图片，当图片地址或 blob 对象一致时，直接使用该缓存图片。避免连续请求同一个图片资源，重复加载问题。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -1698,7 +1736,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="download.js.html">download.js</a>, <a href="download.js.html#line79">line 79</a>
+        <a href="download.js.html">download.js</a>, <a href="download.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1928,7 +1966,7 @@ download(File, 'filename.ext');</code></pre>
 
     
 
-    <h4 class="name" id=".getImageInfo"><span class="type-signature type-signature-static">(static) </span>getImageInfo<span class="signature">(img, useCache<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>>}</span></h4>
+    <h4 class="name" id=".getImageInfo"><span class="type-signature type-signature-static">(static) </span>getImageInfo<span class="signature">(img, useCache<span class="signature-attributes">opt</span>, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>>}</span></h4>
 
     
 
@@ -1945,7 +1983,7 @@ download(File, 'filename.ext');</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="getImageInfo.js.html">getImageInfo.js</a>, <a href="getImageInfo.js.html#line57">line 57</a>
+        <a href="getImageInfo.js.html">getImageInfo.js</a>, <a href="getImageInfo.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -2115,6 +2153,44 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -2181,7 +2257,7 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loadImage.js.html">loadImage.js</a>, <a href="loadImage.js.html#line30">line 30</a>
+        <a href="loadImage.js.html">loadImage.js</a>, <a href="loadImage.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -2400,7 +2476,7 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
 
     
 
-    <h4 class="name" id=".loadImageWithBlob"><span class="type-signature type-signature-static">(static) </span>loadImageWithBlob<span class="signature">(img, useCache<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>>}</span></h4>
+    <h4 class="name" id=".loadImageWithBlob"><span class="type-signature type-signature-static">(static) </span>loadImageWithBlob<span class="signature">(img, useCache<span class="signature-attributes">opt</span>, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>>}</span></h4>
 
     
 
@@ -2417,7 +2493,7 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loadImageWithBlob.js.html">loadImageWithBlob.js</a>, <a href="loadImageWithBlob.js.html#line67">line 67</a>
+        <a href="loadImageWithBlob.js.html">loadImageWithBlob.js</a>, <a href="loadImageWithBlob.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -2587,6 +2663,44 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -2653,7 +2767,7 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loadScript.js.html">loadScript.js</a>, <a href="loadScript.js.html#line28">line 28</a>
+        <a href="loadScript.js.html">loadScript.js</a>, <a href="loadScript.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -3458,7 +3572,7 @@ strlen('🍎'); // 4</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Sep 04 2023 11:07:10 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Sep 05 2023 08:22:39 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
