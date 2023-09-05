@@ -6,7 +6,7 @@ import { loadScript } from '../src';
 
 const TIMEOUT = 60 * 1000;
 
-const testUrl = 'https://cdn.bootcdn.net/ajax/libs/zepto/1.2.0/zepto.min.js';
+const testUrl = 'https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js';
 
 describe('loadScript', () => {
   const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
@@ -20,7 +20,7 @@ describe('loadScript', () => {
     async () => {
       const script = await loadScript(testUrl);
       // @ts-ignore
-      expect(globalThis.Zepto).toBeDefined();
+      expect(globalThis.utilHelpers).toBeDefined();
       expect(script.async).toBe(true);
     },
     TIMEOUT
@@ -38,7 +38,7 @@ describe('loadScript', () => {
       });
 
       // @ts-ignore
-      expect(globalThis.Zepto).toBeDefined();
+      expect(globalThis.utilHelpers).toBeDefined();
       expect(script.async).toBe(false);
       expect(script.id).toBe('abc');
       expect(script.getAttribute('foo')).toBe('bar');
