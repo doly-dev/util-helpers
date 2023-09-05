@@ -206,6 +206,7 @@ describe('loadImageWithBlob', () => {
   it(
     'ajax 请求 url 失败',
     async () => {
+      expect(consoleError).toBeCalledTimes(0);
       resMethod = ResponseMethod.Error;
       try {
         await loadImageWithBlob(url, false);
@@ -213,6 +214,7 @@ describe('loadImageWithBlob', () => {
         expect(createObjectURL).toBeCalledTimes(0);
         expect(revokeObjectURL).toBeCalledTimes(0);
       }
+      expect(consoleError).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -220,6 +222,7 @@ describe('loadImageWithBlob', () => {
   it(
     'ajax 请求成功，响应码非200/304',
     async () => {
+      expect(consoleError).toBeCalledTimes(0);
       responseStatus = 403;
       try {
         await loadImageWithBlob(url, false);
@@ -227,6 +230,7 @@ describe('loadImageWithBlob', () => {
         expect(createObjectURL).toBeCalledTimes(0);
         expect(revokeObjectURL).toBeCalledTimes(0);
       }
+      expect(consoleError).toBeCalledTimes(1);
     },
     TIMEOUT
   );

@@ -16,7 +16,7 @@ function getBlob(img: string | Blob, ajaxOptions?: Parameters<typeof ajax>[1]) {
     if (isBlob(img)) {
       resolve(img);
     } else {
-      ajax(img, { responseType: 'blob', headers: { 'sec-fetch-site': 'none' }, ...ajaxOptions })
+      ajax(img, { responseType: 'blob', ...ajaxOptions })
         .then((ev) => {
           // @ts-ignore
           // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
@@ -25,10 +25,15 @@ function getBlob(img: string | Blob, ajaxOptions?: Parameters<typeof ajax>[1]) {
             // @ts-ignore
             resolve(ev.target.response as Blob);
           } else {
-            reject(new Error(`[loadImageWithBlob] The image does not support get requests, responseStatus ${responseStatus}, '${img}'.`));
+            const err = new Error(`[loadImageWithBlob] The image does not support get requests, responseStatus ${responseStatus}, '${img}'.`);
+            console.error(err);
+            reject(err);
           }
         })
-        .catch(reject);
+        .catch((err) => {
+          console.error(new Error(`[loadImageWithBlob] Failed to request image. ${err}`));
+          reject(err);
+        });
     }
   });
 }
