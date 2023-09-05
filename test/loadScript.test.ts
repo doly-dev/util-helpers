@@ -6,6 +6,8 @@ import { loadScript } from '../src';
 
 const TIMEOUT = 60 * 1000;
 
+const utilUrl = 'https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js';
+
 describe('loadScript', () => {
   const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
 
@@ -16,7 +18,7 @@ describe('loadScript', () => {
   it(
     '加载成功',
     async () => {
-      const script = await loadScript('https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js');
+      const script = await loadScript(utilUrl);
       // @ts-ignore
       expect(globalThis.utilHelpers).toBeDefined();
       expect(script.async).toBe(true);
@@ -27,7 +29,7 @@ describe('loadScript', () => {
   it(
     '设置属性',
     async () => {
-      const script = await loadScript('https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js', {
+      const script = await loadScript(utilUrl, {
         async: false,
         id: 'abc',
         attrs: {
@@ -78,7 +80,7 @@ describe('loadScript', () => {
       const loadFn = jest.fn();
       const errorFn = jest.fn();
 
-      await loadScript('https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js', {
+      await loadScript(utilUrl, {
         onload: loadFn,
         onerror: errorFn
       });
