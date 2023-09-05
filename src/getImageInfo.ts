@@ -42,6 +42,7 @@ let cacheResult: any;
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象
  * @param {boolean} [useCache=true] 缓存最近一次成功结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载问题。
+ * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
  * @returns {Promise<ImageInfo>} 图片信息
  * @example
  *
@@ -58,7 +59,7 @@ let cacheResult: any;
  * });
  *
  */
-function getImageInfo(img: string | Blob, useCache = true) {
+function getImageInfo(img: string | Blob, useCache = true, ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]) {
   return new Promise<{
     width: number;
     height: number;
@@ -72,7 +73,7 @@ function getImageInfo(img: string | Blob, useCache = true) {
     if (useCache && cacheImage === img && cacheResult) {
       resolve(cacheResult);
     } else {
-      loadImageWithBlob(img, false)
+      loadImageWithBlob(img, false, ajaxOptions)
         .then(({ image, blob }) => {
           const { width, height } = image;
           const result = {

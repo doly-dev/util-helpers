@@ -11,12 +11,12 @@ const SuccessResponseStatus = [200, 304];
  * @param {string | Blob} img 图片地址或 blob 对象
  * @returns {Blob} blob 对象
  */
-function getBlob(img: string | Blob) {
+function getBlob(img: string | Blob, ajaxOptions?: Parameters<typeof ajax>[1]) {
   return new Promise<Blob>((resolve, reject) => {
     if (isBlob(img)) {
       resolve(img);
     } else {
-      ajax(img, { responseType: 'blob' })
+      ajax(img, { responseType: 'blob', headers: { 'sec-fetch-site': 'none' }, ...ajaxOptions })
         .then((ev) => {
           // @ts-ignore
           // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
@@ -52,6 +52,7 @@ let cacheResult: { image: HTMLImageElement; blob: Blob };
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象
  * @param {boolean} [useCache=true] 缓存最近一次成功结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载问题。
+ * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
  * @returns {Promise<ImageWithBlob>} HTML图片元素和 blob 对象
  * @example
  *
@@ -68,12 +69,12 @@ let cacheResult: { image: HTMLImageElement; blob: Blob };
  * });
  *
  */
-function loadImageWithBlob(img: string | Blob, useCache = true) {
+function loadImageWithBlob(img: string | Blob, useCache = true, ajaxOptions?: Parameters<typeof ajax>[1]) {
   return new Promise<{ image: HTMLImageElement; blob: Blob }>((resolve, reject) => {
     if (useCache && cacheImage === img && cacheResult) {
       resolve(cacheResult);
     } else {
-      getBlob(img)
+      getBlob(img, ajaxOptions)
         .then((blob) => {
           const url = createObjectURL(blob);
           const image = new Image();

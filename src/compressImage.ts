@@ -27,7 +27,6 @@ type Options = {
   height?: number; // 自定义图片高度。默认图片自身高度
   rotate?: number; // 旋转角度
   offset?: [number, number] | ((info: Info, options: Options) => [number, number]); // 偏移值
-  cacheImage?: boolean; // 缓存上一次加载成功的图片
 
   // 画布配置
   background?: string; // 背景色。默认白色
@@ -43,6 +42,10 @@ type Options = {
   beforeCompress?: (imageWithBlob: Pick<Info, 'image' | 'blob'>, options: Options) => void; // 压缩前触发
   beforeDraw?: (info: Info, options: Options) => void; // 画之前
   afterDraw?: (info: Info, options: Options) => void; // 画之后
+
+  // 其他
+  cacheImage?: boolean; // 缓存上一次加载成功的图片
+  ajaxOptions?: Parameters<typeof loadImageWithBlob>[2];
 };
 
 function compressImage(img: string | Blob, options: Omit<Options, 'format'> & { format: 'dataURL' }): Promise<string>;
@@ -62,7 +65,6 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * @param {number} [options.height] 自定义图片高度，默认图片自身高度
  * @param {number} [options.rotate] 旋转
  * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值
- * @param {boolean} [options.cacheImage=true] 缓存最近一次加载成功的图片，当图片地址或 blob 对象一致时，直接使用该缓存图片。避免连续请求同一个图片资源，重复加载问题。
  * @param {string} [options.background] 背景颜色
  * @param {number | function} [options.canvasWidth] 画布宽度，默认图片宽度
  * @param {number | function} [options.canvasHeight] 画布高度，默认图片高度
@@ -72,6 +74,8 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
  * @param {function} [options.beforeDraw] 图片载入画布之前调用
  * @param {function} [options.afterDraw] 图片载入画布之后调用
+ * @param {boolean} [options.cacheImage=true] 缓存最近一次加载成功的图片，当图片地址或 blob 对象一致时，直接使用该缓存图片。避免连续请求同一个图片资源，重复加载问题。
+ * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
  * @returns {Promise<Blob | string>} blob 对象 或 data url 图片
  * @example
  *
@@ -122,11 +126,13 @@ function compressImage(img: string | Blob, options: Options = {}) {
 
       beforeCompress,
       beforeDraw,
-      afterDraw
+      afterDraw,
+
+      ajaxOptions
     } = options;
 
     // 加载图片
-    loadImageWithBlob(img, cacheImage)
+    loadImageWithBlob(img, cacheImage, ajaxOptions)
       .then(({ image, blob }) => {
         const numWidth = toNumber(width);
         const numHeight = toNumber(height);

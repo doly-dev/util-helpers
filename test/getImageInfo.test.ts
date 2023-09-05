@@ -199,6 +199,18 @@ describe('getImageInfo', () => {
   );
 
   it(
+    '自定义请求配置项',
+    async () => {
+      const headers = { foo: 'a', bar: 'b' };
+      await getImageInfo(url, false, { headers, data: 'abc' });
+      expect(xhrMock.setRequestHeader).toBeCalledWith('foo', 'a');
+      expect(xhrMock.setRequestHeader).toBeCalledWith('bar', 'b');
+      expect(xhrMock.send).toBeCalledWith('abc');
+    },
+    TIMEOUT
+  );
+
+  it(
     'ajax 请求 url 失败',
     async () => {
       resMethod = ResponseMethod.Error;
