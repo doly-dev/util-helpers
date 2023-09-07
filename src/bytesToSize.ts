@@ -1,3 +1,5 @@
+import { isNaN } from 'ut2';
+
 type BytesToSizeOptions = {
   spaceMark?: string;
   precision?: number;

@@ -1,4 +1,4 @@
-import { isSymbol } from 'ut2';
+import { isSymbol, isNaN } from 'ut2';
 
 /**
  * 检测值是否为有效数值，支持隐式转换。如果返回 true ，表示可以通过 Number() 转为数字。
@@ -49,7 +49,7 @@ function isValidNumber(value: any, strict = false) {
     }
   }
 
-  return typeof ret === 'number' && !Number.isNaN(ret);
+  return typeof ret === 'number' && !isNaN(ret);
 }
 
 export default isValidNumber;

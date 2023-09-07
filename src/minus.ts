@@ -38,7 +38,6 @@ function minus(...nums: (string | number)[]): number {
 
   // 兼容处理，如果参数包含无效数值时，返回 NaN
   if (isNaN(num1) || isNaN(num2)) {
-    isNaN;
     return Number.NaN;
   }
 

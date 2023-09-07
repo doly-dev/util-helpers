@@ -1,6 +1,5 @@
 import { isNaN } from 'ut2';
-import { checkBoundary, scientificToNumber, isScientificNumber } from './utils/math.util';
-import { trimLeftZero } from './utils/math.util';
+import { checkBoundary, scientificToNumber, isScientificNumber, trimLeftZero } from './utils/math.util';
 import devWarn from './utils/devWarn';
 
 const reg = /^[+-]?\d*\.?\d*$/;

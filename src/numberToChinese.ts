@@ -1,3 +1,4 @@
+import { isNaN } from 'ut2';
 import { checkBoundary } from './utils/math.util';
 import devWarn from './utils/devWarn';
 

@@ -1,3 +1,5 @@
+import { toNumber } from 'ut2';
+
 const numberChars = '0123456789';
 const letterChars = 'abcdefghijklmnopqrstuvwxyz';
 const defaultChars = numberChars + letterChars + letterChars.toUpperCase();
@@ -37,14 +39,9 @@ function internalRandomString(len: number, optionalChars: string, prefix = ''): 
  *
  */
 function randomString(len = 0, optionalChars?: string) {
-  let realLen = typeof len === 'number' ? len : Number(len);
-  if (isNaN(realLen)) {
-    realLen = 0;
-  }
-
   const realChars = typeof optionalChars === 'string' && optionalChars ? optionalChars : defaultChars;
 
-  return internalRandomString(len, realChars);
+  return internalRandomString(toNumber(len), realChars);
 }
 
 export default randomString;
