@@ -14,10 +14,12 @@
 npm install util-helpers
 ```
 
-或者你使用 `yarn`
-
 ```shell
 yarn add util-helpers
+```
+
+```shell
+pnpm add util-helpers
 ```
 
 ### 浏览器引入

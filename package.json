@@ -23,7 +23,8 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "commit": "cz",
     "prepublishOnly": "npm test && npm run build",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -77,15 +78,11 @@
     "prettier": "^2.8.8",
     "rollup": "^3.28.1",
     "typescript": "^5.2.2",
-    "yorkie": "^2.0.0"
+    "husky": "^8.0.0"
   },
   "lint-staged": {
     "**/*.ts": "eslint",
     "**/*.{js,ts,md}": "prettier --write"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "npx --no -- commitlint --edit \"$1\""
   },
   "config": {
     "commitizen": {
@@ -94,6 +91,6 @@
   },
   "dependencies": {
     "tslib": "^2.6.2",
-    "ut2": "^1.4.8"
+    "ut2": "^1.4.9"
   }
 }
