@@ -15,9 +15,10 @@ jest.mock('../src/utils/native.ts', () => {
   };
 });
 
-import { isBlob, sleep } from 'ut2';
+import { isBlob } from 'ut2';
 import { loadImageWithBlob } from '../src';
 import { createObjectURL, revokeObjectURL } from '../src/utils/native';
+import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
 
 const TIMEOUT = 60 * 1000;
 const ERROR_MESSAGE = 'error';
@@ -45,53 +46,12 @@ global.Image = class XImage extends Image {
   height = 100;
 };
 
-// 参考: https://stackoverflow.com/questions/28584773/xmlhttprequest-testing-in-jest
-enum ResponseMethod {
-  Load,
-  Error
-}
-// eslint-disable-next-line prefer-const
-let resMethod = ResponseMethod.Load; // 将要触发的响应方法
-// eslint-disable-next-line prefer-const
-let responseStatus = 200; // 将要触发的响应状态码
 const xhrMock = {
   open: jest.fn(),
   send: jest.fn(),
   setRequestHeader: jest.fn()
 };
-const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
-  const methods: Record<string, () => void> = {};
-
-  async function send() {
-    methods.loadstart?.();
-
-    if (resMethod === ResponseMethod.Error) {
-      methods.error();
-    } else {
-      await sleep(100);
-
-      const res = {
-        target: {
-          response: new Blob(['hello word']),
-          status: responseStatus
-        }
-      };
-      // @ts-ignore
-      methods.load(res);
-    }
-    methods.loadend?.();
-  }
-
-  return {
-    addEventListener: jest.fn().mockImplementation(function (fnName, fn) {
-      methods[fnName] = fn;
-    }),
-    open: xhrMock.open,
-    removeEventListener: jest.fn(),
-    send: xhrMock.send.mockImplementation(send),
-    setRequestHeader: xhrMock.setRequestHeader
-  } as any;
-});
+const spyAjax = createSpyAjax(xhrMock);
 
 const consoleError = jest.fn();
 const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(consoleError);
@@ -99,8 +59,8 @@ const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementati
 describe('loadImageWithBlob', () => {
   beforeEach(() => {
     loadSuccess = true;
-    resMethod = ResponseMethod.Load;
-    responseStatus = 200;
+    setResponseMethod(ResponseMethod.Load);
+    setResponseStatus(200);
     consoleError.mockClear();
     // @ts-ignore
     createObjectURL.mockClear();
@@ -207,7 +167,7 @@ describe('loadImageWithBlob', () => {
     'ajax 请求 url 失败',
     async () => {
       expect(consoleError).toBeCalledTimes(0);
-      resMethod = ResponseMethod.Error;
+      setResponseMethod(ResponseMethod.Error);
       try {
         await loadImageWithBlob(url, false);
       } catch (err) {
@@ -223,7 +183,7 @@ describe('loadImageWithBlob', () => {
     'ajax 请求成功，响应码非200/304',
     async () => {
       expect(consoleError).toBeCalledTimes(0);
-      responseStatus = 403;
+      setResponseStatus(403);
       try {
         await loadImageWithBlob(url, false);
       } catch (err) {

@@ -11,62 +11,16 @@ jest.mock('../src/utils/native.ts', () => {
   };
 });
 import { sleep } from 'ut2';
+import { createSpyAjax } from './fixtures/spyAjax';
 import { download } from '../src';
 
 describe('download', () => {
-  // 参考: https://stackoverflow.com/questions/28584773/xmlhttprequest-testing-in-jest
-  enum ResponseMethod {
-    Load,
-    Abort,
-    Timeout,
-    Error
-  }
-  // eslint-disable-next-line prefer-const
-  let resMethod = ResponseMethod.Load; // 将要触发的响应方法
   const xhrMock = {
     open: jest.fn(),
     send: jest.fn(),
     setRequestHeader: jest.fn()
   };
-  const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
-    const methods: Record<string, () => void> = {};
-
-    async function send() {
-      methods.loadstart?.();
-
-      if (resMethod === ResponseMethod.Abort) {
-        methods.abort();
-      } else if (resMethod === ResponseMethod.Error) {
-        methods.error();
-      } else if (resMethod === ResponseMethod.Timeout) {
-        methods.timeout();
-      } else {
-        await sleep(100);
-        methods.progress?.();
-        await sleep(100);
-        methods.progress?.();
-
-        const res = {
-          target: {
-            response: new Blob(['hello word'])
-          }
-        };
-        // @ts-ignore
-        methods.load(res);
-      }
-      methods.loadend?.();
-    }
-
-    return {
-      addEventListener: jest.fn().mockImplementation(function (fnName, fn) {
-        methods[fnName] = fn;
-      }),
-      open: xhrMock.open,
-      removeEventListener: jest.fn(),
-      send: xhrMock.send.mockImplementation(send),
-      setRequestHeader: xhrMock.setRequestHeader
-    } as any;
-  });
+  const spyAjax = createSpyAjax(xhrMock);
 
   function makeAnchor(target: Record<string, any>) {
     const handler: Record<string, (...args: any[]) => void> = {};

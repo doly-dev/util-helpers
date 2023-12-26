@@ -106,6 +106,7 @@ export { default as ajax } from './ajax';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as compressImage } from './compressImage';
 export { default as download } from './download';
+export { default as getFileBlob } from './getFileBlob';
 export { default as getImageInfo } from './getImageInfo';
 export { default as loadImage } from './loadImage';
 export { default as loadImageWithBlob } from './loadImageWithBlob';
