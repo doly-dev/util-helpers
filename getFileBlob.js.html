@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>dataURLToBlob.js - util-helpers </title>
+    <title>getFileBlob.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dataURLToBlob.js</h1>
+    <h1 class="page-title">getFileBlob.js</h1>
     
 
     
@@ -71,33 +71,58 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 将 DataURL 转为 Blob 对象
+            <pre class="prettyprint source linenums"><code>import { __assign } from "tslib";
+import { isBlob } from 'ut2';
+import ajax from './ajax';
+var SuccessResponseStatus = [200, 304];
+/**
+ * 获取文件 Blob 。
  *
  * @static
- * @alias module:Processor.dataURLToBlob
- * @since 4.1.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64 | Base64}
- * @param {string} data data: 协议的URL
- * @returns {Blob} Blob 对象
+ * @alias module:Other.getFileBlob
+ * @since 4.21.0
+ * @param {string | Blob} file 文件地址或对象。
+ * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
+ * @returns {Promise&lt;Blob>} 文件 Blob 。
  * @example
- * const data = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
- * dataURLToBlob(dataurl); // Blob {size: 32, type: 'text/html'}
+ *
+ * getFileBlob(file).then((blob)=>{
+ *    // do something
+ * });
+ *
+ * getFileBlob('https://dummyimage.com/200x300').then((blob)=>{
+ *   // do something
+ * });
  */
-function dataURLToBlob(data) {
-    var parts = data.split(',');
-    var meta = parts[0].substring(5).split(';');
-    var type = meta[0];
-    var decoder = meta.indexOf('base64') !== -1 ? atob : decodeURIComponent;
-    var bstr = decoder(parts[1]);
-    var n = bstr.length;
-    var u8arr = new Uint8Array(n);
-    while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new Blob([u8arr], { type: type });
+function getFileBlob(file, ajaxOptions) {
+    return new Promise(function (resolve, reject) {
+        if (isBlob(file)) {
+            resolve(file);
+        }
+        else {
+            ajax(file, __assign({ responseType: 'blob' }, ajaxOptions))
+                .then(function (ev) {
+                // @ts-ignore
+                // 进入 onload 表示 readyStatus 为 4 ，但是 status 不一定是 200 。
+                var responseStatus = ev.target.status;
+                if (SuccessResponseStatus.indexOf(responseStatus) !== -1) {
+                    // @ts-ignore
+                    resolve(ev.target.response);
+                }
+                else {
+                    var err = new Error("The file does not support get requests, responseStatus ".concat(responseStatus, ", '").concat(file, "'."));
+                    console.error(err);
+                    reject(err);
+                }
+            })
+                .catch(function (err) {
+                console.error(new Error("Failed to request file. ".concat(err)));
+                reject(err);
+            });
+        }
+    });
 }
-export default dataURLToBlob;
+export default getFileBlob;
 </code></pre>
         </article>
     </section>
