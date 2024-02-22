@@ -124,30 +124,30 @@
       <div class="config">
         <fieldset>
           <legend>配置</legend>
-          <form name="configForm">
-            <div class="tab">
-              <div class="tab-header">
-                图片来源:
-                <label>
-                  <input type="radio" name="source" value="local" checked />
-                  本地上传
-                </label>
-                <label>
-                  <input type="radio" name="source" value="remote" />
-                  远程地址
-                </label>
+          <div class="tab">
+            <div class="tab-header">
+              图片来源:
+              <label>
+                <input type="radio" name="source" value="local" checked />
+                本地上传
+              </label>
+              <label>
+                <input type="radio" name="source" value="remote" />
+                远程地址
+              </label>
+            </div>
+            <div class="tab-content">
+              <div class="tab-panel">
+                <input type="file" id="input_file" accept="image/*" />
               </div>
-              <div class="tab-content">
-                <div class="tab-panel">
-                  <input type="file" id="input_file" accept="image/*" />
-                </div>
-                <div class="tab-panel" style="display: none">
-                  <textarea placeholder="请输入图片地址" rows="3" id="input_text"></textarea>
-                </div>
+              <div class="tab-panel" style="display: none">
+                <textarea placeholder="请输入图片地址" rows="3" id="input_text"></textarea>
               </div>
             </div>
-            <label> 图片宽度: <input type="number" min="0" id="input_width" /> </label>
-            <label> 图片高度: <input type="number" min="0" id="input_height" /> </label>
+          </div>
+          <form name="configForm">
+            <label>图片宽度: <input type="number" min="0" id="input_width" /></label>
+            <label>图片高度: <input type="number" min="0" id="input_height" /></label>
             <label>
               图片类型:
               <select id="select_type">
@@ -155,19 +155,19 @@
                 <option value="image/png">image/png</option>
               </select>
             </label>
-            <label> 质量: <input type="number" max="1" min="0" step="0.01" value="0.8" id="input_quality" /> </label>
+            <label>质量: <input type="number" max="1" min="0" step="0.01" value="0.8" id="input_quality" /></label>
             <div class="config-more">
               <h4 class="config-more-trigger">更多配置<span class="arrow"></span></h4>
               <div class="config-more-content">
-                <label> 画布宽度: <input type="number" min="0" id="input_canvasWidth" /> </label>
-                <label> 画布高度: <input type="number" min="0" id="input_canvasHeight" /> </label>
-                <label> 画布背景: <input type="color" value="#ffffff" id="input_background" /> </label>
-                <label> 旋转: <input type="number" value="0" id="input_rotate" /> </label>
-                <label> x轴偏移: <input type="number" value="0" id="input_offsetX" /> </label>
-                <label> y轴偏移: <input type="number" value="0" id="input_offsetY" /> </label>
+                <label>画布宽度: <input type="number" min="0" id="input_canvasWidth" /></label>
+                <label>画布高度: <input type="number" min="0" id="input_canvasHeight" /></label>
+                <label>画布背景: <input type="color" value="#ffffff" id="input_background" /></label>
+                <label>旋转: <input type="number" value="0" id="input_rotate" /></label>
+                <label>x轴偏移: <input type="number" value="0" id="input_offsetX" /></label>
+                <label>y轴偏移: <input type="number" value="0" id="input_offsetY" /></label>
               </div>
             </div>
-            <button type="reset" id="reset">重置</button>
+            <button type="reset" id="reset">重置配置</button>
           </form>
         </fieldset>
       </div>
@@ -301,9 +301,9 @@
             offset: [offsetX, offsetY],
             beforeCompress(imageInfo) {
               beforeInfo = imageInfo;
-            }
+            },
+            cacheImage: false
           });
-          // beforeInfo = await utilHelpers.loadImageWithBlob(beforeInfo.blob);
           updateResult(beforeInfo.blob, result);
         } catch (err) {
           console.error(err);
