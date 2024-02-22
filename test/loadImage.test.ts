@@ -66,7 +66,7 @@ describe('loadImage', () => {
       expect(image.crossOrigin).not.toBe('anonymous');
       expect(image.src).toBe(blobUrl);
       expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(0);
     },
     TIMEOUT
   );
@@ -87,12 +87,12 @@ describe('loadImage', () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
       expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(0);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await loadImage(blob);
       expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(0);
     },
     TIMEOUT
   );
@@ -103,7 +103,7 @@ describe('loadImage', () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
       expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(0);
       expect(consoleError).toBeCalledTimes(0);
 
       loadSuccess = false;
@@ -112,13 +112,15 @@ describe('loadImage', () => {
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
+      expect(createObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(1);
       expect(consoleError).toBeCalledTimes(1);
 
       loadSuccess = true;
 
       await loadImage(blob);
       expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(1);
     },
     TIMEOUT
   );
@@ -129,12 +131,12 @@ describe('loadImage', () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob, false);
       expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(revokeObjectURL).toBeCalledTimes(0);
 
       // 连续请求同一个资源，还是会发起请求
       await loadImage(blob, false);
       expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(2);
+      expect(revokeObjectURL).toBeCalledTimes(0);
     },
     TIMEOUT
   );
