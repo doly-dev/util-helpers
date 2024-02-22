@@ -178,7 +178,15 @@ function compressImage(img: string | Blob, options: Options = {}) {
         beforeDraw?.(info, options);
 
         // 将图像载入 canvas 中
-        ctx.drawImage(image, internalOffset[0] + toNumber(outOffset[0]), internalOffset[1] + toNumber(outOffset[1]), image.width, image.height);
+        const dx = internalOffset[0] + toNumber(outOffset[0]);
+        const dy = internalOffset[1] + toNumber(outOffset[1]);
+        ctx.drawImage(image, dx, dy, image.width, image.height);
+
+        // 处理png图片透明背景
+        if (type === 'image/png') {
+          ctx.globalCompositeOperation = 'destination-in';
+          ctx.drawImage(image, dx, dy, image.width, image.height);
+        }
 
         afterDraw?.(info, options);
 
