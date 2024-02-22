@@ -37,6 +37,8 @@ let cacheResult: any;
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
+ * <em style="font-weight: bold;">如果不需要该图片，建议手动调用 `URL.revokeObjectURL(image.src)` 释放缓存。</em>
+ *
  * @static
  * @alias module:Other.getImageInfo
  * @since 4.20.0

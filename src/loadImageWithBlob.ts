@@ -15,6 +15,8 @@ let cacheResult: { image: HTMLImageElement; blob: Blob };
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
+ * <em style="font-weight: bold;">如果不需要该图片，建议手动调用 `URL.revokeObjectURL(image.src)` 释放缓存。</em>
+ *
  * @method
  * @alias module:Other.loadImageWithBlob
  * @since 4.20.0
@@ -47,7 +49,6 @@ function loadImageWithBlob(img: string | Blob, useCache = true, ajaxOptions?: Pa
           const url = createObjectURL(blob);
           const image = new Image();
           image.onload = () => {
-            revokeObjectURL(url);
             const result = { blob, image };
             if (useCache) {
               cacheImage = img;
