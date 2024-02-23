@@ -3,6 +3,30 @@ import divide from './divide';
 import gcd from './gcd';
 import loadImageWithBlob from './loadImageWithBlob';
 import bytesToSize from './bytesToSize';
+import Cache from './utils/Cache';
+import { revokeObjectURL } from './utils/native';
+
+type Result = {
+  width: number;
+  height: number;
+  contrast: string;
+  measure: string;
+  size: string;
+  bytes: number;
+  image: HTMLImageElement;
+  blob: Blob;
+};
+
+const cache = new Cache<{ data: Result; r: boolean }, string | Blob>({ max: 1 });
+cache.on('del', (v) => {
+  if (v.r) {
+    try {
+      revokeObjectURL(v.data.image.src);
+    } catch {
+      /* empty */
+    }
+  }
+});
 
 /**
  * 计算宽高比
@@ -29,21 +53,16 @@ function calcContrast(w: number, h: number) {
  * @property {Blob} blob 图片 Blob 对象
  */
 
-let cacheImage: string | Blob;
-let cacheResult: any;
-
 /**
  * 获取图片信息。
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * <em style="font-weight: bold;">如果不需要该图片，建议手动调用 `URL.revokeObjectURL(image.src)` 释放缓存。</em>
- *
  * @static
  * @alias module:Other.getImageInfo
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象
- * @param {boolean} [useCache=true] 缓存最近一次成功结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载问题。
+ * @param {boolean | CacheOptions} [cacheOptions=true] 是否使用缓存。开启后，自动缓存最近上一次成功的结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载。当缓存下一次成功加载的图片时，会自动释放上一次缓存的图片，也可以通过 `autoRevokeOnDel` 设置不释放缓存。
  * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
  * @returns {Promise<ImageInfo>} 图片信息
  * @example
@@ -61,7 +80,12 @@ let cacheResult: any;
  * });
  *
  */
-function getImageInfo(img: string | Blob, useCache = true, ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]) {
+function getImageInfo(img: string | Blob, cacheOptions: boolean | Parameters<typeof loadImageWithBlob>[1] = true, ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]) {
+  const _cacheOptions = {
+    useCache: typeof cacheOptions === 'object' ? cacheOptions.useCache !== false : cacheOptions !== false,
+    autoRevokeOnDel: typeof cacheOptions === 'object' ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions
+  };
+
   return new Promise<{
     width: number;
     height: number;
@@ -72,8 +96,8 @@ function getImageInfo(img: string | Blob, useCache = true, ajaxOptions?: Paramet
     image: HTMLImageElement;
     blob: Blob;
   }>((resolve, reject) => {
-    if (useCache && cacheImage === img && cacheResult) {
-      resolve(cacheResult);
+    if (_cacheOptions.useCache && cache.has(img)) {
+      resolve(cache.get(img)!.data);
     } else {
       loadImageWithBlob(img, false, ajaxOptions)
         .then(({ image, blob }) => {
@@ -89,9 +113,11 @@ function getImageInfo(img: string | Blob, useCache = true, ajaxOptions?: Paramet
             blob
           };
 
-          if (useCache) {
-            cacheImage = img;
-            cacheResult = result;
+          if (_cacheOptions.useCache) {
+            cache.set(img, {
+              data: result,
+              r: _cacheOptions.autoRevokeOnDel
+            });
           }
 
           resolve(result);

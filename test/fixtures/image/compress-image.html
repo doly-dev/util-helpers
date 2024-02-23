@@ -161,10 +161,14 @@
               <div class="config-more-content">
                 <label>画布宽度: <input type="number" min="0" id="input_canvasWidth" /></label>
                 <label>画布高度: <input type="number" min="0" id="input_canvasHeight" /></label>
-                <label>画布背景: <input type="color" value="#ffffff" id="input_background" /></label>
+                <span style="white-space: nowrap">
+                  <label>画布背景: <input type="color" value="#ffffff" id="input_background" /></label>
+                  <label><input type="checkbox" id="input_background_transparent" />透明</label>
+                </span>
                 <label>旋转: <input type="number" value="0" id="input_rotate" /></label>
                 <label>x轴偏移: <input type="number" value="0" id="input_offsetX" /></label>
                 <label>y轴偏移: <input type="number" value="0" id="input_offsetY" /></label>
+                <p style="font-size: 12px; color: gray; margin: 5px 0">如果原图是 png 半透明图片，并且导出图片类型为 image/png ，请将画布背景设置为透明。</p>
               </div>
             </div>
             <button type="reset" id="reset">重置配置</button>
@@ -254,6 +258,7 @@
       const oInputCanvasWidth = document.querySelector('#input_canvasWidth');
       const oInputCanvasHeight = document.querySelector('#input_canvasHeight');
       const oInputBackground = document.querySelector('#input_background');
+      const oInputBackgroundTransparent = document.querySelector('#input_background_transparent');
       const oInputRotate = document.querySelector('#input_rotate');
       const oInputOffsetX = document.querySelector('#input_offsetX');
       const oInputOffsetY = document.querySelector('#input_offsetY');
@@ -283,6 +288,7 @@
         const canvasWidth = oInputCanvasWidth.value;
         const canvasHeight = oInputCanvasHeight.value;
         const background = oInputBackground.value;
+        const transparent = oInputBackgroundTransparent.checked;
         const rotate = oInputRotate.value;
         const offsetX = oInputOffsetX.value;
         const offsetY = oInputOffsetY.value;
@@ -296,7 +302,7 @@
             quality,
             canvasWidth,
             canvasHeight,
-            background,
+            background: transparent ? 'transparent' : background,
             rotate,
             offset: [offsetX, offsetY],
             beforeCompress(imageInfo) {
@@ -372,6 +378,15 @@
         });
       });
       oSelectType.addEventListener('change', function () {
+        debounceChange();
+      });
+      oInputBackgroundTransparent.addEventListener('change', function (e) {
+        if (e.target.checked) {
+          oInputBackground.setAttribute('disabled', 'true');
+        } else {
+          oInputBackground.removeAttribute('disabled');
+        }
+        oInputBackground.style.display = e.target.checked ? 'none' : 'inline-block';
         debounceChange();
       });
 

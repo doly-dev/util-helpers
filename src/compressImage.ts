@@ -1,6 +1,15 @@
 import { toNumber } from 'ut2';
 import loadImageWithBlob from './loadImageWithBlob';
 
+/**
+ * canvas 导出 blob 对象
+ *
+ * @private
+ * @param canvas 画布元素
+ * @param type 导出图片类型
+ * @param quality 图像质量
+ * @returns {Promise<Blob>}
+ */
 function canvasToBlob(canvas: HTMLCanvasElement, type?: string, quality?: number) {
   return new Promise<Blob | null>((resolve) => {
     canvas.toBlob(
@@ -44,7 +53,7 @@ type Options = {
   afterDraw?: (info: Info, options: Options) => void; // 画之后
 
   // 其他
-  cacheImage?: boolean; // 缓存上一次加载成功的图片
+  cacheImage?: boolean | Parameters<typeof loadImageWithBlob>[1]; // 缓存上一次加载成功的图片
   ajaxOptions?: Parameters<typeof loadImageWithBlob>[2];
 };
 
@@ -76,7 +85,7 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
  * @param {function} [options.beforeDraw] 图片载入画布之前调用
  * @param {function} [options.afterDraw] 图片载入画布之后调用
- * @param {boolean} [options.cacheImage=true] 缓存最近一次加载成功的图片，当图片地址或 blob 对象一致时，直接使用该缓存图片。避免连续请求同一个图片资源，重复加载问题。
+ * @param {boolean | CacheOptions} [options.cacheImage=true] 是否使用 `loadImageWithBlob` 缓存。
  * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
  * @returns {Promise<Blob | string>} blob 对象 或 data url 图片
  * @example
@@ -161,8 +170,10 @@ function compressImage(img: string | Blob, options: Options = {}) {
         canvas.width = numCanvasWidth || image.width;
         canvas.height = numCanvasHeight || image.height;
 
+        const bgIsTransparent = background === 'none' || background === 'transparent';
+
         // 填充背景色
-        if (background === 'none' || background === 'transparent') {
+        if (bgIsTransparent) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         } else {
           ctx.fillStyle = background;
@@ -187,7 +198,7 @@ function compressImage(img: string | Blob, options: Options = {}) {
         ctx.drawImage(image, dx, dy, image.width, image.height);
 
         // 处理png图片透明背景
-        if (type === 'image/png') {
+        if (type === 'image/png' && bgIsTransparent) {
           ctx.globalCompositeOperation = 'destination-in';
           ctx.drawImage(image, dx, dy, image.width, image.height);
         }

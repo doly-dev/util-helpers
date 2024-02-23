@@ -6,7 +6,7 @@ import { loadScript } from '../src';
 
 const TIMEOUT = 60 * 1000;
 
-const testUrl = 'https://unpkg.com/util-helpers@4.18.1/dist/util-helpers.min.js';
+const testUrl = 'https://unpkg.com/util-helpers/dist/util-helpers.min.js';
 
 describe('loadScript', () => {
   const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});

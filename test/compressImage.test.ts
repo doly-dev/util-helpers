@@ -14,6 +14,7 @@ jest.mock('../src/utils/native.ts', () => {
   };
 });
 import { isBlob } from 'ut2';
+import { createObjectURL, revokeObjectURL } from '../src/utils/native';
 import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
 import { compressImage } from '../src';
 
@@ -57,6 +58,10 @@ describe('loadImageWithBlob', () => {
     loadSuccess = true;
     setResponseMethod(ResponseMethod.Load);
     setResponseStatus(200);
+    // @ts-ignore
+    createObjectURL.mockClear();
+    // @ts-ignore
+    revokeObjectURL.mockClear();
   });
 
   afterAll(() => {
@@ -202,9 +207,9 @@ describe('loadImageWithBlob', () => {
         afterDraw
       });
 
-      expect(beforeCompress).toBeCalledTimes(1);
-      expect(beforeDraw).toBeCalledTimes(1);
-      expect(afterDraw).toBeCalledTimes(1);
+      expect(beforeCompress).toHaveBeenCalledTimes(1);
+      expect(beforeDraw).toHaveBeenCalledTimes(1);
+      expect(afterDraw).toHaveBeenCalledTimes(1);
 
       expect(beforeCompressArgs[0].image).toBeDefined();
       expect(beforeCompressArgs[0].blob).toBeDefined();
@@ -232,13 +237,36 @@ describe('loadImageWithBlob', () => {
   );
 
   it(
+    '自定义缓存配置项',
+    async () => {
+      const url2 = 'https://example.com/xxx';
+      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+
+      await compressImage(url, { cacheImage: { autoRevokeOnDel: false } });
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+
+      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
+      expect(createObjectURL).toHaveBeenCalledTimes(3);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+
+      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
+      expect(createObjectURL).toHaveBeenCalledTimes(3);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+    },
+    TIMEOUT
+  );
+
+  it(
     '自定义请求配置项',
     async () => {
       const headers = { foo: 'a', bar: 'b' };
       await compressImage(url, { cacheImage: false, ajaxOptions: { headers, data: 'abc' } });
-      expect(xhrMock.setRequestHeader).toBeCalledWith('foo', 'a');
-      expect(xhrMock.setRequestHeader).toBeCalledWith('bar', 'b');
-      expect(xhrMock.send).toBeCalledWith('abc');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('foo', 'a');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('bar', 'b');
+      expect(xhrMock.send).toHaveBeenCalledWith('abc');
     },
     TIMEOUT
   );

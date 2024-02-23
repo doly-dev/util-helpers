@@ -65,8 +65,8 @@ describe('loadImage', () => {
       const image = await loadImage(new Blob(['hello world']));
       expect(image.crossOrigin).not.toBe('anonymous');
       expect(image.src).toBe(blobUrl);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -86,41 +86,60 @@ describe('loadImage', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await loadImage(blob);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );
 
   it(
-    '只缓存最近一次成功结果，失败结果不会缓存',
+    '只缓存成功结果，失败结果不会缓存',
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
-      expect(consoleError).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(consoleError).toHaveBeenCalledTimes(0);
 
       loadSuccess = false;
+      const bolb2 = new Blob(['hi']);
       try {
-        await loadImage(new Blob(['hi']));
+        await loadImage(bolb2);
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(1);
-      expect(consoleError).toBeCalledTimes(1);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
+      expect(consoleError).toHaveBeenCalledTimes(1);
 
       loadSuccess = true;
 
-      await loadImage(blob);
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      await loadImage(bolb2);
+      expect(createObjectURL).toHaveBeenCalledTimes(3);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(3);
+    },
+    TIMEOUT
+  );
+
+  it(
+    '缓存配置',
+    async () => {
+      await loadImage(new Blob(['a']), {
+        autoRevokeOnDel: false
+      });
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+
+      await loadImage(new Blob(['b']), {
+        autoRevokeOnDel: false
+      });
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );
@@ -130,13 +149,13 @@ describe('loadImage', () => {
     async () => {
       const blob = new Blob(['hello world']);
       await loadImage(blob, false);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
 
       // 连续请求同一个资源，还是会发起请求
       await loadImage(blob, false);
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -144,14 +163,14 @@ describe('loadImage', () => {
   it(
     '加载失败',
     async () => {
-      expect(consoleError).toBeCalledTimes(0);
+      expect(consoleError).toHaveBeenCalledTimes(0);
       loadSuccess = false;
       try {
         await loadImage(url);
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
-      expect(consoleError).toBeCalledTimes(1);
+      expect(consoleError).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );

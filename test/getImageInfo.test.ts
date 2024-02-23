@@ -81,8 +81,8 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
 
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -99,8 +99,8 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
 
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -109,24 +109,24 @@ describe('getImageInfo', () => {
     '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
     async () => {
       await getImageInfo(url);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await getImageInfo(url);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );
 
   it(
-    '只缓存最近一次成功结果，失败结果不会缓存',
+    '只缓存上一次成功结果，失败结果不会缓存',
     async () => {
       const blob = new Blob(['hello world']);
       await getImageInfo(blob);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       loadSuccess = false;
       try {
@@ -135,14 +135,32 @@ describe('getImageInfo', () => {
         expect(err).toBe(ERROR_MESSAGE);
       }
 
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
 
       loadSuccess = true;
 
       await getImageInfo(blob);
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(1);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
+    },
+    TIMEOUT
+  );
+
+  it(
+    '缓存配置',
+    async () => {
+      await getImageInfo(new Blob(['a']), {
+        autoRevokeOnDel: false
+      });
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+
+      await getImageInfo(new Blob(['b']), {
+        autoRevokeOnDel: false
+      });
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );
@@ -151,13 +169,13 @@ describe('getImageInfo', () => {
     '不使用缓存',
     async () => {
       await getImageInfo(url, false);
-      expect(createObjectURL).toBeCalledTimes(1);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
 
       // 连续请求同一个资源，还是会发起请求
       await getImageInfo(url, false);
-      expect(createObjectURL).toBeCalledTimes(2);
-      expect(revokeObjectURL).toBeCalledTimes(0);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -181,8 +199,8 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url, false);
       } catch (err) {
-        expect(createObjectURL).toBeCalledTimes(0);
-        expect(revokeObjectURL).toBeCalledTimes(0);
+        expect(createObjectURL).toHaveBeenCalledTimes(0);
+        expect(revokeObjectURL).toHaveBeenCalledTimes(0);
       }
     },
     TIMEOUT
@@ -195,8 +213,8 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url, false);
       } catch (err) {
-        expect(createObjectURL).toBeCalledTimes(0);
-        expect(revokeObjectURL).toBeCalledTimes(0);
+        expect(createObjectURL).toHaveBeenCalledTimes(0);
+        expect(revokeObjectURL).toHaveBeenCalledTimes(0);
       }
     },
     TIMEOUT
