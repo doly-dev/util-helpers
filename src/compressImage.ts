@@ -55,6 +55,8 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
+ * <em style="font-weight: bold;">如果是半透明图片并且导出 `image/png` 格式，建议将背景变成透明 `background=transparent`，避免出现白边。注意正常图片压缩导出 `image/png` 格式后文件可能会比原图大。</em>
+ *
  * @static
  * @alias module:Other.compressImage
  * @since 4.20.0
@@ -65,7 +67,7 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * @param {number} [options.height] 自定义图片高度，默认图片自身高度
  * @param {number} [options.rotate] 旋转
  * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值
- * @param {string} [options.background] 背景颜色
+ * @param {string} [options.background=#fff] 背景颜色
  * @param {number | function} [options.canvasWidth] 画布宽度，默认图片宽度
  * @param {number | function} [options.canvasHeight] 画布高度，默认图片高度
  * @param {'blob' | 'dataURL'} [options.format='blob'] 导出格式
@@ -160,7 +162,9 @@ function compressImage(img: string | Blob, options: Options = {}) {
         canvas.height = numCanvasHeight || image.height;
 
         // 填充背景色
-        if (background && background !== 'none') {
+        if (background === 'none' || background === 'transparent') {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        } else {
           ctx.fillStyle = background;
           ctx.fillRect(0, 0, canvas.width, canvas.height);
         }

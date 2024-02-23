@@ -132,6 +132,24 @@ describe('loadImageWithBlob', () => {
         background: 'none'
       });
       expect(isBlob(blob2)).toBe(true);
+
+      // 设置背景透明
+      const blob3 = await compressImage(url, {
+        background: 'transparent' // 同 none
+      });
+      expect(isBlob(blob3)).toBe(true);
+    },
+    TIMEOUT
+  );
+
+  it(
+    'png 半透明图片',
+    async () => {
+      const blob = await compressImage(url, {
+        background: 'transparent',
+        type: 'image/png'
+      });
+      expect(isBlob(blob)).toBe(true);
     },
     TIMEOUT
   );
