@@ -160,4 +160,20 @@ describe('transformFieldNames', () => {
     expect(result[2]).toMatchObject(basicMenus[2]);
     expect(result).toMatchSnapshot();
   });
+
+  it('支持保留已转换的原始字段', () => {
+    const result = transformFieldNames(options, { label: 'name', name: 'name' });
+    expect(result).toEqual([
+      {
+        code: '1',
+        name: 'one',
+        label: 'one'
+      },
+      {
+        code: '2',
+        name: 'two',
+        label: 'two'
+      }
+    ]);
+  });
 });

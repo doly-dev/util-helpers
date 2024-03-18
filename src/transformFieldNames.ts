@@ -68,14 +68,20 @@ function transformFieldNames<D extends any, F extends Record<string, keyof D>, C
         newItem[childrenField] = recusion(newItem[childrenField].slice());
       }
 
+      const newKeys = objectKeys(fieldNames);
+
       // 替换字段名
-      objectKeys(fieldNames).forEach((newKey) => {
+      newKeys.forEach((newKey) => {
         const oldKey = fieldNames[newKey];
         if (oldKey in newItem) {
           // @ts-ignore
           newItem[newKey] = newItem[oldKey];
+
           // @ts-ignore
-          delKeys.push(oldKey);
+          if (newKeys.indexOf(oldKey) === -1) {
+            // @ts-ignore
+            delKeys.push(oldKey);
+          }
         }
       });
 
