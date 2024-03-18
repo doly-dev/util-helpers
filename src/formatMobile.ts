@@ -13,7 +13,7 @@ type Options = {
  * @alias module:Processor.formatMobile
  * @since 4.5.0
  * @param {string} mobileNo 手机号码
- * @param {object} [options] 配置项
+ * @param {Object} [options] 配置项
  * @param {string} [options.spaceMark=' '] 间隔字符
  * @returns {string} 格式化后的手机号码
  * @example

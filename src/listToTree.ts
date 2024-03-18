@@ -14,8 +14,8 @@ type Options = {
  * 递归处理空子级
  *
  * @private
- * @param {object[]} arr 列表数据
- * @param {object} [options] 配置项
+ * @param {Object[]} arr 列表数据
+ * @param {Object} [options] 配置项
  * @param {string} [options.childrenField='children'] 子级字段名称
  * @param {'none'|'null'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
  */
@@ -41,14 +41,14 @@ function processEmptyChildren<T extends Record<string, any> = Record<string, any
  * @static
  * @alias module:Tree.listToTree
  * @since 4.14.0
- * @param {object[]} list 列表数据
- * @param {object} [options] 配置项
+ * @param {Object[]} list 列表数据
+ * @param {Object} [options] 配置项
  * @param {string} [options.keyField='id'] 当前数据的键值字段名称
  * @param {string} [options.parentField='pid'] 当前数据的父级字段名称
  * @param {string} [options.childrenField='children'] 子级字段名称
  * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
  * @param {'spread'|'self'} [options.nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
- * @returns {object[]} 树结构
+ * @returns {Object[]} 树结构
  * @example
  *
  * const menus = [

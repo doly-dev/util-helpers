@@ -29,7 +29,7 @@ type AjaxOptions = {
  * @property {boolean} [async=true] 是否异步执行操作
  * @property {string|null} [user=null] 用户名，用于认证用途
  * @property {string|null} [password=null] 密码，用于认证用途
- * @property {object} [headers] 自定义请求头
+ * @property {Object} [headers] 自定义请求头
  * @property {string} [responseType] 响应类型
  * @property {number} [timeout] 请求超时的毫秒数
  * @property {boolean} [withCredentials=false] 跨域请求时是否需要使用凭证
