@@ -72,4 +72,19 @@ describe('isChinese', () => {
     expect(isChinese('𫾔𫾻𫶇𫸩𫵷')).toBe(false);
     expect(isChinese('𫾔𫾻𫶇𫸩𫵷C', { loose: true })).toBe(false);
   });
+
+  it('繁体字', () => {
+    expect(isChinese('發財', { useExtend: true })).toBe(true);
+    expect(isChinese('熲', { useExtend: true })).toBe(true);
+    expect(isChinese('贇', { useExtend: true })).toBe(true);
+    expect(isChinese('钂', { useExtend: true })).toBe(true);
+    expect(isChinese('錡', { useExtend: true })).toBe(true);
+    expect(isChinese('蘇', { useExtend: true })).toBe(true);
+    expect(isChinese('車', { useExtend: true })).toBe(true);
+    expect(isChinese('賈', { useExtend: true })).toBe(true);
+    expect(isChinese('龜', { useExtend: true })).toBe(true);
+    expect(isChinese('懶', { useExtend: true })).toBe(true);
+    expect(isChinese('癩', { useExtend: true })).toBe(true);
+    expect(isChinese('羅', { useExtend: true })).toBe(true);
+  });
 });

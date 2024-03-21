@@ -1,20 +1,24 @@
 import { toString } from 'ut2';
+import { objectValues } from './utils/native';
 
 const chineseDictionary = {
   // 基本汉字
   chineseBasic: '[\u4e00-\u9fa5]',
 
   // 基本汉字补充
-  chineseExtend: '[\u9ea6-\u9fef]',
+  chineseExtend: '[\u9ea6-\u9fff]',
+
+  // 兼容性表意文字
+  chineseExtend2: '[\uF900-\uFAD9]',
 
   // 汉字扩展A
-  chineseExtendA: '[\u3400-\u4DB5]',
+  chineseExtendA: '[\u3400-\u4DBF]',
 
   // 汉字扩展B
-  chineseExtendB: '[\u{20000}-\u{2A6D6}]',
+  chineseExtendB: '[\u{20000}-\u{2A6DF}]',
 
   // 汉字扩展C
-  chineseExtendC: '[\u{2A700}-\u{2B734}]',
+  chineseExtendC: '[\u{2A700}-\u{2B738}]',
 
   // 汉字扩展D
   chineseExtendD: '[\u{2B740}-\u{2B81D}]',
@@ -23,13 +27,22 @@ const chineseDictionary = {
   chineseExtendE: '[\u{2B820}-\u{2CEA1}]',
 
   // 汉字扩展F
-  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]'
+  chineseExtendF: '[\u{2CEB0}-\u{2EBE0}]',
+
+  // 汉字扩展G
+  chineseExtendG: '[\u{30000}-\u{3134A}]',
+
+  // 汉字扩展H
+  chineseExtendH: '[\u{31350}-\u{323AF}]',
+
+  // 汉字扩展I
+  chineseExtendI: '[\u{2EBF0}-\u{2EE5D}]'
 };
 
 const looseChineseRegExp = chineseDictionary.chineseBasic + '+';
 const chineseRegExp = '^' + chineseDictionary.chineseBasic + '+$';
 
-const chineseWithExtend = '(?:' + chineseDictionary.chineseBasic + '|' + chineseDictionary.chineseExtend + '|' + chineseDictionary.chineseExtendA + '|' + chineseDictionary.chineseExtendB + '|' + chineseDictionary.chineseExtendC + '|' + chineseDictionary.chineseExtendD + '|' + chineseDictionary.chineseExtendE + '|' + chineseDictionary.chineseExtendF + ')';
+const chineseWithExtend = '(?:' + objectValues(chineseDictionary).join('|') + ')';
 const looseChineseExtendRegExp = chineseWithExtend + '+';
 const chineseExtendRegExp = '^' + chineseWithExtend + '+$';
 
@@ -53,7 +66,7 @@ type Options = {
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
- * @param {boolean} [options.useExtend=false] 使用统一表意文字扩展A-F。注意：如果不支持 `RegExp.prototype.unicode`，扩展字符集将自动不生效，如IE浏览器。
+ * @param {boolean} [options.useExtend=false] 使用统一表意文字扩展A-I。注意：如果不支持 `RegExp.prototype.unicode`，扩展字符集将自动不生效，如IE浏览器。
  * @returns {boolean} 值是否为中文
  * @example
  *
