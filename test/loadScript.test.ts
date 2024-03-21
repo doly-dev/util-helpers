@@ -6,7 +6,7 @@ import { loadScript } from '../src';
 
 const TIMEOUT = 60 * 1000;
 
-const testUrl = 'https://unpkg.com/util-helpers/dist/util-helpers.min.js';
+const testUrl = 'https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js';
 
 describe('loadScript', () => {
   const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
@@ -20,7 +20,7 @@ describe('loadScript', () => {
     async () => {
       const script = await loadScript(testUrl);
       // @ts-ignore
-      expect(globalThis.utilHelpers).toBeDefined();
+      expect(globalThis.jQuery).toBeDefined();
       expect(script.async).toBe(true);
     },
     TIMEOUT
@@ -38,7 +38,7 @@ describe('loadScript', () => {
       });
 
       // @ts-ignore
-      expect(globalThis.utilHelpers).toBeDefined();
+      expect(globalThis.jQuery).toBeDefined();
       expect(script.async).toBe(false);
       expect(script.id).toBe('abc');
       expect(script.getAttribute('foo')).toBe('bar');
@@ -85,8 +85,8 @@ describe('loadScript', () => {
         onerror: errorFn
       });
 
-      expect(loadFn).toBeCalledTimes(1);
-      expect(errorFn).toBeCalledTimes(0);
+      expect(loadFn).toHaveBeenCalledTimes(1);
+      expect(errorFn).toHaveBeenCalledTimes(0);
 
       try {
         await loadScript('undefine.js', {
@@ -97,8 +97,8 @@ describe('loadScript', () => {
         /* empty */
       }
 
-      expect(loadFn).toBeCalledTimes(1);
-      expect(errorFn).toBeCalledTimes(1);
+      expect(loadFn).toHaveBeenCalledTimes(1);
+      expect(errorFn).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );
