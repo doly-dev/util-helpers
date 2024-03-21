@@ -24,7 +24,7 @@
     "commit": "cz",
     "prepublishOnly": "npm test && npm run build",
     "tsc": "tsc --noEmit",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -51,34 +51,36 @@
   },
   "homepage": "https://doly-dev.github.io/util-helpers/index.html",
   "devDependencies": {
-    "@babel/core": "^7.24.0",
-    "@babel/preset-env": "^7.24.0",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-typescript": "^7.24.1",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
+    "@commitlint/cz-commitlint": "^17.8.1",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
     "babel-jest": "^29.7.0",
     "babel-plugin-minify-replace": "^0.5.0",
+    "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
     "docdash": "^2.0.2",
     "eslint": "^8.57.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.11",
+    "inquirer": "8",
     "jest": "^29.7.0",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.2",
     "lint-staged": "^13.3.0",
-    "prettier": "^2.8.8",
-    "rollup": "^3.29.4",
-    "typescript": "^5.4.2"
+    "prettier": "^3.2.5",
+    "rollup": "^4.13.0",
+    "typescript": "^5.4.3"
   },
   "lint-staged": {
     "**/*.ts": "eslint",
@@ -86,7 +88,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "@commitlint/cz-commitlint"
     }
   },
   "dependencies": {
