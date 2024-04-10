@@ -44,57 +44,13 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 > 数学计算，修正了浮点数计算问题，适用于金额计算。参考：[JS 浮点数计算测试](https://2zbuy.csb.app/)
 
 - 数学计算
-  - [plus](https://doly-dev.github.io/util-helpers/module-Math.html#.plus) - 加
-  - [minus](https://doly-dev.github.io/util-helpers/module-Math.html#.minus) - 减
-  - [times](https://doly-dev.github.io/util-helpers/module-Math.html#.times) - 乘
   - [divide](https://doly-dev.github.io/util-helpers/module-Math.html#.divide) - 除
-  - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
   - [gcd](https://doly-dev.github.io/util-helpers/module-Math.html#.gcd) - 最大公约数
   - [lcm](https://doly-dev.github.io/util-helpers/module-Math.html#.lcm) - 最小公倍数
-- 数据处理
-  - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
-  - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
-  - [fileReader](https://doly-dev.github.io/util-helpers/module-Processor.html#.fileReader) - 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
-  - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
-  - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
-  - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
-  - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
-  - [padZero](https://doly-dev.github.io/util-helpers/module-Processor.html#.padZero) - 前置补零
-  - [parseIdCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.parseIdCard) - 解析身份证号码
-  - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
-  - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
-  - [setDataURLPrefix](https://doly-dev.github.io/util-helpers/module-Processor.html#.setDataURLPrefix) - 设置 DataURL 前缀、MIME 类型、base64 标识
-- 树结构数据操作
-  - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
-  - [findTreeNodes](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNodes) - 查找树结构数据多个节点
-  - [findTreeSelect](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeSelect) - 查找包含当前节点的所有父级节点
-  - [filterTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.filterTree) - 过滤树节点
-  - [listToTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.listToTree) - 列表数据转树结构
-  - [transformFieldNames](https://doly-dev.github.io/util-helpers/module-Processor.html#.transformFieldNames) - 转换字段名
-  - [treeToList](https://doly-dev.github.io/util-helpers/module-Processor.html#.treeToList) - 树结构转列表数据
-- 数据验证
-  - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
-  - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
-  - [isPostcode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPostcode) - 邮政编码
-  - [isHMCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isHMCard) - 港澳居民来往内地通行证，俗称回乡证或回乡卡
-  - [isTWCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTWCard) - 台湾居民来往大陆通行证，俗称台胞证
-  - [isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) - 身份证号
-  - [isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) - 邮箱
-  - [isQQ](https://doly-dev.github.io/util-helpers/module-Validator.html#.isQQ) - QQ 号
-  - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
-  - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
-  - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
-  - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
-  - [isSwiftCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSwiftCode) - Swift Code
-  - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
-  - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
-  - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
-  - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
-  - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
-  - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
-  - [isValidNumber](https://doly-dev.github.io/util-helpers/module-Validator.html#.isValidNumber) - 有效数字
-  - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
-  - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
+  - [minus](https://doly-dev.github.io/util-helpers/module-Math.html#.minus) - 减
+  - [plus](https://doly-dev.github.io/util-helpers/module-Math.html#.plus) - 加
+  - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
+  - [times](https://doly-dev.github.io/util-helpers/module-Math.html#.times) - 乘
 - 其他
   - [ajax](https://doly-dev.github.io/util-helpers/module-Other.html#.ajax) - 请求
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
@@ -107,6 +63,50 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [loadScript](https://doly-dev.github.io/util-helpers/module-Other.html#.loadScript) - 加载 js 文件
   - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
+- 数据处理
+  - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
+  - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
+  - [fileReader](https://doly-dev.github.io/util-helpers/module-Processor.html#.fileReader) - 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
+  - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
+  - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
+  - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
+  - [numberToChinese](https://doly-dev.github.io/util-helpers/module-Processor.html#.numberToChinese) - 数字转中文数字
+  - [padZero](https://doly-dev.github.io/util-helpers/module-Processor.html#.padZero) - 前置补零
+  - [parseIdCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.parseIdCard) - 解析身份证号码
+  - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
+  - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
+  - [setDataURLPrefix](https://doly-dev.github.io/util-helpers/module-Processor.html#.setDataURLPrefix) - 设置 DataURL 前缀、MIME 类型、base64 标识
+- 树结构数据操作
+  - [filterTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.filterTree) - 过滤树节点
+  - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
+  - [findTreeNodes](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNodes) - 查找树结构数据多个节点
+  - [findTreeSelect](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeSelect) - 查找包含当前节点的所有父级节点
+  - [listToTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.listToTree) - 列表数据转树结构
+  - [transformFieldNames](https://doly-dev.github.io/util-helpers/module-Processor.html#.transformFieldNames) - 转换字段名
+  - [treeToList](https://doly-dev.github.io/util-helpers/module-Processor.html#.treeToList) - 树结构转列表数据
+- 数据验证
+  - [isBankCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBankCard) - 银行卡
+  - [isBusinessLicense](https://doly-dev.github.io/util-helpers/module-Validator.html#.isBusinessLicense) - 营业执照，也叫工商注册号
+  - [isChinese](https://doly-dev.github.io/util-helpers/module-Validator.html#.isChinese) - 中文
+  - [isEmail](https://doly-dev.github.io/util-helpers/module-Validator.html#.isEmail) - 邮箱
+  - [isHMCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isHMCard) - 港澳居民来往内地通行证，俗称回乡证或回乡卡
+  - [isIPv4](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv4) - IPv4
+  - [isIPv6](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIPv6) - IPv6
+  - [isIdCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isIdCard) - 身份证号
+  - [isMobile](https://doly-dev.github.io/util-helpers/module-Validator.html#.isMobile) - 手机号码
+  - [isPassport](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassport) - 护照号
+  - [isPassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPassword) 密码强度
+  - [isPostcode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isPostcode) - 邮政编码
+  - [isQQ](https://doly-dev.github.io/util-helpers/module-Validator.html#.isQQ) - QQ 号
+  - [isSocialCreditCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSocialCreditCode) - 统一社会信用代码，也叫三证合一组织代码
+  - [isSwiftCode](https://doly-dev.github.io/util-helpers/module-Validator.html#.isSwiftCode) - Swift Code
+  - [isTWCard](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTWCard) - 台湾居民来往大陆通行证，俗称台胞证
+  - [isTelephone](https://doly-dev.github.io/util-helpers/module-Validator.html#.isTelephone) - 固定电话
+  - [isUrl](https://doly-dev.github.io/util-helpers/module-Validator.html#.isUrl) - URL
+  - [isValidNumber](https://doly-dev.github.io/util-helpers/module-Validator.html#.isValidNumber) - 有效数字
+  - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
+  - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
+  - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 
 ## 精选第三方工具库
 
