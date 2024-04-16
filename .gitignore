@@ -10,6 +10,7 @@ coverage
 build
 zip
 dist
+dist-bak
 example
 docs
 docs-src
