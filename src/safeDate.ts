@@ -1,9 +1,9 @@
-// 关于函数重载导致的注释丢失问题参考：https://github.com/microsoft/TypeScript/issues/27981
-// 目前函数重载方法，将优先保证 jsdoc 文档展示。
+interface SafeDate {
+  (): Date;
+  (value: number | string | Date): Date;
+  (year: number, monthIndex: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number): Date;
+}
 
-function safeDate(): Date;
-function safeDate(value: number | string | Date): Date;
-function safeDate(year: number, monthIndex: number, date?: number, hours?: number, minutes?: number, seconds?: number, ms?: number): Date;
 /**
  * 创建一个 Date 实例日期对象，同 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()</a>
  *
@@ -11,7 +11,7 @@ function safeDate(year: number, monthIndex: number, date?: number, hours?: numbe
  *
  * 如果参数为 undefined 正常返回 Date 。
  *
- * @static
+ * @function
  * @alias module:Processor.safeDate
  * @since 4.4.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date | Date}
@@ -27,7 +27,7 @@ function safeDate(year: number, monthIndex: number, date?: number, hours?: numbe
  * safeDate(99, 1); // Mon Feb 01 1999 00:00:00 GMT+0800 (中国标准时间)
  * safeDate(1646711233171); // Tue Mar 08 2022 11:47:13 GMT+0800 (中国标准时间)
  */
-function safeDate(value?: number | string | Date, ...args: any[]) {
+const safeDate: SafeDate = function (value?: number | string | Date, ...args: any[]) {
   const safeValue = typeof value === 'string' ? value.replace(/[\\.-]/g, '/') : value;
 
   if (args && args.length > 0) {
@@ -36,6 +36,6 @@ function safeDate(value?: number | string | Date, ...args: any[]) {
   }
 
   return typeof safeValue === 'undefined' ? new Date() : new Date(safeValue);
-}
+};
 
 export default safeDate;

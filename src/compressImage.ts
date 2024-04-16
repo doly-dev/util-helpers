@@ -57,8 +57,11 @@ type Options = {
   ajaxOptions?: Parameters<typeof loadImageWithBlob>[2];
 };
 
-function compressImage(img: string | Blob, options: Omit<Options, 'format'> & { format: 'dataURL' }): Promise<string>;
-function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
+interface CompressImage {
+  (img: string | Blob, options: Omit<Options, 'format'> & { format: 'dataURL' }): Promise<string>;
+  (img: string | Blob, options?: Options): Promise<Blob>;
+}
+
 /**
  * 压缩图片。
  *
@@ -66,7 +69,7 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  *
  * <em style="font-weight: bold;">如果是半透明图片并且导出 `image/png` 格式，建议将背景变成透明 `background=transparent`，避免出现白边。注意正常图片压缩导出 `image/png` 格式后文件可能会比原图大。</em>
  *
- * @static
+ * @function
  * @alias module:Other.compressImage
  * @since 4.20.0
  * @see {@link https://sytpwg.csb.app/ | 在线示例}
@@ -118,8 +121,8 @@ function compressImage(img: string | Blob, options?: Options): Promise<Blob>;
  * });
  *
  */
-function compressImage(img: string | Blob, options: Options = {}) {
-  return new Promise((resolve, reject) => {
+const compressImage: CompressImage = function (img: string | Blob, options: Options = {}) {
+  return new Promise<any>((resolve, reject) => {
     const {
       width,
       height,
@@ -214,6 +217,6 @@ function compressImage(img: string | Blob, options: Options = {}) {
       })
       .catch(reject);
   });
-}
+};
 
 export default compressImage;
