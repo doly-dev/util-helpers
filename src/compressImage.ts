@@ -1,5 +1,6 @@
 import { toNumber } from 'ut2';
 import loadImageWithBlob from './loadImageWithBlob';
+import { nativeUndefined } from './utils/native';
 
 /**
  * canvas 导出 blob 对象
@@ -186,7 +187,7 @@ const compressImage: CompressImage = function (img: string | Blob, options: Opti
         // 旋转/变换/偏移
         // 如果设置了旋转，自动将原点设置为图片中心，并调整偏移值。
         let internalOffset = [0, 0];
-        if (rotate !== undefined) {
+        if (rotate !== nativeUndefined) {
           ctx.translate(image.width / 2, image.height / 2);
           internalOffset = [-image.width / 2, -image.height / 2];
           ctx.rotate((rotate * Math.PI) / 180);

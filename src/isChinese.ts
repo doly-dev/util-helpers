@@ -1,5 +1,5 @@
 import { toString } from 'ut2';
-import { objectValues } from './utils/native';
+import { nativeUndefined, objectValues } from './utils/native';
 
 const chineseDictionary = {
   // 基本汉字
@@ -94,7 +94,7 @@ function isChinese(value: any, options: Options = {}) {
 
   const hasExtend = useExtend && supportRegExpUnicode;
   const resultRegExp = hasExtend ? extendRegExp : basicRegExp;
-  const flag = hasExtend ? 'u' : undefined;
+  const flag = hasExtend ? 'u' : nativeUndefined;
   const reg = new RegExp(resultRegExp, flag);
   return reg.test(valueStr);
 }

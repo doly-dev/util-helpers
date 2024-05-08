@@ -2,7 +2,7 @@ import { isBlob, isPromiseLike } from 'ut2';
 import dataURLToBlob from './dataURLToBlob';
 import isUrl from './isUrl';
 import ajax from './ajax';
-import { createObjectURL, revokeObjectURL } from './utils/native';
+import { createObjectURL, nativeUndefined, revokeObjectURL } from './utils/native';
 
 // 下载文件到本地
 function saver(blobUrl: string, fileName = '') {
@@ -132,7 +132,7 @@ async function download(data: DataType, options?: string | DownloadOptions): Pro
       // @ts-ignore
       const res = await asyncTransformResponse(ev.target.response);
       const currentFileName = fileName || data.split('?')[0].split('#')[0].split('/').pop();
-      return download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : undefined) });
+      return download(res, { fileName: currentFileName, type: type || (isBlob(res) ? res.type : nativeUndefined) });
     } else {
       // string
       payload = new Blob([data], { type: type || 'text/plain' });
