@@ -1,8 +1,7 @@
 import { isNaN } from 'ut2';
-import { checkBoundary, scientificToNumber, isScientificNumber, trimLeftZero } from './utils/math.util';
+import { checkBoundary, transformEffectiveNumber, trimLeftZero } from './utils/math.util';
 import devWarn from './utils/devWarn';
-
-const reg = /^[+-]?\d*\.?\d*$/;
+import isValidNumber from './isValidNumber';
 
 /**
  * 检查数字或数字字符串
@@ -12,7 +11,7 @@ const reg = /^[+-]?\d*\.?\d*$/;
  * @returns 是否为数字
  */
 function checkNumber(num: string | number) {
-  if ((typeof num !== 'number' && typeof num !== 'string') || (typeof num === 'number' && isNaN(num)) || (typeof num === 'string' && (!(reg.test(num) || isScientificNumber(num)) || num === ''))) {
+  if (!isValidNumber(num)) {
     devWarn(`${num} invalid parameter.`);
     return false;
   }
@@ -143,8 +142,8 @@ const formatMoney = (num: string | number = '', options: Options = {}) => {
   thousand = typeof thousand === 'string' ? thousand : ',';
   decimal = typeof decimal === 'string' ? decimal : '.';
 
-  // 转换数字字符串，支持科学记数法
-  const strNum = scientificToNumber(num) + '';
+  // 转换数字字符串
+  const strNum = transformEffectiveNumber(num) + '';
   // 整数和小数部分
   const [intStr, decStr] = strNum.split('.');
 

@@ -5,8 +5,11 @@
  * 问题示例：2.3 + 2.4 = 4.699999999999999，1.0 - 0.9 = 0.09999999999999998
  */
 
-import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, isNaN, isNumber, isString, isSymbol } from 'ut2';
+import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, isNaN, isNumber, isString, isSymbol, toNumber } from 'ut2';
 import devWarn from './devWarn';
+
+const radixReg = /^[-+]?0[b|o|x]\d+/i;
+const dotNumberStringReg = /^\.\d+/;
 
 /**
  * 将值转换为有效数值
@@ -21,6 +24,8 @@ export function transformEffectiveNumber(value: any) {
 
     if (ret === '') {
       ret = Number(ret);
+    } else if (radixReg.test(ret) || dotNumberStringReg.test(ret)) {
+      ret = toNumber(ret);
     } else if (isNaN(Number(ret))) {
       // string如果可以转换为number，默认不转换为number类型。如使用了字符串大数 '12435465768798090897'
       ret = Number.NaN;
