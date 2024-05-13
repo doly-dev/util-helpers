@@ -34,7 +34,7 @@ type AjaxOptions = {
  * @property {number} [timeout] 请求超时的毫秒数
  * @property {boolean} [withCredentials=false] 跨域请求时是否需要使用凭证
  * @property {*} [data=null] 请求体被发送的数据
- * @property {function} [options.onReadyStateChange] 当 readyState 属性发生变化时触发
+ * @property {function} [onReadyStateChange] 当 readyState 属性发生变化时触发
  * @property {function} [onLoadStart] 接收到响应数据时触发
  * @property {function} [onProgress] 请求接收到更多数据时，周期性地触发
  * @property {function} [onAbort] 当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时

@@ -52,11 +52,11 @@ type DownloadOptions = {
 
 /**
  * @typedef {Object} DownloadOptions 下载配置项
- * @property {string} [options.fileName] 文件名称
- * @property {string} [options.type] MIME 类型
- * @property {'url'|'text'} [options.dataType] 手动设置数据类型，默认会根据传入的数据判断类型，主要是为了区分 url 和 text 。<br/>如果你要下载的文本是 url ，请设置 'text' ；如果你要下载的 url 是绝对/相对路径，请设置 'url' 。
- * @property {TransformRequest} [options.transformRequest] 请求前触发，XHR 对象或配置调整
- * @property {TransformResponse} [options.transformResponse] 请求成功后触发，在传递给 then/catch 前，允许修改响应数据
+ * @property {string} [fileName] 文件名称
+ * @property {string} [type] MIME 类型
+ * @property {'url'|'text'} [dataType] 手动设置数据类型，默认会根据传入的数据判断类型，主要是为了区分 url 和 text 。<br/>如果你要下载的文本是 url ，请设置 'text' ；如果你要下载的 url 是绝对/相对路径，请设置 'url' 。
+ * @property {TransformRequest} [transformRequest] 请求前触发，XHR 对象或配置调整
+ * @property {TransformResponse} [transformResponse] 请求成功后触发，在传递给 then/catch 前，允许修改响应数据
  */
 
 /**
