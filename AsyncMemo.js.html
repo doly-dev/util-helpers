@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>strlen.js - util-helpers </title>
+    <title>AsyncMemo.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">strlen.js</h1>
+    <h1 class="page-title">AsyncMemo.js</h1>
     
 
     
@@ -71,40 +71,68 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { toString } from 'ut2';
+            <pre class="prettyprint source linenums"><code>import { Cache } from 'cache2';
+import { isString } from 'ut2';
 /**
- * 获取字符长度。中文汉字占2个字符，英文占1个字符，特殊如emoji占4个字符。
+ * 异步缓存
  *
- * @static
- * @alias module:Other.strlen
- * @since 4.10.0
- * @param {string} str 字符串
- * @returns {number} 字符长度
- * @example
- *
- * strlen('你好a'); // 5
- * strlen('你好，世界！'); // 12
- * strlen('严両丞丽'); // 8
- * strlen('abcde'); // 5
- * strlen('𠮷'); // 4
- * strlen('🍎'); // 4
- *
+ * @class
+ * @see {@link https://www.npmjs.com/package/cache2 | cache2}
+ * @param {Object} [options] 缓存配置项，更多配置项可参考 [`cache2`](https://www.npmjs.com/package/cache2)
+ * @param {number} [options.max] 最大缓存数量
+ * @param {'replaced' | 'limited'} [options.maxStrategy] 缓存策略
+ * @param {string} [options.prefix] 缓存键前缀
  */
-function strlen(str) {
-    const realStr = toString(str);
-    let len = 0;
-    for (let i = 0; i &lt; realStr.length; i++) {
-        const c = realStr.charCodeAt(i);
-        if ((c >= 0x0001 &amp;&amp; c &lt;= 0x007e) || (0xff60 &lt;= c &amp;&amp; c &lt;= 0xff9f)) {
-            len++;
-        }
-        else {
-            len += 2;
-        }
+class AsyncMemo {
+    promiseCache;
+    /**
+     * cache2 实例，用于管理缓存
+     */
+    cache;
+    constructor(options) {
+        this.promiseCache = {};
+        this.cache = new Cache('uh_async_memo', options);
     }
-    return len;
+    /**
+     * 执行异步方法
+     *
+     * @param {Function} asyncFn 异步方法
+     * @param {string} [key] 缓存键，如果没有该值将直接执行异步方法。
+     * @param {Object} [options] 配置项
+     * @param {number} [options.ttl] 数据存活时间
+     * @param {boolean} [options.persisted=true] 数据持久化，如果存在缓存数据，直接返回缓存数据，不再执行异步方法。&lt;br/>即使不开启该配置，不影响在异步执行成功后缓存数据。
+     * @returns {Promise&lt;*>} 异步结果
+     */
+    run(asyncFn, key, options) {
+        if (!isString(key)) {
+            return asyncFn();
+        }
+        const opts = {
+            persisted: true,
+            ...options
+        };
+        if (opts.persisted) {
+            const data = this.cache.get(key);
+            if (data) {
+                return Promise.resolve(data);
+            }
+        }
+        if (!this.promiseCache[key]) {
+            this.promiseCache[key] = asyncFn()
+                .then((res) => {
+                delete this.promiseCache[key];
+                this.cache.set(key, res, opts.ttl);
+                return res;
+            })
+                .catch((err) => {
+                delete this.promiseCache[key];
+                return Promise.reject(err);
+            });
+        }
+        return this.promiseCache[key];
+    }
 }
-export default strlen;
+export default AsyncMemo;
 </code></pre>
         </article>
     </section>
