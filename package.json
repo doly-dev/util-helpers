@@ -16,7 +16,7 @@
     "build:dist": "rm -rf dist && rollup -c rollup.umd.config.mjs",
     "build:types": "rm -rf types && tsc -p tsconfig.build.json -d --outDir types --emitDeclarationOnly",
     "build:doc": "npm run doc",
-    "doc": "rm -rf docs && rm -rf docs-src && tsc -p tsconfig.build.json --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
+    "doc": "rm -rf docs && rm -rf docs-src && tsc -p tsconfig.build.json -t esnext --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
     "doc:open": "open ./docs/index.html",
     "prettier": "prettier --write 'src/**/*.ts' && prettier --write 'test/**/*.ts'",
     "lint": "eslint src --ext .ts",
@@ -51,8 +51,8 @@
   },
   "homepage": "https://doly-dev.github.io/util-helpers/index.html",
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/preset-env": "^7.24.4",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@babel/preset-typescript": "^7.24.1",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
@@ -63,8 +63,8 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.12",
-    "@typescript-eslint/eslint-plugin": "^7.7.0",
-    "@typescript-eslint/parser": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
     "babel-jest": "^29.7.0",
     "babel-plugin-minify-replace": "^0.5.0",
     "commitizen": "^4.3.0",
@@ -76,10 +76,10 @@
     "jest": "^29.7.0",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
-    "jsdoc": "^4.0.2",
+    "jsdoc": "^4.0.3",
     "lint-staged": "^13.3.0",
     "prettier": "^3.2.5",
-    "rollup": "^4.14.3",
+    "rollup": "^4.17.2",
     "typescript": "^5.4.5"
   },
   "lint-staged": {
@@ -92,9 +92,10 @@
     }
   },
   "dependencies": {
+    "cache2": "^2.0.5",
     "emitter-pro": "^1.2.1",
     "tslib": "^2.6.2",
-    "ut2": "^1.7.1"
+    "ut2": "^1.9.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

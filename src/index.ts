@@ -145,3 +145,6 @@ export { VERSION };
  * @deprecated 即将废弃，请使用 `VERSION`
  */
 export const version = BUILD_VERSION;
+
+// classes
+export { default as AsyncMemo } from './AsyncMemo';
