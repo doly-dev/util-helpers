@@ -40,7 +40,7 @@ class AsyncMemo<DataType = any> {
       persisted?: boolean;
     }
   ) {
-    if (!isString(key)) {
+    if (!key || !isString(key)) {
       return asyncFn();
     }
 
