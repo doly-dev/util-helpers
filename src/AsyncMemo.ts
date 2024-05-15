@@ -1,5 +1,5 @@
 import { Cache, CacheOptions } from 'cache2';
-import { isString } from 'ut2';
+import { isString, uniqueId } from 'ut2';
 
 /**
  * 异步缓存
@@ -9,7 +9,6 @@ import { isString } from 'ut2';
  * @param {Object} [options] 缓存配置项，更多配置项可参考 [`cache2`](https://www.npmjs.com/package/cache2)
  * @param {number} [options.max] 最大缓存数量
  * @param {'replaced' | 'limited'} [options.maxStrategy] 缓存策略
- * @param {string} [options.prefix] 缓存键前缀
  */
 class AsyncMemo<DataType = any> {
   private promiseCache: Record<string, Promise<any>>;
@@ -20,7 +19,7 @@ class AsyncMemo<DataType = any> {
 
   constructor(options?: Partial<CacheOptions>) {
     this.promiseCache = {};
-    this.cache = new Cache('uh_async_memo', options);
+    this.cache = new Cache(uniqueId('uh_async_memo'), options);
   }
 
   /**
