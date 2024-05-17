@@ -107,6 +107,8 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
+- Classes
+  - [AsyncMemo](https://doly-dev.github.io/util-helpers/AsyncMemo.html) - 异步缓存类
 
 ## 精选第三方工具库
 

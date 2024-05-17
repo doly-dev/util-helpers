@@ -148,8 +148,8 @@ describe('math.util', () => {
     expect(transformEffectiveNumber(Symbol())).toBe(NaN);
     expect(transformEffectiveNumber(Symbol.for('1324'))).toBe(NaN);
     expect(transformEffectiveNumber(Object(Symbol()))).toBe(NaN);
-    expect(transformEffectiveNumber(() => { })).toBe(NaN);
-    expect(transformEffectiveNumber(function () { })).toBe(NaN);
+    expect(transformEffectiveNumber(() => {})).toBe(NaN);
+    expect(transformEffectiveNumber(function () {})).toBe(NaN);
     expect(transformEffectiveNumber('null')).toBe(NaN);
     expect(transformEffectiveNumber('abc')).toBe(NaN);
     expect(transformEffectiveNumber('15a')).toBe(NaN);
