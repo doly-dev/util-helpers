@@ -17,12 +17,12 @@ import { isString, uniqueId } from 'ut2';
  * @example
  *
  * const asyncMemo = new AsyncMemo({ max: 20, maxStrategy: 'replaced' });
- * asyncMemo(()=>download({ fssid: 'a' }), 'a');
- * asyncMemo(()=>download({ fssid: 'b' }), 'b');
- * asyncMemo(()=>download({ fssid: 'a' }), 'a'); // 如果有缓存结果直接返回，如果有异步执行中，不会重复触发异步，但共享异步结果。
+ * asyncMemo.run(()=>download({ fssid: 'a' }), 'a');
+ * asyncMemo.run(()=>download({ fssid: 'b' }), 'b');
+ * asyncMemo.run(()=>download({ fssid: 'a' }), 'a'); // 如果有缓存结果直接返回，如果有异步执行中，不会重复触发异步，但共享异步结果。
  *
- * asyncMemo(()=>download({ fssid: 'a' }), 'a', { persisted: false }); // 不读取缓存结果，但是结果还是会缓存。
- * asyncMemo(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。
+ * asyncMemo.run(()=>download({ fssid: 'a' }), 'a', { persisted: false }); // 不读取缓存结果，但是结果还是会缓存。
+ * asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。
  */
 class AsyncMemo<DataType = any> {
   private promiseCache: Record<string, Promise<any>>;
