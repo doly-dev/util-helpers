@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>listToTree.js - util-helpers </title>
+    <title>transformObjectValue.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">listToTree.js</h1>
+    <h1 class="page-title">transformObjectValue.js</h1>
     
 
     
@@ -71,107 +71,84 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { isArray, isObject } from 'ut2';
+            <pre class="prettyprint source linenums"><code>import { forEach, isArray, isPlainObject } from 'ut2';
 /**
- * 递归处理空子级
+ * 创建一个转换值的新对象或数组。
  *
- * @private
- * @param {Object[]} arr 列表数据
- * @param {Object} [options] 配置项
- * @param {string} [options.childrenField='children'] 子级字段名称
- * @param {'none'|'null'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
- */
-function processEmptyChildren(arr, options) {
-    const { childrenField = 'children', emptyChildrenValue = 'none' } = options;
-    arr.forEach((item) => {
-        if (item[childrenField].length &lt;= 0) {
-            if (emptyChildrenValue === 'null') {
-                // @ts-ignore
-                item[childrenField] = null;
-            }
-            else {
-                delete item[childrenField];
-            }
-        }
-        else {
-            processEmptyChildren(item[childrenField], options);
-        }
-    });
-}
-/**
- * 列表数据转树结构
+ * 例如 antd Form 中的设置表单值时，如果值为空字符串可能需要转为 `undefined` ，才不影响表单的初始值。
  *
  * @static
- * @alias module:Tree.listToTree
- * @since 4.14.0
- * @param {Object[]} list 列表数据
- * @param {Object} [options] 配置项
- * @param {string} [options.keyField='id'] 当前数据的键值字段名称
- * @param {string} [options.parentField='pid'] 当前数据的父级字段名称
- * @param {string} [options.childrenField='children'] 子级字段名称
- * @param {'none'|'null'|'array'} [options.emptyChildrenValue='none'] 子级为空时的值，none表示删除该子级，null表示为null，array表示为[]。
- * @param {'spread'|'self'} [options.nodeAssign='spread'] 节点赋值方式。spread表示使用展开运算符创建新值，self表示使用自身对象。
- * @returns {Object[]} 树结构
+ * @alias module:Processor.transformObjectValue
+ * @since 4.23.0
+ * @param {Array | Object} data 要转换值的普通对象或数组
+ * @param {Function} fn 遍历普通对象或数组键值方法
+ * @param {boolean} [deep=true] 深度遍历，检测值为普通对象或数组时递归处理。默认 true 。
+ * @returns {Array | Object} 如果是普通对象或数组，返回一个新的对象或数组，否则返回自身
  * @example
  *
- * const menus = [
- *   { id: '1', name: '首页', code: 'trade', pid: null },
- *   { id: '2', name: '交易管理', code: 'trade', pid: null },
- *   { id: '3', name: '交易查询', code: 'trade-1', pid: '2' },
- *   { id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' },
- *   { id: '5', name: '权限管理', code: 'authorization', pid: null },
- *   { id: '6', name: '角色管理', code: 'authorization-1', pid: '5' },
- *   { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }
- * ];
- * listToTree(menus);
- * // [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null,children:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',children:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,children:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]}]
+ * const data1 = { foo: 'bar', baz: 42 }
+ * // 数字转为字符串
+ * transformObjectValue(data1, value => {
+ *   if(typeof value === 'number'){
+ *     return String(value)
+ *   }
+ *   return value;
+ * });
+ * // { foo: 'bar', baz: '42' }
  *
- * // 自定义子级字段名
- * listToTree(basicMenus, { childrenField: 'childs' });
- * // [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null,childs:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',childs:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,childs:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]}]
+ * const data2 = [1,2,3,4];
+ * // 数字转为字符串
+ * transformObjectValue(data2, value=>{
+ *   if(typeof value === 'number'){
+ *     return String(value)
+ *   }
+ * });
+ * // ['1', '2', '3', '4']
+ *
+ * // 嵌套普通对象或数组
+ * const data3 = { foo: 'bar', baz: 42, c: [1,2,3,4], d: '' }
+ * // 数字转为字符串，空字符串转为undefined
+ * transformObjectValue(data3, value=>{
+ *   if(typeof value === 'number'){
+ *     return String(value);
+ *   }
+ *   retrun value === '' ? undefined : value
+ * });
+ * // { foo: 'bar', baz: '42', ['1', '2', '3', '4'], d: undefined }
+ *
+ * // 数组的值不处理，对象值为数字转为字符串，空字符串转为undefined
+ * transformObjectValue(data3, (value, key)=>{
+ *   if(typeof key === 'number'){
+ *     return value;
+ *   }
+ *   if(typeof value === 'number'){
+ *     return String(value);
+ *   }
+ *   retrun value === '' ? undefined : value
+ * });
+ * // { foo: 'bar', baz: '42', [1, 2, 3, 4], d: undefined }
  *
  */
-function listToTree(list, options = {}) {
-    const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none', nodeAssign = 'spread' } = options;
-    const tree = [];
-    const record = {};
-    if (!isArray(list)) {
-        return tree;
+const transformObjectValue = function (data, fn, deep = true) {
+    if (isPlainObject(data)) {
+        const result = {};
+        forEach(data, (value, key) => {
+            const newValue = deep &amp;&amp; (isPlainObject(value) || isArray(value)) ? transformObjectValue(value, fn) : fn(value, key);
+            result[key] = newValue;
+        });
+        return result;
     }
-    list.forEach((item) => {
-        if (isObject(item)) {
-            const newItem = nodeAssign === 'spread' ? { ...item } : item;
-            const id = newItem[keyField];
-            const pid = newItem[parentField];
-            if (record[id]) {
-                // @ts-ignore
-                newItem[childrenField] = record[id];
-            }
-            else {
-                // @ts-ignore
-                newItem[childrenField] = record[id] = [];
-            }
-            if (pid) {
-                if (!record[pid]) {
-                    record[pid] = [newItem];
-                }
-                else {
-                    record[pid].push(newItem);
-                }
-            }
-            else {
-                // @ts-ignore
-                tree.push(newItem);
-            }
-        }
-    });
-    if (emptyChildrenValue !== 'array') {
-        // @ts-ignore
-        processEmptyChildren(tree, options);
+    else if (isArray(data)) {
+        const result = [];
+        forEach(data, (value, index) => {
+            const newValue = deep &amp;&amp; (isPlainObject(value) || isArray(value)) ? transformObjectValue(value, fn) : fn(value, index);
+            result.push(newValue);
+        });
+        return result;
     }
-    return tree;
-}
-export default listToTree;
+    return data;
+};
+export default transformObjectValue;
 </code></pre>
         </article>
     </section>
