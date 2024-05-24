@@ -1,42 +1,9 @@
 import devWarn from './utils/devWarn';
 
-const regNumber = /[\d]/;
+const regNumber = /\d/;
 const regLowerCaseLetter = /[a-z]/;
 const regUpperCaseLetter = /[A-Z]/;
 const regAllNumberAndLetter = /[\d|a-z]/gi;
-
-/**
- * 是否包含数字
- *
- * @private
- * @param {string} val 检查的值
- * @returns {boolean} 是否包含数字
- */
-function hasNumber(val: string) {
-  return regNumber.test(val);
-}
-
-/**
- * 是否包含小写字母
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含小写字母
- */
-function hasLowerCaseLetter(val: string) {
-  return regLowerCaseLetter.test(val);
-}
-
-/**
- * 是否包含大写字母
- *
- * @private
- * @param {string} val 检测的值
- * @returns {boolean} 是否包含大写字母
- */
-function hasUpperCaseLetter(val: string) {
-  return regUpperCaseLetter.test(val);
-}
 
 /**
  * 是否为十六进制
@@ -226,11 +193,11 @@ function validatePassword(value: string, options: Options = {}) {
   let currentLevel = 0;
 
   // 包含数字
-  const containesNumber = hasNumber(valStr);
+  const containesNumber = regNumber.test(valStr);
   // 包含小写字母
-  const containesLowerCaseLetter = hasLowerCaseLetter(valStr);
+  const containesLowerCaseLetter = regLowerCaseLetter.test(valStr);
   // 包含大写字母
-  const containesUpperCaseLetter = hasUpperCaseLetter(valStr);
+  const containesUpperCaseLetter = regUpperCaseLetter.test(valStr);
   // 包含特殊字符
   const containesSpecialCharacter = hasSpecialCharacter(valStr, special);
   // 包含非法字符，即含有非数字字母特殊字符以外的其他字符
