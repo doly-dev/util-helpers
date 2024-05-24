@@ -48,6 +48,7 @@ export { default as normalizeString } from './normalizeString';
 export { default as safeDate } from './safeDate';
 export { default as formatMobile } from './formatMobile';
 export { default as padZero } from './padZero';
+export { default as transformObjectValue } from './transformObjectValue';
 
 /**
  * 数学计算，修正浮点数计算问题

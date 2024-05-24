@@ -76,6 +76,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [replaceChar](https://doly-dev.github.io/util-helpers/module-Processor.html#.replaceChar) - 替换字符，应用场景如：脱敏
   - [safeDate](https://doly-dev.github.io/util-helpers/module-Processor.html#.safeDate) - 创建一个 Date 实例，同 new Date
   - [setDataURLPrefix](https://doly-dev.github.io/util-helpers/module-Processor.html#.setDataURLPrefix) - 设置 DataURL 前缀、MIME 类型、base64 标识
+  - [transformObjectValue](https://doly-dev.github.io/util-helpers/module-Processor.html#.transformObjectValue) - 创建一个转换值的新对象或数组
 - 树结构数据操作
   - [filterTree](https://doly-dev.github.io/util-helpers/module-Processor.html#.filterTree) - 过滤树节点
   - [findTreeNode](https://doly-dev.github.io/util-helpers/module-Other.html#.findTreeNode) - 查找树结构数据节点
