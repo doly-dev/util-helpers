@@ -1,32 +1,41 @@
-import { toNumber } from 'ut2';
+import { randomInt, toNumber } from 'ut2';
 
-const numberChars = '0123456789';
-const letterChars = 'abcdefghijklmnopqrstuvwxyz';
-const defaultChars = numberChars + letterChars + letterChars.toUpperCase();
+const letter = 'abcdefghijklmnopqrstuvwxyz';
+const chars = {
+  number: '0123456789',
+  lower: letter,
+  upper: letter.toUpperCase()
+};
+const allChars = chars.number + chars.lower + chars.upper;
 
 /**
  * @private
  * @param {number} len 长度
- * @param {string} optionalChars 允许的字符，默认为数字和大小写字母
+ * @param {string} pool 字符池
  * @param {string} [prefix=''] 前缀部分，不计入长度
  * @returns {string}
  */
-function internalRandomString(len: number, optionalChars: string, prefix = ''): string {
+function internalRandomString(len: number, pool: string, prefix = ''): string {
   while (len-- > 0) {
-    const r = optionalChars[Math.floor(Math.random() * optionalChars.length)];
-    return internalRandomString(len, optionalChars, prefix + r);
+    const r = pool[randomInt(0, pool.length - 1)];
+    return internalRandomString(len, pool, prefix + r);
   }
   return prefix;
+}
+
+interface RandomString {
+  (len: number, poll: 'number' | 'lower' | 'upper'): string;
+  (len: number, poll?: string): string;
 }
 
 /**
  * 生成随机字符串
  *
- * @static
+ * @function
  * @alias module:Other.randomString
  * @since 4.8.0
  * @param {number} [len=0] 长度
- * @param {string} [optionalChars='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 允许的字符，默认为数字和大小写字母
+ * @param {'number' | 'lower' | 'upper' | string} [pool='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 字符池，默认为数字和大小写字母，支持number/lower/upper
  * @returns {string} 随机字符串
  * @example
  *
@@ -38,10 +47,18 @@ function internalRandomString(len: number, optionalChars: string, prefix = ''): 
  * randomString(8, 'abcefg'); // bcgcfabg
  *
  */
-function randomString(len = 0, optionalChars?: string) {
-  const realChars = typeof optionalChars === 'string' && optionalChars ? optionalChars : defaultChars;
+const randomString: RandomString = function (len = 0, pool?: string) {
+  let _pool: string;
 
-  return internalRandomString(toNumber(len), realChars);
-}
+  if (typeof pool !== 'string') {
+    _pool = allChars;
+  } else if (chars[pool as keyof typeof chars]) {
+    _pool = chars[pool as keyof typeof chars];
+  } else {
+    _pool = pool;
+  }
+
+  return internalRandomString(toNumber(len), _pool);
+};
 
 export default randomString;
