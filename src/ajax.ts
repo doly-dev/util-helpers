@@ -23,7 +23,7 @@ type AjaxOptions = {
 };
 
 /**
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest XMLHttpRequest}
  * @typedef {Object} AjaxOptions ajax 配置项
  * @property {string} [method="get"] 创建请求时使用的方法
  * @property {boolean} [async=true] 是否异步执行操作
@@ -52,7 +52,7 @@ type AjaxOptions = {
  * @static
  * @alias module:Other.ajax
  * @since 4.16.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest XMLHttpRequest}
  * @param {string} url 地址
  * @param {AjaxOptions} [options] 配置项
  * @returns {Promise<object>} XHR 事件对象

@@ -47,7 +47,7 @@ type Options = {
  * @static
  * @alias module:Validator.isSocialCreditCode
  * @since 1.1.0
- * @see {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则 | GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
+ * @see {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则 GB 32100-2015 法人和其他组织统一社会信用代码编码规则}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.checkCode=true] 是否校验最后一位校验码，如果为false，不校验校验位。

@@ -46,7 +46,7 @@ type Options = {
  * @static
  * @alias module:Validator.isBusinessLicense
  * @since 3.5.0
- * @see {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html | GS15—2006 工商行政管理市场主体注册号编制规则}
+ * @see {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html GS15—2006 工商行政管理市场主体注册号编制规则}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.checkCode=true] 是否校验最后一位校验码，如果为false，不校验校验位。

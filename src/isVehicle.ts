@@ -9,7 +9,7 @@ const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙�
  * @static
  * @alias module:Validator.isVehicle
  * @since 1.1.0
- * @see {@link https://baike.baidu.com/item/车牌号 | 车牌号}
+ * @see {@link https://baike.baidu.com/item/车牌号 车牌号}
  * @param {*} value 要检测的值
  * @returns {boolean} 值是否为车牌号
  * @example

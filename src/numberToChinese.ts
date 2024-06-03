@@ -142,7 +142,7 @@ type Options = {
  * @static
  * @alias module:Processor.numberToChinese
  * @since 1.2.0
- * @see {@link https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=F5DAC3377DA99C8D78AE66735B6359C7 | 出版物上数字用法}
+ * @see {@link https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=F5DAC3377DA99C8D78AE66735B6359C7 出版物上数字用法}
  * @param {number} num 数字
  * @param {Object} [options] 配置项
  * @param {boolean} [options.big5=false] 繁体

@@ -7,7 +7,7 @@ import { toString } from 'ut2';
  * @static
  * @alias module:Processor.normalizeString
  * @since 4.3.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#string_instances | String}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String#string_instances String}
  * @deprecated 即将废弃，请使用 `import { toString } 'ut2'`
  * @param {*} value 待处理的值
  * @returns {string} 规整化的值

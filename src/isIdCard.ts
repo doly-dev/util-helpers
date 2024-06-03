@@ -36,8 +36,8 @@ type Options = {
  * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
- * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国公民身份号码 | 中华人民共和国公民身份号码}
- * @see {@link https://baike.baidu.com/item/居民身份证号码 | 居民身份证号码}
+ * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国公民身份号码 中华人民共和国公民身份号码}
+ * @see {@link https://baike.baidu.com/item/居民身份证号码 居民身份证号码}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式，支持15位身份证号码

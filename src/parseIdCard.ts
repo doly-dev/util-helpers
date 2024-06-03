@@ -110,7 +110,7 @@ type IdCardInfo = {
  * @static
  * @alias module:Processor.parseIdCard
  * @since 4.0.0
- * @see {@link https://baike.baidu.com/item/居民身份证号码 | 居民身份证号码}
+ * @see {@link https://baike.baidu.com/item/居民身份证号码 居民身份证号码}
  * @param {string} id 身份证号码，支持15位
  * @returns {IdCardInfo | null} 省份、生日、性别，省/市/区/年/月/日/性别编码。如果解析失败将返回 null 。
  * @example
