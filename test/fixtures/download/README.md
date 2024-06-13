@@ -12,4 +12,4 @@ npm i serve -g
 serve
 ```
 
-浏览器访问 <http://localhost:5000/test/fixtures/download/default.html>
+浏览器访问 <http://localhost:3000/test/fixtures/download/default.html>

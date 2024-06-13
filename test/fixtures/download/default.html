@@ -1,99 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试 download 方法</title>
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism.css" />
+    <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-solarizedlight.css" />
+    <script src="https://unpkg.com/prismjs@1.29.0/prism.js"></script>
+    <script src="https://www.unpkg.com/babel-polyfill@6.26.0/dist/polyfill.js"></script>
+    <script src="../../../dist/util-helpers.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>测试 download 方法</title>
-  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism.css">
-  <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-solarizedlight.css">
-  <script src="https://unpkg.com/prismjs@1.29.0/prism.js"></script>
-  <script src="https://www.unpkg.com/babel-polyfill@6.26.0/dist/polyfill.js"></script>
-  <script src="../../../dist/util-helpers.js"></script>
-</head>
+  <body>
+    <h1>下载示例</h1>
+    <p>
+      <strong><i>注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</i></strong>
+    </p>
+    <p><a href="https://doly-dev.github.io/util-helpers/module-Other.html#.download" target="_blank">点击查看文档</a>。</p>
+    <h2>Plain Text</h2>
+    <h3>text string</h3>
+    <pre><code class="language-javascript">utilHelpers.download("hello world Ò", { fileName: "text-string.txt", type: "text/plain" });</code></pre>
+    <button id="download-text-string">点击下载</button>
+    <script>
+      document.querySelector('#download-text-string').addEventListener('click', function () {
+        utilHelpers.download('hello world Ò', { fileName: 'text-string.txt', type: 'text/plain' });
+      });
+    </script>
 
-<body>
-  <h1>下载示例</h1>
-  <p><strong><i>注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</i></strong></p>
-  <p><a href="https://doly-dev.github.io/util-helpers/module-Other.html#.download" target="_blank">点击查看文档</a>。</p>
-  <h2>Plain Text</h2>
-  <h3>text string</h3>
-  <pre><code class="language-javascript">utilHelpers.download("hello world Ò", { fileName: "text-string.txt", type: "text/plain" });</code></pre>
-  <button id="download-text-string">点击下载</button>
-  <script>
-    document.querySelector('#download-text-string').addEventListener('click', function () {
-      utilHelpers.download("hello world Ò", { fileName: "text-string.txt", type: "text/plain" });
-    });
-  </script>
+    <h3>text dataURL</h3>
+    <pre><code class="language-javascript">utilHelpers.download("data:text/plain,hello%20world", { fileName: "text-dataurl.txt", type: "text/plain" });</code></pre>
+    <button id="download-text-dataurl">点击下载</button>
+    <script>
+      document.querySelector('#download-text-dataurl').addEventListener('click', function () {
+        utilHelpers.download('data:text/plain,hello%20world', { fileName: 'text-dataurl.txt', type: 'text/plain' });
+      });
+    </script>
 
-  <h3>text dataURL</h3>
-  <pre><code class="language-javascript">utilHelpers.download("data:text/plain,hello%20world", { fileName: "text-dataurl.txt", type: "text/plain" });</code></pre>
-  <button id="download-text-dataurl">点击下载</button>
-  <script>
-    document.querySelector('#download-text-dataurl').addEventListener('click', function () {
-      utilHelpers.download("data:text/plain,hello%20world", { fileName: "text-dataurl.txt", type: "text/plain" });
-    });
-  </script>
+    <h3>text blob</h3>
+    <pre><code class="language-javascript">utilHelpers.download(new Blob(["hello world"]), { fileName: "text-blob.txt", type: "text/plain" });</code></pre>
+    <button id="download-text-blob">点击下载</button>
+    <script>
+      document.querySelector('#download-text-blob').addEventListener('click', function () {
+        utilHelpers.download(new Blob(['hello world']), { fileName: 'text-blob.txt', type: 'text/plain' });
+      });
+    </script>
 
-  <h3>text blob</h3>
-  <pre><code class="language-javascript">utilHelpers.download(new Blob(["hello world"]), { fileName: "text-blob.txt", type: "text/plain" });</code></pre>
-  <button id="download-text-blob">点击下载</button>
-  <script>
-    document.querySelector('#download-text-blob').addEventListener('click', function () {
-      utilHelpers.download(new Blob(["hello world"]), { fileName: "text-blob.txt", type: "text/plain" });
-    });
-  </script>
+    <h3>text url</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.txt", { dataType: 'url' });</code></pre>
+    <button id="download-text-url">点击下载</button>
+    <script>
+      document.querySelector('#download-text-url').addEventListener('click', function () {
+        utilHelpers.download('./test.txt', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>text url</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.txt", { dataType: 'url' });</code></pre>
-  <button id="download-text-url">点击下载</button>
-  <script>
-    document.querySelector('#download-text-url').addEventListener('click', function () {
-      utilHelpers.download("./test.txt", { dataType: 'url' });
-    });
-  </script>
-
-  <h3>text UInt8 Array</h3>
-  <pre><code class="language-javascript">var str = "hello world",
+    <h3>text UInt8 Array</h3>
+    <pre><code class="language-javascript">var str = "hello world",
     arr = new Uint8Array(str.length);
 str.split("").forEach(function (s, i) {
   arr[i] = s.charCodeAt();
 });
 utilHelpers.download(arr, "text-uint8.txt");</code></pre>
-  <button id="download-text-uint8">点击下载</button>
-  <script>
-    document.querySelector('#download-text-uint8').addEventListener('click', function () {
-      var str = "hello world",
-        arr = new Uint8Array(str.length);
-      str.split("").forEach(function (s, i) {
-        arr[i] = s.charCodeAt();
+    <button id="download-text-uint8">点击下载</button>
+    <script>
+      document.querySelector('#download-text-uint8').addEventListener('click', function () {
+        var str = 'hello world',
+          arr = new Uint8Array(str.length);
+        str.split('').forEach(function (s, i) {
+          arr[i] = s.charCodeAt();
+        });
+        utilHelpers.download(arr, 'text-uint8.txt');
       });
-      utilHelpers.download(arr, "text-uint8.txt");
-    });
-  </script>
+    </script>
 
-  <h2>HTML</h2>
-  <h3>html string</h3>
-  <pre><code class="language-javascript">utilHelpers.download(document.documentElement.outerHTML, { fileName: "html-string.html", type: "text/html" });</code></pre>
-  <button id="download-html-string">点击下载</button>
-  <script>
-    document.querySelector('#download-html-string').addEventListener('click', function () {
-      utilHelpers.download(document.documentElement.outerHTML, { fileName: "html-string.html", type: "text/html" });
-    });
-  </script>
+    <h2>HTML</h2>
+    <h3>html string</h3>
+    <pre><code class="language-javascript">utilHelpers.download(document.documentElement.outerHTML, { fileName: "html-string.html", type: "text/html" });</code></pre>
+    <button id="download-html-string">点击下载</button>
+    <script>
+      document.querySelector('#download-html-string').addEventListener('click', function () {
+        utilHelpers.download(document.documentElement.outerHTML, { fileName: 'html-string.html', type: 'text/html' });
+      });
+    </script>
 
-  <h3>html Blob</h3>
-  <pre><code class="language-javascript">utilHelpers.download(new Blob(["hello world".bold()]), { fileName: "html-blob.html", type: "text/html" });</code></pre>
-  <button id="download-html-blob">点击下载</button>
-  <script>
-    document.querySelector('#download-html-blob').addEventListener('click', function () {
-      utilHelpers.download(new Blob(["hello world".bold()]), { fileName: "html-blob.html", type: "text/html" });
-    });
-  </script>
+    <h3>html Blob</h3>
+    <pre><code class="language-javascript">utilHelpers.download(new Blob(["hello world".bold()]), { fileName: "html-blob.html", type: "text/html" });</code></pre>
+    <button id="download-html-blob">点击下载</button>
+    <script>
+      document.querySelector('#download-html-blob').addEventListener('click', function () {
+        utilHelpers.download(new Blob(['hello world'.bold()]), { fileName: 'html-blob.html', type: 'text/html' });
+      });
+    </script>
 
-  <h3>ajax callback</h3>
-  <pre><code class="language-javascript">var xhr = new XMLHttpRequest();
+    <h3>ajax callback</h3>
+    <pre><code class="language-javascript">var xhr = new XMLHttpRequest();
 xhr.open('GET', './default.html');
 xhr.responseType = "blob";
 xhr.onload = function (e) {
@@ -102,106 +103,125 @@ xhr.onload = function (e) {
 xhr.send();
 
 // utilHelpers.download('./default.html', { fileName: 'test.html', dataType: 'url' });</code></pre>
-  <button id="download-ajax">点击下载</button>
-  <script>
-    document.querySelector('#download-ajax').addEventListener('click', function () {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', './default.html');
-      xhr.responseType = "blob";
-      xhr.onload = function (e) {
-        utilHelpers.download(e.target.response, { fileName: "html-ajax.html", type: "text/html" });
-      }
-      xhr.send();
+    <button id="download-ajax">点击下载</button>
+    <script>
+      document.querySelector('#download-ajax').addEventListener('click', function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './default.html');
+        xhr.responseType = 'blob';
+        xhr.onload = function (e) {
+          utilHelpers.download(e.target.response, { fileName: 'html-ajax.html', type: 'text/html' });
+        };
+        xhr.send();
 
-      // utilHelpers.download('./default.html', { fileName: 'test.jpg', dataType: 'url' });
-    });
-  </script>
+        // utilHelpers.download('./default.html', { fileName: 'test.jpg', dataType: 'url' });
+      });
+    </script>
 
-  <h2>Binary Files</h2>
-  <h3>image from URL</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.jpeg", { dataType: 'url' });</code></pre>
-  <button id="download-image-url">点击下载</button>
-  <script>
-    document.querySelector('#download-image-url').addEventListener('click', function () {
-      utilHelpers.download("./test.jpeg", { dataType: 'url' });
-    });
-  </script>
+    <h2>Binary Files</h2>
+    <h3>image from URL</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.jpeg", { dataType: 'url' });</code></pre>
+    <button id="download-image-url">点击下载</button>
+    <script>
+      document.querySelector('#download-image-url').addEventListener('click', function () {
+        utilHelpers.download('./test.jpeg', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>Image via ajax from custom filename</h3>
-  <pre><code class="language-javascript">var xhr = new XMLHttpRequest();
+    <h3>Image via ajax from custom filename</h3>
+    <pre><code class="language-javascript">var xhr = new XMLHttpRequest();
 xhr.open('GET', './test.jpeg');
 xhr.responseType = "blob";
 xhr.onload = function (e) {
   utilHelpers.download(e.target.response, "image-ajax.jpg");
 }
 xhr.send();</code></pre>
-  <button id="download-image-ajax">点击下载</button>
-  <script>
-    document.querySelector('#download-image-ajax').addEventListener('click', function () {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', './test.jpeg');
-      xhr.responseType = "blob";
-      xhr.onload = function (e) {
-        utilHelpers.download(e.target.response, "image-ajax.jpg");
-      }
-      xhr.send();
-    });
-  </script>
+    <button id="download-image-ajax">点击下载</button>
+    <script>
+      document.querySelector('#download-image-ajax').addEventListener('click', function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './test.jpeg');
+        xhr.responseType = 'blob';
+        xhr.onload = function (e) {
+          utilHelpers.download(e.target.response, 'image-ajax.jpg');
+        };
+        xhr.send();
+      });
+    </script>
 
-  <h3>word</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.docx", { dataType: 'url' });</code></pre>
-  <button id="download-word">点击下载</button>
-  <script>
-    document.querySelector('#download-word').addEventListener('click', function () {
-      utilHelpers.download("./test.docx", { dataType: 'url' });
-    });
-  </script>
+    <h3>后端传过来的流文件，如Excel</h3>
+    <pre><code class="language-javascript">var xhr = new XMLHttpRequest();
+xhr.open('GET', './test.xlsx'); // 也可能是 POST 请求方式
+xhr.responseType = 'arraybuffer';
+xhr.onload = function (e) {
+  utilHelpers.download(e.target.response, 'excel-ajax.xlsx');
+};
+xhr.send();</code></pre>
+    <button id="download-excel-ajax">点击下载</button>
+    <script>
+      document.querySelector('#download-excel-ajax').addEventListener('click', function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './test.xlsx'); // 也可能是 POST 请求方式
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function (e) {
+          utilHelpers.download(e.target.response, 'excel-ajax.xlsx');
+        };
+        xhr.send();
+      });
+    </script>
 
-  <h3>excel</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.xlsx", { dataType: 'url' });</code></pre>
-  <button id="download-excel">点击下载</button>
-  <script>
-    document.querySelector('#download-excel').addEventListener('click', function () {
-      utilHelpers.download("./test.xlsx", { dataType: 'url' });
-    });
-  </script>
+    <h3>word</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.docx", { dataType: 'url' });</code></pre>
+    <button id="download-word">点击下载</button>
+    <script>
+      document.querySelector('#download-word').addEventListener('click', function () {
+        utilHelpers.download('./test.docx', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>pdf</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.pdf", { dataType: 'url' });</code></pre>
-  <button id="download-pdf">点击下载</button>
-  <script>
-    document.querySelector('#download-pdf').addEventListener('click', function () {
-      utilHelpers.download("./test.pdf", { dataType: 'url' });
-    });
-  </script>
+    <h3>excel</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.xlsx", { dataType: 'url' });</code></pre>
+    <button id="download-excel">点击下载</button>
+    <script>
+      document.querySelector('#download-excel').addEventListener('click', function () {
+        utilHelpers.download('./test.xlsx', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>mp3</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.mp3", { dataType: 'url' });</code></pre>
-  <button id="download-mp3">点击下载</button>
-  <script>
-    document.querySelector('#download-mp3').addEventListener('click', function () {
-      utilHelpers.download("./test.mp3", { dataType: 'url' });
-    });
-  </script>
+    <h3>pdf</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.pdf", { dataType: 'url' });</code></pre>
+    <button id="download-pdf">点击下载</button>
+    <script>
+      document.querySelector('#download-pdf').addEventListener('click', function () {
+        utilHelpers.download('./test.pdf', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>mp4</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.mp4", { dataType: 'url' });</code></pre>
-  <button id="download-mp4">点击下载</button>
-  <script>
-    document.querySelector('#download-mp4').addEventListener('click', function () {
-      utilHelpers.download("./test.mp4", { dataType: 'url' });
-    });
-  </script>
+    <h3>mp3</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.mp3", { dataType: 'url' });</code></pre>
+    <button id="download-mp3">点击下载</button>
+    <script>
+      document.querySelector('#download-mp3').addEventListener('click', function () {
+        utilHelpers.download('./test.mp3', { dataType: 'url' });
+      });
+    </script>
 
-  <h3>zip</h3>
-  <pre><code class="language-javascript">utilHelpers.download("./test.zip", { dataType: 'url' });</code></pre>
-  <button id="download-zip">点击下载</button>
-  <script>
-    document.querySelector('#download-zip').addEventListener('click', function () {
-      utilHelpers.download("./test.zip", { dataType: 'url' });
-    });
-  </script>
+    <h3>mp4</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.mp4", { dataType: 'url' });</code></pre>
+    <button id="download-mp4">点击下载</button>
+    <script>
+      document.querySelector('#download-mp4').addEventListener('click', function () {
+        utilHelpers.download('./test.mp4', { dataType: 'url' });
+      });
+    </script>
 
-</body>
-
+    <h3>zip</h3>
+    <pre><code class="language-javascript">utilHelpers.download("./test.zip", { dataType: 'url' });</code></pre>
+    <button id="download-zip">点击下载</button>
+    <script>
+      document.querySelector('#download-zip').addEventListener('click', function () {
+        utilHelpers.download('./test.zip', { dataType: 'url' });
+      });
+    </script>
+  </body>
 </html>
