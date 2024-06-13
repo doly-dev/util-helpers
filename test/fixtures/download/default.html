@@ -154,6 +154,8 @@ xhr.send();</code></pre>
 xhr.open('GET', './test.xlsx'); // 也可能是 POST 请求方式
 xhr.responseType = 'arraybuffer';
 xhr.onload = function (e) {
+  // const blob = new Blob([e.target.response], { type: 'application/vnd.ms-excel' });
+  // utilHelpers.download(blob, 'excel-ajax.xlsx');
   utilHelpers.download(e.target.response, 'excel-ajax.xlsx');
 };
 xhr.send();</code></pre>
@@ -164,6 +166,8 @@ xhr.send();</code></pre>
         xhr.open('GET', './test.xlsx'); // 也可能是 POST 请求方式
         xhr.responseType = 'arraybuffer';
         xhr.onload = function (e) {
+          // const blob = new Blob([e.target.response], { type: 'application/vnd.ms-excel' });
+          // utilHelpers.download(blob, 'excel-ajax.xlsx');
           utilHelpers.download(e.target.response, 'excel-ajax.xlsx');
         };
         xhr.send();
