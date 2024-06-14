@@ -110,12 +110,12 @@ describe('getImageInfo', () => {
     async () => {
       await getImageInfo(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await getImageInfo(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -124,13 +124,13 @@ describe('getImageInfo', () => {
     '只缓存上一次成功结果，失败结果不会缓存',
     async () => {
       const blob = new Blob(['hello world']);
-      await getImageInfo(blob);
+      await getImageInfo(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1); // 前面测试用例中有缓存
 
       loadSuccess = false;
       try {
-        await getImageInfo(new Blob(['hi']));
+        await getImageInfo(new Blob(['hi']), { cacheKey: 'b' });
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
@@ -140,7 +140,7 @@ describe('getImageInfo', () => {
 
       loadSuccess = true;
 
-      await getImageInfo(blob);
+      await getImageInfo(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(2);
       expect(revokeObjectURL).toHaveBeenCalledTimes(2);
     },
@@ -151,12 +151,14 @@ describe('getImageInfo', () => {
     '缓存配置',
     async () => {
       await getImageInfo(new Blob(['a']), {
+        cacheKey: 'c1',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
       expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       await getImageInfo(new Blob(['b']), {
+        cacheKey: 'c2',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(2);
@@ -185,9 +187,9 @@ describe('getImageInfo', () => {
     async () => {
       const headers = { foo: 'a', bar: 'b' };
       await getImageInfo(url, false, { headers, data: 'abc' });
-      expect(xhrMock.setRequestHeader).toBeCalledWith('foo', 'a');
-      expect(xhrMock.setRequestHeader).toBeCalledWith('bar', 'b');
-      expect(xhrMock.send).toBeCalledWith('abc');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('foo', 'a');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('bar', 'b');
+      expect(xhrMock.send).toHaveBeenCalledWith('abc');
     },
     TIMEOUT
   );

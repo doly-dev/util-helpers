@@ -1,23 +1,17 @@
-import { isBlob } from 'ut2';
+import { defaultTo, isBlob } from 'ut2';
 import { createObjectURL, revokeObjectURL } from './utils/native';
-import Cache from './utils/Cache';
+import AsyncMemo from './AsyncMemo';
 
 type Result = HTMLImageElement;
-const cache = new Cache<
-  {
-    data: Result;
-    r: boolean;
-  },
-  string | Blob
->({ max: 1 });
 
-cache.on('del', (v) => {
-  if (v.r) {
-    try {
+const asyncMemo = new AsyncMemo<{ data: Result; r: boolean }>({ max: 1, maxStrategy: 'replaced' });
+asyncMemo.cache.on('del', (k, v) => {
+  try {
+    if (v.r) {
       revokeObjectURL(v.data.src);
-    } catch {
-      /* empty */
     }
+  } catch {
+    /* empty */
   }
 });
 
@@ -25,6 +19,7 @@ cache.on('del', (v) => {
  * @typedef {Object} CacheOptions 缓存配置
  * @property {boolean} [useCache=true] 是否使用缓存
  * @property {boolean} [autoRevokeOnDel=true] 删除时自动释放缓存
+ * @property {string} [cacheKey] 缓存键
  */
 
 /**
@@ -53,40 +48,43 @@ cache.on('del', (v) => {
  * });
  *
  */
-function loadImage(img: string | Blob, cacheOptions: boolean | { useCache?: boolean; autoRevokeOnDel?: boolean } = true) {
+function loadImage(img: string | Blob, cacheOptions: boolean | { useCache?: boolean; cacheKey?: string; autoRevokeOnDel?: boolean } = true) {
+  const cacheOptionsIsObject = typeof cacheOptions === 'object';
   const _cacheOptions = {
-    useCache: typeof cacheOptions === 'object' ? cacheOptions.useCache !== false : cacheOptions !== false,
-    autoRevokeOnDel: typeof cacheOptions === 'object' ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions
+    useCache: cacheOptionsIsObject ? cacheOptions.useCache !== false : cacheOptions !== false,
+    autoRevokeOnDel: cacheOptionsIsObject ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions,
+    cacheKey: defaultTo(cacheOptionsIsObject ? cacheOptions.cacheKey : undefined, typeof img === 'string' ? img : undefined)
   };
-  return new Promise<HTMLImageElement>((resolve, reject) => {
-    if (_cacheOptions.useCache && cache.has(img)) {
-      resolve(cache.get(img)!.data);
-    } else {
-      const imgIsBlob = isBlob(img);
-      const url = imgIsBlob ? createObjectURL(img as Blob) : img;
-      const image = new Image();
-      if (!imgIsBlob) {
-        image.crossOrigin = 'anonymous';
-      }
-      image.onload = () => {
-        if (_cacheOptions.useCache) {
-          cache.set(img, {
-            data: image,
-            r: _cacheOptions.autoRevokeOnDel
-          });
-        }
-        resolve(image);
-      };
-      image.onerror = (err) => {
-        if (imgIsBlob) {
-          revokeObjectURL(url);
-        }
-        console.error(`[loadImage] The image load failed, '${img}'.`);
-        reject(err);
-      };
-      image.src = url;
-    }
-  });
+
+  return asyncMemo
+    .run(
+      () => {
+        return new Promise((resolve, reject) => {
+          const imgIsBlob = isBlob(img);
+          const url = imgIsBlob ? createObjectURL(img as Blob) : img;
+          const image = new Image();
+          if (!imgIsBlob) {
+            image.crossOrigin = 'anonymous';
+          }
+          image.onload = () => {
+            resolve({
+              data: image,
+              r: _cacheOptions.autoRevokeOnDel
+            });
+          };
+          image.onerror = (err) => {
+            if (imgIsBlob) {
+              revokeObjectURL(url);
+            }
+            console.error(`[loadImage] The image load failed, '${img}'.`);
+            reject(err);
+          };
+          image.src = url;
+        });
+      },
+      _cacheOptions.useCache && _cacheOptions.cacheKey ? _cacheOptions.cacheKey : undefined
+    )
+    .then((res) => res.data);
 }
 
 export default loadImage;

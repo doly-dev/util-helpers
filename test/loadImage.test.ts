@@ -85,14 +85,14 @@ describe('loadImage', () => {
     '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
     async () => {
       const blob = new Blob(['hello world']);
-      await loadImage(blob);
+      await loadImage(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
-      await loadImage(blob);
+      await loadImage(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -100,16 +100,16 @@ describe('loadImage', () => {
   it(
     '只缓存成功结果，失败结果不会缓存',
     async () => {
-      const blob = new Blob(['hello world']);
-      await loadImage(blob);
+      const blob2 = new Blob(['hello world']);
+      await loadImage(blob2, { cacheKey: 'b1' });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1); // 前面测试用例中有缓存
       expect(consoleError).toHaveBeenCalledTimes(0);
 
       loadSuccess = false;
-      const bolb2 = new Blob(['hi']);
+      const blob = new Blob(['hi']);
       try {
-        await loadImage(bolb2);
+        await loadImage(blob, { cacheKey: 'b2' });
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
@@ -119,9 +119,9 @@ describe('loadImage', () => {
 
       loadSuccess = true;
 
-      await loadImage(bolb2);
-      expect(createObjectURL).toHaveBeenCalledTimes(3);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(3);
+      await loadImage(blob2, { cacheKey: 'b1' });
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
     },
     TIMEOUT
   );
@@ -130,12 +130,14 @@ describe('loadImage', () => {
     '缓存配置',
     async () => {
       await loadImage(new Blob(['a']), {
+        cacheKey: 'c1',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
       expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       await loadImage(new Blob(['b']), {
+        cacheKey: 'c2',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(2);

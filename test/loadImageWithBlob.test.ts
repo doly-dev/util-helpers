@@ -103,12 +103,12 @@ describe('loadImageWithBlob', () => {
     async () => {
       await loadImageWithBlob(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await loadImageWithBlob(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -117,13 +117,13 @@ describe('loadImageWithBlob', () => {
     '只缓存上一次成功结果，失败结果不会缓存',
     async () => {
       const blob = new Blob(['hello world']);
-      await loadImageWithBlob(blob);
+      await loadImageWithBlob(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1); // 前面测试用例中有缓存
 
       loadSuccess = false;
       try {
-        await loadImageWithBlob(new Blob(['hi']));
+        await loadImageWithBlob(new Blob(['hi']), { cacheKey: 'b' });
       } catch (err) {
         expect(err).toBe(ERROR_MESSAGE);
       }
@@ -132,7 +132,7 @@ describe('loadImageWithBlob', () => {
 
       loadSuccess = true;
 
-      await loadImageWithBlob(blob);
+      await loadImageWithBlob(blob, { cacheKey: 'a' });
       expect(createObjectURL).toHaveBeenCalledTimes(2);
       expect(revokeObjectURL).toHaveBeenCalledTimes(2);
     },
@@ -143,12 +143,14 @@ describe('loadImageWithBlob', () => {
     '缓存配置',
     async () => {
       await loadImageWithBlob(new Blob(['a']), {
+        cacheKey: 'c1',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(1);
       expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       await loadImageWithBlob(new Blob(['b']), {
+        cacheKey: 'c2',
         autoRevokeOnDel: false
       });
       expect(createObjectURL).toHaveBeenCalledTimes(2);

@@ -1,10 +1,10 @@
-import { round } from 'ut2';
+import { defaultTo, round } from 'ut2';
 import divide from './divide';
 import gcd from './gcd';
 import loadImageWithBlob from './loadImageWithBlob';
 import bytesToSize from './bytesToSize';
-import Cache from './utils/Cache';
 import { revokeObjectURL } from './utils/native';
+import AsyncMemo from './AsyncMemo';
 
 type Result = {
   width: number;
@@ -17,14 +17,14 @@ type Result = {
   blob: Blob;
 };
 
-const cache = new Cache<{ data: Result; r: boolean }, string | Blob>({ max: 1 });
-cache.on('del', (v) => {
-  if (v.r) {
-    try {
+const asyncMemo = new AsyncMemo<{ data: Result; r: boolean }>({ max: 1, maxStrategy: 'replaced' });
+asyncMemo.cache.on('del', (k, v) => {
+  try {
+    if (v.r) {
       revokeObjectURL(v.data.image.src);
-    } catch {
-      /* empty */
     }
+  } catch {
+    /* empty */
   }
 });
 
@@ -81,28 +81,19 @@ function calcContrast(w: number, h: number) {
  *
  */
 function getImageInfo(img: string | Blob, cacheOptions: boolean | Parameters<typeof loadImageWithBlob>[1] = true, ajaxOptions?: Parameters<typeof loadImageWithBlob>[2]) {
+  const cacheOptionsIsObject = typeof cacheOptions === 'object';
   const _cacheOptions = {
-    useCache: typeof cacheOptions === 'object' ? cacheOptions.useCache !== false : cacheOptions !== false,
-    autoRevokeOnDel: typeof cacheOptions === 'object' ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions
+    useCache: cacheOptionsIsObject ? cacheOptions.useCache !== false : cacheOptions !== false,
+    autoRevokeOnDel: cacheOptionsIsObject ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions,
+    cacheKey: defaultTo(cacheOptionsIsObject ? cacheOptions.cacheKey : undefined, typeof img === 'string' ? img : undefined)
   };
 
-  return new Promise<{
-    width: number;
-    height: number;
-    contrast: string;
-    measure: string;
-    size: string;
-    bytes: number;
-    image: HTMLImageElement;
-    blob: Blob;
-  }>((resolve, reject) => {
-    if (_cacheOptions.useCache && cache.has(img)) {
-      resolve(cache.get(img)!.data);
-    } else {
-      loadImageWithBlob(img, false, ajaxOptions)
-        .then(({ image, blob }) => {
+  return asyncMemo
+    .run(
+      () => {
+        return loadImageWithBlob(img, false, ajaxOptions).then(({ image, blob }) => {
           const { width, height } = image;
-          const result = {
+          const data = {
             width,
             height,
             contrast: calcContrast(width, height),
@@ -113,18 +104,15 @@ function getImageInfo(img: string | Blob, cacheOptions: boolean | Parameters<typ
             blob
           };
 
-          if (_cacheOptions.useCache) {
-            cache.set(img, {
-              data: result,
-              r: _cacheOptions.autoRevokeOnDel
-            });
-          }
-
-          resolve(result);
-        })
-        .catch(reject);
-    }
-  });
+          return {
+            data,
+            r: _cacheOptions.autoRevokeOnDel
+          };
+        });
+      },
+      _cacheOptions.useCache && _cacheOptions.cacheKey ? _cacheOptions.cacheKey : undefined
+    )
+    .then((res) => res.data);
 }
 
 export default getImageInfo;

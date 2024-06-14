@@ -53,7 +53,7 @@ class AsyncMemo<DataType = any> {
       ttl?: number;
       persisted?: boolean;
     }
-  ) {
+  ): Promise<DataType> {
     if (!key || !isString(key)) {
       return asyncFn();
     }
