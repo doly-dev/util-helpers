@@ -1,8 +1,6 @@
 import { toString } from 'ut2';
 
 type Options = {
-  /** @deprecated */
-  char?: string;
   spaceMark?: string;
 };
 
@@ -31,18 +29,17 @@ type Options = {
  * formatMobile('13345678'); // 133 4567 8
  *
  */
-function formatMobile(mobileNo = '', options: Options = {}) {
-  const { char = ' ' } = options;
-  const realSpaceMark = 'spaceMark' in options ? (options.spaceMark as string) : char;
+function formatMobile(mobileNo = '', options?: Options) {
+  const { spaceMark = ' ' } = options || {};
 
-  const regChar = new RegExp(realSpaceMark, 'g');
+  const regChar = new RegExp(spaceMark, 'g');
   const realValue = toString(mobileNo).replace(regChar, '').substring(0, 11);
 
   if (realValue.length > 7) {
-    return realValue.replace(/^(...)(....)/g, `$1${realSpaceMark}$2${realSpaceMark}`);
+    return realValue.replace(/^(...)(....)/g, `$1${spaceMark}$2${spaceMark}`);
   }
   if (realValue.length > 3) {
-    return realValue.replace(/^(...)/g, `$1${realSpaceMark}`);
+    return realValue.replace(/^(...)/g, `$1${spaceMark}`);
   }
   return realValue;
 }

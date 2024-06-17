@@ -1,8 +1,6 @@
 import { toString } from 'ut2';
 
 type Options = {
-  /** @deprecated */
-  char?: string;
   spaceMark?: string;
   length?: number;
 };
@@ -29,19 +27,18 @@ type Options = {
  * // 脱敏银行卡
  * formatBankCard('6228********890'); // 6228 **** **** 890
  *
- * // 16位银行卡，"-"间隔
+ * // 自定义间隔符
  * formatBankCard('6228480402564890', {spaceMark: '-'}); // 6228-4804-0256-4890
  *
  */
-function formatBankCard(bankCardNo = '', options: Options = {}) {
-  const { char = ' ', length = 4 } = options;
-  const realSpaceMark = 'spaceMark' in options ? (options.spaceMark as string) : char;
+function formatBankCard(bankCardNo = '', options?: Options) {
+  const { spaceMark = ' ', length = 4 } = options || {};
 
   const reg = new RegExp(`(.{${length}})`, 'g');
-  const regChar = new RegExp(`${realSpaceMark}`, 'g');
+  const regChar = new RegExp(`${spaceMark}`, 'g');
 
   const realValue = toString(bankCardNo).replace(regChar, '');
-  const str = realValue.replace(reg, `$1${realSpaceMark}`);
+  const str = realValue.replace(reg, `$1${spaceMark}`);
 
   return realValue.length % length === 0 ? str.substring(0, str.length - 1) : str;
 }

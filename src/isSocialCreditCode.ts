@@ -36,8 +36,6 @@ function sumCheckCode(preCode: string) {
 }
 
 type Options = {
-  /** @deprecated */
-  loose?: boolean;
   checkCode?: boolean;
 };
 
@@ -63,10 +61,9 @@ type Options = {
  * isSocialCreditCode('91350100M000100Y', { checkCode: false }); // false
  *
  */
-function isSocialCreditCode(value: any, options: Options = {}) {
+function isSocialCreditCode(value: any, options?: Options) {
   const valueStr = toString(value);
-  const { loose = false, checkCode: cc = true } = options;
-  const needCheckCode = !loose && cc;
+  const { checkCode: needCheckCode = true } = options || {};
 
   const passBaseRule = baseReg.test(valueStr);
 
