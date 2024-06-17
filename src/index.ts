@@ -22,7 +22,6 @@ export { default as isIPv6 } from './isIPv6';
 export { default as isUrl } from './isUrl';
 export { default as isBusinessLicense } from './isBusinessLicense';
 export { default as validatePassword } from './validatePassword';
-export { default as isPromiseLike } from './isPromiseLike';
 export { default as isHMCard } from './isHMCard';
 export { default as isTWCard } from './isTWCard';
 export { default as isSwiftCode } from './isSwiftCode';
@@ -40,11 +39,9 @@ export { default as replaceChar } from './replaceChar';
 export { default as numberToChinese } from './numberToChinese';
 export { default as bytesToSize } from './bytesToSize';
 export { default as parseIdCard } from './parseIdCard';
-export { default as blobToDataURL } from './blobToDataURL';
 export { default as fileReader } from './fileReader';
 export { default as dataURLToBlob } from './dataURLToBlob';
 export { default as setDataURLPrefix } from './setDataURLPrefix';
-export { default as normalizeString } from './normalizeString';
 export { default as safeDate } from './safeDate';
 export { default as formatMobile } from './formatMobile';
 export { default as padZero } from './padZero';
@@ -114,7 +111,6 @@ export { default as loadImageWithBlob } from './loadImageWithBlob';
 export { default as loadScript } from './loadScript';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
-export { default as waitTime } from './waitTime';
 
 /**
  * 树结构数据查询、过滤、转换等处理方法
@@ -142,10 +138,6 @@ export { setDisableWarning } from './utils/config';
 // global
 import VERSION from './VERSION';
 export { VERSION };
-/**
- * @deprecated 即将废弃，请使用 `VERSION`
- */
-export const version = BUILD_VERSION;
 
 // classes
 export { default as AsyncMemo } from './AsyncMemo';
