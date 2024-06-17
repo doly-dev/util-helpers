@@ -102,7 +102,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line97">line 97</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -902,7 +902,7 @@ ajax('/api', { method: 'post' }).then(res=>{
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line79">line 79</a>
+        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line78">line 78</a>
     </li></ul></dd>
     
 
@@ -1624,49 +1624,6 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
 
         <tr>
             
-                <td class="name"><code>cacheImage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type"><a href="global.html#CacheOptions">CacheOptions</a></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>是否使用 <code>loadImageWithBlob</code> 缓存。</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>ajaxOptions</code></td>
             
 
@@ -1698,7 +1655,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+            <td class="description last"><p>ajax 请求配置项，当传入图片地址时才会触发ajax请求。</p></td>
         </tr>
 
     
@@ -2225,7 +2182,7 @@ getFileBlob('https://dummyimage.com/200x300').then((blob)=>{
 
     
 
-    <h4 class="name" id=".getImageInfo"><span class="type-signature type-signature-static">(static) </span>getImageInfo<span class="signature">(img, cacheOptions<span class="signature-attributes">opt</span>, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>>}</span></h4>
+    <h4 class="name" id=".getImageInfo"><span class="type-signature type-signature-static">(static) </span>getImageInfo<span class="signature">(img, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>>}</span></h4>
 
     
 
@@ -2242,7 +2199,7 @@ getFileBlob('https://dummyimage.com/200x300').then((blob)=>{
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="getImageInfo.js.html">getImageInfo.js</a>, <a href="getImageInfo.js.html#line69">line 69</a>
+        <a href="getImageInfo.js.html">getImageInfo.js</a>, <a href="getImageInfo.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -2324,8 +2281,6 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -2363,55 +2318,8 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
             <td class="description last"><p>图片地址或 blob 对象</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cacheOptions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type"><a href="global.html#CacheOptions">CacheOptions</a></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>是否使用缓存。开启后，自动缓存最近上一次成功的结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载。当缓存下一次成功加载的图片时，会自动释放上一次缓存的图片，也可以通过 <code>autoRevokeOnDel</code> 设置不释放缓存。</p></td>
         </tr>
 
     
@@ -2443,10 +2351,6 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
@@ -2502,7 +2406,7 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
 
     
 
-    <h4 class="name" id=".loadImage"><span class="type-signature type-signature-static">(static) </span>loadImage<span class="signature">(img, cacheOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;HTMLImageElement>}</span></h4>
+    <h4 class="name" id=".loadImage"><span class="type-signature type-signature-static">(static) </span>loadImage<span class="signature">(img)</span><span class="type-signature"> &rarr; {Promise.&lt;HTMLImageElement>}</span></h4>
 
     
 
@@ -2519,7 +2423,7 @@ getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loadImage.js.html">loadImage.js</a>, <a href="loadImage.js.html#line47">line 47</a>
+        <a href="loadImage.js.html">loadImage.js</a>, <a href="loadImage.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -2597,11 +2501,7 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -2630,65 +2530,10 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
             </td>
 
             
-                <td class="attributes">
-                
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>图片地址或 blob 对象</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cacheOptions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type"><a href="global.html#CacheOptions">CacheOptions</a></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>是否使用缓存。开启后，自动缓存最近上一次成功的结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载。当缓存下一次成功加载的图片时，会自动释放上一次缓存的图片，也可以通过 <code>autoRevokeOnDel</code> 设置不释放缓存。</p></td>
         </tr>
 
     
@@ -2741,7 +2586,7 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
 
     
 
-    <h4 class="name" id=".loadImageWithBlob"><span class="type-signature type-signature-static">(static) </span>loadImageWithBlob<span class="signature">(img, cacheOptions<span class="signature-attributes">opt</span>, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>>}</span></h4>
+    <h4 class="name" id=".loadImageWithBlob"><span class="type-signature type-signature-static">(static) </span>loadImageWithBlob<span class="signature">(img, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>>}</span></h4>
 
     
 
@@ -2752,13 +2597,14 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>加载图片，返回图片元素和 blob 对象。</p>
+<p>如果传入图片地址，将通过 ajax 请求转为 blob 格式。</p>
 <p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loadImageWithBlob.js.html">loadImageWithBlob.js</a>, <a href="loadImageWithBlob.js.html#line48">line 48</a>
+        <a href="loadImageWithBlob.js.html">loadImageWithBlob.js</a>, <a href="loadImageWithBlob.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -2840,8 +2686,6 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -2879,55 +2723,8 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
             <td class="description last"><p>图片地址或 blob 对象</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cacheOptions</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type"><a href="global.html#CacheOptions">CacheOptions</a></span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>true</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>是否使用缓存。开启后，自动缓存最近上一次成功的结果，当图片地址或 blob 对象一致时，直接返回该缓存。避免连续请求同一个图片资源，重复加载。当缓存下一次成功加载的图片时，会自动释放上一次缓存的图片，也可以通过 <code>autoRevokeOnDel</code> 设置不释放缓存。</p></td>
         </tr>
 
     
@@ -2959,10 +2756,6 @@ loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').
                 </td>
             
 
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
@@ -3849,7 +3642,7 @@ strlen('🍎'); // 4</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Fri Jun 14 2024 09:50:37 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Jun 17 2024 02:20:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
