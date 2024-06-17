@@ -74,90 +74,9 @@ describe('loadImage', () => {
   it(
     '加载 url 图片',
     async () => {
-      const image = await loadImage(url, false);
+      const image = await loadImage(url);
       expect(image.crossOrigin).toBe('anonymous');
       expect(image.src).toBe(url);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
-    async () => {
-      const blob = new Blob(['hello world']);
-      await loadImage(blob, { cacheKey: 'a' });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-
-      // 加载同一个图片，不再重新加载图片，通过缓存获取
-      await loadImage(blob, { cacheKey: 'a' });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '只缓存成功结果，失败结果不会缓存',
-    async () => {
-      const blob2 = new Blob(['hello world']);
-      await loadImage(blob2, { cacheKey: 'b1' });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1); // 前面测试用例中有缓存
-      expect(consoleError).toHaveBeenCalledTimes(0);
-
-      loadSuccess = false;
-      const blob = new Blob(['hi']);
-      try {
-        await loadImage(blob, { cacheKey: 'b2' });
-      } catch (err) {
-        expect(err).toBe(ERROR_MESSAGE);
-      }
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
-      expect(consoleError).toHaveBeenCalledTimes(1);
-
-      loadSuccess = true;
-
-      await loadImage(blob2, { cacheKey: 'b1' });
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '缓存配置',
-    async () => {
-      await loadImage(new Blob(['a']), {
-        cacheKey: 'c1',
-        autoRevokeOnDel: false
-      });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-
-      await loadImage(new Blob(['b']), {
-        cacheKey: 'c2',
-        autoRevokeOnDel: false
-      });
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '不使用缓存',
-    async () => {
-      const blob = new Blob(['hello world']);
-      await loadImage(blob, false);
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-
-      // 连续请求同一个资源，还是会发起请求
-      await loadImage(blob, false);
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -173,6 +92,13 @@ describe('loadImage', () => {
         expect(err).toBe(ERROR_MESSAGE);
       }
       expect(consoleError).toHaveBeenCalledTimes(1);
+
+      try {
+        await loadImage(new Blob(['hello world']));
+      } catch (err) {
+        expect(err).toBe(ERROR_MESSAGE);
+      }
+      expect(consoleError).toHaveBeenCalledTimes(2);
     },
     TIMEOUT
   );

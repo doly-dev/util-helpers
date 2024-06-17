@@ -88,7 +88,7 @@ describe('loadImageWithBlob', () => {
   it(
     '加载 url 图片',
     async () => {
-      const { image, blob } = await loadImageWithBlob(url, false);
+      const { image, blob } = await loadImageWithBlob(url);
       // url通过ajax请求转为blob格式
       expect(image.src).toBe(blobUrl);
       expect(isBlob(blob)).toBe(true);
@@ -99,100 +99,24 @@ describe('loadImageWithBlob', () => {
   );
 
   it(
-    '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
-    async () => {
-      await loadImageWithBlob(url);
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-
-      // 加载同一个图片，不再重新加载图片，通过缓存获取
-      await loadImageWithBlob(url);
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '只缓存上一次成功结果，失败结果不会缓存',
-    async () => {
-      const blob = new Blob(['hello world']);
-      await loadImageWithBlob(blob, { cacheKey: 'a' });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1); // 前面测试用例中有缓存
-
-      loadSuccess = false;
-      try {
-        await loadImageWithBlob(new Blob(['hi']), { cacheKey: 'b' });
-      } catch (err) {
-        expect(err).toBe(ERROR_MESSAGE);
-      }
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
-
-      loadSuccess = true;
-
-      await loadImageWithBlob(blob, { cacheKey: 'a' });
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(2);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '缓存配置',
-    async () => {
-      await loadImageWithBlob(new Blob(['a']), {
-        cacheKey: 'c1',
-        autoRevokeOnDel: false
-      });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-
-      await loadImageWithBlob(new Blob(['b']), {
-        cacheKey: 'c2',
-        autoRevokeOnDel: false
-      });
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-    },
-    TIMEOUT
-  );
-
-  it(
-    '不使用缓存',
-    async () => {
-      await loadImageWithBlob(url, false);
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-
-      // 连续请求同一个资源，还是会发起请求
-      await loadImageWithBlob(url, false);
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
-    },
-    TIMEOUT
-  );
-
-  it(
     '自定义请求配置项',
     async () => {
       const headers = { foo: 'a', bar: 'b' };
-      await loadImageWithBlob(url, false, { headers, data: 'abc' });
-      expect(xhrMock.setRequestHeader).toBeCalledWith('foo', 'a');
-      expect(xhrMock.setRequestHeader).toBeCalledWith('bar', 'b');
-      expect(xhrMock.send).toBeCalledWith('abc');
+      await loadImageWithBlob(url, { headers, data: 'abc' });
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('foo', 'a');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('bar', 'b');
+      expect(xhrMock.send).toHaveBeenCalledWith('abc');
     },
     TIMEOUT
   );
 
   it(
-    'ajax 请求 url 失败',
+    'ajax 请求失败',
     async () => {
       expect(consoleError).toHaveBeenCalledTimes(0);
       setResponseMethod(ResponseMethod.Error);
       try {
-        await loadImageWithBlob(url, false);
+        await loadImageWithBlob(url);
       } catch (err) {
         expect(createObjectURL).toHaveBeenCalledTimes(0);
         expect(revokeObjectURL).toHaveBeenCalledTimes(0);
@@ -208,7 +132,7 @@ describe('loadImageWithBlob', () => {
       expect(consoleError).toHaveBeenCalledTimes(0);
       setResponseStatus(403);
       try {
-        await loadImageWithBlob(url, false);
+        await loadImageWithBlob(url);
       } catch (err) {
         expect(createObjectURL).toHaveBeenCalledTimes(0);
         expect(revokeObjectURL).toHaveBeenCalledTimes(0);

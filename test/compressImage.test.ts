@@ -237,33 +237,10 @@ describe('loadImageWithBlob', () => {
   );
 
   it(
-    '自定义缓存配置项',
-    async () => {
-      const url2 = 'https://example.com/xxx';
-      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-
-      await compressImage(url, { cacheImage: { autoRevokeOnDel: false } });
-      expect(createObjectURL).toHaveBeenCalledTimes(2);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-
-      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
-      expect(createObjectURL).toHaveBeenCalledTimes(3);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-
-      await compressImage(url2, { cacheImage: { autoRevokeOnDel: false } });
-      expect(createObjectURL).toHaveBeenCalledTimes(3);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
-    },
-    TIMEOUT
-  );
-
-  it(
     '自定义请求配置项',
     async () => {
       const headers = { foo: 'a', bar: 'b' };
-      await compressImage(url, { cacheImage: false, ajaxOptions: { headers, data: 'abc' } });
+      await compressImage(url, { ajaxOptions: { headers, data: 'abc' } });
       expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('foo', 'a');
       expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('bar', 'b');
       expect(xhrMock.send).toHaveBeenCalledWith('abc');

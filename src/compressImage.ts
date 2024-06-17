@@ -54,8 +54,7 @@ type Options = {
   afterDraw?: (info: Info, options: Options) => void; // 画之后
 
   // 其他
-  cacheImage?: boolean | Parameters<typeof loadImageWithBlob>[1]; // 缓存上一次加载成功的图片
-  ajaxOptions?: Parameters<typeof loadImageWithBlob>[2];
+  ajaxOptions?: Parameters<typeof loadImageWithBlob>[1];
 };
 
 interface CompressImage {
@@ -89,8 +88,7 @@ interface CompressImage {
  * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
  * @param {function} [options.beforeDraw] 图片载入画布之前调用
  * @param {function} [options.afterDraw] 图片载入画布之后调用
- * @param {boolean | CacheOptions} [options.cacheImage=true] 是否使用 `loadImageWithBlob` 缓存。
- * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
+ * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入图片地址时才会触发ajax请求。
  * @returns {Promise<Blob | string>} blob 对象 或 data url 图片
  * @example
  *
@@ -129,7 +127,6 @@ const compressImage: CompressImage = function (img: string | Blob, options: Opti
       height,
       rotate,
       offset = [0, 0],
-      cacheImage = true,
 
       background = '#fff',
       canvasWidth,
@@ -147,7 +144,7 @@ const compressImage: CompressImage = function (img: string | Blob, options: Opti
     } = options;
 
     // 加载图片
-    loadImageWithBlob(img, cacheImage, ajaxOptions)
+    loadImageWithBlob(img, ajaxOptions)
       .then(({ image, blob }) => {
         const numWidth = toNumber(width);
         const numHeight = toNumber(height);
