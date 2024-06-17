@@ -92,7 +92,7 @@
     }
   },
   "dependencies": {
-    "cache2": "^2.0.5",
+    "cache2": "^3.0.0",
     "emitter-pro": "^1.2.1",
     "tslib": "^2.6.3",
     "ut2": "^1.9.1"
