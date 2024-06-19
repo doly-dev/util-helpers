@@ -1,10 +1,11 @@
-import { defaultTo, round } from 'ut2';
+import { round } from 'ut2';
 import divide from './divide';
 import gcd from './gcd';
 import loadImageWithBlob from './loadImageWithBlob';
 import bytesToSize from './bytesToSize';
 import { revokeObjectURL } from './utils/native';
 import AsyncMemo from './AsyncMemo';
+import getCacheKey from './utils/getCacheKey';
 
 type Result = {
   width: number;
@@ -85,33 +86,31 @@ function getImageInfo(img: string | Blob, cacheOptions: boolean | Parameters<typ
   const _cacheOptions = {
     useCache: cacheOptionsIsObject ? cacheOptions.useCache !== false : cacheOptions !== false,
     autoRevokeOnDel: cacheOptionsIsObject ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions,
-    cacheKey: defaultTo(cacheOptionsIsObject ? cacheOptions.cacheKey : undefined, typeof img === 'string' ? img : undefined)
+    cacheKey: cacheOptionsIsObject ? cacheOptions.cacheKey : undefined
   };
+  const cacheKey = _cacheOptions.useCache ? getCacheKey(_cacheOptions.cacheKey || img) : undefined;
 
   return asyncMemo
-    .run(
-      () => {
-        return loadImageWithBlob(img, false, ajaxOptions).then(({ image, blob }) => {
-          const { width, height } = image;
-          const data = {
-            width,
-            height,
-            contrast: calcContrast(width, height),
-            measure: `${width} × ${height} px`,
-            size: bytesToSize(blob.size),
-            bytes: blob.size,
-            image,
-            blob
-          };
+    .run(() => {
+      return loadImageWithBlob(img, false, ajaxOptions).then(({ image, blob }) => {
+        const { width, height } = image;
+        const data = {
+          width,
+          height,
+          contrast: calcContrast(width, height),
+          measure: `${width} × ${height} px`,
+          size: bytesToSize(blob.size),
+          bytes: blob.size,
+          image,
+          blob
+        };
 
-          return {
-            data,
-            r: _cacheOptions.autoRevokeOnDel
-          };
-        });
-      },
-      _cacheOptions.useCache && _cacheOptions.cacheKey ? _cacheOptions.cacheKey : undefined
-    )
+        return {
+          data,
+          r: _cacheOptions.autoRevokeOnDel
+        };
+      });
+    }, cacheKey)
     .then((res) => res.data);
 }
 

@@ -1,6 +1,7 @@
-import { defaultTo, isBlob } from 'ut2';
+import { isBlob } from 'ut2';
 import { createObjectURL, revokeObjectURL } from './utils/native';
 import AsyncMemo from './AsyncMemo';
+import getCacheKey from './utils/getCacheKey';
 
 type Result = HTMLImageElement;
 
@@ -53,37 +54,35 @@ function loadImage(img: string | Blob, cacheOptions: boolean | { useCache?: bool
   const _cacheOptions = {
     useCache: cacheOptionsIsObject ? cacheOptions.useCache !== false : cacheOptions !== false,
     autoRevokeOnDel: cacheOptionsIsObject ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions,
-    cacheKey: defaultTo(cacheOptionsIsObject ? cacheOptions.cacheKey : undefined, typeof img === 'string' ? img : undefined)
+    cacheKey: cacheOptionsIsObject ? cacheOptions.cacheKey : undefined
   };
+  const cacheKey = _cacheOptions.useCache ? getCacheKey(_cacheOptions.cacheKey || img) : undefined;
 
   return asyncMemo
-    .run(
-      () => {
-        return new Promise((resolve, reject) => {
-          const imgIsBlob = isBlob(img);
-          const url = imgIsBlob ? createObjectURL(img as Blob) : img;
-          const image = new Image();
-          if (!imgIsBlob) {
-            image.crossOrigin = 'anonymous';
+    .run(() => {
+      return new Promise((resolve, reject) => {
+        const imgIsBlob = isBlob(img);
+        const url = imgIsBlob ? createObjectURL(img as Blob) : img;
+        const image = new Image();
+        if (!imgIsBlob) {
+          image.crossOrigin = 'anonymous';
+        }
+        image.onload = () => {
+          resolve({
+            data: image,
+            r: _cacheOptions.autoRevokeOnDel
+          });
+        };
+        image.onerror = (err) => {
+          if (imgIsBlob) {
+            revokeObjectURL(url);
           }
-          image.onload = () => {
-            resolve({
-              data: image,
-              r: _cacheOptions.autoRevokeOnDel
-            });
-          };
-          image.onerror = (err) => {
-            if (imgIsBlob) {
-              revokeObjectURL(url);
-            }
-            console.error(`[loadImage] The image load failed, '${img}'.`);
-            reject(err);
-          };
-          image.src = url;
-        });
-      },
-      _cacheOptions.useCache && _cacheOptions.cacheKey ? _cacheOptions.cacheKey : undefined
-    )
+          console.error(`[loadImage] The image load failed, '${img}'.`);
+          reject(err);
+        };
+        image.src = url;
+      });
+    }, cacheKey)
     .then((res) => res.data);
 }
 

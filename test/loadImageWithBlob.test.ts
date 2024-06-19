@@ -103,12 +103,12 @@ describe('loadImageWithBlob', () => {
     async () => {
       await loadImageWithBlob(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
       await loadImageWithBlob(url);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );

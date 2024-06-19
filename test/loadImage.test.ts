@@ -85,14 +85,14 @@ describe('loadImage', () => {
     '缓存上一次加载成功的结果，连续请求同一个图片资源，不再重复加载',
     async () => {
       const blob = new Blob(['hello world']);
-      await loadImage(blob, { cacheKey: 'a' });
+      await loadImage(blob);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
 
       // 加载同一个图片，不再重新加载图片，通过缓存获取
-      await loadImage(blob, { cacheKey: 'a' });
+      await loadImage(blob);
       expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+      expect(revokeObjectURL).toHaveBeenCalledTimes(1);
     },
     TIMEOUT
   );

@@ -1,7 +1,7 @@
 import { createObjectURL, revokeObjectURL } from './utils/native';
 import getFileBlob from './getFileBlob';
 import AsyncMemo from './AsyncMemo';
-import { defaultTo } from 'ut2';
+import getCacheKey from './utils/getCacheKey';
 
 type Result = { image: HTMLImageElement; blob: Blob };
 
@@ -54,36 +54,34 @@ function loadImageWithBlob(img: string | Blob, cacheOptions: boolean | { useCach
   const _cacheOptions = {
     useCache: cacheOptionsIsObject ? cacheOptions.useCache !== false : cacheOptions !== false,
     autoRevokeOnDel: cacheOptionsIsObject ? cacheOptions.autoRevokeOnDel !== false : !!cacheOptions,
-    cacheKey: defaultTo(cacheOptionsIsObject ? cacheOptions.cacheKey : undefined, typeof img === 'string' ? img : undefined)
+    cacheKey: cacheOptionsIsObject ? cacheOptions.cacheKey : undefined
   };
+  const cacheKey = _cacheOptions.useCache ? getCacheKey(_cacheOptions.cacheKey || img) : undefined;
 
   return asyncMemo
-    .run(
-      () => {
-        return new Promise((resolve, reject) => {
-          getFileBlob(img, ajaxOptions)
-            .then((blob) => {
-              const url = createObjectURL(blob);
-              const image = new Image();
-              image.onload = () => {
-                const data = { blob, image };
-                resolve({
-                  data,
-                  r: _cacheOptions.autoRevokeOnDel
-                });
-              };
-              image.onerror = (err) => {
-                revokeObjectURL(url);
-                console.error(`[loadImageWithBlob] The image load failed, '${img}'.`);
-                reject(err);
-              };
-              image.src = url;
-            })
-            .catch(reject);
-        });
-      },
-      _cacheOptions.useCache && _cacheOptions.cacheKey ? _cacheOptions.cacheKey : undefined
-    )
+    .run(() => {
+      return new Promise((resolve, reject) => {
+        getFileBlob(img, ajaxOptions)
+          .then((blob) => {
+            const url = createObjectURL(blob);
+            const image = new Image();
+            image.onload = () => {
+              const data = { blob, image };
+              resolve({
+                data,
+                r: _cacheOptions.autoRevokeOnDel
+              });
+            };
+            image.onerror = (err) => {
+              revokeObjectURL(url);
+              console.error(`[loadImageWithBlob] The image load failed, '${img}'.`);
+              reject(err);
+            };
+            image.src = url;
+          })
+          .catch(reject);
+      });
+    }, cacheKey)
     .then((res) => res.data);
 }
 
