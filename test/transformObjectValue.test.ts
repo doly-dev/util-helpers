@@ -63,10 +63,6 @@ describe('transformObjectValue', () => {
     const newObj3 = transformObjectValue(
       obj,
       (value) => {
-        // @ts-expect-error
-        if (value === '') {
-          return undefined;
-        }
         if (typeof value === 'number') {
           return value + '';
         }
