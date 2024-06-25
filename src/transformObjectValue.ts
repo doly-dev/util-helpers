@@ -3,10 +3,10 @@ import { forEach, isArray, isPlainObject } from 'ut2';
 type PropertyName = string | symbol;
 
 interface TransformObjectValue {
-  <V>(arr: V[], fn: (value: V, index: number) => any, deep: false): any[];
-  <V>(arr: V[], fn: (value: any, index: number) => any, deep?: boolean): any[];
-  <T extends object>(obj: T, fn: (value: T[keyof T], key: keyof T) => any, deep: false): Record<PropertyName, any>;
-  <T extends object>(obj: T, fn: (value: T[keyof T] extends object ? any : T[keyof T], key: T[keyof T] extends object ? any : keyof T) => any, deep?: boolean): Record<PropertyName, any>;
+  <V, R>(arr: V[], fn: (value: V, index: number) => R, deep: false): R[];
+  <V, R>(arr: V[], fn: (value: any, index: number) => R, deep?: boolean): R[];
+  <T extends object, R>(obj: T, fn: (value: T[keyof T], key: keyof T) => R, deep: false): Record<keyof T, R>;
+  <T extends object, R>(obj: T, fn: (value: T[keyof T] extends object ? any : T[keyof T], key: T[keyof T] extends object ? any : keyof T) => R, deep?: boolean): Record<keyof T, R>;
   <T>(obj: T, fn: (...args: any[]) => any): T;
 }
 
