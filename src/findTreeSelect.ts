@@ -1,4 +1,4 @@
-import { isArray, isObject } from 'ut2';
+import { forEach, isArray, isObject } from 'ut2';
 
 /**
  * 内部实现
@@ -11,33 +11,35 @@ import { isArray, isObject } from 'ut2';
  * @returns {Object[]}
  */
 function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField?: string, path: T[] = []): T[] {
-  if (!isArray(tree)) {
-    return [];
-  }
+  let result: T[] = [];
 
-  for (const item of tree) {
-    path.push(item);
+  if (isArray(tree)) {
+    forEach(tree, (item) => {
+      path.push(item);
 
-    if (predicate(item)) {
-      return path;
-    }
+      if (predicate(item)) {
+        result = path;
+        return false;
+      }
 
-    if (isObject(item)) {
-      // @ts-ignore
-      const childs = item[childrenField] as T[];
+      if (isObject(item)) {
+        // @ts-ignore
+        const childs = item[childrenField] as T[];
 
-      if (isArray(childs) && childs.length > 0) {
-        const findChildren = internalFindTreeSelect(childs, predicate, childrenField, path);
-        if (findChildren.length > 0) {
-          return findChildren;
+        if (isArray(childs) && childs.length > 0) {
+          const findChildren = internalFindTreeSelect(childs, predicate, childrenField, path);
+          if (findChildren.length > 0) {
+            result = findChildren;
+            return false;
+          }
         }
       }
-    }
 
-    path.pop();
+      path.pop();
+    });
   }
 
-  return [];
+  return result;
 }
 
 /**
