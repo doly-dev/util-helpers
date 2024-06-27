@@ -1,3 +1,4 @@
+// @ts-ignore
 const regIdCard = /^(?<province>\d{2})(?<city>\d{2})(?<area>\d{2})(?<year>(?:\d{2})?\d{2})(?<month>\d{2})(?<day>\d{2})\d{2}(?<gender>\d)(?:\d|X)?$/i;
 
 const Provinces = [
