@@ -1,5 +1,5 @@
-import { createObjectURL, revokeObjectURL } from './utils/native';
 import getFileBlob from './getFileBlob';
+import loadImage from './loadImage';
 
 /**
  * @typedef {Object} ImageWithBlob HTML图片元素和 blob 对象
@@ -36,22 +36,10 @@ import getFileBlob from './getFileBlob';
  *
  */
 function loadImageWithBlob(img: string | Blob, ajaxOptions?: Parameters<typeof getFileBlob>[1]) {
-  return new Promise<{ image: HTMLImageElement; blob: Blob }>((resolve, reject) => {
-    getFileBlob(img, ajaxOptions)
-      .then((blob) => {
-        const url = createObjectURL(blob);
-        const image = new Image();
-        image.onload = () => {
-          resolve({ blob, image });
-        };
-        image.onerror = (err) => {
-          revokeObjectURL(url);
-          console.error(`[loadImageWithBlob] The image load failed, '${img}'.`);
-          reject(err);
-        };
-        image.src = url;
-      })
-      .catch(reject);
+  return getFileBlob(img, ajaxOptions).then((blob) => {
+    return loadImage(blob).then((image) => {
+      return { blob, image };
+    });
   });
 }
 
