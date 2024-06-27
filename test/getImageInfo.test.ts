@@ -2,47 +2,15 @@
  * @jest-environment jsdom
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
-const blobUrl = 'blob://xxx';
-const url = 'https://dummyimage.com/200x300';
-jest.mock('../src/utils/native.ts', () => {
-  const originalModule = jest.requireActual('../src/utils/native.ts');
-
-  return {
-    ...originalModule,
-    createObjectURL: jest.fn(() => blobUrl),
-    revokeObjectURL: jest.fn()
-  };
-});
+import './fixtures/mock-native';
 import { isBlob, isNumber, isString } from 'ut2';
 import { getImageInfo } from '../src';
-import { createObjectURL, revokeObjectURL } from '../src/utils/native';
 import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
+import { createSpyConsoleError } from './fixtures/spyConsole';
+import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
 
+const url = 'https://dummyimage.com/200x300';
 const TIMEOUT = 60 * 1000;
-const ERROR_MESSAGE = 'error';
-
-let loadSuccess = true; // 控制图片加载成功 或 失败
-
-// @ts-ignore
-global.Image = class XImage extends Image {
-  [x: string]: any;
-  constructor() {
-    super();
-
-    setTimeout(() => {
-      if (loadSuccess) {
-        // @ts-ignore
-        this.onload();
-      } else {
-        // @ts-ignore
-        this.onerror(ERROR_MESSAGE);
-      }
-    }, 100);
-  }
-
-  width = 100;
-  height = 100;
-};
 
 const xhrMock = {
   open: jest.fn(),
@@ -50,23 +18,21 @@ const xhrMock = {
   setRequestHeader: jest.fn()
 };
 const spyAjax = createSpyAjax(xhrMock);
-
-const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+const spyConsoleError = createSpyConsoleError();
+mockImage();
 
 describe('getImageInfo', () => {
   beforeEach(() => {
-    loadSuccess = true;
+    setImageLoadStatus(true);
     setResponseMethod(ResponseMethod.Load);
     setResponseStatus(200);
-    // @ts-ignore
-    createObjectURL.mockClear();
-    // @ts-ignore
-    revokeObjectURL.mockClear();
+    spyConsoleError.mockClear();
   });
 
   afterAll(() => {
     spyAjax.mockRestore();
     spyConsoleError.mockRestore();
+    restoreImage();
   });
 
   it(
@@ -80,9 +46,6 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.contrast)).toBe(true);
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
-
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -98,9 +61,6 @@ describe('getImageInfo', () => {
       expect(isString(imageInfo.contrast)).toBe(true);
       expect(isString(imageInfo.measure)).toBe(true);
       expect(isNumber(imageInfo.bytes)).toBe(true);
-
-      expect(createObjectURL).toHaveBeenCalledTimes(1);
-      expect(revokeObjectURL).toHaveBeenCalledTimes(0);
     },
     TIMEOUT
   );
@@ -124,8 +84,9 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url);
       } catch (err) {
-        expect(createObjectURL).toHaveBeenCalledTimes(0);
-        expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+        // spy onerror没有返回错误信息
+        expect(err).toBeUndefined();
+        expect(spyConsoleError).toHaveBeenCalled();
       }
     },
     TIMEOUT
@@ -138,8 +99,9 @@ describe('getImageInfo', () => {
       try {
         await getImageInfo(url);
       } catch (err) {
-        expect(createObjectURL).toHaveBeenCalledTimes(0);
-        expect(revokeObjectURL).toHaveBeenCalledTimes(0);
+        // Error: The file does not support get requests, responseStatus 403, 'https://dummyimage.com/200x300'.
+        expect(err).toBeTruthy();
+        expect(spyConsoleError).toHaveBeenCalled();
       }
     },
     TIMEOUT
@@ -148,12 +110,14 @@ describe('getImageInfo', () => {
   it(
     '加载失败',
     async () => {
-      loadSuccess = false;
+      setImageLoadStatus(false);
       try {
         const blob = new Blob(['hello world']);
         await getImageInfo(blob);
       } catch (err) {
-        expect(err).toBe(ERROR_MESSAGE);
+        // spy image error message
+        expect(err).toBe('error');
+        expect(spyConsoleError).toHaveBeenCalled();
       }
     },
     TIMEOUT

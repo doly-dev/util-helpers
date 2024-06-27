@@ -1,15 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-jest.mock('../src/utils/native.ts', () => {
-  const originalModule = jest.requireActual('../src/utils/native.ts');
-
-  return {
-    ...originalModule,
-    createObjectURL: jest.fn(),
-    revokeObjectURL: jest.fn()
-  };
-});
+import './fixtures/mock-native';
 import { sleep } from 'ut2';
 import { createSpyAjax } from './fixtures/spyAjax';
 import { download } from '../src';

@@ -2,47 +2,15 @@
  * @jest-environment jsdom
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
-const blobUrl = 'blob://xxx';
-const url = 'https://dummyimage.com/200x300';
-jest.mock('../src/utils/native.ts', () => {
-  const originalModule = jest.requireActual('../src/utils/native.ts');
-
-  return {
-    ...originalModule,
-    createObjectURL: jest.fn(() => blobUrl),
-    revokeObjectURL: jest.fn()
-  };
-});
+import './fixtures/mock-native';
 import { isBlob } from 'ut2';
-import { createObjectURL, revokeObjectURL } from '../src/utils/native';
-import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
+import { ResponseMethod, createSpyAjax, setResponseMethod } from './fixtures/spyAjax';
 import { compressImage } from '../src';
+import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
+import { createSpyConsoleError } from './fixtures/spyConsole';
 
+const url = 'https://dummyimage.com/200x300';
 const TIMEOUT = 60 * 1000;
-const ERROR_MESSAGE = 'error';
-
-let loadSuccess = true; // 控制图片加载成功 或 失败
-
-// @ts-ignore
-global.Image = class XImage extends Image {
-  [x: string]: any;
-  constructor() {
-    super();
-
-    setTimeout(() => {
-      if (loadSuccess) {
-        // @ts-ignore
-        this.onload();
-      } else {
-        // @ts-ignore
-        this.onerror(ERROR_MESSAGE);
-      }
-    }, 100);
-  }
-
-  width = 100;
-  height = 100;
-};
 
 const xhrMock = {
   open: jest.fn(),
@@ -51,22 +19,19 @@ const xhrMock = {
 };
 const spyAjax = createSpyAjax(xhrMock);
 
-const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+const spyConsoleError = createSpyConsoleError();
+mockImage();
 
 describe('loadImageWithBlob', () => {
   beforeEach(() => {
-    loadSuccess = true;
+    setImageLoadStatus(true);
     setResponseMethod(ResponseMethod.Load);
-    setResponseStatus(200);
-    // @ts-ignore
-    createObjectURL.mockClear();
-    // @ts-ignore
-    revokeObjectURL.mockClear();
   });
 
   afterAll(() => {
     spyAjax.mockRestore();
     spyConsoleError.mockRestore();
+    restoreImage();
   });
 
   it(

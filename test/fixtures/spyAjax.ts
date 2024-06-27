@@ -28,7 +28,7 @@ export function createSpyAjax(opts?: { open?: jest.Mock<any, any, any>; send?: j
     ...opts
   };
 
-  const spyAjax = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
+  const spyAjax = jest.spyOn(globalThis, 'XMLHttpRequest').mockImplementation(() => {
     const methods: Record<string, () => void> = {};
 
     async function send() {
