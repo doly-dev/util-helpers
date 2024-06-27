@@ -1,4 +1,4 @@
-import { isArray, isObject } from 'ut2';
+import { forEach, isArray, isObject } from 'ut2';
 
 /**
  * 查找树结构数据节点
@@ -27,34 +27,32 @@ function findTreeNode<T extends any, F extends (item: T) => boolean>(tree: T[], 
 
   let node: T | undefined;
 
-  if (!isArray(tree)) {
-    return node;
-  }
+  if (isArray(tree)) {
+    forEach(tree, (item) => {
+      stack.push(item);
 
-  for (const item of tree) {
-    stack.push(item);
+      while (stack.length) {
+        const temp = stack.pop() as T;
+        if (predicate(temp)) {
+          node = temp;
+          break;
+        }
 
-    while (stack.length) {
-      const temp = stack.pop() as T;
-      if (predicate(temp)) {
-        node = temp;
-        break;
-      }
-
-      if (isObject(temp)) {
-        // @ts-ignore
-        const childs = temp[childrenField] as T[];
-        if (isArray(childs) && childs.length > 0) {
-          childs.forEach((c) => {
-            stack.push(c);
-          });
+        if (isObject(temp)) {
+          // @ts-ignore
+          const childs = temp[childrenField] as T[];
+          if (isArray(childs) && childs.length > 0) {
+            childs.forEach((c) => {
+              stack.push(c);
+            });
+          }
         }
       }
-    }
 
-    if (node) {
-      break;
-    }
+      if (node) {
+        return false;
+      }
+    });
   }
 
   return node;
