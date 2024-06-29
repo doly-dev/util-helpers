@@ -1,5 +1,5 @@
-// @ts-ignore
-const regIdCard = /^(?<province>\d{2})(?<city>\d{2})(?<area>\d{2})(?<year>(?:\d{2})?\d{2})(?<month>\d{2})(?<day>\d{2})\d{2}(?<gender>\d)(?:\d|X)?$/i;
+// const regIdCard = /^(?<province>\d{2})(?<city>\d{2})(?<area>\d{2})(?<year>(?:\d{2})?\d{2})(?<month>\d{2})(?<day>\d{2})\d{2}(?<gender>\d)(?:\d|X)?$/i;
+const regIdCard = /^(\d{2})(\d{2})(\d{2})((?:\d{2})?\d{2})(\d{2})(\d{2})\d{2}(\d)(?:\d|X)?$/i;
 
 const Provinces = [
   // 华北地区：北京市|110000，天津市|120000，河北省|130000，山西省|140000，内蒙古自治区|150000
@@ -146,7 +146,8 @@ function parseIdCard(id: string) {
     return null;
   }
 
-  const origin = match.groups || {
+  // const origin = match.groups || {
+  const origin = {
     province: match[1],
     city: match[2],
     area: match[3],
