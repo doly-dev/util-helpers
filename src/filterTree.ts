@@ -40,7 +40,6 @@ function filterTree<T extends any, F extends (item: T) => boolean>(tree: T[], pr
     let newItem = item;
 
     if (isObject(item)) {
-      // @ts-ignore
       newItem = nodeAssign === 'spread' ? { ...item } : item;
     }
 
