@@ -1,4 +1,4 @@
-let errorMessage = 'error';
+let errorMessage = 'load error';
 export function setImageLoadErrorMessage(str: string) {
   errorMessage = str;
 }
@@ -22,7 +22,7 @@ class XImage extends Image {
         this.onload();
       } else {
         // @ts-ignore
-        this.onerror(errorMessage);
+        this.onerror(new Error(errorMessage));
       }
     }, 100);
   }
@@ -37,6 +37,6 @@ export function mockImage() {
 
 export function restoreImage() {
   loadSuccess = true;
-  errorMessage = 'error';
+  errorMessage = 'load error';
   globalThis.Image = temp;
 }

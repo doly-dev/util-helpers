@@ -29,7 +29,7 @@ export function createSpyAjax(opts?: { open?: jest.Mock<any, any, any>; send?: j
   };
 
   const spyAjax = jest.spyOn(globalThis, 'XMLHttpRequest').mockImplementation(() => {
-    const methods: Record<string, () => void> = {};
+    const methods: Record<string, (...args: any[]) => void> = {};
 
     async function send() {
       methods.loadstart?.();
@@ -37,7 +37,7 @@ export function createSpyAjax(opts?: { open?: jest.Mock<any, any, any>; send?: j
       if (resMethod === ResponseMethod.Abort) {
         methods.abort();
       } else if (resMethod === ResponseMethod.Error) {
-        methods.error();
+        methods.error(new Error('ajax error'));
       } else if (resMethod === ResponseMethod.Timeout) {
         methods.timeout();
       } else {

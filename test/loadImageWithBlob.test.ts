@@ -76,9 +76,9 @@ describe('loadImageWithBlob', () => {
       setResponseMethod(ResponseMethod.Error);
       try {
         await loadImageWithBlob(url);
-      } catch (err) {
+      } catch (err: any) {
         // spy onerror没有返回错误信息
-        expect(err).toBeUndefined();
+        expect(err.message).toBe('ajax error');
         expect(spyConsoleError).toHaveBeenCalled();
       }
       expect(spyConsoleError).toHaveBeenCalled();
@@ -108,9 +108,9 @@ describe('loadImageWithBlob', () => {
       try {
         const blob = new Blob(['hello world']);
         await loadImageWithBlob(blob);
-      } catch (err) {
+      } catch (err: any) {
         // spy image error message
-        expect(err).toBe('error');
+        expect(err.message).toBe('load error');
         expect(spyConsoleError).toHaveBeenCalled();
       }
     },

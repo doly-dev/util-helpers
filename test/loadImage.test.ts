@@ -52,17 +52,17 @@ describe('loadImage', () => {
       setImageLoadStatus(false);
       try {
         await loadImage(url);
-      } catch (err) {
+      } catch (err: any) {
         // spy image error message
-        expect(err).toBe('error');
+        expect(err.message).toBe('load error');
       }
       expect(spyConsoleError).toHaveBeenCalledTimes(1);
 
       try {
         await loadImage(new Blob(['hello world']));
-      } catch (err) {
+      } catch (err: any) {
         // spy image error message
-        expect(err).toBe('error');
+        expect(err.message).toBe('load error');
       }
       expect(spyConsoleError).toHaveBeenCalledTimes(2);
     },
