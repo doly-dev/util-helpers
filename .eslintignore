@@ -1,3 +1,6 @@
 dist
+dist-bak
 esm
 lib
+types
+docs
