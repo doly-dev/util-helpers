@@ -18,7 +18,7 @@
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && rm -rf docs-src && tsc -p tsconfig.build.json -t esnext --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
     "doc:open": "open ./docs/index.html",
-    "prettier": "prettier --write 'src/**/*.ts' && prettier --write 'test/**/*.ts'",
+    "prettier": "prettier -w **/*",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "commit": "cz",
@@ -84,7 +84,7 @@
   },
   "lint-staged": {
     "**/*.ts": "eslint",
-    "**/*.{js,ts,md}": "prettier --write"
+    "**/*.{js,ts,md}": "prettier -w"
   },
   "config": {
     "commitizen": {
@@ -93,7 +93,6 @@
   },
   "dependencies": {
     "cache2": "^3.0.0",
-    "emitter-pro": "^1.2.1",
     "tslib": "^2.6.3",
     "ut2": "^1.10.1"
   },
