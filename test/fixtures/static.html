@@ -1,143 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>测试</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>测试</title>
-</head>
-
-<body>
-  <input type="text" id="bankcard" />
-  <script src="../../dist/util-helpers.js"></script>
-  <script>
-
-    /**
-    * 是否为科学计数法数字
-    * 
-    * @private
-    * @param {String} num 检查值
-    * @returns {Boolean}
-    */
-    function isScientificNumber(num) {
-      return /\d+\.?\d*e[\+\-]*\d+/i.test(num);
-    }
-
-    /**
-     * 转换为科学计数法
-     * 
-     * @param {String|Number} num 数字
-     * @returns {String} 科学计数法数字
-     */
-    function toExponential(num) {
-      return Number(num).toExponential();
-    }
-
-    /**
-     * 去掉左边数字0
-     * 
-     * @param {String} num 数字字符串
-     * @returns {String}
-     */
-    function trimLeftZero(num) {
-      const reg = /^([+-])?(0+)([1-9\.]+)$/;
-      const result = reg.exec(num);
-
-      let sign;
-
-      if (result) {
-        sign = result[1] || '';
-        return sign + result[3];
+  <body>
+    <input type="text" id="bankcard" />
+    <script src="../../dist/util-helpers.js"></script>
+    <script>
+      /**
+       * 是否为科学计数法数字
+       *
+       * @private
+       * @param {String} num 检查值
+       * @returns {Boolean}
+       */
+      function isScientificNumber(num) {
+        return /\d+\.?\d*e[\+\-]*\d+/i.test(num);
       }
 
-      return num;
-    }
+      /**
+       * 转换为科学计数法
+       *
+       * @param {String|Number} num 数字
+       * @returns {String} 科学计数法数字
+       */
+      function toExponential(num) {
+        return Number(num).toExponential();
+      }
 
-    /**
-     * @alias module:processor.scientificToNumber
-     * @description <p>科学计数法转换成普通数字</p><p>JavaScript在以下情景会自动将数值转换为科学计数法：</p><ol><li>小数点前的数字个数大于等于22位</li><li>小数点前边是0，小数点后十分位（包含十分位）之后连续零的个数大于等于6个</li></ol>
-     * @param {String} num 科学计数法数字
-     * @returns {String} 转换后的数字字符串
-     */
-    function scientificToNumber(num) {
-      if (isScientificNumber(num)) {
-        const zero = '0';
-        const parts = String(num).toLowerCase().split('e');
-        const e = parts.pop(); // 存储指数
-        const l = Math.abs(e); // 取绝对值，l-1就是0的个数
-        const sign = e / l; //判断正负
-        const coeff_array = parts[0].split('.');   // 将系数按照小数点拆分
+      /**
+       * 去掉左边数字0
+       *
+       * @param {String} num 数字字符串
+       * @returns {String}
+       */
+      function trimLeftZero(num) {
+        const reg = /^([+-])?(0+)([1-9\.]+)$/;
+        const result = reg.exec(num);
 
-        //如果是小数
-        if (sign === -1) {
-          //拼接字符串，如果是小数，拼接0和小数点
-          num = zero + '.' + new Array(l).join(zero) + coeff_array.join('');
-        } else {
-          const dec = coeff_array[1];
+        let sign;
 
-          //如果是整数，将整数除第一位之外的非零数字计入位数，相应的减少0的个数
-          if (l - dec.length < 0) {
-            num = trimLeftZero(coeff_array[0] + dec.substr(0, l)) + '.' + dec.substr(l);
+        if (result) {
+          sign = result[1] || '';
+          return sign + result[3];
+        }
+
+        return num;
+      }
+
+      /**
+       * @alias module:processor.scientificToNumber
+       * @description <p>科学计数法转换成普通数字</p><p>JavaScript在以下情景会自动将数值转换为科学计数法：</p><ol><li>小数点前的数字个数大于等于22位</li><li>小数点前边是0，小数点后十分位（包含十分位）之后连续零的个数大于等于6个</li></ol>
+       * @param {String} num 科学计数法数字
+       * @returns {String} 转换后的数字字符串
+       */
+      function scientificToNumber(num) {
+        if (isScientificNumber(num)) {
+          const zero = '0';
+          const parts = String(num).toLowerCase().split('e');
+          const e = parts.pop(); // 存储指数
+          const l = Math.abs(e); // 取绝对值，l-1就是0的个数
+          const sign = e / l; //判断正负
+          const coeff_array = parts[0].split('.'); // 将系数按照小数点拆分
+
+          //如果是小数
+          if (sign === -1) {
+            //拼接字符串，如果是小数，拼接0和小数点
+            num = zero + '.' + new Array(l).join(zero) + coeff_array.join('');
           } else {
-            //拼接字符串，如果是整数，不需要拼接小数点
-            num = coeff_array.join('') + new Array(l - dec.length + 1).join(zero);
+            const dec = coeff_array[1];
+
+            //如果是整数，将整数除第一位之外的非零数字计入位数，相应的减少0的个数
+            if (l - dec.length < 0) {
+              num = trimLeftZero(coeff_array[0] + dec.substr(0, l)) + '.' + dec.substr(l);
+            } else {
+              //拼接字符串，如果是整数，不需要拼接小数点
+              num = coeff_array.join('') + new Array(l - dec.length + 1).join(zero);
+            }
           }
         }
+        return num;
       }
-      return num;
-    }
 
-    console.group("scientificToNumber");
-    console.log(scientificToNumber("5.1234546576875645342e-2"));
-    console.log(scientificToNumber("0.51234546576875645342e+2"));
-    console.groupEnd();
+      console.group('scientificToNumber');
+      console.log(scientificToNumber('5.1234546576875645342e-2'));
+      console.log(scientificToNumber('0.51234546576875645342e+2'));
+      console.groupEnd();
 
-    console.log('utilHelpers: ', utilHelpers);
+      console.log('utilHelpers: ', utilHelpers);
 
-    console.group("formatMoney")
-    console.log(utilHelpers.formatMoney('0x11'));
-    console.groupEnd();
+      console.group('formatMoney');
+      console.log(utilHelpers.formatMoney('0x11'));
+      console.groupEnd();
 
+      console.group('isPassword');
+      console.log('aaa.', '2级强度 .为非法字符', utilHelpers.isPassword('aaa.'));
+      console.log('1234787', '1级强度', utilHelpers.isPassword('1234787', { level: 1 }));
+      console.log('a1234787', '1级强度', utilHelpers.isPassword('a1234787', { level: 1 }));
+      console.log('a12347_87', '1级强度', utilHelpers.isPassword('a12347_87', { level: 1 }));
+      console.log('a12347_87', '1级强度', utilHelpers.isPassword('a12347_87', { level: 1 }));
+      console.groupEnd();
 
-    console.group("isPassword")
-    console.log("aaa.", '2级强度 .为非法字符', utilHelpers.isPassword('aaa.'))
-    console.log("1234787", '1级强度', utilHelpers.isPassword('1234787', { level: 1 }))
-    console.log("a1234787", '1级强度', utilHelpers.isPassword('a1234787', { level: 1 }))
-    console.log("a12347_87", '1级强度', utilHelpers.isPassword('a12347_87', { level: 1 }))
-    console.log("a12347_87", '1级强度', utilHelpers.isPassword('a12347_87', { level: 1 }))
-    console.groupEnd();
+      console.group('isSocialCreditCode');
+      console.log(utilHelpers.isSocialCreditCode('91350100M000100Y4A3'));
+      console.log(utilHelpers.isSocialCreditCode('92310115MA1LAG5R9M'));
+      console.log(utilHelpers.isSocialCreditCode('91350100M000103'));
+      // console.log(utilHelpers.isSocialCreditCode("91350100M000100Y4A3"));
+      console.groupEnd();
 
-    console.group("isSocialCreditCode");
-    console.log(utilHelpers.isSocialCreditCode("91350100M000100Y4A3"));
-    console.log(utilHelpers.isSocialCreditCode("92310115MA1LAG5R9M"));
-    console.log(utilHelpers.isSocialCreditCode("91350100M000103"));
-    // console.log(utilHelpers.isSocialCreditCode("91350100M000100Y4A3"));
-    console.groupEnd();
+      console.group('isBusinessLicense');
+      console.log('310115600985533', utilHelpers.isBusinessLicense('310115600985533'));
+      console.log('31011560098553', utilHelpers.isBusinessLicense('31011560098553'));
+      console.log('310115600985535', utilHelpers.isBusinessLicense('310115600985535'));
+      console.log('123115600985535', 'loose', utilHelpers.isBusinessLicense('310115600985535', { loose: true }));
+      console.groupEnd();
 
-    console.group("isBusinessLicense");
-    console.log("310115600985533", utilHelpers.isBusinessLicense('310115600985533'));
-    console.log("31011560098553", utilHelpers.isBusinessLicense('31011560098553'));
-    console.log("310115600985535", utilHelpers.isBusinessLicense('310115600985535'));
-    console.log("123115600985535", "loose", utilHelpers.isBusinessLicense('310115600985535', { loose: true }));
-    console.groupEnd();
+      var oBC = document.querySelector('#bankcard');
 
+      // 动态变动
+      oBC.oninput = (e) => {
+        console.log(e.target.value);
+        oBC.value = utilHelpers.formatBankCard(e.target.value);
+      };
 
+      // 身份证号
+      console.log('验证身份证号', utilHelpers.isIdCard('31011019840920084x'));
 
-    var oBC = document.querySelector('#bankcard');
-
-    // 动态变动
-    oBC.oninput = (e) => {
-      console.log(e.target.value);
-      oBC.value = utilHelpers.formatBankCard(e.target.value);
-    }
-
-    // 身份证号
-    console.log('验证身份证号', utilHelpers.isIdCard('31011019840920084x'));
-
-    console.log(utilHelpers.formatMoney('010'));
-
-  </script>
-</body>
-
+      console.log(utilHelpers.formatMoney('010'));
+    </script>
+  </body>
 </html>

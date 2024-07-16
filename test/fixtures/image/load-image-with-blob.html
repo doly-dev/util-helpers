@@ -1,71 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>load image with blob</title>
+    <style>
+      img {
+        max-width: 100%;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>load image with blob</title>
-  <style>
-    img {
-      max-width: 100%;
-    }
+      textarea {
+        min-width: 320px;
+      }
+    </style>
+  </head>
 
-    textarea {
-      min-width: 320px;
-    }
-  </style>
-</head>
+  <body>
+    <h1>loadImageWithBlob</h1>
+    <p>异步返回加载成功后的图片标签(HTMLImageElement) 和 blob 对象。</p>
+    <fieldset>
+      <legend>上传图片</legend>
+      <p>1.如果传入的图片是 blob 格式，将通过 URL.createObjectURL 创建一个 URL 对象，加载完成后使用 URL.revokeObjectURL 释放 URL 对象。</p>
+      <input type="file" id="input_1" accept="image/*" />
+      <div id="result_1"></div>
+    </fieldset>
+    <br />
+    <br />
+    <fieldset>
+      <legend>图片地址</legend>
+      <p>2.如果传入的是字符串，将通过 ajax 请求获取图片的 blob ，再通过 blob 方式加载图片。</p>
+      <textarea id="input_2" placeholder="请输入图片地址"></textarea>
+      <div id="result_2"></div>
+    </fieldset>
 
-<body>
-  <h1>loadImageWithBlob</h1>
-  <p>异步返回加载成功后的图片标签(HTMLImageElement) 和 blob 对象。</p>
-  <fieldset>
-    <legend>上传图片</legend>
-    <p>1.如果传入的图片是 blob 格式，将通过 URL.createObjectURL 创建一个 URL 对象，加载完成后使用 URL.revokeObjectURL 释放 URL 对象。</p>
-    <input type="file" id="input_1" accept="image/*" />
-    <div id="result_1"></div>
-  </fieldset>
-  <br>
-  <br>
-  <fieldset>
-    <legend>图片地址</legend>
-    <p>2.如果传入的是字符串，将通过 ajax 请求获取图片的 blob ，再通过 blob 方式加载图片。</p>
-    <textarea id="input_2" placeholder="请输入图片地址"></textarea>
-    <div id="result_2"></div>
-  </fieldset>
+    <script src="../../../dist/util-helpers.js"></script>
+    <script>
+      async function appendImage(wrapper, file) {
+        var startTime = Date.now();
+        var { image, blob } = await utilHelpers.loadImageWithBlob(file);
+        var endTime = Date.now();
+        var elapsedTime = endTime - startTime;
 
-  <script src="../../../dist/util-helpers.js"></script>
-  <script>
-    async function appendImage(wrapper, file) {
-      var startTime = Date.now();
-      var { image, blob } = await utilHelpers.loadImageWithBlob(file);
-      var endTime = Date.now();
-      var elapsedTime = endTime - startTime;
+        var extraInfo = '';
+        extraInfo += '<div>图片大小：' + blob.size + 'B≈' + utilHelpers.bytesToSize(blob.size) + '</div>';
+        extraInfo += '<div>图片加载耗时：' + elapsedTime + 'ms</div>';
+        extraInfo += '<div>图片宽高：' + image.width + ' × ' + image.height + ' px</div>';
 
-      var extraInfo = '';
-      extraInfo += '<div>图片大小：' + blob.size + 'B≈' + utilHelpers.bytesToSize(blob.size) + '</div>';
-      extraInfo += '<div>图片加载耗时：' + elapsedTime + 'ms</div>';
-      extraInfo += '<div>图片宽高：' + image.width + ' × ' + image.height + ' px</div>';
+        wrapper.innerHTML = extraInfo;
+        wrapper.appendChild(image);
+      }
 
-      wrapper.innerHTML = extraInfo;
-      wrapper.appendChild(image);
-    }
+      var oInput1 = document.querySelector('#input_1');
+      var oResult1 = document.querySelector('#result_1');
+      oInput1.onchange = function (e) {
+        var file = e.target.files[0];
+        appendImage(oResult1, file);
+      };
 
-    var oInput1 = document.querySelector('#input_1');
-    var oResult1 = document.querySelector('#result_1');
-    oInput1.onchange = function (e) {
-      var file = e.target.files[0];
-      appendImage(oResult1, file);
-    }
-
-    var oInput2 = document.querySelector('#input_2');
-    var oResult2 = document.querySelector('#result_2');
-    oInput2.onblur = function (e) {
-      var file = e.target.value;
-      appendImage(oResult2, file);
-    }
-  </script>
-
-</body>
-
+      var oInput2 = document.querySelector('#input_2');
+      var oResult2 = document.querySelector('#result_2');
+      oInput2.onblur = function (e) {
+        var file = e.target.value;
+        appendImage(oResult2, file);
+      };
+    </script>
+  </body>
 </html>

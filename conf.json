@@ -3,19 +3,12 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": [
-      "docs-src",
-      "README.md"
-    ],
-    "exclude": [
-      "./docs-src/utils"
-    ],
+    "include": ["docs-src", "README.md"],
+    "exclude": ["./docs-src/utils"],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
-  "plugins": [
-    "plugins/markdown"
-  ],
+  "plugins": ["plugins/markdown"],
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false,
