@@ -14,6 +14,6 @@ module.exports = {
     BUILD_VERSION: version
   },
   setupFiles: ['jest-canvas-mock'],
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  coveragePathIgnorePatterns: ['/test/'],
   ...coverageConfig
 };
