@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>safeDate.js - util-helpers </title>
+    <title>getFileType.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">safeDate.js</h1>
+    <h1 class="page-title">getFileType.js</h1>
     
 
     
@@ -71,38 +71,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 创建一个 Date 实例日期对象，同 &lt;a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date#%E5%8F%82%E6%95%B0">new Date()&lt;/a>
- *
- * 规避了苹果设备浏览器不支持部分格式（例如，YYYY-MM-DD HH-mm 或 YYYY.MM.DD）。
- *
- * 如果参数为 undefined 正常返回 Date 。
- *
- * @function
- * @alias module:Processor.safeDate
- * @since 4.4.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date Date}
- * @param {string|number|Date} [value] 日期时间字符串、毫秒数、日期对象
- * @param {...number} [args] 月/日/时/分/秒/毫秒
- * @returns {Date} Date 实例日期对象
- * @example
- *
- * safeDate('2022-1-1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
- * safeDate('2022/1/1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
- * safeDate('2022.1.1'); // Sat Jan 01 2022 00:00:00 GMT+0800 (中国标准时间)
- * safeDate('2022.1.1 11:11'); // Sat Jan 01 2022 11:11:00 GMT+0800 (中国标准时间)
- * safeDate(99, 1); // Mon Feb 01 1999 00:00:00 GMT+0800 (中国标准时间)
- * safeDate(1646711233171); // Tue Mar 08 2022 11:47:13 GMT+0800 (中国标准时间)
- */
-const safeDate = function (value, ...args) {
-    const safeValue = typeof value === 'string' ? value.replace(/[\\.-]/g, '/') : value;
-    if (args &amp;&amp; args.length > 0) {
-        // @ts-ignore
-        return new Date(safeValue, ...args);
-    }
-    return typeof safeValue === 'undefined' ? new Date() : new Date(safeValue);
+            <pre class="prettyprint source linenums"><code>import { forEach, isBlob } from 'ut2';
+import checkFileType from './checkFileType';
+// 内置文件类型和文件名后缀配置
+const config = {
+    image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp',
+    audio: 'audio/*,.mp3,.wav',
+    video: 'video/*,.mp4,.webm,.ogg,.ogv,.ogm',
+    pdf: 'application/pdf,.pdf',
+    word: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx',
+    excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx'
 };
-export default safeDate;
+/**
+ * 获取文件类型
+ *
+ * @static
+ * @alias module:Other.getFileType
+ * @since 5.1.0
+ * @param {File} file 文件对象。
+ * @returns {"image" | "audio" | "video" | "pdf" | "word" | "excel" | undefined} 如果是 `image` `audio` `video` `pdf` `word` `excel` 这些类型的文件，返回对应的类型值，否则返回 `undefined`。
+ */
+function getFileType(file) {
+    let type;
+    if (isBlob(file)) {
+        forEach(config, (accept, fileType) => {
+            if (checkFileType(file, accept)) {
+                type = fileType;
+                return false;
+            }
+        });
+    }
+    return type;
+}
+export default getFileType;
 </code></pre>
         </article>
     </section>
