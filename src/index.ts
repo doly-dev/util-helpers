@@ -102,9 +102,11 @@ export { default as lcm } from './lcm';
  */
 export { default as ajax } from './ajax';
 export { default as calculateCursorPosition } from './calculateCursorPosition';
+export { default as checkFileType } from './checkFileType';
 export { default as compressImage } from './compressImage';
 export { default as download } from './download';
 export { default as getFileBlob } from './getFileBlob';
+export { default as getFileType } from './getFileType';
 export { default as getImageInfo } from './getImageInfo';
 export { default as loadImage } from './loadImage';
 export { default as loadImageWithBlob } from './loadImageWithBlob';
