@@ -20,8 +20,17 @@ type FileType = keyof typeof config;
  * @static
  * @alias module:Other.getFileType
  * @since 5.1.0
+ * @requires Other.checkFileType
  * @param {File} file 文件对象。支持 antd `UploadFile` 对象。
  * @returns {"image" | "audio" | "video" | "pdf" | "word" | "excel" | undefined} 如果是 `image` `audio` `video` `pdf` `word` `excel` 这些类型的文件，返回对应的类型值，否则返回 `undefined`。
+ * @example
+ *
+ * const pdf = new File([], '1.pdf', { type: 'application/pdf' });
+ * const jpeg = new File([], 'xx.jpeg', { type: 'image/jpeg' });
+ *
+ * getFileType(pdf); // 'pdf'
+ * getFileType(jpeg); // 'image'
+ *
  */
 function getFileType(file: File | UploadFile) {
   let type: undefined | FileType;

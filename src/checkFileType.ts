@@ -12,6 +12,26 @@ import { isUploadFile, testExt, UploadFile } from './utils/file.util';
  * @param {File} file 文件对象。支持 antd `UploadFile` 对象。
  * @param {string} [accept] 文件类型说明符。
  * @returns {boolean} 如果 `file` 符合 `accept` 返回 `true`， 否则返回 `false`。
+ * @example
+ *
+ * const pdf = new File([], '1.pdf', { type: 'application/pdf' });
+ * const jpeg = new File([], 'xx.jpeg', { type: 'image/jpeg' });
+ *
+ * // 文件类型
+ * checkFileType(pdf, 'application/pdf'); // true
+ * checkFileType(jpeg, 'image/jpeg'); // true
+ *
+ * // 通配符
+ * checkFileType(jpeg, 'image/*'); // true
+ * checkFileType(pdf, 'image/*'); // false
+ * checkFileType(pdf, 'application/*'); // true
+ * checkFileType(pdf, '*'); // true
+ * checkFileType(jpeg, '*'); // true
+ *
+ * // 文件名扩展名
+ * checkFileType(jpeg, '.png,.jpeg,.jpg'); // true
+ * checkFileType(pdf, '.pdf'); // true
+ *
  */
 function checkFileType(file: File | UploadFile, accept?: string) {
   if (!isFile(file) && !isUploadFile(file)) {
