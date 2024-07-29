@@ -30,6 +30,9 @@ describe('checkFileType', () => {
     expect(checkFileType(jpeg, '*')).toBeTruthy();
     expect(checkFileType(gif, '*')).toBeTruthy();
     expect(checkFileType(png, '*')).toBeTruthy();
+
+    // 含有 *
+    expect(checkFileType(pdf, 'image/*,*,.png')).toBeTruthy();
   });
 
   it('不传 accept', () => {
@@ -64,6 +67,37 @@ describe('checkFileType', () => {
     expect(checkFileType(jpeg, 'image/*,.png,.gif,.pdf')).toBeTruthy();
     expect(checkFileType(gif, 'image/*,.png,.gif,.pdf')).toBeTruthy();
     expect(checkFileType(png, 'image/*,.png,.gif,.pdf')).toBeTruthy();
+  });
+
+  it('UploadFile', () => {
+    const f1 = {
+      uid: '-1',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      name: '图片文件名称111'
+    };
+    const f2 = {
+      uid: '-2',
+      name: 'test.ofd'
+    };
+
+    expect(checkFileType(f1, '.png')).toBeTruthy();
+    expect(checkFileType(f2, '.ofd')).toBeTruthy();
+
+    expect(checkFileType(f1, 'image/*')).toBeFalsy();
+    expect(checkFileType(f2, 'application/*')).toBeFalsy();
+  });
+
+  it('无效的 UploadFile 对象', () => {
+    // UploadFile 必须包含 uid和name ，如果不是一个有效的 UploadFile ，检查文件类型始终返回 false
+    const f = {
+      uid: '-3',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+    };
+
+    // @ts-ignore
+    expect(checkFileType(f, '.png')).toBeFalsy();
+    // @ts-ignore
+    expect(checkFileType(f, '*')).toBeFalsy();
   });
 
   it('异常参数', () => {

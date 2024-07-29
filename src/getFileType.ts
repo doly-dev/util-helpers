@@ -1,5 +1,6 @@
 import { forEach, isBlob } from 'ut2';
 import checkFileType from './checkFileType';
+import { isUploadFile, UploadFile } from './utils/file.util';
 
 // 内置文件类型和文件名后缀配置
 const config = {
@@ -19,13 +20,13 @@ type FileType = keyof typeof config;
  * @static
  * @alias module:Other.getFileType
  * @since 5.1.0
- * @param {File} file 文件对象。
+ * @param {File} file 文件对象。支持 antd `UploadFile` 对象。
  * @returns {"image" | "audio" | "video" | "pdf" | "word" | "excel" | undefined} 如果是 `image` `audio` `video` `pdf` `word` `excel` 这些类型的文件，返回对应的类型值，否则返回 `undefined`。
  */
-function getFileType(file: File) {
+function getFileType(file: File | UploadFile) {
   let type: undefined | FileType;
 
-  if (isBlob(file)) {
+  if (isBlob(file) || isUploadFile(file)) {
     forEach(config, (accept, fileType) => {
       if (checkFileType(file, accept)) {
         type = fileType;

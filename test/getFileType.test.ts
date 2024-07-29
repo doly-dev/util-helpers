@@ -31,6 +31,34 @@ describe('getFileType', () => {
     expect(getFileType(xlsx)).toBe('excel');
   });
 
+  it('UploadFile', () => {
+    const f1 = {
+      uid: '-1',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      name: '图片文件名称111'
+    };
+    const f2 = {
+      uid: '-2',
+      name: 'test.ofd'
+    };
+
+    expect(getFileType(f1)).toBe('image');
+    expect(getFileType(f2)).toBeUndefined();
+  });
+
+  it('无效的 UploadFile 对象', () => {
+    // UploadFile 必须包含 uid和name ，如果不是一个有效的 UploadFile ，检查文件类型始终返回 undefined
+    const f = {
+      uid: '-3',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+    };
+
+    // @ts-ignore
+    expect(getFileType(f)).toBeUndefined();
+    // @ts-ignore
+    expect(getFileType(f)).toBeUndefined();
+  });
+
   it('异常参数', () => {
     // @ts-ignore
     expect(getFileType()).toBe(undefined);

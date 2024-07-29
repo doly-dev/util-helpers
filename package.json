@@ -94,7 +94,7 @@
   "dependencies": {
     "cache2": "^3.0.0",
     "tslib": "^2.6.3",
-    "ut2": "^1.10.1"
+    "ut2": "^1.11.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

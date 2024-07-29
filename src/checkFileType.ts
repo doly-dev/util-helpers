@@ -1,9 +1,5 @@
-import { isBlob, isString, toString } from 'ut2';
-
-// 测试文件名后缀
-function testExt(name: string | undefined, ext: string) {
-  return !!name && name.slice(-ext.length) === ext;
-}
+import { isFile, isString, toString } from 'ut2';
+import { isUploadFile, testExt, UploadFile } from './utils/file.util';
 
 /**
  * 检查文件是否符合 `accept` 类型说明符。
@@ -13,12 +9,12 @@ function testExt(name: string | undefined, ext: string) {
  * @since 5.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#唯一文件类型说明符 唯一文件类型说明符}
  * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml Media Types}
- * @param {File} file 文件对象。
+ * @param {File} file 文件对象。支持 antd `UploadFile` 对象。
  * @param {string} [accept] 文件类型说明符。
  * @returns {boolean} 如果 `file` 符合 `accept` 返回 `true`， 否则返回 `false`。
  */
-function checkFileType(file: File, accept?: string) {
-  if (!isBlob(file)) {
+function checkFileType(file: File | UploadFile, accept?: string) {
+  if (!isFile(file) && !isUploadFile(file)) {
     return false;
   }
 
@@ -33,13 +29,15 @@ function checkFileType(file: File, accept?: string) {
   }
 
   let ret = false;
+
   const types = accept.toLowerCase().split(/,(?:\s+)?/);
   const fileName = file.name.toLowerCase();
-  const fileType = file.type;
+  const fileType = file.type || '';
+  const fileUrl = (file as UploadFile).url || '';
 
   types.some((type) => {
     // .doc .docx .jpg .png
-    if (fileType === type || (type.indexOf('.') === 0 && testExt(fileName, type))) {
+    if (type === '*' || fileType === type || (type.indexOf('.') === 0 && (testExt(fileName, type) || testExt(fileUrl, type)))) {
       ret = true;
     } else if (type.includes('/*') && fileType.includes('/')) {
       // image/* 匹配所有图片类型
