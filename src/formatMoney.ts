@@ -1,4 +1,4 @@
-import { isNaN } from 'ut2';
+import { isNaN, isNumber, isString } from 'ut2';
 import { checkBoundary, transformEffectiveNumber, trimLeftZero } from './utils/math.util';
 import devWarn from './utils/devWarn';
 import isValidNumber from './isValidNumber';
@@ -7,10 +7,10 @@ import isValidNumber from './isValidNumber';
  * 检查数字或数字字符串
  *
  * @private
- * @param {string|number} num
+ * @param {string|number} [num]
  * @returns 是否为数字
  */
-function checkNumber(num: string | number) {
+function checkNumber(num?: string | number) {
   if (!isValidNumber(num)) {
     devWarn(`${num} invalid parameter.`);
     return false;
@@ -79,6 +79,7 @@ type Options = {
   symbol?: string;
   thousand?: string;
   decimal?: string;
+  strict?: boolean;
 };
 
 /**
@@ -93,6 +94,7 @@ type Options = {
  * @param {string} [options.symbol] 货币符号
  * @param {string} [options.thousand=","] 千分位符号
  * @param {string} [options.decimal="."] 小数位符号
+ * @param {boolean} [options.strict=ture] 严格模式。开启后，只支持非空字符串和数字格式化，其他类型值如`null` `undefined` `true` `false`等将返回空字符串。
  * @returns {string} 格式化的金额
  * @example
  *
@@ -120,11 +122,18 @@ type Options = {
  * // 字符串数字
  * formatMoney('3000.03', { precision: 4 }); // 3,000.0300
  */
-const formatMoney = (num: string | number = '', options: Options = {}) => {
-  let { precision = 2, symbol, thousand = ',', decimal = '.' } = options;
+const formatMoney = (num?: string | number, options: Options = {}) => {
+  let {
+    precision = 2,
+    symbol,
+    thousand = ',',
+    decimal = '.',
+    // eslint-disable-next-line prefer-const
+    strict = true
+  } = options;
 
   // 数字参数不正确，返回空字符串
-  if (!checkNumber(num)) {
+  if (!checkNumber(num) || (strict && (!isString(num) || num === '') && !isNumber(num))) {
     return '';
   }
 
