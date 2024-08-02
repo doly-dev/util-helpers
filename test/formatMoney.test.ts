@@ -17,7 +17,7 @@ describe('formatMoney', () => {
     expect(formatMoney('40833293563290239918163922168323157340193394658892337376669999999999999951662')).toBe('40,833,293,563,290,239,918,163,922,168,323,157,340,193,394,658,892,337,376,669,999,999,999,999,951,662.00');
     expect(formatMoney('-9007199254740992')).toBe('-9,007,199,254,740,992.00');
     expect(formatMoney('.01')).toBe('0.01');
-    expect(formatMoney('')).toBe('0.00');
+    expect(formatMoney('')).toBe('');
   });
 
   it('输入金额 - 进制', () => {
@@ -58,16 +58,6 @@ describe('formatMoney', () => {
     expect(formatMoney('+1000.000')).toBe('1,000.00');
     expect(formatMoney('-1000')).toBe('-1,000.00');
     expect(formatMoney('-1000', { precision: 2 })).toBe('-1,000.00');
-
-    // @ts-ignore
-    expect(formatMoney(true)).toBe('1.00');
-    // @ts-ignore
-    expect(formatMoney(false)).toBe('0.00');
-    expect(formatMoney(NaN)).toBe('');
-    expect(formatMoney(undefined)).toBe('0.00');
-    expect(formatMoney()).toBe('0.00');
-    // @ts-ignore
-    expect(formatMoney(null)).toBe('0.00');
   });
 
   it('输入位数类型测试', () => {
@@ -116,5 +106,30 @@ describe('formatMoney', () => {
     expect(formatMoney(1000.0, { decimal: false })).toBe('1,000.00');
     // @ts-ignore
     expect(formatMoney(1000.0, { decimal: null })).toBe('1,000.00');
+  });
+
+  it('常规模式和严格模式，空字符串和非数字字符串类型', () => {
+    // 常规模式
+    expect(formatMoney('')).toBe('');
+    // @ts-ignore
+    expect(formatMoney(true)).toBe('');
+    // @ts-ignore
+    expect(formatMoney(false)).toBe('');
+    expect(formatMoney(NaN)).toBe('');
+    expect(formatMoney(undefined)).toBe('');
+    expect(formatMoney()).toBe('');
+    // @ts-ignore
+    expect(formatMoney(null)).toBe('');
+
+    // 严格模式
+    expect(formatMoney('', { strict: false })).toBe('0.00');
+    // @ts-ignore
+    expect(formatMoney(true, { strict: false })).toBe('1.00');
+    // @ts-ignore
+    expect(formatMoney(false, { strict: false })).toBe('0.00');
+    expect(formatMoney(NaN, { strict: false })).toBe('');
+    expect(formatMoney(undefined, { strict: false })).toBe('');
+    // @ts-ignore
+    expect(formatMoney(null, { strict: false })).toBe('0.00');
   });
 });
