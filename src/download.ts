@@ -66,6 +66,8 @@ type DownloadOptions = {
  *
  * <em style="font-weight: bold;">注意：微信浏览器不支持H5下载文件。</em>
  *
+ * <em>响应头中有 "Content-Disposition" 字段，客户端获取不到？</em> 请参考查阅 [Access-Control-Expose-Headers](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) 。
+ *
  * @static
  * @alias module:Other.download
  * @since 4.16.0
