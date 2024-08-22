@@ -423,7 +423,7 @@ bytesToSize(1024, { spaceMark: '' }); // 1KB</code></pre>
                 </td>
             
 
-            <td class="description last"><p>间隔字符</p></td>
+            <td class="description last"><p>间隔字符，默认<code>' '</code></p></td>
         </tr>
 
     
@@ -463,7 +463,7 @@ bytesToSize(1024, { spaceMark: '' }); // 1KB</code></pre>
                 </td>
             
 
-            <td class="description last"><p>精度</p></td>
+            <td class="description last"><p>精度，默认<code>2</code></p></td>
         </tr>
 
     
@@ -894,7 +894,7 @@ fileReader(textBlob, 'text').then(data=>{
                 </td>
             
 
-            <td class="description last"><p>读取类型</p></td>
+            <td class="description last"><p>读取类型，默认<code>dataURL</code>。可选 <code>arrayBuffer</code>  <code>binaryString</code> <code>dataURL</code> <code>text</code> 。</p></td>
         </tr>
 
     
@@ -1177,7 +1177,7 @@ formatBankCard('6228480402564890', {spaceMark: '-'}); // 6228-4804-0256-4890</co
                 </td>
             
 
-            <td class="description last"><p>间隔字符</p></td>
+            <td class="description last"><p>间隔字符，默认<code>' '</code></p></td>
         </tr>
 
     
@@ -1217,7 +1217,7 @@ formatBankCard('6228480402564890', {spaceMark: '-'}); // 6228-4804-0256-4890</co
                 </td>
             
 
-            <td class="description last"><p>间隔长度</p></td>
+            <td class="description last"><p>间隔长度，默认<code>4</code></p></td>
         </tr>
 
     
@@ -1507,7 +1507,7 @@ formatMobile('13345678'); // 133 4567 8</code></pre>
                 </td>
             
 
-            <td class="description last"><p>间隔字符</p></td>
+            <td class="description last"><p>间隔字符，默认<code>' '</code></p></td>
         </tr>
 
     
@@ -1812,7 +1812,7 @@ formatMoney('3000.03', { precision: 4 }); // 3,000.0300</code></pre>
                 </td>
             
 
-            <td class="description last"><p>保留位数 （最高：10位）</p></td>
+            <td class="description last"><p>保留位数，默认<code>2</code>。最高<code>10</code>。</p></td>
         </tr>
 
     
@@ -1890,7 +1890,7 @@ formatMoney('3000.03', { precision: 4 }); // 3,000.0300</code></pre>
                 </td>
             
 
-            <td class="description last"><p>千分位符号</p></td>
+            <td class="description last"><p>千分位符号， 默认<code>,</code></p></td>
         </tr>
 
     
@@ -1930,7 +1930,7 @@ formatMoney('3000.03', { precision: 4 }); // 3,000.0300</code></pre>
                 </td>
             
 
-            <td class="description last"><p>小数位符号</p></td>
+            <td class="description last"><p>小数位符号，默认<code>.</code></p></td>
         </tr>
 
     
@@ -1970,7 +1970,7 @@ formatMoney('3000.03', { precision: 4 }); // 3,000.0300</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格模式。开启后，只支持非空字符串和数字格式化，其他类型值如<code>null</code> <code>undefined</code> <code>true</code> <code>false</code>等将返回空字符串。</p></td>
+            <td class="description last"><p>严格模式，默认<code>true</code>。开启后，只支持非空字符串和数字格式化，其他类型值如<code>null</code> <code>undefined</code> <code>true</code> <code>false</code>等将返回空字符串。</p></td>
         </tr>
 
     
@@ -2272,7 +2272,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>繁体</p></td>
+            <td class="description last"><p>繁体，默认<code>false</code></p></td>
         </tr>
 
     
@@ -2312,7 +2312,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>计数单位</p></td>
+            <td class="description last"><p>计数单位，默认<code>true</code></p></td>
         </tr>
 
     
@@ -2352,7 +2352,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>中文小数点，繁体字为點</p></td>
+            <td class="description last"><p>中文小数点。默认<code>点</code>，当<code>big5=true</code>时，默认<code>點</code></p></td>
         </tr>
 
     
@@ -2392,7 +2392,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>设置0。常用配置 〇</p></td>
+            <td class="description last"><p>设置0，默认<code>零</code>。常用配置 〇</p></td>
         </tr>
 
     
@@ -2432,7 +2432,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>负数前面的字</p></td>
+            <td class="description last"><p>负数前面的字，默认<code>负</code></p></td>
         </tr>
 
     
@@ -2533,7 +2533,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>设置计数单位万。常用配置 萬</p></td>
+            <td class="description last"><p>设置计数单位万，默认<code>万</code>。常用配置 萬</p></td>
         </tr>
 
     
@@ -2573,7 +2573,7 @@ numberToChinese(1990, {unit: false, zero:'〇'}); // 一九九〇</code></pre>
                 </td>
             
 
-            <td class="description last"><p>设置计数单位亿。常用配置 億</p></td>
+            <td class="description last"><p>设置计数单位亿，默认<code>亿</code>。常用配置 億</p></td>
         </tr>
 
     
@@ -2822,7 +2822,7 @@ padZero('688', 5); // 00688</code></pre>
                 </td>
             
 
-            <td class="description last"><p>指定字符串长度</p></td>
+            <td class="description last"><p>指定字符串长度，默认<code>2</code></p></td>
         </tr>
 
     
@@ -3320,7 +3320,7 @@ replaceChar('林某某某', { start: 1, end: -1, repeat: 1 }); // 林*某</code>
                 </td>
             
 
-            <td class="description last"><p>开始位置</p></td>
+            <td class="description last"><p>开始位置，默认<code>3</code></p></td>
         </tr>
 
     
@@ -3360,7 +3360,7 @@ replaceChar('林某某某', { start: 1, end: -1, repeat: 1 }); // 林*某</code>
                 </td>
             
 
-            <td class="description last"><p>结束位置</p></td>
+            <td class="description last"><p>结束位置，默认<code>-4</code></p></td>
         </tr>
 
     
@@ -3400,7 +3400,7 @@ replaceChar('林某某某', { start: 1, end: -1, repeat: 1 }); // 林*某</code>
                 </td>
             
 
-            <td class="description last"><p>替换字符</p></td>
+            <td class="description last"><p>替换字符，默认<code>*</code></p></td>
         </tr>
 
     
@@ -3955,7 +3955,7 @@ setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9i
                 </td>
             
 
-            <td class="description last"><p>MIME 类型</p></td>
+            <td class="description last"><p>MIME 类型，默认<code>image/png</code></p></td>
         </tr>
 
     
@@ -3995,7 +3995,7 @@ setDataURLPrefix(data, '', false); // data:,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9i
                 </td>
             
 
-            <td class="description last"><p>添加 base64 标识</p></td>
+            <td class="description last"><p>添加 base64 标识，默认<code>true</code></p></td>
         </tr>
 
     
@@ -4297,7 +4297,7 @@ transformObjectValue(data3, (value, key)=>{
                 </td>
             
 
-            <td class="description last"><p>深度遍历，检测值为普通对象或数组时递归处理。默认 true 。</p></td>
+            <td class="description last"><p>深度遍历，检测值为普通对象或数组时递归处理。默认<code>true</code></p></td>
         </tr>
 
     
@@ -4368,7 +4368,7 @@ transformObjectValue(data3, (value, key)=>{
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Aug 19 2024 01:26:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Thu Aug 22 2024 10:43:04 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

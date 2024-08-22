@@ -428,7 +428,7 @@ isBankCard('123456789', { loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>宽松模式，8-30位数字</p></td>
+            <td class="description last"><p>宽松模式，默认<code>false</code>。正常模式10-21位数字（个人账户），宽松模式8-30位数字（企业账户）。</p></td>
         </tr>
 
     
@@ -468,7 +468,7 @@ isBankCard('123456789', { loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>使用 Luhn 算法校验校验码</p></td>
+            <td class="description last"><p>使用 Luhn 算法校验校验码，默认<code>false</code></p></td>
         </tr>
 
     
@@ -761,7 +761,7 @@ isBusinessLicense('31011560098', { checkCode: false }); // false</code></pre>
                 </td>
             
 
-            <td class="description last"><p>是否校验最后一位校验码，如果为false，不校验校验位。</p></td>
+            <td class="description last"><p>是否校验最后一位校验码，默认<code>true</code>。如果为false，不校验校验位。</p></td>
         </tr>
 
     
@@ -1064,7 +1064,7 @@ isChinese('𠮷aa', { useExtend: true, loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>宽松模式。如果为true，只要包含中文即为true</p></td>
+            <td class="description last"><p>宽松模式，默认<code>false</code>。如果为<code>true</code>，只要包含中文就返回<code>true</code></p></td>
         </tr>
 
     
@@ -1104,7 +1104,7 @@ isChinese('𠮷aa', { useExtend: true, loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>使用统一表意文字扩展A-I。注意：如果不支持 <code>RegExp.prototype.unicode</code>，扩展字符集将自动不生效，如IE浏览器。</p></td>
+            <td class="description last"><p>使用统一表意文字扩展A-I，默认<code>false</code>。注意：如果不支持 <code>RegExp.prototype.unicode</code>，扩展字符集将自动不生效，如IE浏览器。</p></td>
         </tr>
 
     
@@ -2106,7 +2106,7 @@ isIdCard('320311770706001', { loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>宽松模式，支持15位身份证号码</p></td>
+            <td class="description last"><p>宽松模式，默认<code>false</code>。如果为<code>true</code>，支持15位身份证号码</p></td>
         </tr>
 
     
@@ -2146,7 +2146,7 @@ isIdCard('320311770706001', { loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>是否校验最后一位校验码，仅支持18位身份证号码</p></td>
+            <td class="description last"><p>是否校验最后一位校验码，默认<code>true</code>。仅在<code>loose=false</code>时生效</p></td>
         </tr>
 
     
@@ -2789,7 +2789,7 @@ isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false</code></pre>
                 </td>
             
 
-            <td class="description last"><p>密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）</p></td>
+            <td class="description last"><p>密码强度，默认<code>2</code>。<code>1</code>-包含一种字符 <code>2</code>-包含两种字符 <code>3</code>-包含三种字符。（大写字母、小写字母、数字、特殊字符）</p></td>
         </tr>
 
     
@@ -2829,7 +2829,7 @@ isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false</code></pre>
                 </td>
             
 
-            <td class="description last"><p>是否忽略大小写，为 ture 时，大小写字母视为一种字符</p></td>
+            <td class="description last"><p>是否忽略大小写，默认<code>false</code>。为 ture 时，大小写字母视为一种字符</p></td>
         </tr>
 
     
@@ -2869,7 +2869,7 @@ isPassword(' _Aa12345678', {level: 3, ignoreCase: true}); // false</code></pre>
                 </td>
             
 
-            <td class="description last"><p>支持的特殊字符</p></td>
+            <td class="description last"><p>支持的特殊字符，默认<code>!@#$%^&amp;*()-=_+[]\|{},./?&lt;&gt;~</code></p></td>
         </tr>
 
     
@@ -3974,7 +3974,7 @@ isTWCard('F290299977', { loose: true }); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>宽松模式。如果为true，表示支持一次性短期通行证</p></td>
+            <td class="description last"><p>宽松模式，默认<code>false</code>。如果为true，表示支持一次性短期通行证</p></td>
         </tr>
 
     
@@ -4584,7 +4584,7 @@ isValidNumber(' 1234 ', true); // true</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格模式，如果为 true ，仅支持字符串和数字类型，不处理其他类型隐式转换，且空字符串返回 false 。</p></td>
+            <td class="description last"><p>严格模式，默认<code>false</code>。如果为 true ，仅支持字符串和数字类型，不处理其他类型隐式转换，且空字符串返回 false 。</p></td>
         </tr>
 
     
@@ -5267,7 +5267,7 @@ validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_�
                 </td>
             
 
-            <td class="description last"><p>密码强度 1-包含一种字符 2-包含两种字符 3-包含三种字符。（大写字母、小写字母、数字、特殊字符）</p></td>
+            <td class="description last"><p>密码强度，默认<code>2</code>。<code>1</code>-包含一种字符 <code>2</code>-包含两种字符 <code>3</code>-包含三种字符。（大写字母、小写字母、数字、特殊字符）</p></td>
         </tr>
 
     
@@ -5307,7 +5307,7 @@ validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_�
                 </td>
             
 
-            <td class="description last"><p>是否忽略大小写，为 ture 时，大小写字母视为一种字符</p></td>
+            <td class="description last"><p>是否忽略大小写，默认<code>false</code>。如果为<code>ture</code>，大小写字母视为一种字符</p></td>
         </tr>
 
     
@@ -5347,7 +5347,7 @@ validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_�
                 </td>
             
 
-            <td class="description last"><p>支持的特殊字符</p></td>
+            <td class="description last"><p>支持的特殊字符，默认<code>!@#$%^&amp;*()-=_+[]\|{},./?&lt;&gt;~</code></p></td>
         </tr>
 
     
@@ -5422,7 +5422,7 @@ validatePassword('_Aa一二三45678', { level: 3, ignoreCase: true, special: '_�
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Aug 19 2024 01:26:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Thu Aug 22 2024 10:43:04 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

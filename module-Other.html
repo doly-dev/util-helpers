@@ -743,7 +743,7 @@ ajax('/api', { method: 'post' }).then(res=>{
                 </td>
             
 
-            <td class="description last"><p>占位符</p></td>
+            <td class="description last"><p>占位符，默认<code>' '</code></p></td>
         </tr>
 
     
@@ -783,7 +783,7 @@ ajax('/api', { method: 'post' }).then(res=>{
                 </td>
             
 
-            <td class="description last"><p>需要遮盖的字符规则。默认去掉非数字，意味着 ctrlValue 需要去掉非数字。</p></td>
+            <td class="description last"><p>需要遮盖的字符规则。默认<code>/\D/g</code> 去掉非数字，意味着 ctrlValue 需要去掉非数字。</p></td>
         </tr>
 
     
@@ -1137,7 +1137,7 @@ checkFileType(pdf, '.pdf'); // true</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line78">line 78</a>
+        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -1197,6 +1197,7 @@ checkFileType(pdf, '.pdf'); // true</code></pre>
     <pre class="prettyprint"><code>// 默认返回压缩后的 blob 对象
 compressImage(file).then(blob=>{
    // do something
+   // 转为文件对象 new File([blob], file.name, { type: file.type })
 });
 
 // 设置返回格式 data url
@@ -1493,7 +1494,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>x,y轴偏移值</p></td>
+            <td class="description last"><p>x,y轴偏移值，默认<code>[0, 0]</code></p></td>
         </tr>
 
     
@@ -1533,7 +1534,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>背景颜色</p></td>
+            <td class="description last"><p>背景颜色，默认<code>#fff</code></p></td>
         </tr>
 
     
@@ -1658,7 +1659,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>导出格式</p></td>
+            <td class="description last"><p>导出格式，默认<code>blob</code></p></td>
         </tr>
 
     
@@ -1698,7 +1699,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>图片类型</p></td>
+            <td class="description last"><p>图片类型，默认<code>image/jpeg</code></p></td>
         </tr>
 
     
@@ -1738,7 +1739,7 @@ compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4
                 </td>
             
 
-            <td class="description last"><p>图片质量</p></td>
+            <td class="description last"><p>图片质量，默认<code>0.8</code></p></td>
         </tr>
 
     
@@ -3467,7 +3468,7 @@ loadScript('some.js', { id: 'xxx', async: false, attrs: { foo: 'bar' } }).then(s
                 </td>
             
 
-            <td class="description last"><p>如果加载失败或错误，自动删除 dom 中的 script 标签。</p></td>
+            <td class="description last"><p>如果加载失败或错误，自动删除 dom 中的 script 标签。默认<code>true</code></p></td>
         </tr>
 
     
@@ -3545,7 +3546,7 @@ loadScript('some.js', { id: 'xxx', async: false, attrs: { foo: 'bar' } }).then(s
                 </td>
             
 
-            <td class="description last"><p>异步加载。</p></td>
+            <td class="description last"><p>异步加载。默认<code>true</code></p></td>
         </tr>
 
     
@@ -3585,7 +3586,7 @@ loadScript('some.js', { id: 'xxx', async: false, attrs: { foo: 'bar' } }).then(s
                 </td>
             
 
-            <td class="description last"><p>类型。</p></td>
+            <td class="description last"><p>类型。默认<code>text/javascript</code></p></td>
         </tr>
 
     
@@ -3783,7 +3784,7 @@ randomString(8, 'abcefg'); // bcgcfabg</code></pre>
                 </td>
             
 
-            <td class="description last"><p>长度</p></td>
+            <td class="description last"><p>长度，默认<code>0</code></p></td>
         </tr>
 
     
@@ -3832,7 +3833,7 @@ randomString(8, 'abcefg'); // bcgcfabg</code></pre>
                 </td>
             
 
-            <td class="description last"><p>字符池，默认为数字和大小写字母，支持number/lower/upper</p></td>
+            <td class="description last"><p>字符池，默认为数字和大小写字母。支持设置类型<code>number</code> <code>lower</code> <code>upper</code> 或字符串。</p></td>
         </tr>
 
     
@@ -4071,7 +4072,7 @@ strlen('🍎'); // 4</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Aug 19 2024 01:26:25 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Thu Aug 22 2024 10:43:04 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
