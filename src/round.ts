@@ -7,7 +7,7 @@ import { round } from 'ut2';
  * @alias module:Math.round
  * @since 3.1.0
  * @param {number|string} num 要四舍五入的数字
- * @param {number} [precision=0] 四舍五入的精度
+ * @param {number} [precision=0] 四舍五入的精度，默认`0`
  * @returns {number} 四舍五入的数字
  * @example
  *

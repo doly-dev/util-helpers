@@ -13,8 +13,8 @@ type BytesToSizeOptions = {
  * @since 3.8.0
  * @param {number} bytes 字节大小
  * @param {Object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @param {number} [options.precision=2] 精度
+ * @param {string} [options.spaceMark=' '] 间隔字符，默认`' '`
+ * @param {number} [options.precision=2] 精度，默认`2`
  * @returns {string} 存储单位值
  * @example
  *

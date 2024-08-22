@@ -9,8 +9,8 @@
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs Data URLs}
  * @see {@link https://mimesniff.spec.whatwg.org/#understanding-mime-types MIME types}
  * @param {string} data 数据本身
- * @param {string} [mimeType="image/png"] MIME 类型
- * @param {boolean} [base64=true] 添加 base64 标识
+ * @param {string} [mimeType="image/png"] MIME 类型，默认`image/png`
+ * @param {boolean} [base64=true] 添加 base64 标识，默认`true`
  * @returns {string} DataURL 格式的字符串
  * @example
  *

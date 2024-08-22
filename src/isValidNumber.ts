@@ -7,7 +7,7 @@ import { isSymbol, isNaN } from 'ut2';
  * @alias module:Validator.isValidNumber
  * @since 4.17.2
  * @param {*} value 待检测的值
- * @param {boolean} [strict=false] 严格模式，如果为 true ，仅支持字符串和数字类型，不处理其他类型隐式转换，且空字符串返回 false 。
+ * @param {boolean} [strict=false] 严格模式，默认`false`。如果为 true ，仅支持字符串和数字类型，不处理其他类型隐式转换，且空字符串返回 false 。
  * @returns {boolean} 值是否为有效数值
  * @example
  *

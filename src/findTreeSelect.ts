@@ -50,7 +50,7 @@ function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(t
  * @since 4.14.0
  * @param {Object[]} tree 树结构数据
  * @param {function} predicate 遍历每一项执行的函数，参数是当前遍历到的节点数据，如果返回 Truthy 将返回包含该节点的所有父级节点
- * @param {string} [childrenField='children'] 子级字段名
+ * @param {string} [childrenField='children'] 子级字段名，默认`children`
  * @returns {Object[]}
  * @example
  * const menus = [{ id: '1', name: '首页', code: 'trade', pid: null }, { id: '2', name: '交易管理', code: 'trade', pid: null, children: [{ id: '3', name: '交易查询', code: 'trade-1', pid: '2', children: [{ id: '4', name: '交易查询-查询操作', code: 'trade-1-1', pid: '3' }]}]}, { id: '5', name: '权限管理', code: 'authorization', pid: null, children: [{ id: '6', name: '角色管理', code: 'authorization-1', pid: '5' }, { id: '7', name: '用户管理', code: 'authorization-2', pid: '5' }]}];

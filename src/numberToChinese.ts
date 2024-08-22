@@ -145,14 +145,14 @@ type Options = {
  * @see {@link https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=F5DAC3377DA99C8D78AE66735B6359C7 出版物上数字用法}
  * @param {number} num 数字
  * @param {Object} [options] 配置项
- * @param {boolean} [options.big5=false] 繁体
- * @param {boolean} [options.unit=true] 计数单位
- * @param {string} [options.decimal="点"] 中文小数点，繁体字为點
- * @param {string} [options.zero="零"] 设置0。常用配置 〇
- * @param {string} [options.negative="负"] 负数前面的字
+ * @param {boolean} [options.big5=false] 繁体，默认`false`
+ * @param {boolean} [options.unit=true] 计数单位，默认`true`
+ * @param {string} [options.decimal="点"] 中文小数点。默认`点`，当`big5=true`时，默认`點`
+ * @param {string} [options.zero="零"] 设置0，默认`零`。常用配置 〇
+ * @param {string} [options.negative="负"] 负数前面的字，默认`负`
  * @param {Object} [options.unitConfig] 节点单位配置
- * @param {string} [options.unitConfig.w="万"] 设置计数单位万。常用配置 萬
- * @param {string} [options.unitConfig.y="亿"] 设置计数单位亿。常用配置 億
+ * @param {string} [options.unitConfig.w="万"] 设置计数单位万，默认`万`。常用配置 萬
+ * @param {string} [options.unitConfig.y="亿"] 设置计数单位亿，默认`亿`。常用配置 億
  * @returns {string} 中文数字
  * @example
  *

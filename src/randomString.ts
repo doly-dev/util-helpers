@@ -34,8 +34,8 @@ interface RandomString {
  * @function
  * @alias module:Other.randomString
  * @since 4.8.0
- * @param {number} [len=0] 长度
- * @param {'number' | 'lower' | 'upper' | string} [pool='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 字符池，默认为数字和大小写字母，支持number/lower/upper
+ * @param {number} [len=0] 长度，默认`0`
+ * @param {'number' | 'lower' | 'upper' | string} [pool='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 字符池，默认为数字和大小写字母。支持设置类型`number` `lower` `upper` 或字符串。
  * @returns {string} 随机字符串
  * @example
  *

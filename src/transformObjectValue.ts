@@ -20,7 +20,7 @@ interface TransformObjectValue {
  * @since 4.23.0
  * @param {Array | Object} data 要转换值的普通对象或数组
  * @param {Function} fn 遍历普通对象或数组键值方法
- * @param {boolean} [deep=true] 深度遍历，检测值为普通对象或数组时递归处理。默认 true 。
+ * @param {boolean} [deep=true] 深度遍历，检测值为普通对象或数组时递归处理。默认`true`
  * @returns {Array | Object} 如果是普通对象或数组，返回一个新的对象或数组，否则返回自身
  * @example
  *

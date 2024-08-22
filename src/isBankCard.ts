@@ -38,8 +38,8 @@ type Options = {
  * @see {@link https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html 常用银行账号位数参考}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式，8-30位数字
- * @param {boolean} [options.luhn=false] 使用 Luhn 算法校验校验码
+ * @param {boolean} [options.loose=false] 宽松模式，默认`false`。正常模式10-21位数字（个人账户），宽松模式8-30位数字（企业账户）。
+ * @param {boolean} [options.luhn=false] 使用 Luhn 算法校验校验码，默认`false`
  * @returns {boolean} 值是否为银行卡号
  * @example
  *

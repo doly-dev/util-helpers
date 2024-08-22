@@ -90,11 +90,11 @@ type Options = {
  * @since 1.1.0
  * @param {string | number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)
  * @param {Object} [options] 金额格式化配置
- * @param {number} [options.precision=2] 保留位数 （最高：10位）
+ * @param {number} [options.precision=2] 保留位数，默认`2`。最高`10`。
  * @param {string} [options.symbol] 货币符号
- * @param {string} [options.thousand=","] 千分位符号
- * @param {string} [options.decimal="."] 小数位符号
- * @param {boolean} [options.strict=ture] 严格模式。开启后，只支持非空字符串和数字格式化，其他类型值如`null` `undefined` `true` `false`等将返回空字符串。
+ * @param {string} [options.thousand=","] 千分位符号， 默认`,`
+ * @param {string} [options.decimal="."] 小数位符号，默认`.`
+ * @param {boolean} [options.strict=ture] 严格模式，默认`true`。开启后，只支持非空字符串和数字格式化，其他类型值如`null` `undefined` `true` `false`等将返回空字符串。
  * @returns {string} 格式化的金额
  * @example
  *

@@ -7,7 +7,7 @@ import { toString } from 'ut2';
  * @alias module:Processor.padZero
  * @since 4.7.0
  * @param {string|number} value 要处理的值
- * @param {number} [size=2] 指定字符串长度
+ * @param {number} [size=2] 指定字符串长度，默认`2`
  * @returns {string} 用零填充数字到给定长度的字符串
  * @example
  * padZero(5); // 05

@@ -13,8 +13,8 @@ type Options = {
  * @since 1.1.0
  * @param {string} bankCardNo 要处理的字符串
  * @param {Object} [options] 配置项
- * @param {string} [options.spaceMark=' '] 间隔字符
- * @param {number} [options.length=4] 间隔长度
+ * @param {string} [options.spaceMark=' '] 间隔字符，默认`' '`
+ * @param {number} [options.length=4] 间隔长度，默认`4`
  * @returns {string} 格式化的银行卡号
  * @example
  *

@@ -19,8 +19,8 @@ type CalculateCursorPositionOptions = {
  * @param {string} rawValue 当前输入原值
  * @param {string} ctrlValue 当前格式化后的值
  * @param {Object} [options] 配置项
- * @param {string|string[]} [options.placeholderChar=' '] 占位符
- * @param {RegExp} [options.maskReg=/\D/g] 需要遮盖的字符规则。默认去掉非数字，意味着 ctrlValue 需要去掉非数字。
+ * @param {string|string[]} [options.placeholderChar=' '] 占位符，默认`' '`
+ * @param {RegExp} [options.maskReg=/\D/g] 需要遮盖的字符规则。默认`/\D/g` 去掉非数字，意味着 ctrlValue 需要去掉非数字。
  * @param {'mobile'|'bankCard'} [options.type] 格式化类型，内置手机号码和银行卡号特殊处理
  * @returns {number} 格式化后的光标位置
  */

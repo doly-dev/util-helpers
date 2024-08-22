@@ -78,13 +78,13 @@ interface CompressImage {
  * @param {number} [options.width] 自定义图片宽度，默认图片自身宽度
  * @param {number} [options.height] 自定义图片高度，默认图片自身高度
  * @param {number} [options.rotate] 旋转
- * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值
- * @param {string} [options.background=#fff] 背景颜色
+ * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值，默认`[0, 0]`
+ * @param {string} [options.background=#fff] 背景颜色，默认`#fff`
  * @param {number | function} [options.canvasWidth] 画布宽度，默认图片宽度
  * @param {number | function} [options.canvasHeight] 画布高度，默认图片高度
- * @param {'blob' | 'dataURL'} [options.format='blob'] 导出格式
- * @param {string} [options.type='image/jpeg'] 图片类型
- * @param {number} [options.quality=0.8] 图片质量
+ * @param {'blob' | 'dataURL'} [options.format='blob'] 导出格式，默认`blob`
+ * @param {string} [options.type='image/jpeg'] 图片类型，默认`image/jpeg`
+ * @param {number} [options.quality=0.8] 图片质量，默认`0.8`
  * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
  * @param {function} [options.beforeDraw] 图片载入画布之前调用
  * @param {function} [options.afterDraw] 图片载入画布之后调用
@@ -95,6 +95,7 @@ interface CompressImage {
  * // 默认返回压缩后的 blob 对象
  * compressImage(file).then(blob=>{
  *    // do something
+ *    // 转为文件对象 new File([blob], file.name, { type: file.type })
  * });
  *
  * // 设置返回格式 data url

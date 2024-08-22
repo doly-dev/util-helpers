@@ -43,7 +43,7 @@ class AsyncMemo<DataType = any> {
    * @param {string} [key] 缓存键，如果没有该值将直接执行异步方法。
    * @param {Object} [options] 配置项
    * @param {number} [options.ttl] 数据存活时间
-   * @param {boolean} [options.persisted=true] 数据持久化，如果存在缓存数据，直接返回缓存数据，不再执行异步方法。<br/>即使不开启该配置，不影响在异步执行成功后缓存数据。
+   * @param {boolean} [options.persisted=true] 数据持久化，默认`true`。如果存在缓存数据，直接返回缓存数据，不再执行异步方法。<br/>即使不开启该配置，不影响在异步执行成功后缓存数据。
    * @returns {Promise<*>} 异步结果
    */
   run(

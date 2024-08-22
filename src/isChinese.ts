@@ -65,8 +65,8 @@ type Options = {
  * @see {@link https://zh.wikipedia.org/wiki/Unicode區段 Unicode区段}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
- * @param {boolean} [options.loose=false] 宽松模式。如果为true，只要包含中文即为true
- * @param {boolean} [options.useExtend=false] 使用统一表意文字扩展A-I。注意：如果不支持 `RegExp.prototype.unicode`，扩展字符集将自动不生效，如IE浏览器。
+ * @param {boolean} [options.loose=false] 宽松模式，默认`false`。如果为`true`，只要包含中文就返回`true`
+ * @param {boolean} [options.useExtend=false] 使用统一表意文字扩展A-I，默认`false`。注意：如果不支持 `RegExp.prototype.unicode`，扩展字符集将自动不生效，如IE浏览器。
  * @returns {boolean} 值是否为中文
  * @example
  *
