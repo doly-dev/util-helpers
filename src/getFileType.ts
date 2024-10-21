@@ -5,8 +5,8 @@ import { isUploadFile, UploadFile } from './utils/file.util';
 // 内置文件类型和文件名后缀配置
 const config = {
   image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp',
-  audio: 'audio/*,.mp3,.wav',
-  video: 'video/*,.mp4,.webm,.ogg,.ogv,.ogm',
+  audio: 'audio/*,.mp3,.wav,.aac,.flac',
+  video: 'video/*,.mp4,.webm,.ogg',
   pdf: 'application/pdf,.pdf',
   word: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx',
   excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx'
@@ -15,7 +15,7 @@ const config = {
 type FileType = keyof typeof config;
 
 /**
- * 获取文件类型
+ * 获取文件类型。
  *
  * @static
  * @alias module:Other.getFileType
