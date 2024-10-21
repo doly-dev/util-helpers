@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>padZero.js - util-helpers </title>
+    <title>getMimeType.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">padZero.js</h1>
+    <h1 class="page-title">getMimeType.js</h1>
     
 
     
@@ -71,42 +71,73 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { toString } from 'ut2';
+            <pre class="prettyprint source linenums"><code>import { isString, nth } from 'ut2';
+import { nativeUndefined } from './utils/native';
+const mimeTypes = [
+    // text
+    ['text/plain', ['txt']],
+    ['text/css', ['css']],
+    ['text/html', ['htm', 'html']],
+    ['text/javascript', ['js', 'mjs']],
+    ['text/csv', ['csv']],
+    ['text/markdown', ['md', 'markdown']],
+    // image
+    ['image/gif', ['gif']],
+    ['image/jpeg', ['jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp']],
+    ['image/png', ['png']],
+    ['image/svg+xml', ['svg']],
+    ['image/webp', ['webp']],
+    ['image/apng', ['apng']],
+    ['image/avif', ['avif']],
+    ['image/bmp', ['bmp']],
+    ['image/x-icon', ['ico', 'cur']],
+    ['image/tiff', ['tif', 'tiff']],
+    // application
+    ['application/xml', ['xml']],
+    ['application/zip', ['zip']],
+    ['application/pdf', ['pdf']],
+    ['application/json', ['json']],
+    ['application/yaml', ['yaml', 'yml']],
+    ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', ['doc', 'docx']],
+    ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', ['xls', 'xlsx']],
+    // media
+    ['audio/mp3', ['mp3']],
+    ['audio/wav', ['wav']],
+    ['audio/aac', ['aac']],
+    ['audio/flac', ['flac']],
+    ['video/mp4', ['mp4']],
+    ['video/ogg', ['ogg']],
+    ['video/webm', ['webm']],
+    ['video/quicktime', ['mov']]
+];
 /**
- * 前置补零
+ * 获取常用的 MIME 类型。
  *
- * @static
- * @alias module:Processor.padZero
- * @since 4.7.0
- * @param {string|number} value 要处理的值
- * @param {number} [size=2] 指定字符串长度，默认`2`
- * @returns {string} 用零填充数字到给定长度的字符串
+ * 通过文件名后缀查找对于的 MIME 类型。
+ *
+ * @alias module:Other.getMimeType
+ * @since 5.2.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types | MIME 类型（IANA 媒体类型）}
+ * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml | Media Types}
+ * @param {string} fileName 文件名。
+ * @returns 如果找到，返回 MIME 类型字符串，否则返回 `undefined`。
  * @example
- * padZero(5); // 05
- * padZero('5'); // 05
+ * getMimeType('xxx.png'); // 'image/png'
+ * getMimeType('xxx.jpg'); // 'image/jpeg'
+ * getMimeType('xxx.mp3'); // 'audio/mp3'
+ * getMimeType('xxx.mp4'); // 'video/mp4'
+ * getMimeType('xxx.pdf'); // 'application/pdf'
+ * getMimeType('xxx.zip'); // 'application/zip'
+ * getMimeType('xxx.doc'); // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
  *
- * padZero(12); // 12
- * padZero('12'); // 12
- *
- * padZero(688); // 688
- * padZero('688'); // 688
- *
- * padZero(688, 5); // 00688
- * padZero('688', 5); // 00688
- *
+ * // 不常用或未知类型
+ * getMimeTye('xxx.ci'); // undefined
  */
-function padZero(value, size = 2) {
-    const str = toString(value);
-    const len = str.length;
-    if (typeof size !== 'number' || size &lt; 0) {
-        size = 0;
-    }
-    if (len &lt; size) {
-        return '0'.repeat(size - len) + str;
-    }
-    return str;
+function getMimeType(fileName) {
+    const ext = isString(fileName) ? nth(fileName.split('.'), -1) : '';
+    return ext ? mimeTypes.find((item) => item[1].includes(ext))?.[0] : nativeUndefined;
 }
-export default padZero;
+export default getMimeType;
 </code></pre>
         </article>
     </section>
