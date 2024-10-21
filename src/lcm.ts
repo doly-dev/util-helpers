@@ -19,7 +19,7 @@ import { round } from 'ut2';
  * @static
  * @alias module:Math.lcm
  * @since 4.20.0
- * @see {@link https://baike.baidu.com/item/最小公倍数 最小公倍数}
+ * @see {@link https://baike.baidu.com/item/最小公倍数 | 最小公倍数}
  * @param {...(number|string)} nums 两个或多个整数。
  * @returns {number} 最小公倍数。
  * @example

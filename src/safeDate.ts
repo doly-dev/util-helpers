@@ -14,7 +14,7 @@ interface SafeDate {
  * @function
  * @alias module:Processor.safeDate
  * @since 4.4.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date Date}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date | Date}
  * @param {string|number|Date} [value] 日期时间字符串、毫秒数、日期对象
  * @param {...number} [args] 月/日/时/分/秒/毫秒
  * @returns {Date} Date 实例日期对象

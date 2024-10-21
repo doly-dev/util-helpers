@@ -10,7 +10,7 @@ import { isString, uniqueId } from 'ut2';
  * 3. 每个实例都有独立的缓存空间。相互之间隔离，缓存灵活配置，更多配置请查阅 [`cache2`](https://www.npmjs.com/package/cache2)。
  *
  * @class
- * @see {@link https://www.npmjs.com/package/cache2 cache2}
+ * @see {@link https://www.npmjs.com/package/cache2 | cache2}
  * @param {Object} [options] 缓存配置项，更多配置项可参考 [`cache2`](https://www.npmjs.com/package/cache2)
  * @param {number} [options.max] 最大缓存数量
  * @param {'replaced' | 'limited'} [options.maxStrategy] 缓存策略

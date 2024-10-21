@@ -19,7 +19,7 @@ interface FileReader {
  *
  * @function
  * @alias module:Processor.fileReader
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader FileReader}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader | FileReader}
  * @since 4.16.0
  * @param {Blob} blob Blob 或 File 对象
  * @param {'arrayBuffer'|'binaryString'|'dataURL'|'text'} [type='dataURL'] 读取类型，默认`dataURL`。可选 `arrayBuffer`  `binaryString` `dataURL` `text` 。
