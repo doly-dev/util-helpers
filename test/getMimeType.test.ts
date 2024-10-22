@@ -8,9 +8,9 @@ describe('getMimeType', () => {
     const mt2 = getMimeType('xxx.doc');
     expect(mt2).toBe('application/vnd.openxmlformats-officedocument.wordprocessingml.document');
 
-    // 后缀
-    const mt3 = getMimeType('zip');
-    expect(mt3).toBe('application/zip');
+    // 不支持只有后缀的文件名
+    const mt3 = getMimeType('.zip');
+    expect(mt3).toBeUndefined();
   });
 
   it('未知类型', () => {

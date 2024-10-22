@@ -43,9 +43,7 @@ const mimeTypes = [
 ];
 
 /**
- * 获取常用的 MIME 类型。
- *
- * 通过文件名后缀查找对于的 MIME 类型。
+ * @summary 获取常用的 MIME 类型。通过文件名后缀查找对应的 MIME 类型。
  *
  * @alias module:Other.getMimeType
  * @since 5.2.0
@@ -64,9 +62,48 @@ const mimeTypes = [
  *
  * // 不常用或未知类型
  * getMimeTye('xxx.ci'); // undefined
+ *
+ * // 非法文件名
+ * getMimeType('.zip'); // undefined
+ *
+ * @description 内置常用的 MIME 类型和文件名后缀映射
+ *
+ * | MIME 类型 | 文件名后缀 |
+ * |---|---|
+ * | `text/plain` | `txt` |
+ * | `text/css` | `css` |
+ * | `text/html` | `htm` `html` |
+ * | `text/javascript` | `js` `mjs` |
+ * | `text/csv` | `csv` |
+ * | `text/markdown` | `md` `markdown` |
+ * | `image/gif` | `gif` |
+ * | `image/jpeg` | `jpg` `jpeg` `jfif` `pjpeg` `pjp` |
+ * | `image/png` | `png` |
+ * | `image/svg+xml` | `svg` |
+ * | `image/webp` | `webp` |
+ * | `image/apng` | `apng` |
+ * | `image/avif` | `avif` |
+ * | `image/bmp` | `bmp` |
+ * | `image/x-icon` | `ico` `cur` |
+ * | `image/tiff` | `tif` `tiff` |
+ * | `application/xml` | `xml` |
+ * | `application/zip` | `zip` |
+ * | `application/pdf` | `pdf` |
+ * | `application/json` | `json` |
+ * | `application/yaml` | `yaml` `yml` |
+ * | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` | `doc` `docx` |
+ * | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` | `xls` `xlsx` |
+ * | `audio/mp3` | `mp3` |
+ * | `audio/wav` | `wav` |
+ * | `audio/aac` | `aac` |
+ * | `audio/flac` | `flac` |
+ * | `video/mp4` | `mp4` |
+ * | `video/ogg` | `ogg` |
+ * | `video/webm` | `webm` |
+ * | `video/quicktime` | `mov` |
  */
 function getMimeType(fileName: string) {
-  const ext = isString(fileName) ? nth(fileName.split('.'), -1) : '';
+  const ext = isString(fileName) && fileName.indexOf('.') > 0 ? nth(fileName.split('.'), -1) : '';
   return ext ? (mimeTypes.find((item) => item[1].includes(ext))?.[0] as string) : nativeUndefined;
 }
 
