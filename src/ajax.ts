@@ -53,7 +53,7 @@ type AjaxOptions = {
  * @since 4.16.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
  * @param {string} url 地址
- * @param {Object} [options] 配置项
+ * @param {AjaxOptions} [options] 配置项
  * @param {string} [options.method="get"] 创建请求时使用的方法。默认 `'get'`。
  * @param {boolean} [options.async=true] 是否异步执行操作。默认 `true`。
  * @param {string|null} [options.user=null] 用户名，用于认证用途。默认 `null`。
