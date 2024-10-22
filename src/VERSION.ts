@@ -1,6 +1,5 @@
 /**
- * util-helpers 版本号
- *
+ * @summary 版本号
  * @static
  * @since 4.18.0
  */

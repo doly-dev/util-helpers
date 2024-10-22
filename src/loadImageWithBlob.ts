@@ -23,7 +23,8 @@ import loadImage from './loadImage';
  * @example
  *
  * loadImage(file).then(({image, blob})=>{
- *    // do something
+ *   console.log(image, blob);
+ *   // HTMLImageElement {} Blob {}
  * });
  *
  * loadImage('https://dummyimage.com/200x300').then(({image, blob})=>{

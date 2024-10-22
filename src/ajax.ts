@@ -54,8 +54,25 @@ type AjaxOptions = {
  * @since 4.16.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
  * @param {string} url 地址
- * @param {AjaxOptions} [options] 配置项
- * @returns {Promise<object>} XHR 事件对象
+ * @param {Object} [options] 配置项
+ * @param {string} [options.method="get"] 创建请求时使用的方法。默认 `'get'`。
+ * @param {boolean} [options.async=true] 是否异步执行操作。默认 `true`。
+ * @param {string|null} [options.user=null] 用户名，用于认证用途。默认 `null`。
+ * @param {string|null} [options.password=null] 密码，用于认证用途。默认 `null`。
+ * @param {Object} [options.headers] 自定义请求头。
+ * @param {string} [options.responseType] 响应类型。
+ * @param {number} [options.timeout] 请求超时的毫秒数。
+ * @param {boolean} [options.withCredentials=false] 跨域请求时是否需要使用凭证。默认 `false`。
+ * @param {*} [options.data=null] 请求体被发送的数据。默认 `null`。
+ * @param {function} [options.onReadyStateChange] 当 readyState 属性发生变化时触发。
+ * @param {function} [options.onLoadStart] 接收到响应数据时触发。
+ * @param {function} [options.onProgress] 请求接收到更多数据时，周期性地触发。
+ * @param {function} [options.onAbort] 当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时。
+ * @param {function} [options.onTimeout] 在预设时间内没有接收到响应时触发。
+ * @param {function} [options.onError] 当 request 遭遇错误时触发。
+ * @param {function} [options.onLoad] 请求成功完成时触发。
+ * @param {function} [options.onLoadEnd] 请求结束时触发，无论请求成功 (load) 还是失败 (abort 或 error)。
+ * @returns {Promise<object>} XHR 事件对象。
  * @example
  * ajax('/somefile').then(res=>{
  *   // do something

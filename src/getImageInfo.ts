@@ -37,13 +37,23 @@ function calcContrast(w: number, h: number) {
  * @static
  * @alias module:Other.getImageInfo
  * @since 4.20.0
- * @param {string | Blob} img 图片地址或 blob 对象
+ * @param {string | Blob} img 图片地址或 blob 对象。
  * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。
- * @returns {Promise<ImageInfo>} 图片信息
+ * @returns {Promise<ImageInfo>} 图片信息。
  * @example
  *
  * getImageInfo(file).then(imageInfo=>{
- *    // do something
+ *   console.log(imageInfo);
+ *   // {
+ *   //   width: 100,
+ *   //   height: 100,
+ *   //   contrast: '1:1',
+ *   //   measure: '100 × 100 px',
+ *   //   size: '11 B',
+ *   //   bytes: 11,
+ *   //   image: HTMLImageElement {},
+ *   //   blob: Blob {}
+ *   // }
  * });
  *
  * getImageInfo('https://dummyimage.com/200x300').then(imageInfo=>{

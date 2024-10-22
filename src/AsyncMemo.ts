@@ -27,7 +27,7 @@ import { isString, uniqueId } from 'ut2';
 class AsyncMemo<DataType = any> {
   private promiseCache: Record<string, Promise<any>>;
   /**
-   * cache2 实例，用于管理缓存
+   * @summary cache2 实例，用于管理缓存
    */
   cache: Cache<DataType>;
 
