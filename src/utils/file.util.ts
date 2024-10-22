@@ -5,11 +5,11 @@ export function testExt(name: string | undefined, ext: string) {
   return !!name && name.slice(-ext.length) === ext;
 }
 
-export type UploadFile = { uid: string; name: string; type?: string; url?: string };
+export type UploadFile = { name: string; type?: string; url?: string };
 
 // 是否为 UploadFile
 export function isUploadFile(fileObj: UploadFile) {
-  if (isObjectLike(fileObj) && isString(fileObj.uid) && isString(fileObj.name)) {
+  if (isObjectLike(fileObj) && isString(fileObj.name)) {
     return true;
   }
   return false;
