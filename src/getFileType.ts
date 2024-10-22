@@ -2,11 +2,11 @@ import { forEach, isBlob } from 'ut2';
 import checkFileType from './checkFileType';
 import { isUploadFile, UploadFile } from './utils/file.util';
 
-// 内置文件类型和文件名后缀配置
+// 内置文件类型和文件类型说明符
 const config = {
-  image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp',
+  image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.tif,.tiff',
   audio: 'audio/*,.mp3,.wav,.aac,.flac',
-  video: 'video/*,.mp4,.webm,.ogg',
+  video: 'video/*,.mp4,.webm,.ogg,.mov',
   pdf: 'application/pdf,.pdf',
   word: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx',
   excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx'
@@ -15,7 +15,7 @@ const config = {
 type FileType = keyof typeof config;
 
 /**
- * 获取文件类型。
+ * @summary 获取文件类型。
  *
  * @static
  * @alias module:Other.getFileType
@@ -30,6 +30,17 @@ type FileType = keyof typeof config;
  *
  * getFileType(pdf); // 'pdf'
  * getFileType(jpeg); // 'image'
+ *
+ * @description 内置文件类型和文件类型说明符
+ *
+ * | 类型 | 说明符 |
+ * |---|---|
+ * | `image` | `image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.tif,.tiff` |
+ * | `audio` | `audio/*,.mp3,.wav,.aac,.flac` |
+ * | `video` | `video/*,.mp4,.webm,.ogg,.mov` |
+ * | `pdf` | `application/pdf,.pdf` |
+ * | `word` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx` |
+ * | `excel` | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx` |
  *
  */
 function getFileType(file: File | UploadFile) {
