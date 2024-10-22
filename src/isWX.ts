@@ -6,7 +6,6 @@ const reg = /^[a-z]([-_a-z0-9]{5,19})+$/i;
 /**
  * 检测值是否为微信号
  *
- * @static
  * @alias module:Validator.isWX
  * @since 1.1.0
  * @param {*} value 要检测的值

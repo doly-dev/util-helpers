@@ -33,7 +33,6 @@ type Options = {
  *
  * 宽松模式下，支持15位身份证号码。
  *
- * @static
  * @alias module:Validator.isIdCard
  * @since 1.1.0
  * @see {@link https://zh.wikipedia.org/wiki/中华人民共和国公民身份号码 | 中华人民共和国公民身份号码}

@@ -139,7 +139,6 @@ type Options = {
  *
  * 如果数字不在安全数字 -9007199254740991～9007199254740991 范围内，处理会有异常。
  *
- * @static
  * @alias module:Processor.numberToChinese
  * @since 1.2.0
  * @see {@link https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=F5DAC3377DA99C8D78AE66735B6359C7 | 出版物上数字用法}

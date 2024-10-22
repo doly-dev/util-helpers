@@ -7,7 +7,6 @@ type Options = {
 /**
  * 格式化手机号码
  *
- * @static
  * @alias module:Processor.formatMobile
  * @since 4.5.0
  * @param {string} mobileNo 手机号码

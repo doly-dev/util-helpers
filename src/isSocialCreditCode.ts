@@ -42,7 +42,6 @@ type Options = {
 /**
  * 检测值是否为统一社会信用代码，也叫三证合一组织代码。由18位数字和大写字母组成，不使用I、O、Z、S、V。
  *
- * @static
  * @alias module:Validator.isSocialCreditCode
  * @since 1.1.0
  * @see {@link https://zh.wikisource.org/zh-hans/GB_32100-2015_法人和其他组织统一社会信用代码编码规则 | GB 32100-2015 法人和其他组织统一社会信用代码编码规则}

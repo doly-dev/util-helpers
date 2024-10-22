@@ -111,7 +111,6 @@ type Options = {
 /**
  * 验证密码（数字、大小写字母、特殊字符、非法字符）
  *
- * @static
  * @alias module:Validator.validatePassword
  * @since 3.7.0
  * @see {@link https://baike.baidu.com/item/ASCII#3 | ASCII}

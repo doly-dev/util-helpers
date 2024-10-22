@@ -16,7 +16,6 @@ import { round } from 'ut2';
  * 6. 如果参数为负数，将转为绝对值的正数。
  * 7. 如果参数包含小数点，将转为四舍五入的整数。
  *
- * @static
  * @alias module:Math.lcm
  * @since 4.20.0
  * @see {@link https://baike.baidu.com/item/最小公倍数 | 最小公倍数}

@@ -6,7 +6,6 @@ const reg = /^((([0-9A-F]{1,4}:){7}([0-9A-F]{1,4}|:))|(([0-9A-F]{1,4}:){6}(:[0-9
 /**
  * 检测值是否为ipv6
  *
- * @static
  * @alias module:Validator.isIPv6
  * @since 1.1.0
  * @param {*} value 要检测的值

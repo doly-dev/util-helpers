@@ -3,7 +3,6 @@ import { round } from 'ut2';
 /**
  * 四舍五入，支持设置精度
  *
- * @static
  * @alias module:Math.round
  * @since 3.1.0
  * @param {number|string} num 要四舍五入的数字

@@ -3,7 +3,6 @@ import { toString } from 'ut2';
 /**
  * 前置补零
  *
- * @static
  * @alias module:Processor.padZero
  * @since 4.7.0
  * @param {string|number} value 要处理的值

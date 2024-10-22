@@ -41,7 +41,6 @@ type Options = {
 /**
  * 检测值是否为营业执照号，也叫工商注册号。由14位数字本体码和1位数字校验码组成，其中本体码从左至右依次为：6位首次登记机关码、8位顺序码。
  *
- * @static
  * @alias module:Validator.isBusinessLicense
  * @since 3.5.0
  * @see {@link https://wenku.baidu.com/view/19873704cc1755270722087c.html | GS15—2006 工商行政管理市场主体注册号编制规则}

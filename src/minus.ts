@@ -5,7 +5,6 @@ import times from './times';
 /**
  * 精确减法，支持多个数相减，减数默认为 0 。
  *
- * @static
  * @alias module:Math.minus
  * @since 3.1.0
  * @param {...(number|string)} nums 相减的数

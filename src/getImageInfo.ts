@@ -34,7 +34,6 @@ function calcContrast(w: number, h: number) {
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * @static
  * @alias module:Other.getImageInfo
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象。

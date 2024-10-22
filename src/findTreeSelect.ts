@@ -45,7 +45,6 @@ function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(t
 /**
  * 查找包含当前节点的所有父级节点
  *
- * @static
  * @alias module:Tree.findTreeSelect
  * @since 4.14.0
  * @param {Object[]} tree 树结构数据

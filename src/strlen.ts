@@ -3,7 +3,6 @@ import { toString } from 'ut2';
 /**
  * 获取字符长度。中文汉字占2个字符，英文占1个字符，特殊如emoji占4个字符。
  *
- * @static
  * @alias module:Other.strlen
  * @since 4.10.0
  * @param {string} str 字符串

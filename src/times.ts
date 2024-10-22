@@ -4,7 +4,6 @@ import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } fro
 /**
  * 精确乘法，支持多个数相乘，乘数默认为 1 。
  *
- * @static
  * @alias module:Math.times
  * @since 3.1.0
  * @param {...(number|string)} nums 相乘的数

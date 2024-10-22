@@ -6,7 +6,6 @@ const SuccessResponseStatus = [200, 304];
 /**
  * 获取文件 Blob 。
  *
- * @static
  * @alias module:Other.getFileBlob
  * @since 4.21.0
  * @param {string | Blob} file 文件地址或对象。

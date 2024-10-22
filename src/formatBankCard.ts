@@ -8,7 +8,6 @@ type Options = {
 /**
  * 格式化银行卡号
  *
- * @static
  * @alias module:Processor.formatBankCard
  * @since 1.1.0
  * @param {string} bankCardNo 要处理的字符串

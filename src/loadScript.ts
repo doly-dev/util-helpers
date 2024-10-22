@@ -10,7 +10,6 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * @static
  * @alias module:Other.loadScript
  * @since 4.19.0
  * @param {string} src  js 地址。

@@ -15,7 +15,6 @@ interface TransformObjectValue {
  *
  * 例如 antd Form 中的设置表单值时，如果值为空字符串可能需要转为 `undefined` ，才不影响表单的初始值。
  *
- * @static
  * @alias module:Processor.transformObjectValue
  * @since 4.23.0
  * @param {Array | Object} data 要转换值的普通对象或数组

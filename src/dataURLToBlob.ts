@@ -1,7 +1,6 @@
 /**
  * 将 DataURL 转为 Blob 对象
  *
- * @static
  * @alias module:Processor.dataURLToBlob
  * @since 4.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64 | Base64}

@@ -4,7 +4,6 @@ import { isUploadFile, testExt, UploadFile } from './utils/file.util';
 /**
  * 检查文件是否符合 `accept` 类型说明符。
  *
- * @static
  * @alias module:Other.checkFileType
  * @since 5.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#唯一文件类型说明符 | 唯一文件类型说明符}

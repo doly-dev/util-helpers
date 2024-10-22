@@ -85,7 +85,6 @@ type Options = {
 /**
  * 格式化金额
  *
- * @static
  * @alias module:Processor.formatMoney
  * @since 1.1.0
  * @param {string | number} num 需转换金额 (最大：9007199254740991 最小： -9007199254740991)

@@ -6,7 +6,6 @@ const reg = /^[1-9]\d{4,10}$/;
 /**
  * 检测值是否为QQ号，非0开头，5至11位数字
  *
- * @static
  * @alias module:Validator.isQQ
  * @since 1.1.0
  * @param {*} value 要检测的值

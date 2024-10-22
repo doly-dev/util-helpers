@@ -7,7 +7,6 @@ type NodeAssign = 'spread' | 'self';
  *
  * 如果某节点被过滤掉，它的子节点也一并抛弃。
  *
- * @static
  * @alias module:Tree.filterTree
  * @since 4.15.0
  * @param {Object[]} tree 树结构数据

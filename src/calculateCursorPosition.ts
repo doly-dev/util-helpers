@@ -9,7 +9,6 @@ type CalculateCursorPositionOptions = {
 /**
  * 计算输入框的值格式化后光标位置
  *
- * @static
  * @alias module:Other.calculateCursorPosition
  * @since 4.6.0
  * @see {@link https://2950v9.csb.app/ | h5示例}

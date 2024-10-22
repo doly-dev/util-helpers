@@ -16,8 +16,6 @@ type FileType = keyof typeof config;
 
 /**
  * @summary 获取文件类型。
- *
- * @static
  * @alias module:Other.getFileType
  * @since 5.1.0
  * @requires Other.checkFileType

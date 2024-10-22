@@ -3,7 +3,6 @@ import { isArray, isObject } from 'ut2';
 /**
  * 树结构转列表数据
  *
- * @static
  * @alias module:Tree.treeToList
  * @since 4.14.0
  * @param {Object[]} tree 树结构数据

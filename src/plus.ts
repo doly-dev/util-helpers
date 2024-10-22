@@ -5,7 +5,6 @@ import times from './times';
 /**
  * 精确加法，支持多个数相加，加数默认为 0 。
  *
- * @static
  * @alias module:Math.plus
  * @since 3.1.0
  * @param {...(number|string)} nums 相加的数

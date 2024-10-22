@@ -11,7 +11,6 @@ type Options = {
 /**
  * 替换字符，应用场景如：脱敏
  *
- * @static
  * @alias module:Processor.replaceChar
  * @since 1.1.0
  * @param {string} str 要处理的字符串

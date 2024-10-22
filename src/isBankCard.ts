@@ -32,7 +32,6 @@ type Options = {
 /**
  * 检测值是否为银行卡号。正常模式（非0开头，10-21位数字）宽松模式（8-30位数字）
  *
- * @static
  * @alias module:Validator.isBankCard
  * @since 1.1.0
  * @see {@link https://kf.qq.com/faq/170112ABnm6b170112FvquAn.html | 常用银行账号位数参考}

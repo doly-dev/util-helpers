@@ -3,7 +3,6 @@ import { forEach, isArray, isObject } from 'ut2';
 /**
  * 查找树结构数据多个节点
  *
- * @static
  * @alias module:Tree.findTreeNodes
  * @since 4.15.0
  * @param {Object[]} tree 树结构数据

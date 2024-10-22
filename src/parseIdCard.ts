@@ -108,7 +108,6 @@ type IdCardInfo = {
 /**
  * 解析身份证号码，支持15、18位身份证号码
  *
- * @static
  * @alias module:Processor.parseIdCard
  * @since 4.0.0
  * @see {@link https://baike.baidu.com/item/居民身份证号码 | 居民身份证号码}

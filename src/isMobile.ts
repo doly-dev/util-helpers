@@ -6,7 +6,6 @@ const reg = /^1[3456789]\d{9}$/;
 /**
  * 检测值是否为手机号码
  *
- * @static
  * @alias module:Validator.isMobile
  * @since 1.1.0
  * @param {*} value 要检测的值

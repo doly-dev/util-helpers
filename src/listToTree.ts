@@ -38,7 +38,6 @@ function processEmptyChildren<T extends Record<string, any> = Record<string, any
 /**
  * 列表数据转树结构
  *
- * @static
  * @alias module:Tree.listToTree
  * @since 4.14.0
  * @param {Object[]} list 列表数据

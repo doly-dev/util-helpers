@@ -5,7 +5,6 @@ import validatePassword from './validatePassword';
  * <p><strong>注意：该校验只校验是否存在不同字符(大小写字母、数字、特殊符号)，不判断长度。</strong></p>
  * <p><i>如果需要更细致的验证，请使用 <a href="#.validatePassword">validatePassword</a></i></p>
  *
- * @static
  * @alias module:Validator.isPassword
  * @requires module:Validator.validatePassword
  * @since 1.1.0

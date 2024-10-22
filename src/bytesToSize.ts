@@ -8,7 +8,6 @@ type BytesToSizeOptions = {
 /**
  * 字节转换存储单位
  *
- * @static
  * @alias module:Processor.bytesToSize
  * @since 3.8.0
  * @param {number} bytes 字节大小

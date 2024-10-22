@@ -3,7 +3,6 @@ import { isSymbol, isNaN } from 'ut2';
 /**
  * 检测值是否为有效数值，支持隐式转换。如果返回 true ，表示可以通过 Number() 转为数字。
  *
- * @static
  * @alias module:Validator.isValidNumber
  * @since 4.17.2
  * @param {*} value 待检测的值

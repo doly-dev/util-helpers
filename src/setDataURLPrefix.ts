@@ -3,7 +3,6 @@
  *
  * 如果你需要获取DataURL 的 MIME 类型和数据本身，推荐使用 <a href="https://www.npmjs.com/package/data-urls">data-urls</a>。
  *
- * @static
  * @alias module:Processor.setDataURLPrefix
  * @since 4.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/URI/Schemes/data | Data URLs}

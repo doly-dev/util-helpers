@@ -13,7 +13,6 @@ type Options = {
 /**
  * 检测值是否为台湾居民来往大陆通行证，俗称台胞证。
  *
- * @static
  * @alias module:Validator.isTWCard
  * @since 4.0.0
  * @see {@link https://zh.wikipedia.org/wiki/台湾居民来往大陆通行证 | 台湾居民来往大陆通行证}

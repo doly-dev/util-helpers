@@ -57,7 +57,6 @@ type Options = {
 /**
  * 检测值是否为中文
  *
- * @static
  * @alias module:Validator.isChinese
  * @since 1.1.0
  * @see {@link http://www.unicode.org/reports/tr38/#BlockListing | 4.4 Listing of Characters Covered by the Unihan Database}

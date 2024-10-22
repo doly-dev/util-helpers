@@ -5,7 +5,6 @@ import times from './times';
 /**
  * 精确除法，支持多个数相除，除数默认为 1 。
  *
- * @static
  * @alias module:Math.divide
  * @since 3.1.0
  * @param {...(number|string)} nums 被除数和除数
