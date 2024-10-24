@@ -45,7 +45,7 @@ const mimeTypes = [
 /**
  * @summary 获取常用的 MIME 类型。通过文件名后缀查找对应的 MIME 类型。
  *
- * @alias module:Other.getMimeType
+ * @alias module:Browser.getMimeType
  * @since 5.2.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types | MIME 类型（IANA 媒体类型）}
  * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml | Media Types}

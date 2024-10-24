@@ -6,7 +6,7 @@ const SuccessResponseStatus = [200, 304];
 /**
  * 获取文件 Blob 。
  *
- * @alias module:Other.getFileBlob
+ * @alias module:Browser.getFileBlob
  * @since 4.21.0
  * @param {string | Blob} file 文件地址或对象。
  * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。

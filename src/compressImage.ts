@@ -70,7 +70,7 @@ interface CompressImage {
  * <em style="font-weight: bold;">如果是半透明图片并且导出 `image/png` 格式，建议将背景变成透明 `background=transparent`，避免出现白边。注意正常图片压缩导出 `image/png` 格式后文件可能会比原图大。</em>
  *
  * @function
- * @alias module:Other.compressImage
+ * @alias module:Browser.compressImage
  * @since 4.20.0
  * @see {@link https://sytpwg.csb.app/ | 在线示例}
  * @param {string | Blob} img 图片地址或 blob 对象

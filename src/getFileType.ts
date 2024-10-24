@@ -16,7 +16,7 @@ type FileType = keyof typeof config;
 
 /**
  * @summary 获取文件类型。
- * @alias module:Other.getFileType
+ * @alias module:Browser.getFileType
  * @since 5.1.0
  * @requires Other.checkFileType
  * @param {File} file 文件对象。支持 antd `UploadFile` 对象。

@@ -15,7 +15,7 @@ import loadImage from './loadImage';
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @method
- * @alias module:Other.loadImageWithBlob
+ * @alias module:Browser.loadImageWithBlob
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象
  * @param {AjaxOptions} [ajaxOptions] ajax 请求配置项，当传入的图片为字符串时才会触发请求。

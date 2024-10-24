@@ -18,7 +18,7 @@ interface FileReader {
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
  * @function
- * @alias module:Processor.fileReader
+ * @alias module:Browser.fileReader
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader | FileReader}
  * @since 4.16.0
  * @param {Blob} blob Blob 或 File 对象

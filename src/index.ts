@@ -2,7 +2,6 @@
  * 数据验证
  *
  * @module Validator
- * @since 1.1.0
  */
 export { default as isMobile } from './isMobile';
 export { default as isTelephone } from './isTelephone';
@@ -31,7 +30,6 @@ export { default as isValidNumber } from './isValidNumber';
  * 数据处理
  *
  * @module Processor
- * @since 1.1.0
  */
 export { default as formatMoney } from './formatMoney';
 export { default as formatBankCard } from './formatBankCard';
@@ -39,8 +37,6 @@ export { default as replaceChar } from './replaceChar';
 export { default as numberToChinese } from './numberToChinese';
 export { default as bytesToSize } from './bytesToSize';
 export { default as parseIdCard } from './parseIdCard';
-export { default as fileReader } from './fileReader';
-export { default as dataURLToBlob } from './dataURLToBlob';
 export { default as setDataURLPrefix } from './setDataURLPrefix';
 export { default as safeDate } from './safeDate';
 export { default as formatMobile } from './formatMobile';
@@ -51,7 +47,6 @@ export { default as transformObjectValue } from './transformObjectValue';
  * 数学计算，修正浮点数计算问题
  *
  * @module Math
- * @since 3.1.0
  * @see {@link https://github.com/camsong/blog/issues/9 | JavaScript 浮点数陷阱及解法}
  * @see {@link https://2zbuy.csb.app/ | JS浮点数计算测试}
  * @example
@@ -95,16 +90,18 @@ export { default as gcd } from './gcd';
 export { default as lcm } from './lcm';
 
 /**
- * 其他
+ * 浏览器
  *
- * @module Other
- * @since 4.2.0
+ * <em style="font-weight: bold;">下列方法仅适用于浏览器端。</em>
+ *
+ * @module Browser
  */
 export { default as ajax } from './ajax';
-export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as checkFileType } from './checkFileType';
 export { default as compressImage } from './compressImage';
+export { default as dataURLToBlob } from './dataURLToBlob';
 export { default as download } from './download';
+export { default as fileReader } from './fileReader';
 export { default as getFileBlob } from './getFileBlob';
 export { default as getFileType } from './getFileType';
 export { default as getImageInfo } from './getImageInfo';
@@ -112,6 +109,13 @@ export { default as getMimeType } from './getMimeType';
 export { default as loadImage } from './loadImage';
 export { default as loadImageWithBlob } from './loadImageWithBlob';
 export { default as loadScript } from './loadScript';
+
+/**
+ * 其他
+ *
+ * @module Other
+ */
+export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
 
@@ -119,7 +123,6 @@ export { default as strlen } from './strlen';
  * 树结构数据查询、过滤、转换等处理方法
  *
  * @module Tree
- * @since 4.14.0
  */
 export { default as transformFieldNames } from './transformFieldNames';
 export { default as listToTree } from './listToTree';

@@ -47,7 +47,7 @@ type DownloadOptions = {
  *
  * <em>响应头中有 "Content-Disposition" 字段，客户端获取不到？</em> 请参考查阅 [Access-Control-Expose-Headers](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers) 。
  *
- * @alias module:Other.download
+ * @alias module:Browser.download
  * @since 4.16.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers | Access-Control-Expose-Headers}
  * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展 | MIME}

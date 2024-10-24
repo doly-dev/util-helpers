@@ -49,7 +49,7 @@ type AjaxOptions = {
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * @alias module:Other.ajax
+ * @alias module:Browser.ajax
  * @since 4.16.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest | XMLHttpRequest}
  * @param {string} url 地址

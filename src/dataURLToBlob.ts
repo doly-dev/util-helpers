@@ -1,7 +1,7 @@
 /**
  * 将 DataURL 转为 Blob 对象
  *
- * @alias module:Processor.dataURLToBlob
+ * @alias module:Browser.dataURLToBlob
  * @since 4.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Base64 | Base64}
  * @param {string} data data: 协议的URL

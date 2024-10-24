@@ -6,7 +6,7 @@ import { createObjectURL, revokeObjectURL } from './utils/native';
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * @alias module:Other.loadImage
+ * @alias module:Browser.loadImage
  * @since 4.20.0
  * @param {string | Blob} img 图片地址或 blob 对象
  * @returns {Promise<HTMLImageElement>} HTML图片元素

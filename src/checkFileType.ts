@@ -6,7 +6,7 @@ import { isUploadFile, testExt, UploadFile } from './utils/file.util';
  *
  * 通过 `file.type` `file.name` `file.url` 与 `accept` 进行匹配。
  *
- * @alias module:Other.checkFileType
+ * @alias module:Browser.checkFileType
  * @since 5.1.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#唯一文件类型说明符 | 唯一文件类型说明符}
  * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml | Media Types}

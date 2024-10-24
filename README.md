@@ -51,25 +51,22 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [plus](https://doly-dev.github.io/util-helpers/module-Math.html#.plus) - 加
   - [round](https://doly-dev.github.io/util-helpers/module-Math.html#.round) - 四舍五入
   - [times](https://doly-dev.github.io/util-helpers/module-Math.html#.times) - 乘
-- 其他
-  - [ajax](https://doly-dev.github.io/util-helpers/module-Other.html#.ajax) - 请求
-  - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
-  - [checkFileType](https://doly-dev.github.io/util-helpers/module-Other.html#.checkFileType) - 检查文件类型
-  - [compressImage](https://doly-dev.github.io/util-helpers/module-Other.html#.compressImage) - 压缩图片
-  - [download](https://doly-dev.github.io/util-helpers/module-Other.html#.download) - 下载
-  - [getFileBlob](https://doly-dev.github.io/util-helpers/module-Other.html#.getFileBlob) - 获取文件 Blob
-  - [getFileType](https://doly-dev.github.io/util-helpers/module-Other.html#.getFileType) - 获取文件类型
-  - [getImageInfo](https://doly-dev.github.io/util-helpers/module-Other.html#.getImageInfo) - 获取图片信息
-  - [getMimeType](https://doly-dev.github.io/util-helpers/module-Other.html#.getMimeType) - 获取 MIME 类型
-  - [loadImage](https://doly-dev.github.io/util-helpers/module-Other.html#.loadImage) - 加载图片
-  - [loadImageWithBlob](https://doly-dev.github.io/util-helpers/module-Other.html#.loadImageWithBlob) - 加载图片和 blob 对象
-  - [loadScript](https://doly-dev.github.io/util-helpers/module-Other.html#.loadScript) - 加载 js 文件
-  - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
-  - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
+- 浏览器
+  - [ajax](https://doly-dev.github.io/util-helpers/module-Browser.html#.ajax) - 请求
+  - [checkFileType](https://doly-dev.github.io/util-helpers/module-Browser.html#.checkFileType) - 检查文件类型
+  - [compressImage](https://doly-dev.github.io/util-helpers/module-Browser.html#.compressImage) - 压缩图片
+  - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Browser.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
+  - [download](https://doly-dev.github.io/util-helpers/module-Browser.html#.download) - 下载
+  - [fileReader](https://doly-dev.github.io/util-helpers/module-Browser.html#.fileReader) - 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
+  - [getFileBlob](https://doly-dev.github.io/util-helpers/module-Browser.html#.getFileBlob) - 获取文件 Blob
+  - [getFileType](https://doly-dev.github.io/util-helpers/module-Browser.html#.getFileType) - 获取文件类型
+  - [getImageInfo](https://doly-dev.github.io/util-helpers/module-Browser.html#.getImageInfo) - 获取图片信息
+  - [getMimeType](https://doly-dev.github.io/util-helpers/module-Browser.html#.getMimeType) - 获取文件 MIME 类型
+  - [loadImage](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadImage) - 加载图片
+  - [loadImageWithBlob](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadImageWithBlob) - 加载图片和 blob 对象
+  - [loadScript](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadScript) - 加载 js 文件
 - 数据处理
   - [bytesToSize](https://doly-dev.github.io/util-helpers/module-Processor.html#.bytesToSize) - 字节转换为存储单位
-  - [dataURLToBlob](https://doly-dev.github.io/util-helpers/module-Processor.html#.dataURLToBlob) - 将 DataURL 转为 Blob 对象
-  - [fileReader](https://doly-dev.github.io/util-helpers/module-Processor.html#.fileReader) - 读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer
   - [formatBankCard](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatBankCard) - 格式化银行卡
   - [formatMobile](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMobile) - 格式化手机号码
   - [formatMoney](https://doly-dev.github.io/util-helpers/module-Processor.html#.formatMoney) - 格式化金额
@@ -111,6 +108,10 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [isVehicle](https://doly-dev.github.io/util-helpers/module-Validator.html#.isVehicle) - 车牌号
   - [isWX](https://doly-dev.github.io/util-helpers/module-Validator.html#.isWX) - 微信号
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
+- 其他
+  - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
+  - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
+  - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
 - Classes
   - [AsyncMemo](https://doly-dev.github.io/util-helpers/AsyncMemo.html) - 异步缓存类
 

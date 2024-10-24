@@ -10,7 +10,7 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  *
  * <em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em>
  *
- * @alias module:Other.loadScript
+ * @alias module:Browser.loadScript
  * @since 4.19.0
  * @param {string} src  js 地址。
  * @param {Object} [options] script 标签属性。比如 `defer` `onload` `onerror` `id` 等，下面列举部分带有默认值或额外扩展的配置。
