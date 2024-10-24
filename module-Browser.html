@@ -1,0 +1,4888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
+    <title>Browser - util-helpers </title>
+    
+    <meta name="description" content="一个基于业务场景的工具方法库" />
+    
+        <meta name="keywords" content="util, business-util, business-helpers, util-helpers" />
+        <meta name="keyword" content="util, business-util, business-helpers, util-helpers" />
+    
+    
+    
+    <meta property="og:title" content="util-helpers"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="util-helpers"/>
+    <meta property="og:url" content="https://doly-dev.github.io/util-helpers/index.html"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SNQEJ8N5Z3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SNQEJ8N5Z3');
+</script>
+<script src="https://unpkg.com/util-helpers/dist/util-helpers.min.js"></script>
+<style>.prettyprint{ white-space: pre-wrap; }</style>
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/doly-dev/util-helpers" target="_blank" class="menu-item" id="repo_link" >Github</a></h2><h2><a href="https://github.com/doly-dev/util-helpers/releases" target="_blank" class="menu-item" id="repo_link" >Changelog</a></h2><h3>Classes</h3><ul><li><a href="AsyncMemo.html">AsyncMemo</a><ul class='methods'><li data-type='method'><a href="AsyncMemo.html#run">run</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-Browser.html">Browser</a><ul class='methods'><li data-type='method'><a href="module-Browser.html#.ajax">ajax</a></li><li data-type='method'><a href="module-Browser.html#.checkFileType">checkFileType</a></li><li data-type='method'><a href="module-Browser.html#.compressImage">compressImage</a></li><li data-type='method'><a href="module-Browser.html#.dataURLToBlob">dataURLToBlob</a></li><li data-type='method'><a href="module-Browser.html#.download">download</a></li><li data-type='method'><a href="module-Browser.html#.fileReader">fileReader</a></li><li data-type='method'><a href="module-Browser.html#.getFileBlob">getFileBlob</a></li><li data-type='method'><a href="module-Browser.html#.getFileType">getFileType</a></li><li data-type='method'><a href="module-Browser.html#.getImageInfo">getImageInfo</a></li><li data-type='method'><a href="module-Browser.html#.getMimeType">getMimeType</a></li><li data-type='method'><a href="module-Browser.html#.loadImage">loadImage</a></li><li data-type='method'><a href="module-Browser.html#.loadImageWithBlob">loadImageWithBlob</a></li><li data-type='method'><a href="module-Browser.html#.loadScript">loadScript</a></li></ul></li><li><a href="module-Math.html">Math</a><ul class='methods'><li data-type='method'><a href="module-Math.html#.divide">divide</a></li><li data-type='method'><a href="module-Math.html#.gcd">gcd</a></li><li data-type='method'><a href="module-Math.html#.lcm">lcm</a></li><li data-type='method'><a href="module-Math.html#.minus">minus</a></li><li data-type='method'><a href="module-Math.html#.plus">plus</a></li><li data-type='method'><a href="module-Math.html#.round">round</a></li><li data-type='method'><a href="module-Math.html#.times">times</a></li></ul></li><li><a href="module-Other.html">Other</a><ul class='methods'><li data-type='method'><a href="module-Other.html#.calculateCursorPosition">calculateCursorPosition</a></li><li data-type='method'><a href="module-Other.html#.randomString">randomString</a></li><li data-type='method'><a href="module-Other.html#.strlen">strlen</a></li></ul></li><li><a href="module-Processor.html">Processor</a><ul class='methods'><li data-type='method'><a href="module-Processor.html#.bytesToSize">bytesToSize</a></li><li data-type='method'><a href="module-Processor.html#.formatBankCard">formatBankCard</a></li><li data-type='method'><a href="module-Processor.html#.formatMobile">formatMobile</a></li><li data-type='method'><a href="module-Processor.html#.formatMoney">formatMoney</a></li><li data-type='method'><a href="module-Processor.html#.numberToChinese">numberToChinese</a></li><li data-type='method'><a href="module-Processor.html#.padZero">padZero</a></li><li data-type='method'><a href="module-Processor.html#.parseIdCard">parseIdCard</a></li><li data-type='method'><a href="module-Processor.html#.replaceChar">replaceChar</a></li><li data-type='method'><a href="module-Processor.html#.safeDate">safeDate</a></li><li data-type='method'><a href="module-Processor.html#.setDataURLPrefix">setDataURLPrefix</a></li><li data-type='method'><a href="module-Processor.html#.transformObjectValue">transformObjectValue</a></li></ul></li><li><a href="module-Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="module-Tree.html#.filterTree">filterTree</a></li><li data-type='method'><a href="module-Tree.html#.findTreeNode">findTreeNode</a></li><li data-type='method'><a href="module-Tree.html#.findTreeNodes">findTreeNodes</a></li><li data-type='method'><a href="module-Tree.html#.findTreeSelect">findTreeSelect</a></li><li data-type='method'><a href="module-Tree.html#.listToTree">listToTree</a></li><li data-type='method'><a href="module-Tree.html#.transformFieldNames">transformFieldNames</a></li><li data-type='method'><a href="module-Tree.html#.treeToList">treeToList</a></li></ul></li><li><a href="module-Validator.html">Validator</a><ul class='methods'><li data-type='method'><a href="module-Validator.html#.isBankCard">isBankCard</a></li><li data-type='method'><a href="module-Validator.html#.isBusinessLicense">isBusinessLicense</a></li><li data-type='method'><a href="module-Validator.html#.isChinese">isChinese</a></li><li data-type='method'><a href="module-Validator.html#.isEmail">isEmail</a></li><li data-type='method'><a href="module-Validator.html#.isHMCard">isHMCard</a></li><li data-type='method'><a href="module-Validator.html#.isIPv4">isIPv4</a></li><li data-type='method'><a href="module-Validator.html#.isIPv6">isIPv6</a></li><li data-type='method'><a href="module-Validator.html#.isIdCard">isIdCard</a></li><li data-type='method'><a href="module-Validator.html#.isMobile">isMobile</a></li><li data-type='method'><a href="module-Validator.html#.isPassport">isPassport</a></li><li data-type='method'><a href="module-Validator.html#.isPassword">isPassword</a></li><li data-type='method'><a href="module-Validator.html#.isPostcode">isPostcode</a></li><li data-type='method'><a href="module-Validator.html#.isQQ">isQQ</a></li><li data-type='method'><a href="module-Validator.html#.isSocialCreditCode">isSocialCreditCode</a></li><li data-type='method'><a href="module-Validator.html#.isSwiftCode">isSwiftCode</a></li><li data-type='method'><a href="module-Validator.html#.isTWCard">isTWCard</a></li><li data-type='method'><a href="module-Validator.html#.isTelephone">isTelephone</a></li><li data-type='method'><a href="module-Validator.html#.isUrl">isUrl</a></li><li data-type='method'><a href="module-Validator.html#.isValidNumber">isValidNumber</a></li><li data-type='method'><a href="module-Validator.html#.isVehicle">isVehicle</a></li><li data-type='method'><a href="module-Validator.html#.isWX">isWX</a></li><li data-type='method'><a href="module-Validator.html#.validatePassword">validatePassword</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#VERSION">VERSION</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Browser</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description usertext"><p>浏览器</p>
+<p><em style="font-weight: bold;">下列方法仅适用于浏览器端。</em></p></div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>浏览器</p>
+<p><em style="font-weight: bold;">下列方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".ajax"><span class="type-signature type-signature-static">(static) </span>ajax<span class="signature">(url, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;object>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>请求</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ajax.js.html">ajax.js</a>, <a href="ajax.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.16.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>ajax('/somefile').then(res=>{
+  // do something
+});
+
+ajax('/api', { method: 'post' }).then(res=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>地址</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>配置项</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>"get"</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>创建请求时使用的方法。默认 <code>'get'</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>async</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>是否异步执行操作。默认 <code>true</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>用户名，用于认证用途。默认 <code>null</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>密码，用于认证用途。默认 <code>null</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>headers</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>自定义请求头。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>responseType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>响应类型。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>请求超时的毫秒数。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>withCredentials</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>跨域请求时是否需要使用凭证。默认 <code>false</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>请求体被发送的数据。默认 <code>null</code>。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onReadyStateChange</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>当 readyState 属性发生变化时触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onLoadStart</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>接收到响应数据时触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onProgress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>请求接收到更多数据时，周期性地触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onAbort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>当 request 被停止时触发，例如当程序调用 XMLHttpRequest.abort() 时。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onTimeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>在预设时间内没有接收到响应时触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>当 request 遭遇错误时触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onLoad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>请求成功完成时触发。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onLoadEnd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>请求结束时触发，无论请求成功 (load) 还是失败 (abort 或 error)。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>XHR 事件对象。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;object></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".checkFileType"><span class="type-signature type-signature-static">(static) </span>checkFileType<span class="signature">(file, accept<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查文件是否符合 <code>accept</code> 类型说明符。</p>
+<p>通过 <code>file.type</code> <code>file.name</code> <code>file.url</code> 与 <code>accept</code> 进行匹配。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="checkFileType.js.html">checkFileType.js</a>, <a href="checkFileType.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>5.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#%E5%94%AF%E4%B8%80%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E%E7%AC%A6">唯一文件类型说明符</a></li>
+        
+            <li><a href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const pdf = new File([], '1.pdf', { type: 'application/pdf' });
+const jpeg = new File([], 'xx.jpeg', { type: 'image/jpeg' });
+
+// 文件类型
+checkFileType(pdf, 'application/pdf'); // true
+checkFileType(jpeg, 'image/jpeg'); // true
+
+// 通配符
+checkFileType(jpeg, 'image/*'); // true
+checkFileType(pdf, 'image/*'); // false
+checkFileType(pdf, 'application/*'); // true
+checkFileType(pdf, '*'); // true
+checkFileType(jpeg, '*'); // true
+
+// 文件名扩展名
+checkFileType(jpeg, '.png,.jpeg,.jpg'); // true
+checkFileType(pdf, '.pdf'); // true</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">File</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>文件对象。支持 antd <code>UploadFile</code> 对象。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accept</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>文件类型说明符。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>如果 <code>file</code> 符合 <code>accept</code> 返回 <code>true</code>， 否则返回 <code>false</code>。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".compressImage"><span class="type-signature type-signature-static">(static) </span>compressImage<span class="signature">(img, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(Blob|string)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>压缩图片。</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p>
+<p><em style="font-weight: bold;">如果是半透明图片并且导出 <code>image/png</code> 格式，建议将背景变成透明 <code>background=transparent</code>，避免出现白边。注意正常图片压缩导出 <code>image/png</code> 格式后文件可能会比原图大。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="compressImage.js.html">compressImage.js</a>, <a href="compressImage.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.20.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://sytpwg.csb.app/">在线示例</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>// 默认返回压缩后的 blob 对象
+compressImage(file).then(blob=>{
+   // do something
+   // 转为文件对象 new File([blob], file.name, { type: file.type })
+});
+
+// 设置返回格式 data url
+compressImage(file, { format: 'dataURL' }).then(url=>{
+   // do something
+});
+
+// 自定义配置
+compressImage('https://dummyimage.com/200x300', {
+ width: 100,
+ height: 100,
+ quality: 0.5,
+ beforeCompress({ image, blob }){},
+ beforeDraw({ image, blob, canvas, context }){}
+ afterDraw({ image, blob, canvas, context }){}
+}).then(blob=>{
+  // do something
+});
+
+// 支持不同形式的图片文件
+compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(blob=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>图片地址或 blob 对象</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>配置项</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>自定义图片宽度，默认图片自身宽度</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>自定义图片高度，默认图片自身高度</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rotate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>旋转</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>offset</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>[0, 0]</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>x,y轴偏移值，默认<code>[0, 0]</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>background</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>#fff</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>背景颜色，默认<code>#fff</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasWidth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>画布宽度，默认图片宽度</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvasHeight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>画布高度，默认图片高度</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'blob'</span>
+|
+
+<span class="param-type">'dataURL'</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'blob'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>导出格式，默认<code>blob</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'image/jpeg'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>图片类型，默认<code>image/jpeg</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quality</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>0.8</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>图片质量，默认<code>0.8</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforeCompress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>图片加载完成，画布创建之前调用</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>beforeDraw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>图片载入画布之前调用</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>afterDraw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>图片载入画布之后调用</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入图片地址时才会触发ajax请求。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>blob 对象 或 data url 图片</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(Blob|string)></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".dataURLToBlob"><span class="type-signature type-signature-static">(static) </span>dataURLToBlob<span class="signature">(data)</span><span class="type-signature"> &rarr; {Blob}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>将 DataURL 转为 Blob 对象</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dataURLToBlob.js.html">dataURLToBlob.js</a>, <a href="dataURLToBlob.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Base64">Base64</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const data = 'data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=';
+dataURLToBlob(dataurl); // Blob {size: 32, type: 'text/html'}</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>data: 协议的URL</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Blob 对象</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Blob</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".download"><span class="type-signature type-signature-async, static">(async, static) </span>download<span class="signature">(data, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>下载</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端，兼容 IE10+ 和现代浏览器。</em></p>
+<p><em style="font-weight: bold;">注意：微信浏览器不支持H5下载文件。</em></p>
+<p><em>响应头中有 &quot;Content-Disposition&quot; 字段，客户端获取不到？</em> 请参考查阅 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers">Access-Control-Expose-Headers</a> 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="download.js.html">download.js</a>, <a href="download.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.16.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers">Access-Control-Expose-Headers</a></li>
+        
+            <li><a href="https://zh.wikipedia.org/wiki/%E5%A4%9A%E7%94%A8%E9%80%94%E4%BA%92%E8%81%AF%E7%B6%B2%E9%83%B5%E4%BB%B6%E6%93%B4%E5%B1%95">MIME</a></li>
+        
+            <li><a href="https://9ykc9s.csb.app/">在线示例</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>// 文本
+download('hello world', 'text.txt');
+
+// 远程文件1
+// 不带协议的绝对地址，需要通过 dataType 指定为 url 类型
+download('/xxx.jpg', { dataType: 'url', fileName: 'test.jpg' });
+
+// 远程文件2
+download('https://example.com/xxx.jpg');
+
+// base64
+download('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=', 'test.png');
+
+// blob文件
+download(new Blob(['hello world']), 'text.txt');
+
+// 本地文件
+download(File, 'filename.ext');</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+|
+
+<span class="param-type">ArrayBuffer</span>
+|
+
+<span class="param-type">TypedArray</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>字符串、blob数据或url地址</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>文件名称 或 配置项。</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fileName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>文件名称。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>MIME 类型。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'url'</span>
+|
+
+<span class="param-type">'text'</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>手动设置数据类型，主要是为了区分 <code>url</code> 和 <code>text</code>，默认会根据传入的数据判断类型。<br/>如果你要下载的文本是 <code>url</code> ，请设置 <code>'text'</code> ；如果你要下载的 url 是绝对/相对路径，请设置 'url' 。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transformRequest</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>请求前触发，XHR 对象或配置调整。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>transformResponse</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>请求成功后触发，在传递给 then/catch 前，允许修改响应数据。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fileReader"><span class="type-signature type-signature-static">(static) </span>fileReader<span class="signature">(blob, type<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(string|ArrayBuffer)>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>读取 Blob 或 File 对象，转为 Base64/String/ArrayBuffer</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fileReader.js.html">fileReader.js</a>, <a href="fileReader.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.16.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader">FileReader</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const aFileParts = ['&lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>']; // 一个包含DOMString的数组
+const htmlBlob = new Blob(aFileParts, { type: 'text/html' }); // 得到 blob
+
+fileReader(htmlBlob).then(data=>{
+  console.log(data); // data:text/html;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=
+});
+
+const textBlob = new Blob(aFileParts, { type: 'text/plain' });
+
+fileReader(textBlob, 'text').then(data=>{
+  console.log(data); // &lt;a id="a">&lt;b id="b">hey!&lt;/b>&lt;/a>
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>blob</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Blob 或 File 对象</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'arrayBuffer'</span>
+|
+
+<span class="param-type">'binaryString'</span>
+|
+
+<span class="param-type">'dataURL'</span>
+|
+
+<span class="param-type">'text'</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'dataURL'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>读取类型，默认<code>dataURL</code>。可选 <code>arrayBuffer</code>  <code>binaryString</code> <code>dataURL</code> <code>text</code> 。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>文件内容</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(string|ArrayBuffer)></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getFileBlob"><span class="type-signature type-signature-static">(static) </span>getFileBlob<span class="signature">(file, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Blob>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>获取文件 Blob 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getFileBlob.js.html">getFileBlob.js</a>, <a href="getFileBlob.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.21.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>getFileBlob(file).then((blob)=>{
+   // do something
+});
+
+getFileBlob('https://dummyimage.com/200x300').then((blob)=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>文件地址或对象。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>文件 Blob 。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Blob></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getFileType"><span class="type-signature type-signature-static">(static) </span>getFileType<span class="signature">(file)</span><span class="type-signature"> &rarr; {"image"|"audio"|"video"|"pdf"|"word"|"excel"|undefined}</span></h4>
+
+    
+    <p class="summary usertext"><p>获取文件类型。</p></p>
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>内置文件类型和文件类型说明符</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td><code>image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.tif,.tiff</code></td>
+</tr>
+<tr>
+<td><code>audio</code></td>
+<td><code>audio/*,.mp3,.wav,.aac,.flac</code></td>
+</tr>
+<tr>
+<td><code>video</code></td>
+<td><code>video/*,.mp4,.webm,.ogg,.mov</code></td>
+</tr>
+<tr>
+<td><code>pdf</code></td>
+<td><code>application/pdf,.pdf</code></td>
+</tr>
+<tr>
+<td><code>word</code></td>
+<td><code>application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx</code></td>
+</tr>
+<tr>
+<td><code>excel</code></td>
+<td><code>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx</code></td>
+</tr>
+</tbody>
+</table></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getFileType.js.html">getFileType.js</a>, <a href="getFileType.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>5.1.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const pdf = new File([], '1.pdf', { type: 'application/pdf' });
+const jpeg = new File([], 'xx.jpeg', { type: 'image/jpeg' });
+
+getFileType(pdf); // 'pdf'
+getFileType(jpeg); // 'image'</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">File</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>文件对象。支持 antd <code>UploadFile</code> 对象。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<h5 class="h5-requires">Requires:</h5>
+<ul>
+    <li>module:Other.checkFileType</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>如果是 <code>image</code> <code>audio</code> <code>video</code> <code>pdf</code> <code>word</code> <code>excel</code> 这些类型的文件，返回对应的类型值，否则返回 <code>undefined</code>。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">"image"</span>
+|
+
+<span class="param-type">"audio"</span>
+|
+
+<span class="param-type">"video"</span>
+|
+
+<span class="param-type">"pdf"</span>
+|
+
+<span class="param-type">"word"</span>
+|
+
+<span class="param-type">"excel"</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getImageInfo"><span class="type-signature type-signature-static">(static) </span>getImageInfo<span class="signature">(img, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>获取图片信息。</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getImageInfo.js.html">getImageInfo.js</a>, <a href="getImageInfo.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.20.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>getImageInfo(file).then(imageInfo=>{
+  console.log(imageInfo);
+  // {
+  //   width: 100,
+  //   height: 100,
+  //   contrast: '1:1',
+  //   measure: '100 × 100 px',
+  //   size: '11 B',
+  //   bytes: 11,
+  //   image: HTMLImageElement {},
+  //   blob: Blob {}
+  // }
+});
+
+getImageInfo('https://dummyimage.com/200x300').then(imageInfo=>{
+  // do something
+});
+
+getImageInfo('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(imageInfo=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>图片地址或 blob 对象。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>图片信息。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#ImageInfo">ImageInfo</a>></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getMimeType"><span class="type-signature type-signature-static">(static) </span>getMimeType<span class="signature">(fileName)</span><span class="type-signature"></span></h4>
+
+    
+    <p class="summary usertext"><p>获取常用的 MIME 类型。通过文件名后缀查找对应的 MIME 类型。</p></p>
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>内置常用的 MIME 类型和文件名后缀映射</p>
+<table>
+<thead>
+<tr>
+<th>MIME 类型</th>
+<th>文件名后缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text/plain</code></td>
+<td><code>txt</code></td>
+</tr>
+<tr>
+<td><code>text/css</code></td>
+<td><code>css</code></td>
+</tr>
+<tr>
+<td><code>text/html</code></td>
+<td><code>htm</code> <code>html</code></td>
+</tr>
+<tr>
+<td><code>text/javascript</code></td>
+<td><code>js</code> <code>mjs</code></td>
+</tr>
+<tr>
+<td><code>text/csv</code></td>
+<td><code>csv</code></td>
+</tr>
+<tr>
+<td><code>text/markdown</code></td>
+<td><code>md</code> <code>markdown</code></td>
+</tr>
+<tr>
+<td><code>image/gif</code></td>
+<td><code>gif</code></td>
+</tr>
+<tr>
+<td><code>image/jpeg</code></td>
+<td><code>jpg</code> <code>jpeg</code> <code>jfif</code> <code>pjpeg</code> <code>pjp</code></td>
+</tr>
+<tr>
+<td><code>image/png</code></td>
+<td><code>png</code></td>
+</tr>
+<tr>
+<td><code>image/svg+xml</code></td>
+<td><code>svg</code></td>
+</tr>
+<tr>
+<td><code>image/webp</code></td>
+<td><code>webp</code></td>
+</tr>
+<tr>
+<td><code>image/apng</code></td>
+<td><code>apng</code></td>
+</tr>
+<tr>
+<td><code>image/avif</code></td>
+<td><code>avif</code></td>
+</tr>
+<tr>
+<td><code>image/bmp</code></td>
+<td><code>bmp</code></td>
+</tr>
+<tr>
+<td><code>image/x-icon</code></td>
+<td><code>ico</code> <code>cur</code></td>
+</tr>
+<tr>
+<td><code>image/tiff</code></td>
+<td><code>tif</code> <code>tiff</code></td>
+</tr>
+<tr>
+<td><code>application/xml</code></td>
+<td><code>xml</code></td>
+</tr>
+<tr>
+<td><code>application/zip</code></td>
+<td><code>zip</code></td>
+</tr>
+<tr>
+<td><code>application/pdf</code></td>
+<td><code>pdf</code></td>
+</tr>
+<tr>
+<td><code>application/json</code></td>
+<td><code>json</code></td>
+</tr>
+<tr>
+<td><code>application/yaml</code></td>
+<td><code>yaml</code> <code>yml</code></td>
+</tr>
+<tr>
+<td><code>application/vnd.openxmlformats-officedocument.wordprocessingml.document</code></td>
+<td><code>doc</code> <code>docx</code></td>
+</tr>
+<tr>
+<td><code>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</code></td>
+<td><code>xls</code> <code>xlsx</code></td>
+</tr>
+<tr>
+<td><code>audio/mp3</code></td>
+<td><code>mp3</code></td>
+</tr>
+<tr>
+<td><code>audio/wav</code></td>
+<td><code>wav</code></td>
+</tr>
+<tr>
+<td><code>audio/aac</code></td>
+<td><code>aac</code></td>
+</tr>
+<tr>
+<td><code>audio/flac</code></td>
+<td><code>flac</code></td>
+</tr>
+<tr>
+<td><code>video/mp4</code></td>
+<td><code>mp4</code></td>
+</tr>
+<tr>
+<td><code>video/ogg</code></td>
+<td><code>ogg</code></td>
+</tr>
+<tr>
+<td><code>video/webm</code></td>
+<td><code>webm</code></td>
+</tr>
+<tr>
+<td><code>video/quicktime</code></td>
+<td><code>mov</code></td>
+</tr>
+</tbody>
+</table></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getMimeType.js.html">getMimeType.js</a>, <a href="getMimeType.js.html#line100">line 100</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>5.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types">MIME 类型（IANA 媒体类型）</a></li>
+        
+            <li><a href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>getMimeType('xxx.png'); // 'image/png'
+getMimeType('xxx.jpg'); // 'image/jpeg'
+getMimeType('xxx.mp3'); // 'audio/mp3'
+getMimeType('xxx.mp4'); // 'video/mp4'
+getMimeType('xxx.pdf'); // 'application/pdf'
+getMimeType('xxx.zip'); // 'application/zip'
+getMimeType('xxx.doc'); // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+
+// 不常用或未知类型
+getMimeTye('xxx.ci'); // undefined
+
+// 非法文件名
+getMimeType('.zip'); // undefined</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fileName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>文件名。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>如果找到，返回 MIME 类型字符串，否则返回 <code>undefined</code>。</p>
+</div>
+
+
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".loadImage"><span class="type-signature type-signature-static">(static) </span>loadImage<span class="signature">(img)</span><span class="type-signature"> &rarr; {Promise.&lt;HTMLImageElement>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>加载图片。</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="loadImage.js.html">loadImage.js</a>, <a href="loadImage.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.20.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>loadImage(file).then(image=>{
+   // do something
+});
+
+loadImage('https://dummyimage.com/200x300').then(image=>{
+  // do something
+});
+
+loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(image=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>图片地址或 blob 对象</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>HTML图片元素</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;HTMLImageElement></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".loadImageWithBlob"><span class="type-signature type-signature-static">(static) </span>loadImageWithBlob<span class="signature">(img, ajaxOptions<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>加载图片，返回图片元素和 blob 对象。</p>
+<p>如果传入图片地址，将通过 ajax 请求转为 blob 格式。</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="loadImageWithBlob.js.html">loadImageWithBlob.js</a>, <a href="loadImageWithBlob.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.20.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>loadImage(file).then(({image, blob})=>{
+  console.log(image, blob);
+  // HTMLImageElement {} Blob {}
+});
+
+loadImage('https://dummyimage.com/200x300').then(({image, blob})=>{
+  // do something
+});
+
+loadImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(({image, blob})=>{
+  // do something
+});</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>img</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Blob</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>图片地址或 blob 对象</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ajaxOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#AjaxOptions">AjaxOptions</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>ajax 请求配置项，当传入的图片为字符串时才会触发请求。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>HTML图片元素和 blob 对象</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;<a href="global.html#ImageWithBlob">ImageWithBlob</a>></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".loadScript"><span class="type-signature type-signature-static">(static) </span>loadScript<span class="signature">(src, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;HTMLScriptElement>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>加载 js 文件。</p>
+<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="loadScript.js.html">loadScript.js</a>, <a href="loadScript.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>4.19.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>loadScript('some.js').then(script=>{
+  // do something
+})
+
+loadScript('some.js', { id: 'xxx', async: false, attrs: { foo: 'bar' } }).then(script=>{
+  // do something
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>src</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>js 地址。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>script 标签属性。比如 <code>defer</code> <code>onload</code> <code>onerror</code> <code>id</code> 等，下面列举部分带有默认值或额外扩展的配置。</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>destroyOnError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>如果加载失败或错误，自动删除 dom 中的 script 标签。默认<code>true</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>attrs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>自定义 script 属性，通过 script.setAttribute 设置。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>async</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>异步加载。默认<code>true</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'text/javascript'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>类型。默认<code>text/javascript</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>异步返回 script 元素。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;HTMLScriptElement></span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Thu Oct 24 2024 03:37:16 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
