@@ -1,5 +1,5 @@
-import { isString, nth } from 'ut2';
 import { nativeUndefined } from './utils/native';
+import { getFileNameExt } from './utils/file.util';
 
 const mimeTypes = [
   // text
@@ -103,7 +103,7 @@ const mimeTypes = [
  * | `video/quicktime` | `mov` |
  */
 function getMimeType(fileName: string) {
-  const ext = isString(fileName) && fileName.indexOf('.') > 0 ? nth(fileName.split('.'), -1) : '';
+  const ext = getFileNameExt(fileName).slice(1);
   return ext ? (mimeTypes.find((item) => item[1].includes(ext))?.[0] as string) : nativeUndefined;
 }
 
