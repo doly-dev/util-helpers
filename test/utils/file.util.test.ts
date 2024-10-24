@@ -1,12 +1,12 @@
-import { getFileNameExt } from '../../src/utils/file.util';
+import { getExtname } from '../../src/utils/file.util';
 
 describe('file.util', () => {
-  it('getFileNameExt', () => {
-    expect(getFileNameExt('index.html')).toBe('.html');
-    expect(getFileNameExt('index.coffee.md')).toBe('.md');
-    expect(getFileNameExt('index.')).toBe('.');
-    expect(getFileNameExt('index')).toBe('');
-    expect(getFileNameExt('.index')).toBe('');
-    expect(getFileNameExt('index.md')).toBe('.md');
+  it('getExtname', () => {
+    expect(getExtname('index.html')).toBe('.html');
+    expect(getExtname('index.coffee.md')).toBe('.md');
+    expect(getExtname('index.')).toBe('.');
+    expect(getExtname('index')).toBe('');
+    expect(getExtname('.index')).toBe('');
+    expect(getExtname('index.md')).toBe('.md');
   });
 });
