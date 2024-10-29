@@ -47,6 +47,18 @@ describe('loadScript', () => {
   );
 
   it(
+    '加载在 body 元素中',
+    async () => {
+      const head = document.head;
+      document.documentElement.removeChild(head);
+      const script = await loadScript(testUrl);
+      expect(script.parentElement).toBe(document.body);
+      document.documentElement.prepend(head);
+    },
+    TIMEOUT
+  );
+
+  it(
     '加载失败',
     async () => {
       try {

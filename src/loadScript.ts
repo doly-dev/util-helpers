@@ -32,7 +32,7 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  */
 function loadScript(src: string, options?: Partial<ScriptAttribute>) {
   return new Promise<HTMLScriptElement>((resolve, reject) => {
-    const head = document.head;
+    const container = document.head || document.getElementsByTagName('head')[0] || document.body;
     const script = document.createElement('script');
 
     const { attrs, destroyOnError = true, ...restOptions } = options || {};
@@ -68,12 +68,12 @@ function loadScript(src: string, options?: Partial<ScriptAttribute>) {
       this.onerror = this.onload = null;
       props.onerror?.call(this, ev);
       if (destroyOnError) {
-        head.removeChild(script);
+        container.removeChild(script);
       }
       reject(new URIError('Failed to load ' + this.src));
     };
 
-    head.appendChild(script);
+    container.appendChild(script);
   });
 }
 
