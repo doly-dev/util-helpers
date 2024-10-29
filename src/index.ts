@@ -106,6 +106,7 @@ export { default as getFileBlob } from './getFileBlob';
 export { default as getFileType } from './getFileType';
 export { default as getImageInfo } from './getImageInfo';
 export { default as getMimeType } from './getMimeType';
+export { default as injectStyle } from './injectStyle';
 export { default as loadImage } from './loadImage';
 export { default as loadImageWithBlob } from './loadImageWithBlob';
 export { default as loadScript } from './loadScript';

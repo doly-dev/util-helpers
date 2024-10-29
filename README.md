@@ -62,6 +62,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [getFileType](https://doly-dev.github.io/util-helpers/module-Browser.html#.getFileType) - 获取文件类型
   - [getImageInfo](https://doly-dev.github.io/util-helpers/module-Browser.html#.getImageInfo) - 获取图片信息
   - [getMimeType](https://doly-dev.github.io/util-helpers/module-Browser.html#.getMimeType) - 获取文件 MIME 类型
+  - [injectStyle](https://doly-dev.github.io/util-helpers/module-Browser.html#.injectStyle) - 注入样式
   - [loadImage](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadImage) - 加载图片
   - [loadImageWithBlob](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadImageWithBlob) - 加载图片和 blob 对象
   - [loadScript](https://doly-dev.github.io/util-helpers/module-Browser.html#.loadScript) - 加载 js 文件
