@@ -75,6 +75,19 @@ describe('injectStyle', () => {
     expect(style.innerHTML).toBe('');
   });
 
+  it('onBefore 回调方法', () => {
+    const css = 'body { background-color: red; }';
+    injectStyle(css, {
+      onBefore(style) {
+        style.innerHTML = '';
+      }
+    });
+
+    const style = document.head.querySelector('style');
+    expect(style).not.toBeNull();
+    expect(style?.innerHTML).toContain('');
+  });
+
   it('没有 head 元素', () => {
     const css = 'p { margin: 10px; }';
     document.documentElement.removeChild(document.head);
