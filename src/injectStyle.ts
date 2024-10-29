@@ -9,6 +9,19 @@
  * @param {'top' | 'bottom'} [options.insertAt='top'] 注入容器内容前面还是后面。默认 `top`。
  * @param {Function} [options.onBefore] 注入样式前的回调方法。
  * @returns {HTMLStyleElement} `style` 元素。
+ * @example
+ * const css1 = 'body { background-color: red; }';
+ * injectStyle(css1);
+ *
+ * // 自定义配置
+ * const css2 = 'p { margin: 10px; } a { color: blue; }';
+ * injectStyle(css2, {
+ *   container: document.body,
+ *   insertAt: 'bottom'，
+ *   onBefore(style){
+ *     style.nonce = '...';
+ *   }
+ * });
  */
 function injectStyle(
   css: string,
