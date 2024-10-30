@@ -45,6 +45,15 @@ class AsyncMemo<DataType = any> {
    * @param {number} [options.ttl] 数据存活时间
    * @param {boolean} [options.persisted=true] 数据持久化，默认`true`。如果存在缓存数据，直接返回缓存数据，不再执行异步方法。<br/>即使不开启该配置，不影响在异步执行成功后缓存数据。
    * @returns {Promise<*>} 异步结果
+   * @example
+   *
+   * const asyncMemo = new AsyncMemo();
+   * asyncMemo.run(()=>download({ fssid: 'a' }), 'a');
+   * asyncMemo.run(()=>download({ fssid: 'b' }), 'b');
+   * asyncMemo.run(()=>download({ fssid: 'a' }), 'a'); // 如果有缓存结果直接返回，如果有异步执行中，不会重复触发异步，但共享异步结果。
+   *
+   * asyncMemo.run(()=>download({ fssid: 'a' }), 'a', { persisted: false }); // 不读取缓存结果，但是异步执行结果还是会缓存。
+   * asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。
    */
   run(
     asyncFn: (...args: any[]) => Promise<DataType>,
