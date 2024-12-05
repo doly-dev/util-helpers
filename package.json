@@ -51,9 +51,9 @@
   },
   "homepage": "https://doly-dev.github.io/util-helpers/index.html",
   "devDependencies": {
-    "@babel/core": "^7.25.8",
-    "@babel/preset-env": "^7.25.8",
-    "@babel/preset-typescript": "^7.25.7",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
     "@commitlint/cz-commitlint": "^17.8.1",
@@ -62,7 +62,7 @@
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/jest": "^29.5.13",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "babel-jest": "^29.7.0",
@@ -71,16 +71,16 @@
     "cross-env": "^7.0.3",
     "docdash": "^2.0.2",
     "eslint": "^8.57.1",
-    "husky": "^9.1.6",
+    "husky": "^9.1.7",
     "inquirer": "^8.2.6",
     "jest": "^29.7.0",
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.4",
     "lint-staged": "^13.3.0",
-    "prettier": "^3.3.3",
-    "rollup": "^4.24.0",
-    "typescript": "^5.6.3"
+    "prettier": "^3.4.2",
+    "rollup": "^4.28.0",
+    "typescript": "^5.7.2"
   },
   "lint-staged": {
     "**/*.ts": "eslint",
@@ -92,9 +92,9 @@
     }
   },
   "dependencies": {
-    "cache2": "^3.1.1",
-    "tslib": "^2.8.0",
-    "ut2": "^1.13.0"
+    "cache2": "^3.1.2",
+    "tslib": "^2.8.1",
+    "ut2": "^1.15.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
