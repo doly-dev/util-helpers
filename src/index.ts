@@ -117,6 +117,7 @@ export { default as loadScript } from './loadScript';
  * @module Other
  */
 export { default as calculateCursorPosition } from './calculateCursorPosition';
+export { default as getExtname } from './getExtname';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
 

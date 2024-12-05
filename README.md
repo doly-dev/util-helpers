@@ -111,6 +111,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
   - [validatePassword](https://doly-dev.github.io/util-helpers/module-Validator.html#.validatePassword) - 验证密码
 - 其他
   - [calculateCursorPosition](https://doly-dev.github.io/util-helpers/module-Other.html#.calculateCursorPosition) - 计算光标位置
+  - [getExtname](https://doly-dev.github.io/util-helpers/module-Processor.html#.getExtname) - 获取路径扩展名
   - [randomString](https://doly-dev.github.io/util-helpers/module-Other.html#.randomString) - 随机字符串
   - [strlen](https://doly-dev.github.io/util-helpers/module-Other.html#.strlen) - 字符长度
 - Classes

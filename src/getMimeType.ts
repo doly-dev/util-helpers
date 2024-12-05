@@ -1,5 +1,5 @@
+import getExtname from './getExtname';
 import { nativeUndefined } from './utils/native';
-import { getExtname } from './utils/file.util';
 
 const mimeTypes = [
   // text

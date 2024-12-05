@@ -1,5 +1,6 @@
 import { isFile, isString, toString } from 'ut2';
-import { isUploadFile, testExt, UploadFile } from './utils/file.util';
+import { isUploadFile, UploadFile } from './utils/file.util';
+import getExtname from './getExtname';
 
 /**
  * 检查文件是否符合 `accept` 类型说明符。
@@ -59,7 +60,7 @@ function checkFileType(file: File | UploadFile, accept?: string) {
 
   types.some((type) => {
     // .doc .docx .jpg .png
-    if (type === '*' || fileType === type || (type.indexOf('.') === 0 && (testExt(fileName, type) || testExt(fileUrl, type)))) {
+    if (type === '*' || fileType === type || (type.indexOf('.') === 0 && (getExtname(fileName) === type || getExtname(fileUrl) === type))) {
       ret = true;
     } else if (type.includes('/*') && fileType.includes('/')) {
       // image/* 匹配所有图片类型
