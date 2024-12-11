@@ -52,6 +52,11 @@ describe('checkFileType', () => {
     expect(checkFileType(png, '.jpeg, .pdf')).toBe(false);
   });
 
+  it('大写文件名后缀', () => {
+    const file = new File([], 'xx.JPEG', { type: 'image/jpeg' });
+    expect(checkFileType(file, '.jpeg')).toBe(true);
+  });
+
   it('Mime类型、通配符和文件名扩展名混合使用', () => {
     expect(checkFileType(pdf, '.jpeg,.png,.gif,application/pdf')).toBe(true);
     expect(checkFileType(jpeg, '.jpeg,.png,.gif,application/pdf')).toBe(true);

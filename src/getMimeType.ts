@@ -103,7 +103,7 @@ const mimeTypes = [
  * | `video/quicktime` | `mov` |
  */
 function getMimeType(fileName: string) {
-  const ext = getExtname(fileName).slice(1);
+  const ext = getExtname(fileName).slice(1).toLowerCase();
   return ext ? (mimeTypes.find((item) => item[1].includes(ext))?.[0] as string) : nativeUndefined;
 }
 

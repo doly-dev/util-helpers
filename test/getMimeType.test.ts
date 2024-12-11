@@ -13,6 +13,11 @@ describe('getMimeType', () => {
     expect(mt3).toBeUndefined();
   });
 
+  it('大写文件名后缀', () => {
+    const mimetype = getMimeType('75557399789__94DBB9C4-B89C-4E23-8215-5B5E966C6110.MOV');
+    expect(mimetype).toBe('video/quicktime');
+  });
+
   it('未知类型', () => {
     const values = ['xxx.icon', 'abc'];
     values.forEach((value) => {
