@@ -96,6 +96,12 @@ describe('calculateCursorPosition', () => {
     expect(calculateCursorPosition(3, '133 3333 3333', '1333333 3333', '133 3333 3333')).toBe(3); // 第一个间隔符位置按删除键
   });
 
+  it('maskReg', () => {
+    expect(calculateCursorPosition(4, '350', '3501', '3501', { maskReg: /[^\dx]/gi })).toBe(4);
+    expect(calculateCursorPosition(4, '350', '350b', '350', { maskReg: /[^\dx]/gi })).toBe(3);
+    expect(calculateCursorPosition(4, '350', '350x', '350x', { maskReg: /[^\dx]/gi })).toBe(4);
+  });
+
   it('type mobile', () => {
     // input
     expect(calculateCursorPosition(4, '133', '1333', '133 3', { type: 'mobile' })).toBe(5);

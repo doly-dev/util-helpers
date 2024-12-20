@@ -94,7 +94,11 @@ describe('ajax', () => {
       },
       data: 'a=1&b=2',
       timeout: 1000,
-      responseType: 'json'
+      responseType: 'json',
+      withCredentials: true,
+      async: false,
+      user: 'admin',
+      password: '12345'
     });
     expect(xhrMock.open).toHaveBeenCalledWith('get', '/test', true, null, null);
     expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('Cache-Control', 'no-cache');
