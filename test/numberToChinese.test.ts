@@ -47,6 +47,8 @@ describe('numberToChinese', () => {
     expect(numberToChinese(-0.1)).toBe('负零点一');
     expect(numberToChinese(-100.1)).toBe('负一百点一');
     expect(numberToChinese(-1234567890.11)).toBe('负一十二亿三千四百五十六万七千八百九十点一一');
+
+    expect(numberToChinese(-1234567890.11, { negative: '负数' })).toBe('负数一十二亿三千四百五十六万七千八百九十点一一');
   });
 
   it('繁体', () => {

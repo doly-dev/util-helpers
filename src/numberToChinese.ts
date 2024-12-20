@@ -198,8 +198,8 @@ function numberToChinese(num: number, options: Options = {}) {
   }
 
   // 设置节点计数单位，万、亿、万亿
-  const unitWan = unitConfig?.w || '万';
-  const unitYi = unitConfig?.y || '亿';
+  const unitWan = unitConfig.w || '万';
+  const unitYi = unitConfig.y || '亿';
   const unitWanYi = unitWan + unitYi;
   unitSection = ['', unitWan, unitYi, unitWanYi];
 
