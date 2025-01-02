@@ -47,8 +47,8 @@ const mimeTypes = [
  *
  * @alias module:Browser.getMimeType
  * @since 5.2.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types | MIME 类型（IANA 媒体类型）}
- * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml | Media Types}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types MIME 类型（IANA 媒体类型）}
+ * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml Media Types}
  * @param {string} fileName 文件名。
  * @returns 如果找到，返回 MIME 类型字符串，否则返回 `undefined`。
  * @example

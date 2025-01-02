@@ -47,8 +47,8 @@ export { default as transformObjectValue } from './transformObjectValue';
  * 数学计算，修正浮点数计算问题
  *
  * @module Math
- * @see {@link https://github.com/camsong/blog/issues/9 | JavaScript 浮点数陷阱及解法}
- * @see {@link https://2zbuy.csb.app/ | JS浮点数计算测试}
+ * @see {@link https://github.com/camsong/blog/issues/9 JavaScript 浮点数陷阱及解法}
+ * @see {@link https://2zbuy.csb.app/ JS浮点数计算测试}
  * @example
  * // 从 4.12.0 版本开始，规范了有效数值。（注意：4.12.3 对有效数值重新定义）
  * // 有效数值即能通过 Number(value) 转为数字，且不能为 NaN 。

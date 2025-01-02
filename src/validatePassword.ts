@@ -113,7 +113,7 @@ type Options = {
  *
  * @alias module:Validator.validatePassword
  * @since 3.7.0
- * @see {@link https://baike.baidu.com/item/ASCII#3 | ASCII}
+ * @see {@link https://baike.baidu.com/item/ASCII#3 ASCII}
  * @param {string} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {number} [options.level=2] 密码强度，默认`2`。`1`-包含一种字符 `2`-包含两种字符 `3`-包含三种字符。（大写字母、小写字母、数字、特殊字符）

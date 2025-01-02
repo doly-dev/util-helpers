@@ -15,7 +15,7 @@ type Options = {
  *
  * @alias module:Validator.isTWCard
  * @since 4.0.0
- * @see {@link https://zh.wikipedia.org/wiki/台湾居民来往大陆通行证 | 台湾居民来往大陆通行证}
+ * @see {@link https://zh.wikipedia.org/wiki/台湾居民来往大陆通行证 台湾居民来往大陆通行证}
  * @param {*} value 要检测的值
  * @param {Object} [options] 配置项
  * @param {boolean} [options.loose=false] 宽松模式，默认`false`。如果为true，表示支持一次性短期通行证

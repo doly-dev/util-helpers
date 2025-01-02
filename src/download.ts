@@ -49,9 +49,9 @@ type DownloadOptions = {
  *
  * @alias module:Browser.download
  * @since 4.16.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers | Access-Control-Expose-Headers}
- * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展 | MIME}
- * @see {@link https://9ykc9s.csb.app/ | 在线示例}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Expose-Headers Access-Control-Expose-Headers}
+ * @see {@link https://zh.wikipedia.org/wiki/多用途互聯網郵件擴展 MIME}
+ * @see {@link https://9ykc9s.csb.app/ 在线示例}
  * @param {string|Blob|ArrayBuffer|TypedArray} data 字符串、blob数据或url地址
  * @param {string|Object} [options] 文件名称 或 配置项。
  * @param {string} [options.fileName] 文件名称。

@@ -11,8 +11,8 @@ type CalculateCursorPositionOptions = {
  *
  * @alias module:Other.calculateCursorPosition
  * @since 4.6.0
- * @see {@link https://2950v9.csb.app/ | h5示例}
- * @see {@link https://33ccy9.csb.app/ | react示例}
+ * @see {@link https://2950v9.csb.app/ h5示例}
+ * @see {@link https://33ccy9.csb.app/ react示例}
  * @param {number} prevPos 赋值前的光标位置，onChange/onInput的光标位置 e.target.selectionEnd
  * @param {string} prevCtrlValue 上一个格式化后的值
  * @param {string} rawValue 当前输入原值

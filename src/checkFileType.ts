@@ -9,8 +9,8 @@ import getExtname from './getExtname';
  *
  * @alias module:Browser.checkFileType
  * @since 5.1.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#唯一文件类型说明符 | 唯一文件类型说明符}
- * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml | Media Types}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/input/file#唯一文件类型说明符 唯一文件类型说明符}
+ * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml Media Types}
  * @param {File} file 文件对象。支持 antd `UploadFile` 对象。
  * @param {string} [accept] 文件类型说明符。
  * @returns {boolean} 如果 `file` 符合 `accept` 返回 `true`， 否则返回 `false`。
