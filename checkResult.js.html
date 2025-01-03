@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>isUrl.js - util-helpers </title>
+    <title>checkResult.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isUrl.js</h1>
+    <h1 class="page-title">checkResult.js</h1>
     
 
     
@@ -71,57 +71,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { toString } from 'ut2';
-// 标准格式如下：
-// [协议类型]://[服务器地址]:[端口号]/[资源层级UNIX文件路径][文件名]?[查询]#[片段ID]
-// 完整格式如下：
-// [协议类型]://[访问资源需要的凭证信息]@[服务器地址]:[端口号]/[资源层级UNIX文件路径][文件名]?[查询]#[片段ID]
-//
-// 其中[访问凭证信息]、[端口号]、[查询]、[片段ID]都属于选填项。
-const protocalReg = '[\\w-.]+:\\/\\/';
-const credentialsReg = '[-;:&amp;=\\+\\$,\\w]+@';
-const serverReg = 'localhost|(([^\\s:\\/]+?\\.)+?[^\\s:\\/]+)';
-const portReg = ':\\d+';
-const pathReg = '\\/.*';
-const searchReg = '\\?.*';
-const hashReg = '#.*';
-const regWithProtocal = new RegExp(`^${protocalReg}(?:${credentialsReg})?(?:${serverReg})(?:${portReg})?(?:${pathReg})*(?:${searchReg})?(?:${hashReg})?$`);
-const regNonProtocal = new RegExp(`^(?:${serverReg})(?:${portReg})?(?:${pathReg})*(?:${searchReg})?(?:${hashReg})?$`);
+            <pre class="prettyprint source linenums"><code>import { tryit } from 'ut2';
 /**
- * 检测值是否为url
+ * 检查函数执行结果。
  *
- * @alias module:Validator.isUrl
- * @since 3.4.0
- * @see {@link https://zh.wikipedia.org/wiki/统一资源定位符 统一资源定位符}
- * @param {*} value 要检测的值
- * @returns {boolean} 值是否为url
+ * 如果函数执行异常或返回下列结果，则返回 `false` ，否则返回 `true`。
+ * 1. `Promise.reject()`
+ * 2. `Promise.resolve(false)`
+ * 3. `false`
+ *
+ * @alias module:Other.checkResult
+ * @since 5.5.0
+ * @param {Function} [fn=()=>true] 处理函数，默认 `()=>true`。
+ * @param {...*} [args] 展开参数，`fn` 执行参数。
+ * @returns {Promise&lt;boolean>}
  * @example
+ * await checkResult(()=>throw new Error());      // false
+ * await checkResult(()=>Promise.reject());       // false
+ * await checkResult(()=>Promise.resolve(false)); // false
+ * await checkResult(async ()=>false);            // false
+ * await checkResult(()=>false);                  // false
  *
- * isUrl(''); // false
- * isUrl('/foo/bar'); // false
+ * await checkResult(undefined);                  // true
+ * await checkResult(()=>true);                   // true
+ * await checkResult(()=>Promise.resolve());      // true
+ * await checkResult(async ()=>true);             // true
+ * await checkResult(()=>null);                   // true
+ * await checkResult(()=>undefined);              // true
+ * await checkResult(()=>'foo');                  // true
  *
- * isUrl('8.8.8.8'); // true
- * isUrl('example.com'); // true
- * isUrl('http://example.com'); // true
- * isUrl('https://example.com:8080'); // true
- * isUrl('https://www.example.com/test/123'); // true
- * isUrl('https://www.example.com/test/123?foo=bar'); // true
- * isUrl('https://www.example.com/test/123?foo=中文#id'); // true
- * isUrl('https://www.example.com/test/123?foo=中文#测试'); // true
- * isUrl('ftp://127.0.0.1:8080/测试.tar'); // true
- * isUrl('a.b'); // true
- * isUrl('a.b:8080'); // true
- * isUrl('p://a.b'); // true
- * isUrl('p://a.b:8888'); // true
- * isUrl('中文域名.中文后缀'); // true
- * isUrl('中文域名.cn'); // true
- *
+ * // 传入参数
+ * await checkResult((...args)=>args.length > 1); // false
+ * await checkResult((...args)=>args.length > 1, 'a', 'b'); // true
  */
-function isUrl(value) {
-    const valueStr = toString(value);
-    return regWithProtocal.test(valueStr) || regNonProtocal.test(valueStr);
-}
-export default isUrl;
+const checkResult = async (fn = () => true, ...args) => {
+    const [err, ret] = await tryit(fn)(...args);
+    return !err &amp;&amp; ret !== false;
+};
+export default checkResult;
 </code></pre>
         </article>
     </section>
