@@ -25,6 +25,7 @@ export { default as isHMCard } from './isHMCard';
 export { default as isTWCard } from './isTWCard';
 export { default as isSwiftCode } from './isSwiftCode';
 export { default as isValidNumber } from './isValidNumber';
+export { default as checkResult } from './checkResult';
 
 /**
  * 数据处理
