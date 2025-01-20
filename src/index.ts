@@ -25,7 +25,7 @@ export { default as isHMCard } from './isHMCard';
 export { default as isTWCard } from './isTWCard';
 export { default as isSwiftCode } from './isSwiftCode';
 export { default as isValidNumber } from './isValidNumber';
-export { default as checkResult } from './checkResult';
+export { default as isUnifiedIdentifier } from './isUnifiedIdentifier';
 
 /**
  * 数据处理
@@ -121,6 +121,7 @@ export { default as calculateCursorPosition } from './calculateCursorPosition';
 export { default as getExtname } from './getExtname';
 export { default as randomString } from './randomString';
 export { default as strlen } from './strlen';
+export { default as checkResult } from './checkResult';
 
 /**
  * 树结构数据查询、过滤、转换等处理方法
