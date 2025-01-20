@@ -64,4 +64,6 @@ function isBankCard(value: any, options: Options = {}) {
   return validateResult;
 }
 
+isBankCard.sumCheckCode = sumCheckCode;
+
 export default isBankCard;

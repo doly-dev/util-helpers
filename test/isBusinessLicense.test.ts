@@ -47,4 +47,10 @@ describe('isBusinessLicense', () => {
     expect(isBusinessLicense('ac0115600985535', { checkCode: false })).toBe(false);
     expect(isBusinessLicense('3101156009855', { checkCode: false })).toBe(false);
   });
+
+  it('sumCheckCode', () => {
+    expect(isBusinessLicense.sumCheckCode('32048300006784')).toBe(7);
+    expect(isBusinessLicense.sumCheckCode('11010800000001')).toBe(6);
+    expect(isBusinessLicense.sumCheckCode('32030000017411')).toBe(0);
+  });
 });

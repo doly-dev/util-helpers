@@ -22,4 +22,10 @@ describe('isSocialCreditCode', () => {
     expect(isSocialCreditCode('91350100M000100YIO', { checkCode: false })).toBe(false);
     expect(isSocialCreditCode('91350100M000100Y', { checkCode: false })).toBe(false);
   });
+
+  it('sumCheckCode', () => {
+    expect(isSocialCreditCode.sumCheckCode('92310115MA1LAG5R9')).toBe('M');
+    expect(isSocialCreditCode.sumCheckCode('91350100M000100Y4')).toBe('3');
+    expect(isSocialCreditCode.sumCheckCode('911101005JLR20JR6')).toBe('0');
+  });
 });

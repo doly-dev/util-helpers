@@ -80,4 +80,6 @@ function isBusinessLicense(value: any, options: Options = {}) {
   return lastCode === String(checkCode);
 }
 
+isBusinessLicense.sumCheckCode = sumCheckCode;
+
 export default isBusinessLicense;

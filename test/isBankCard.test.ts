@@ -31,4 +31,12 @@ describe('isBankCard', () => {
     expect(isBankCard('1034503324951584964', { luhn: true })).toBe(true);
     expect(isBankCard('6228480402564890', { luhn: true })).toBe(false);
   });
+
+  it('sumCheckCode', () => {
+    expect(isBankCard.sumCheckCode('622848040256489001')).toBe(8);
+    expect(isBankCard.sumCheckCode('620058147088549185')).toBe(4);
+    expect(isBankCard.sumCheckCode('62120563276730191')).toBe(0);
+    expect(isBankCard.sumCheckCode('103450332495158496')).toBe(4);
+    expect(isBankCard.sumCheckCode('622848040256489')).toBe(9);
+  });
 });

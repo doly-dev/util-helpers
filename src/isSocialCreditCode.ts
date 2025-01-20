@@ -81,4 +81,6 @@ function isSocialCreditCode(value: any, options?: Options) {
   return lastCode === checkCode;
 }
 
+isSocialCreditCode.sumCheckCode = sumCheckCode;
+
 export default isSocialCreditCode;
