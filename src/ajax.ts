@@ -83,13 +83,17 @@ type AjaxOptions = {
  * });
  *
  * // 中断请求
- * let xhr = null;
+ * let xhr: XMLHttpRequest | null = null;
  * ajax('./download/test.txt', {
  *   onLoadStart(e) {
  *     console.log('onLoadStart', e);
  *     xhr = e.target;
  *   }
+ * }).finally(() => {
+ *   console.log('finally');
+ *   xhr = null;
  * });
+ *
  * if(ABORT_CONDITION){
  *   if(xhr){
  *      xhr.abort();
