@@ -1,13 +1,14 @@
 import { objectKeys } from './utils/native';
 
 type XMLHttpRequestListener = XMLHttpRequest['onloadstart'];
+type DataType = Parameters<XMLHttpRequest['send']>[0];
 
 type AjaxOptions = {
   method?: string;
   async?: boolean;
   user?: string | null;
   password?: string | null;
-  data?: Parameters<XMLHttpRequest['send']>[0];
+  data?: DataType;
   headers?: Record<string, string>;
   responseType?: XMLHttpRequestResponseType;
   timeout?: number;
@@ -80,6 +81,21 @@ type AjaxOptions = {
  * ajax('/api', { method: 'post' }).then(res=>{
  *   // do something
  * });
+ *
+ * // 中断请求
+ * let xhr = null;
+ * ajax('./download/test.txt', {
+ *   onLoadStart(e) {
+ *     console.log('onLoadStart', e);
+ *     xhr = e.target;
+ *   }
+ * });
+ * if(ABORT_CONDITION){
+ *   if(xhr){
+ *      xhr.abort();
+ *   }
+ * }
+ *
  */
 function ajax(url: string, options?: AjaxOptions) {
   const { method = 'get', data = null, timeout, headers, withCredentials = false, async = true, user = null, password = null, responseType, onReadyStateChange, onLoadStart, onProgress, onAbort, onTimeout, onError, onLoad, onLoadEnd } = options || {};
@@ -141,9 +157,9 @@ function ajax(url: string, options?: AjaxOptions) {
       loadend: onLoadEnd
     };
 
-    const eventKeys = objectKeys(events) as unknown as (keyof typeof events)[];
+    const eventKeys = objectKeys(events) as (keyof typeof events)[];
 
-    eventKeys.map((item) => {
+    eventKeys.forEach((item) => {
       const func = events[item];
       if (func) {
         xhr.addEventListener(item, func);

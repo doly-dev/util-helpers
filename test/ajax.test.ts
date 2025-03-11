@@ -21,7 +21,7 @@ describe('ajax', () => {
     setRequestHeader: jest.fn()
   };
 
-  const spy = jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => {
+  const spy = jest.spyOn(globalThis, 'XMLHttpRequest').mockImplementation(() => {
     const methods: Record<string, () => void> = {};
 
     async function send() {

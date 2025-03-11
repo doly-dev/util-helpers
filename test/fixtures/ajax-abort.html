@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajax abort test</title>
+  </head>
+  <body>
+    <button id="sendRequest">发送请求</button>
+    <button id="cancelRequest">取消请求</button>
+    <script src="https://unpkg.com/util-helpers/dist/util-helpers.min.js"></script>
+    <script>
+      // 页面载入完成后，浏览器开发者工具设置网络节流为低速4g或3g。先点击发送请求，再点击取消请求查看。
+      (function () {
+        let xhr = null;
+        const oBtnSend = document.querySelector('#sendRequest');
+        const oBtnCancel = document.querySelector('#cancelRequest');
+
+        oBtnSend.addEventListener('click', () => {
+          utilHelpers
+            .ajax('./download/test.txt', {
+              onLoadStart(e) {
+                console.log('onLoadStart', e);
+                xhr = e.target;
+              }
+            })
+            .then((res) => {
+              console.log('res: ', res);
+            })
+            .catch((err) => {
+              console.log('err: ', err);
+            })
+            .finally(() => {
+              console.log('finally');
+              xhr = null;
+            });
+        });
+
+        oBtnCancel.addEventListener('click', () => {
+          if (xhr) {
+            xhr.abort();
+            console.log('abort');
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
