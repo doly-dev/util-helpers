@@ -100,7 +100,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="AsyncMemo"><span class="type-signature"></span>new AsyncMemo<span class="signature">(options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="AsyncMemo"><span class="type-signature"></span>new AsyncMemo<span class="signature">(options<span class="signature-attributes">opt</span>, ns<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -113,7 +113,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line26">line 26</a>
+        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -167,13 +167,16 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const asyncMemo = new AsyncMemo({ max: 20, maxStrategy: 'replaced' });
+    <pre class="prettyprint"><code>const asyncMemo = new AsyncMemo({ max: 20, maxStrategy: 'replaced', prefix: 'some key' });
 asyncMemo.run(()=>download({ fssid: 'a' }), 'a');
 asyncMemo.run(()=>download({ fssid: 'b' }), 'b');
 asyncMemo.run(()=>download({ fssid: 'a' }), 'a'); // 如果有缓存结果直接返回，如果有异步执行中，不会重复触发异步，但共享异步结果。
 
 asyncMemo.run(()=>download({ fssid: 'a' }), 'a', { persisted: false }); // 不读取缓存结果，但是异步执行结果还是会缓存。
-asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。</code></pre>
+asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。
+
+// 自定义命名空间
+const asyncMemo2 = new AsyncMemo({}, 'namespace');</code></pre>
 
 
 
@@ -194,6 +197,8 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
         <th>Attributes</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -231,8 +236,12 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>缓存配置项，更多配置项可参考 <a href="https://www.npmjs.com/package/cache2"><code>cache2</code></a></p>
+            <td class="description last"><p>缓存配置项，更多配置项可参考 <a href="https://www.npmjs.com/package/cache2"><code>cache2</code></a>。</p>
                 <h6>Properties</h6>
                 
 
@@ -287,7 +296,7 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
 
             
 
-            <td class="description last"><p>最大缓存数量</p></td>
+            <td class="description last"><p>最大缓存数量。</p></td>
         </tr>
 
     
@@ -324,7 +333,41 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
 
             
 
-            <td class="description last"><p>缓存策略</p></td>
+            <td class="description last"><p>缓存策略。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prefix</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>缓存健前缀。</p></td>
         </tr>
 
     
@@ -332,6 +375,46 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
 </table>
 
             </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'uh_async_memo'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>缓存命名空间。默认 <code>uh_async_memo</code>。</p></td>
         </tr>
 
     
@@ -391,7 +474,7 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line31">line 31</a>
+        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -464,7 +547,7 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line55">line 55</a>
+        <a href="AsyncMemo.js.html">AsyncMemo.js</a>, <a href="AsyncMemo.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -818,7 +901,7 @@ asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执�
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Mar 11 2025 05:42:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Mar 19 2025 02:53:23 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
