@@ -76,6 +76,19 @@ describe('AsyncMemo', () => {
     expect(asyncMemo.cache.keys()).toEqual([]);
   });
 
+  it('自定义命名空间', () => {
+    const { asyncFn } = mock();
+    const asyncMemo1 = new AsyncMemo<number>();
+    const asyncMemo2 = new AsyncMemo({}, 'ns');
+
+    expect(asyncMemo1.run(asyncFn, 'ns_a')).resolves.toBe(1);
+    expect(asyncMemo1.run(asyncFn, 'ns_a')).resolves.toBe(1);
+    expect(asyncFn).toHaveBeenCalledTimes(1);
+
+    expect(asyncMemo2.run(asyncFn, 'ns_a')).resolves.toBe(2);
+    expect(asyncFn).toHaveBeenCalledTimes(2);
+  });
+
   it('异步方法异常', async () => {
     const errorFn = async () => {
       await sleep();

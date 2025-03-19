@@ -71,10 +71,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.4",
     "lint-staged": "^13.3.0",
-    "prettier": "^3.4.2",
-    "rollup": "^4.28.1",
-    "ts-jest": "^29.2.5",
-    "typescript": "^5.7.2"
+    "prettier": "^3.5.3",
+    "rollup": "^4.36.0",
+    "ts-jest": "^29.2.6",
+    "typescript": "^5.8.2"
   },
   "lint-staged": {
     "**/*.ts": "eslint",
@@ -88,7 +88,7 @@
   "dependencies": {
     "cache2": "^3.1.2",
     "tslib": "^2.8.1",
-    "ut2": "^1.15.0"
+    "ut2": "^1.17.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

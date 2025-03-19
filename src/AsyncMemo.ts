@@ -1,5 +1,5 @@
 import { Cache, CacheOptions } from 'cache2';
-import { isString, uniqueId } from 'ut2';
+import { isString } from 'ut2';
 
 /**
  * 异步缓存
@@ -11,18 +11,24 @@ import { isString, uniqueId } from 'ut2';
  *
  * @class
  * @see {@link https://www.npmjs.com/package/cache2 cache2}
- * @param {Object} [options] 缓存配置项，更多配置项可参考 [`cache2`](https://www.npmjs.com/package/cache2)
- * @param {number} [options.max] 最大缓存数量
- * @param {'replaced' | 'limited'} [options.maxStrategy] 缓存策略
+ * @param {Object} [options] 缓存配置项，更多配置项可参考 [`cache2`](https://www.npmjs.com/package/cache2)。
+ * @param {number} [options.max] 最大缓存数量。
+ * @param {'replaced' | 'limited'} [options.maxStrategy] 缓存策略。
+ * @param {string} [options.prefix] 缓存健前缀。
+ * @param {string} [ns='uh_async_memo'] 缓存命名空间。默认 `uh_async_memo`。
  * @example
  *
- * const asyncMemo = new AsyncMemo({ max: 20, maxStrategy: 'replaced' });
+ * const asyncMemo = new AsyncMemo({ max: 20, maxStrategy: 'replaced', prefix: 'some key' });
  * asyncMemo.run(()=>download({ fssid: 'a' }), 'a');
  * asyncMemo.run(()=>download({ fssid: 'b' }), 'b');
  * asyncMemo.run(()=>download({ fssid: 'a' }), 'a'); // 如果有缓存结果直接返回，如果有异步执行中，不会重复触发异步，但共享异步结果。
  *
  * asyncMemo.run(()=>download({ fssid: 'a' }), 'a', { persisted: false }); // 不读取缓存结果，但是异步执行结果还是会缓存。
  * asyncMemo.run(()=>download({ fssid: 'a' })); // 没有缓存键时，直接执行异步方法，不读取缓存结果，也不会缓存异步结果。
+ *
+ * // 自定义命名空间
+ * const asyncMemo2 = new AsyncMemo({}, 'namespace');
+ *
  */
 class AsyncMemo<DataType = any> {
   private promiseCache: Record<string, Promise<any>>;
@@ -31,9 +37,9 @@ class AsyncMemo<DataType = any> {
    */
   cache: Cache<DataType>;
 
-  constructor(options?: Partial<CacheOptions>) {
+  constructor(options?: Partial<CacheOptions>, ns = 'uh_async_memo') {
     this.promiseCache = {};
-    this.cache = new Cache(uniqueId('uh_async_memo'), options);
+    this.cache = new Cache(ns, options);
   }
 
   /**
