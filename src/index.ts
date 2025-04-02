@@ -57,7 +57,7 @@ export { default as transformObjectValue } from './transformObjectValue';
  * // 以下为有效数值：
  * // 1. 数字: 1, -1, 1e-2, 1.312, 0.1, Infinity
  * // 2. 字符串: '1', '10e2', '-1', '0.1', '', ' ', '  15', ' 15   '
- * // 4. 其他类型: null, new Date(), [], new Array(), true, false,...
+ * // 3. 其他类型: null, new Date(), [], new Array(), true, false,...
  *
  * // 以下为无效数值：
  * // 1. 字符串: '1a', '-12a', '10.2.2', '10e2.1'
