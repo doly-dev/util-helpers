@@ -4,7 +4,7 @@ import { isUploadFile, UploadFile } from './utils/file.util';
 
 // 内置文件类型和文件类型说明符
 const config = {
-  image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.tif,.tiff',
+  image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.cur,.tif,.tiff,.jfif,.pjpeg,.pjp',
   audio: 'audio/*,.mp3,.wav,.aac,.flac',
   video: 'video/*,.mp4,.webm,.ogg,.mov',
   pdf: 'application/pdf,.pdf',
@@ -33,7 +33,7 @@ type FileType = keyof typeof config;
  *
  * | 类型 | 说明符 |
  * |---|---|
- * | `image` | `image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.tif,.tiff` |
+ * | `image` | `image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.cur,.tif,.tiff,.jfif,.pjpeg,.pjp` |
  * | `audio` | `audio/*,.mp3,.wav,.aac,.flac` |
  * | `video` | `video/*,.mp4,.webm,.ogg,.mov` |
  * | `pdf` | `application/pdf,.pdf` |
