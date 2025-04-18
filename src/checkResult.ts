@@ -1,5 +1,3 @@
-import { tryit } from 'ut2';
-
 /**
  * 检查函数执行结果。
  *
@@ -33,8 +31,12 @@ import { tryit } from 'ut2';
  * await checkResult((...args)=>args.length > 1, 'a', 'b'); // true
  */
 const checkResult = async <P extends any[]>(fn: (...args: P) => any | Promise<any> = () => true, ...args: P) => {
-  const [err, ret] = await tryit(fn)(...args);
-  return !err && ret !== false;
+  try {
+    const ret = fn instanceof Promise ? await fn : typeof fn === 'function' ? await fn(...args) : fn;
+    return ret !== false;
+  } catch {
+    return false;
+  }
 };
 
 export default checkResult;

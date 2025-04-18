@@ -3,42 +3,29 @@ import { checkResult } from '../src';
 // 测试用例
 describe('checkResult', () => {
   // 正面测试用例
-  test('should return true when function returns true', async () => {
-    const result = await checkResult(() => true);
-    expect(result).toBe(true);
+  test('should return true', async () => {
+    expect(await checkResult(() => true)).toBe(true);
+    expect(await checkResult(undefined)).toBe(true);
+    expect(await checkResult(() => Promise.resolve())).toBe(true);
+    expect(await checkResult(() => Promise.resolve(true))).toBe(true);
+    expect(await checkResult(async () => true)).toBe(true);
+    expect(await checkResult(() => null)).toBe(true);
+    expect(await checkResult(() => undefined)).toBe(true);
+    expect(await checkResult(() => 'foo')).toBe(true);
+    expect(await checkResult(() => Promise.resolve(1))).toBe(true);
   });
 
-  test('should return true when function returns a resolved promise with true', async () => {
-    const result = await checkResult(() => Promise.resolve(true));
-    expect(result).toBe(true);
-  });
-
-  test('should return true when function returns a resolved promise with non-false value', async () => {
-    const result = await checkResult(() => Promise.resolve(1));
-    expect(result).toBe(true);
-  });
-
-  test('should return false when function returns false', async () => {
-    const result = await checkResult(() => false);
-    expect(result).toBe(false);
-  });
-
-  test('should return false when function returns a resolved promise with false', async () => {
-    const result = await checkResult(() => Promise.resolve(false));
-    expect(result).toBe(false);
-  });
-
-  // 负面测试用例
-  test('should return false when function throws an error', async () => {
-    const result = await checkResult(() => {
-      throw new Error('error');
-    });
-    expect(result).toBe(false);
-  });
-
-  test('should return false when function returns a rejected promise', async () => {
-    const result = await checkResult(() => Promise.reject(new Error('error')));
-    expect(result).toBe(false);
+  test('should return false', async () => {
+    expect(await checkResult(() => false)).toBe(false);
+    expect(await checkResult(() => Promise.resolve(false))).toBe(false);
+    expect(await checkResult(() => Promise.reject())).toBe(false);
+    expect(await checkResult(async () => false)).toBe(false);
+    expect(
+      await checkResult(() => {
+        throw new Error('error');
+      })
+    ).toBe(false);
+    expect(await checkResult(() => Promise.reject(new Error('error')))).toBe(false);
   });
 
   // 边界测试用例
@@ -70,7 +57,21 @@ describe('checkResult', () => {
   // 类型测试用例
   test('type check', async () => {
     const foo = (a: number, b: string) => '' + a + b;
-    const result = await checkResult(foo, 1, 'a');
-    expect(result).toBe(true);
+    expect(await checkResult(foo, 1, 'a')).toBe(true);
+
+    // @ts-ignore
+    expect(await checkResult(undefined)).toBe(true);
+    // @ts-ignore
+    expect(await checkResult(null)).toBe(true);
+    // @ts-ignore
+    expect(await checkResult(1)).toBe(true);
+    // @ts-ignore
+    expect(await checkResult(false)).toBe(false);
+    // @ts-ignore
+    expect(await checkResult(Promise.reject())).toBe(false);
+    // @ts-ignore
+    expect(await checkResult(Promise.resolve())).toBe(true);
+    // @ts-ignore
+    expect(await checkResult(Promise.resolve(false))).toBe(false);
   });
 });
