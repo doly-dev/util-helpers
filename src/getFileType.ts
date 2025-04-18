@@ -6,7 +6,7 @@ import { isUploadFile, UploadFile } from './utils/file.util';
 const config = {
   image: 'image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.cur,.tif,.tiff,.jfif,.pjpeg,.pjp',
   audio: 'audio/*,.mp3,.wav,.aac,.flac',
-  video: 'video/*,.mp4,.webm,.ogg,.mov',
+  video: 'video/*,.mp4,.webm,.ogg,.mov,.mpg,.mpeg,.avi,.mkv,.wmv,.flv,.rm,.rmvb',
   pdf: 'application/pdf,.pdf',
   word: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx',
   excel: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx'
@@ -35,7 +35,7 @@ type FileType = keyof typeof config;
  * |---|---|
  * | `image` | `image/*,.jpeg,.jpg,.gif,.bmp,.png,.webp,.svg,.apng,.avif,.ico,.cur,.tif,.tiff,.jfif,.pjpeg,.pjp` |
  * | `audio` | `audio/*,.mp3,.wav,.aac,.flac` |
- * | `video` | `video/*,.mp4,.webm,.ogg,.mov` |
+ * | `video` | `video/*,.mp4,.webm,.ogg,.mov,.mpg,.mpeg,.avi,.mkv,.wmv,.flv,.rm,.rmvb` |
  * | `pdf` | `application/pdf,.pdf` |
  * | `word` | `application/vnd.openxmlformats-officedocument.wordprocessingml.document,.doc,.docx` |
  * | `excel` | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,.xls,.xlsx` |
