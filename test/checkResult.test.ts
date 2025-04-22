@@ -5,7 +5,6 @@ describe('checkResult', () => {
   // 正面测试用例
   test('should return true', async () => {
     expect(await checkResult(() => true)).toBe(true);
-    expect(await checkResult(undefined)).toBe(true);
     expect(await checkResult(() => Promise.resolve())).toBe(true);
     expect(await checkResult(() => Promise.resolve(true))).toBe(true);
     expect(await checkResult(async () => true)).toBe(true);
@@ -30,6 +29,7 @@ describe('checkResult', () => {
 
   // 边界测试用例
   test('should handle no arguments', async () => {
+    // @ts-ignore
     const result = await checkResult();
     expect(result).toBe(true);
   });
@@ -55,23 +55,16 @@ describe('checkResult', () => {
   });
 
   // 类型测试用例
-  test('type check', async () => {
+  test('other type arguments', async () => {
     const foo = (a: number, b: string) => '' + a + b;
     expect(await checkResult(foo, 1, 'a')).toBe(true);
 
-    // @ts-ignore
     expect(await checkResult(undefined)).toBe(true);
-    // @ts-ignore
     expect(await checkResult(null)).toBe(true);
-    // @ts-ignore
     expect(await checkResult(1)).toBe(true);
-    // @ts-ignore
     expect(await checkResult(false)).toBe(false);
-    // @ts-ignore
     expect(await checkResult(Promise.reject())).toBe(false);
-    // @ts-ignore
     expect(await checkResult(Promise.resolve())).toBe(true);
-    // @ts-ignore
     expect(await checkResult(Promise.resolve(false))).toBe(false);
   });
 });
