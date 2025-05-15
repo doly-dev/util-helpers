@@ -1,7 +1,7 @@
 interface CheckResult {
   <P extends any[]>(fn: (...args: P) => Promise<any>, ...args: P): Promise<boolean>;
-  <P extends any[]>(fn: (...args: P) => any, ...args: P): Promise<boolean>;
-  (value: any): Promise<boolean>;
+  <P extends any[]>(fn: ((...args: P) => any) | undefined, ...args: P): Promise<boolean>;
+  (...args: any[]): Promise<boolean>;
 }
 
 /**

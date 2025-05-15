@@ -66,5 +66,8 @@ describe('checkResult', () => {
     expect(await checkResult(Promise.reject())).toBe(false);
     expect(await checkResult(Promise.resolve())).toBe(true);
     expect(await checkResult(Promise.resolve(false))).toBe(false);
+
+    // const fnOrUndefined: ((values: any) => void) | undefined = undefined;
+    // expect(await checkResult(fnOrUndefined, 1)).toBe(true);
   });
 });
