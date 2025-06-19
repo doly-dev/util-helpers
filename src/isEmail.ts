@@ -12,8 +12,14 @@ const reg = /^[\da-z]+([-._]?[\da-z]+)*@[\da-z]+([-.]?[\da-z]+)*(\.[a-z]{2,})+$/
  * @returns {boolean} 值是否为Email
  * @example
  *
- * isEmail('1232@qq.com'); // true
+ * isEmail('123@qq.com'); // true
+ * isEmail('1-23@qq.com'); // true
  * isEmail('123@'); // false
+ *
+ * // 包含非法字符（除 -、_、. 以外的符号）
+ * isEmail('1 23@qq.com'); // false
+ * isEmail('1&23@qq.com'); // false
+ * isEmail('1%23@qq.com'); // false
  *
  */
 function isEmail(value: any) {

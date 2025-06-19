@@ -5,10 +5,15 @@ describe('isEmail', () => {
     expect(isEmail(true)).toBe(false);
     expect(isEmail(123)).toBe(false);
   });
-  it('"1232@qq.com" => true', () => {
-    expect(isEmail('1232@qq.com')).toBe(true);
+  it('正确的邮箱', () => {
+    expect(isEmail('123@qq.com')).toBe(true);
+    expect(isEmail('12_3@qq.com')).toBe(true);
+    expect(isEmail('1-23@qq.com')).toBe(true);
   });
-  it('"123@" => false', () => {
+  it('错误的邮箱', () => {
     expect(isEmail('123@')).toBe(false);
+    expect(isEmail('1 23@qq.com')).toBe(false);
+    expect(isEmail('1&23@qq.com')).toBe(false);
+    expect(isEmail('1%23@qq.com')).toBe(false);
   });
 });
