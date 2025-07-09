@@ -6,7 +6,7 @@ import './fixtures/mock-native';
 import { isBlob, isNumber, isString } from 'ut2';
 import { getImageInfo } from '../src';
 import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
-import { createSpyConsoleError } from './fixtures/spyConsole';
+import { createSpyConsole } from './fixtures/spyConsole';
 import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
 
 const url = 'https://dummyimage.com/200x300';
@@ -18,7 +18,7 @@ const xhrMock = {
   setRequestHeader: jest.fn()
 };
 const spyAjax = createSpyAjax(xhrMock);
-const spyConsoleError = createSpyConsoleError();
+const spyConsoleError = createSpyConsole();
 mockImage();
 
 describe('getImageInfo', () => {

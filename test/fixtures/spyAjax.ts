@@ -20,7 +20,7 @@ export function setResponseStatus(status: number) {
   responseStatus = status;
 }
 
-export function createSpyAjax(opts?: { open?: jest.Mock<any, any, any>; send?: jest.Mock<any, any, any>; setRequestHeader?: jest.Mock<any, any, any> }) {
+export function createSpyAjax(opts?: { open?: jest.Mock; send?: jest.Mock; setRequestHeader?: jest.Mock }) {
   const xhrMock = {
     open: jest.fn(),
     send: jest.fn(),

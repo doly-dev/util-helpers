@@ -5,6 +5,7 @@
 import { isBlob } from 'ut2';
 import { getFileBlob } from '../src';
 import { ResponseMethod, createSpyAjax, setResponseMethod, setResponseStatus } from './fixtures/spyAjax';
+import { createSpyConsole } from './fixtures/spyConsole';
 
 const TIMEOUT = 60 * 1000;
 const url = 'https://dummyimage.com/100x100';
@@ -16,7 +17,7 @@ const xhrMock = {
 };
 const spyAjax = createSpyAjax(xhrMock);
 
-const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+const spyConsoleError = createSpyConsole();
 
 describe('getFileBlob', () => {
   beforeEach(() => {

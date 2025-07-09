@@ -3,13 +3,14 @@
  * @jest-environment-options { "resources": "usable", "runScripts": "dangerously"}
  */
 import { loadScript } from '../src';
+import { createSpyConsole } from './fixtures/spyConsole';
 
 const TIMEOUT = 60 * 1000;
 
 const testUrl = 'https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js';
 
 describe('loadScript', () => {
-  const spyConsoleError = jest.spyOn(globalThis.console, 'error').mockImplementation(() => {});
+  const spyConsoleError = createSpyConsole();
 
   afterAll(() => {
     spyConsoleError.mockRestore();

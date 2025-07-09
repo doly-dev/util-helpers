@@ -7,7 +7,7 @@ import { isBlob } from 'ut2';
 import { ResponseMethod, createSpyAjax, setResponseMethod } from './fixtures/spyAjax';
 import { compressImage } from '../src';
 import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
-import { createSpyConsoleError } from './fixtures/spyConsole';
+import { createSpyConsole } from './fixtures/spyConsole';
 
 const url = 'https://dummyimage.com/200x300';
 const TIMEOUT = 60 * 1000;
@@ -19,7 +19,7 @@ const xhrMock = {
 };
 const spyAjax = createSpyAjax(xhrMock);
 
-const spyConsoleError = createSpyConsoleError();
+const spyConsoleError = createSpyConsole();
 mockImage();
 
 describe('loadImageWithBlob', () => {

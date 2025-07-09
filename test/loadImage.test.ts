@@ -5,13 +5,13 @@
 import './fixtures/mock-native';
 import { loadImage } from '../src';
 import { mockImage, restoreImage, setImageLoadStatus } from './fixtures/mockImage';
-import { createSpyConsoleError } from './fixtures/spyConsole';
+import { createSpyConsole } from './fixtures/spyConsole';
 
 const url = 'https://dummyimage.com/200x300';
 const blobUrl = 'blob://xxx';
 const TIMEOUT = 60 * 1000;
 
-const spyConsoleError = createSpyConsoleError();
+const spyConsoleError = createSpyConsole();
 mockImage();
 
 describe('loadImage', () => {
