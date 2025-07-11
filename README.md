@@ -137,6 +137,7 @@ formatBankCard('6228480402564890018', { spaceMark: '-' }); // 6228-4804-0256-489
 - [uuid] - 生成通用唯一识别码（Universally Unique Identifier）
 - [JSZip] - 创建、读取和编辑 zip 文件
 - [ua-parser-js] - 用于从用户代理数据中检测浏览器、引擎、操作系统、CPU 和设备类型/型号
+<!-- - [semver](https://www.npmjs.com/package/semver) - npm 语义版本控制。 -->
 
 [ut2]: https://www.npmjs.com/package/ut2
 [lodash]: https://www.npmjs.com/package/lodash

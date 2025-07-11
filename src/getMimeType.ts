@@ -49,6 +49,7 @@ const mimeTypes = [
  * @since 5.2.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/HTTP/MIME_types MIME 类型（IANA 媒体类型）}
  * @see {@link https://www.iana.org/assignments/media-types/media-types.xhtml Media Types}
+ * @see 如果需要完整的MIME类型，推荐使用 {@link https://www.npmjs.com/package/mime-type | mime-type}
  * @param {string} fileName 文件名。
  * @returns 如果找到，返回 MIME 类型字符串，否则返回 `undefined`。
  * @example
