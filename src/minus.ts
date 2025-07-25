@@ -18,7 +18,6 @@ import times from './times';
  *
  */
 function minus(...nums: (string | number)[]): number {
-  // eslint-disable-next-line prefer-const
   // let [num1, num2 = 0, ...rest] = nums;
 
   let num1 = nums[0];

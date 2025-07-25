@@ -28,7 +28,7 @@ type NodeAssign = 'spread' | 'self';
  * filterTree(menus, item=>item.id === 'not found');
  * // []
  */
-function filterTree<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children', nodeAssign: NodeAssign = 'spread') {
+function filterTree<T, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children', nodeAssign: NodeAssign = 'spread') {
   const result: T[] = [];
 
   if (!isArray(tree)) {

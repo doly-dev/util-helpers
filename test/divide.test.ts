@@ -86,7 +86,7 @@ describe('divide', () => {
     expect(divide(4750.49269435, 4)).toBe(1187.6231735875);
     expect(divide(0.9, 3)).toBe(0.3);
     expect(divide(36.2, 0.362)).toBe(100);
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    // eslint-disable-next-line no-loss-of-precision
     expect(divide(-20, 5.2)).toBe(-3.8461538461538462);
     expect(divide(-2, 1.22)).toBe(-1.639344262295082);
     expect(divide(-2.3, 2.5)).toBe(-0.92);

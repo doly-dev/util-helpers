@@ -4,7 +4,7 @@ import { strip, digitLength, float2Fixed, trimLeftZero, scientificToNumber, chec
 describe('math.util', () => {
   it('strip', () => {
     expect(strip(0.09999999999999998)).toBe(0.1);
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    // eslint-disable-next-line no-loss-of-precision
     expect(strip(1.0000000000000001)).toBe(1);
     expect(strip(1.2345, 4)).toBe(1.234);
     expect(strip(1.23456, 5)).toBe(1.2346);
@@ -162,6 +162,7 @@ describe('math.util', () => {
     expect(transformEffectiveNumber(true)).toBe(1);
     expect(transformEffectiveNumber(false)).toBe(0);
     expect(transformEffectiveNumber([])).toBe(0);
+    // eslint-disable-next-line @typescript-eslint/no-array-constructor
     expect(transformEffectiveNumber(new Array())).toBe(0);
     expect(
       transformEffectiveNumber({

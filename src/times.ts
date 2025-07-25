@@ -17,7 +17,6 @@ import { digitLength, float2Fixed, checkBoundary, transformEffectiveNumber } fro
  *
  */
 function times(...nums: (string | number)[]): number {
-  // eslint-disable-next-line prefer-const
   // let [num1, num2 = 1, ...rest] = nums;
 
   let num1 = nums[0];

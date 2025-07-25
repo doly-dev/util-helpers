@@ -106,6 +106,7 @@ describe('loadScript', () => {
           onload: loadFn,
           onerror: errorFn
         });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         /* empty */
       }

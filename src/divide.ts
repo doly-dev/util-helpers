@@ -22,7 +22,6 @@ import times from './times';
  *
  */
 function divide(...nums: (string | number)[]): number {
-  // eslint-disable-next-line prefer-const
   // let [num1, num2 = 1, ...rest] = nums;
 
   let num1 = nums[0];

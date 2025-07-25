@@ -70,6 +70,7 @@ describe('getFileBlob', () => {
       expect(spyConsoleError).toHaveBeenCalledTimes(0);
       try {
         await getFileBlob(url);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         expect(spyConsoleError).toHaveBeenCalledTimes(1);
       }
@@ -84,6 +85,7 @@ describe('getFileBlob', () => {
       expect(spyConsoleError).toHaveBeenCalledTimes(0);
       try {
         await getFileBlob(url);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         expect(spyConsoleError).toHaveBeenCalledTimes(1);
       }

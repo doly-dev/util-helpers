@@ -95,7 +95,7 @@ describe('times', () => {
     expect(times(0.362, 100)).toBe(36.2);
     expect(times(1.1, 1.1)).toBe(1.21);
     expect(times(2.018, 1000)).toBe(2018);
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    // eslint-disable-next-line no-loss-of-precision
     expect(times(5.2, -3.8461538461538462)).toBe(-20);
     expect(times(1.22, -1.639344262295082)).toBe(-2);
     expect(times(2.5, -0.92)).toBe(-2.3);

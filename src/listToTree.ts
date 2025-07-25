@@ -67,7 +67,7 @@ function processEmptyChildren<T extends Record<string, any> = Record<string, any
  * // [{id:'1',name:'首页',code:'trade',pid:null},{id:'2',name:'交易管理',code:'trade',pid:null,childs:[{id:'3',name:'交易查询',code:'trade-1',pid:'2',childs:[{id:'4',name:'交易查询-查询操作',code:'trade-1-1',pid:'3'}]}]},{id:'5',name:'权限管理',code:'authorization',pid:null,childs:[{id:'6',name:'角色管理',code:'authorization-1',pid:'5'},{id:'7',name:'用户管理',code:'authorization-2',pid:'5'}]}]
  *
  */
-function listToTree<T extends Record<string, any> = Record<string, any>, R extends unknown = T & Record<string, any>>(list: T[], options: Options = {}) {
+function listToTree<T extends Record<string, any> = Record<string, any>, R = T & Record<string, any>>(list: T[], options: Options = {}) {
   const { keyField = 'id', parentField = 'pid', childrenField = 'children', emptyChildrenValue = 'none', nodeAssign = 'spread' } = options;
 
   const tree: R[] = [];

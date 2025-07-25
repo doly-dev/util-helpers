@@ -89,7 +89,7 @@ describe('minus', () => {
     expect(minus(-1, 0)).toBe(-1);
     expect(minus(-1, -0)).toBe(-1);
     expect(minus(1, 22)).toBe(-21);
-    // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
+    // eslint-disable-next-line no-loss-of-precision
     expect(minus(8893568.397103781249, -7.2967405955)).toBe(8893575.693844376749);
     expect(minus(105468873, 0)).toBe(105468873);
     expect(minus(1.23e5, 10)).toBe(122990);

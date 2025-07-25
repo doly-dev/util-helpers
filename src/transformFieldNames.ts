@@ -4,13 +4,13 @@ import { objectKeys } from './utils/native';
 type NodeAssign = 'spread' | 'self';
 
 // 交换字段名
-type ExchangeFieldNames<D extends any, F extends Record<string, keyof D>> = Omit<D, F[keyof F]> & {
+type ExchangeFieldNames<D, F extends Record<string, keyof D>> = Omit<D, F[keyof F]> & {
   [P in keyof F]: D[F[P]];
 };
 
 // 交换字段名，支持嵌套
 // 先排除子级字段名，再交换字段名，然后加上子级字段名，再替换一次。
-type TransformFieldNames<D extends any, F extends Record<string, any>, C extends string> = (C extends keyof D ? ExchangeFieldNames<Omit<D, C> & Record<C, TransformFieldNames<D, F, C>>, F> : ExchangeFieldNames<D, F>)[];
+type TransformFieldNames<D, F extends Record<string, any>, C extends string> = (C extends keyof D ? ExchangeFieldNames<Omit<D, C> & Record<C, TransformFieldNames<D, F, C>>, F> : ExchangeFieldNames<D, F>)[];
 
 /**
  * 转换字段名，返回一个转换字段后的值，不改变原值。
@@ -41,7 +41,7 @@ type TransformFieldNames<D extends any, F extends Record<string, any>, C extends
  * const newOptions4 = transformFieldNames(options3, {label: 'name', value: 'code', children: 'childs'}, 'childs');
  * // [{value: '1', label: 'one'},{value:'2', label:'two', children: [{value: '2-1', label:'two-one'}]}]
  */
-function transformFieldNames<D extends any, F extends Record<string, keyof D>, C extends string>(data: D[], fieldNames: F, childrenField?: C, nodeAssign: NodeAssign = 'spread'): TransformFieldNames<D, F, C> {
+function transformFieldNames<D, F extends Record<string, keyof D>, C extends string>(data: D[], fieldNames: F, childrenField?: C, nodeAssign: NodeAssign = 'spread'): TransformFieldNames<D, F, C> {
   if (!isArray(data)) {
     return data;
   }

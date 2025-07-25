@@ -10,7 +10,7 @@ import { forEach, isArray, isObject } from 'ut2';
  * @param {Object[]} [path=[]] 当前遍历路径
  * @returns {Object[]}
  */
-function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField?: string, path: T[] = []): T[] {
+function internalFindTreeSelect<T, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField?: string, path: T[] = []): T[] {
   let result: T[] = [];
 
   if (isArray(tree)) {
@@ -63,7 +63,7 @@ function internalFindTreeSelect<T extends any, F extends (item: T) => boolean>(t
  * findTreeSelect(menus, item => item.id === 'not found');
  * // []
  */
-function findTreeSelect<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children') {
+function findTreeSelect<T, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children') {
   return internalFindTreeSelect(tree, predicate, childrenField);
 }
 

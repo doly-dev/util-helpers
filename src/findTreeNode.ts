@@ -21,7 +21,7 @@ import { forEach, isArray, isObject } from 'ut2';
  * findTreeNode(menus, item=>item.id === 'not found');
  * // undefined
  */
-function findTreeNode<T extends any, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children') {
+function findTreeNode<T, F extends (item: T) => boolean>(tree: T[], predicate: F, childrenField = 'children') {
   const stack: T[] = [];
 
   let node: T | undefined;

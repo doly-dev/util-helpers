@@ -128,6 +128,7 @@ describe('ajax', () => {
         onLoadEnd: loadendFn
       });
       resolveFn();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       rejectFn();
     }
@@ -154,6 +155,7 @@ describe('ajax', () => {
         onLoadEnd: loadendFn
       });
       resolveFn();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       rejectFn();
     }
@@ -180,6 +182,7 @@ describe('ajax', () => {
         onLoadEnd: loadendFn
       });
       resolveFn();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       rejectFn();
     }
@@ -206,6 +209,7 @@ describe('ajax', () => {
         onLoadEnd: loadendFn
       });
       resolveFn();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       rejectFn();
     }

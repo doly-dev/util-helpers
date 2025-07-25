@@ -1,7 +1,6 @@
 import { isChinese } from '../src';
 
 // 部分测试依赖的环境可能导致结果不同，可通过设置 useExtend 规避
-// eslint-disable-next-line no-prototype-builtins
 // const supportRegExpUnicode = RegExp.prototype.hasOwnProperty('unicode');
 
 describe('isChinese', () => {
