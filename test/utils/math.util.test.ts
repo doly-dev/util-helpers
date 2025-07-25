@@ -6,6 +6,8 @@ describe('math.util', () => {
     expect(strip(0.09999999999999998)).toBe(0.1);
     // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
     expect(strip(1.0000000000000001)).toBe(1);
+    expect(strip(1.2345, 4)).toBe(1.234);
+    expect(strip(1.23456, 5)).toBe(1.2346);
   });
 
   it('digitLength', () => {

@@ -56,9 +56,9 @@ describe('getFileBlob', () => {
     async () => {
       const headers = { foo: 'a', bar: 'b' };
       await getFileBlob(url, { headers, data: 'abc' });
-      expect(xhrMock.setRequestHeader).toBeCalledWith('foo', 'a');
-      expect(xhrMock.setRequestHeader).toBeCalledWith('bar', 'b');
-      expect(xhrMock.send).toBeCalledWith('abc');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('foo', 'a');
+      expect(xhrMock.setRequestHeader).toHaveBeenCalledWith('bar', 'b');
+      expect(xhrMock.send).toHaveBeenCalledWith('abc');
     },
     TIMEOUT
   );
@@ -67,11 +67,11 @@ describe('getFileBlob', () => {
     'ajax 请求 url 失败',
     async () => {
       setResponseMethod(ResponseMethod.Error);
-      expect(spyConsoleError).toBeCalledTimes(0);
+      expect(spyConsoleError).toHaveBeenCalledTimes(0);
       try {
         await getFileBlob(url);
       } catch (err) {
-        expect(spyConsoleError).toBeCalledTimes(1);
+        expect(spyConsoleError).toHaveBeenCalledTimes(1);
       }
     },
     TIMEOUT
@@ -81,11 +81,11 @@ describe('getFileBlob', () => {
     'ajax 请求成功，响应码非200/304',
     async () => {
       setResponseStatus(403);
-      expect(spyConsoleError).toBeCalledTimes(0);
+      expect(spyConsoleError).toHaveBeenCalledTimes(0);
       try {
         await getFileBlob(url);
       } catch (err) {
-        expect(spyConsoleError).toBeCalledTimes(1);
+        expect(spyConsoleError).toHaveBeenCalledTimes(1);
       }
     },
     TIMEOUT
