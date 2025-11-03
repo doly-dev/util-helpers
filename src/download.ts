@@ -129,7 +129,7 @@ async function download(data: DataType, options?: string | DownloadOptions): Pro
 
   // html、TypedArray
   if (!payload) {
-    payload = new Blob([data], { type });
+    payload = new Blob([data as string], { type });
   }
 
   // @ts-ignore
