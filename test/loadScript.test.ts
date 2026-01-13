@@ -116,4 +116,12 @@ describe('loadScript', () => {
     },
     TIMEOUT
   );
+
+  it('注入script', async () => {
+    const script = await loadScript({
+      text: 'console.log("hello world");'
+    });
+
+    expect(script.text).toBe('console.log("hello world");');
+  });
 });

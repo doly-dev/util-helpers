@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inject script</title>
+  </head>
+  <body>
+    <script src="../../dist/util-helpers.js"></script>
+    <script>
+      utilHelpers.loadScript('', {
+        text: 'console.log(123)'
+      });
+      // .then((script) => {
+      //   script.remove();
+      // });
+    </script>
+  </body>
+</html>

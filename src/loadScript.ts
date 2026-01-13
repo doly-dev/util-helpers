@@ -5,6 +5,17 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
   destroyOnError: boolean;
 };
 
+interface LoadScript {
+  (src: string, options?: Partial<ScriptAttribute>): Promise<HTMLScriptElement>;
+  (
+    options?: Partial<
+      ScriptAttribute & {
+        src?: string;
+      }
+    >
+  ): Promise<HTMLScriptElement>;
+}
+
 /**
  * 加载 js 文件。
  *
@@ -12,7 +23,7 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  *
  * @alias module:Browser.loadScript
  * @since 4.19.0
- * @param {string} src  js 地址。
+ * @param {string} [src]  js 地址。
  * @param {Object} [options] script 标签属性。比如 `defer` `onload` `onerror` `id` 等，下面列举部分带有默认值或额外扩展的配置。
  * @param {boolean} [options.destroyOnError=true] 如果加载失败或错误，自动删除 dom 中的 script 标签。默认`true`
  * @param {Object} [options.attrs] 自定义 script 属性，通过 script.setAttribute 设置。
@@ -29,25 +40,36 @@ type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer'
  *   // do something
  * })
  *
+ * // 注入 script
+ * loadScript({
+ *   text: 'console.log("hello world");'
+ * }).then(script=>{
+ *   // do something
+ * })
+ *
  */
-function loadScript(src: string, options?: Partial<ScriptAttribute>) {
+const loadScript: LoadScript = (_src?: string | Partial<ScriptAttribute & { src?: string }>, options?: Partial<ScriptAttribute>) => {
+  let finalOptions: Partial<ScriptAttribute & { src?: string }> | undefined;
+
+  if (typeof _src === 'object') {
+    finalOptions = _src;
+  } else if (typeof _src === 'string') {
+    finalOptions = { src: _src, ...options };
+  }
+
   return new Promise<HTMLScriptElement>((resolve, reject) => {
     const container = document.head || document.getElementsByTagName('head')[0] || document.body;
     const script = document.createElement('script');
 
-    const { attrs, destroyOnError = true, ...restOptions } = options || {};
+    const { src, attrs, destroyOnError = true, onload, onerror, ...restOptions } = finalOptions || {};
 
     const props: Partial<HTMLScriptElement> = {
       async: true,
       type: 'text/javascript',
-      ...restOptions,
-      src
+      ...restOptions
     };
 
     for (const key in props) {
-      if (key === 'onload' || key === 'onerror') {
-        continue;
-      }
       // @ts-ignore
       script[key] = props[key as keyof ScriptAttribute];
     }
@@ -58,23 +80,29 @@ function loadScript(src: string, options?: Partial<ScriptAttribute>) {
       });
     }
 
-    script.onload = function (ev: Event) {
-      this.onerror = this.onload = null;
-      props.onload?.call(this, ev);
-      resolve(script);
-    };
+    if (src) {
+      script.src = src;
+      script.onload = function (ev: Event) {
+        onload?.call(this, ev);
+        resolve(script);
+      };
 
-    script.onerror = function (ev: Event | string) {
-      this.onerror = this.onload = null;
-      props.onerror?.call(this, ev);
-      if (destroyOnError) {
-        container.removeChild(script);
-      }
-      reject(new URIError('Failed to load ' + this.src));
-    };
+      script.onerror = function (ev: Event | string) {
+        this.onerror = this.onload = null;
+        onerror?.call(this, ev);
+        if (destroyOnError) {
+          container.removeChild(script);
+        }
+        reject(new URIError('Failed to load ' + this.src));
+      };
+    }
 
     container.appendChild(script);
+
+    if (!src) {
+      resolve(script);
+    }
   });
-}
+};
 
 export default loadScript;
