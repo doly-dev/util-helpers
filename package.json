@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/util-helpers.min.js",
+  "browser": "dist/util-helpers.min.js",
   "sideEffects": false,
   "types": "types/index.d.ts",
   "scripts": {
