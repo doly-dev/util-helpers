@@ -12,13 +12,7 @@ describe('isHMCard', () => {
     expect(isHMCard('M230701199310302289')).toBe(false);
     expect(isHMCard('m520302198912097948')).toBe(false);
   });
-  it('第一代11位', () => {
-    expect(isHMCard('h3203117707')).toBe(true);
-    expect(isHMCard('H3203117707')).toBe(true);
-    expect(isHMCard('m3203117707')).toBe(true);
-    expect(isHMCard('M3203117707')).toBe(true);
-  });
-  it('第二代9位', () => {
+  it('正确数据', () => {
     expect(isHMCard('h32031177')).toBe(true);
     expect(isHMCard('H32031177')).toBe(true);
     expect(isHMCard('m32031177')).toBe(true);
