@@ -1,7 +1,7 @@
 import { toString } from 'ut2';
 
 // 身份证号正则
-const regIdCard = /^[1-9]\d{5}(19|20)\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)$/i;
+const regIdCard = /^[1-9]\d{5}(19|20)?\d{2}((0[1-9])|(1[012]))(([0-2][1-9])|10|20|30|31)\d{3}(\d|X)?$/i;
 
 /**
  * 校验码计算
@@ -24,6 +24,9 @@ function check(id: string) {
 }
 
 type Options = {
+  /**
+   * @deprecated 即将废弃。
+   */
   loose?: boolean;
   checkCode?: boolean;
 };
@@ -49,11 +52,20 @@ type Options = {
  *
  */
 function isIdCard(value: any, options: Options = {}) {
-  const { checkCode = true } = options;
+  const { loose = false, checkCode = true } = options;
+
   const valueStr = toString(value);
-  if (valueStr.length === 18 && regIdCard.test(valueStr)) {
-    return checkCode ? check(valueStr) : true;
+  if (valueStr.length === 15 && loose) {
+    return regIdCard.test(valueStr);
   }
+
+  if (valueStr.length === 18 && regIdCard.test(valueStr)) {
+    if (checkCode) {
+      return check(valueStr);
+    }
+    return true;
+  }
+
   return false;
 }
 
