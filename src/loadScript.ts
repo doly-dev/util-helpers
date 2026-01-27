@@ -1,3 +1,4 @@
+import { isObject } from 'ut2';
 import { objectKeys } from './utils/native';
 
 type ScriptAttribute = Pick<HTMLScriptElement, 'async' | 'crossOrigin' | 'defer' | 'integrity' | 'noModule' | 'referrerPolicy' | 'text' | 'type' | 'onload' | 'onerror' | 'id' | 'className'> & {
@@ -49,19 +50,21 @@ interface LoadScript {
  *
  */
 const loadScript: LoadScript = (_src?: string | Partial<ScriptAttribute & { src?: string }>, options?: Partial<ScriptAttribute>) => {
-  let finalOptions: Partial<ScriptAttribute & { src?: string }> | undefined;
+  let finalOptions: Partial<ScriptAttribute & { src?: string }>;
 
-  if (typeof _src === 'object') {
+  if (isObject(_src)) {
     finalOptions = _src;
   } else if (typeof _src === 'string') {
     finalOptions = { src: _src, ...options };
+  } else {
+    finalOptions = options || {};
   }
 
   return new Promise<HTMLScriptElement>((resolve, reject) => {
     const container = document.head || document.getElementsByTagName('head')[0] || document.body;
     const script = document.createElement('script');
 
-    const { src, attrs, destroyOnError = true, onload, onerror, ...restOptions } = finalOptions || {};
+    const { src, attrs, destroyOnError = true, onload, onerror, ...restOptions } = finalOptions;
 
     const props: Partial<HTMLScriptElement> = {
       async: true,

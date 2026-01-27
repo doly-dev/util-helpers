@@ -124,4 +124,14 @@ describe('loadScript', () => {
 
     expect(script.text).toBe('console.log("hello world");');
   });
+
+  it('错误参数', async () => {
+    // @ts-ignore
+    const script1 = await loadScript(null, {});
+    expect(script1.text).toBe('');
+
+    // @ts-ignore
+    const script2 = await loadScript(null);
+    expect(script2.text).toBe('');
+  });
 });
