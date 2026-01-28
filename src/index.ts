@@ -151,3 +151,4 @@ export { VERSION };
 
 // classes
 export { default as AsyncMemo } from './AsyncMemo';
+export { default as ConcurrencyController } from './ConcurrencyController';
