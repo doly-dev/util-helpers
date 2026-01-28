@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>compressImage.js - util-helpers </title>
+    <title>ConcurrencyController.js - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,7 +61,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">compressImage.js</h1>
+    <h1 class="page-title">ConcurrencyController.js</h1>
     
 
     
@@ -71,151 +71,109 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { toNumber } from 'ut2';
-import loadImageWithBlob from './loadImageWithBlob';
-import { nativeUndefined } from './utils/native';
-/**
- * canvas 导出 blob 对象
+            <pre class="prettyprint source linenums"><code>/**
+ * 并发控制器
  *
- * @private
- * @param canvas 画布元素
- * @param type 导出图片类型
- * @param quality 图像质量
- * @returns {Promise&lt;Blob>}
- */
-function canvasToBlob(canvas, type, quality) {
-    return new Promise((resolve) => {
-        canvas.toBlob((blob) => {
-            resolve(blob);
-        }, type, quality);
-    });
-}
-/**
- * 压缩图片。
- *
- * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
- *
- * &lt;em style="font-weight: bold;">如果是半透明图片并且导出 `image/png` 格式，建议将背景变成透明 `background=transparent`，避免出现白边。注意正常图片压缩导出 `image/png` 格式后文件可能会比原图大。&lt;/em>
- *
- * @function
- * @alias module:Browser.compressImage
- * @since 4.20.0
- * @see {@link https://sytpwg.csb.app/ 在线示例}
- * @param {string | Blob} img 图片地址或 blob 对象
- * @param {Object} [options] 配置项
- * @param {number} [options.width] 自定义图片宽度，默认图片自身宽度
- * @param {number} [options.height] 自定义图片高度，默认图片自身高度
- * @param {number} [options.rotate] 旋转
- * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值，默认`[0, 0]`
- * @param {string} [options.background=#fff] 背景颜色，默认`#fff`
- * @param {number | function} [options.canvasWidth] 画布宽度，默认图片宽度
- * @param {number | function} [options.canvasHeight] 画布高度，默认图片高度
- * @param {'blob' | 'dataURL'} [options.format='blob'] 导出格式，默认`blob`
- * @param {string} [options.type='image/jpeg'] 图片类型，默认`image/jpeg`
- * @param {number} [options.quality=0.8] 图片质量，默认`0.8`
- * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
- * @param {function} [options.beforeDraw] 图片载入画布之前调用
- * @param {function} [options.afterDraw] 图片载入画布之后调用
- * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入图片地址时才会触发ajax请求。
- * @returns {Promise&lt;Blob | string>} blob 对象 或 data url 图片
+ * @class
+ * @param {number} [maxConcurrency=2] 最大并发数量。默认 `2`。
  * @example
+ * // 最多同时运行 3 个异步任务
+ * const controller = new ConcurrencyController(3);
  *
- * // 默认返回压缩后的 blob 对象
- * compressImage(file).then(blob=>{
- *    // do something
- *    // 转为文件对象 new File([blob], file.name, { type: file.type })
- * });
+ * const urls = ['/api/1', '/api/2', '/api/3', '/api/4', '/api/5', '/api/6'];
+ * const results = await Promise.all(urls.map(url => controller.add(() => fetch(url))));
  *
- * // 设置返回格式 data url
- * compressImage(file, { format: 'dataURL' }).then(url=>{
- *    // do something
- * });
+ * // 获取状态
+ * controller.getStatus();
  *
- * // 自定义配置
- * compressImage('https://dummyimage.com/200x300', {
- *  width: 100,
- *  height: 100,
- *  quality: 0.5,
- *  beforeCompress({ image, blob }){},
- *  beforeDraw({ image, blob, canvas, context }){}
- *  afterDraw({ image, blob, canvas, context }){}
- * }).then(blob=>{
- *   // do something
- * });
+ * // 暂停队列
+ * controller.pause();
  *
- * // 支持不同形式的图片文件
- * compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(blob=>{
- *   // do something
- * });
+ * // 恢复队列
+ * controller.resume();
+ *
+ * // 设置最大并发数量，并立即运行队列中的任务。
+ * controller.setMaxConcurrency(4);
  *
  */
-const compressImage = function (img, options = {}) {
-    return new Promise((resolve, reject) => {
-        const { width, height, rotate, offset = [0, 0], background = '#fff', canvasWidth, canvasHeight, format = 'blob', type = 'image/jpeg', quality = 0.8, beforeCompress, beforeDraw, afterDraw, ajaxOptions } = options;
-        // 加载图片
-        loadImageWithBlob(img, ajaxOptions)
-            .then(({ image, blob }) => {
-            const numWidth = toNumber(width);
-            const numHeight = toNumber(height);
-            const numQuality = toNumber(quality);
-            // 自定义图片宽高
-            if (numWidth) {
-                image.width = numWidth;
-            }
-            if (numHeight) {
-                image.height = numHeight;
-            }
-            beforeCompress?.({ image, blob }, options);
-            // 创建 canvas
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const info = { image, blob, canvas, context: ctx };
-            // 设置 canvas 宽高
-            const numCanvasWidth = toNumber(typeof canvasWidth === 'function' ? canvasWidth(info, options) : canvasWidth);
-            const numCanvasHeight = toNumber(typeof canvasHeight === 'function' ? canvasHeight(info, options) : canvasHeight);
-            canvas.width = numCanvasWidth || image.width;
-            canvas.height = numCanvasHeight || image.height;
-            const bgIsTransparent = background === 'none' || background === 'transparent';
-            // 填充背景色
-            if (bgIsTransparent) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-            else {
-                ctx.fillStyle = background;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            // 旋转/变换/偏移
-            // 如果设置了旋转，自动将原点设置为图片中心，并调整偏移值。
-            let internalOffset = [0, 0];
-            if (rotate !== nativeUndefined) {
-                ctx.translate(image.width / 2, image.height / 2);
-                internalOffset = [-image.width / 2, -image.height / 2];
-                ctx.rotate((rotate * Math.PI) / 180);
-            }
-            const outOffset = typeof offset === 'function' ? offset(info, options) : offset;
-            beforeDraw?.(info, options);
-            // 将图像载入 canvas 中
-            const dx = internalOffset[0] + toNumber(outOffset[0]);
-            const dy = internalOffset[1] + toNumber(outOffset[1]);
-            ctx.drawImage(image, dx, dy, image.width, image.height);
-            // 处理png图片透明背景
-            if (type === 'image/png' &amp;&amp; bgIsTransparent) {
-                ctx.globalCompositeOperation = 'destination-in';
-                ctx.drawImage(image, dx, dy, image.width, image.height);
-            }
-            afterDraw?.(info, options);
-            // 导出压缩后的图片
-            if (format === 'blob') {
-                canvasToBlob(canvas, type, numQuality).then(resolve).catch(reject);
-            }
-            else {
-                resolve(canvas.toDataURL(type, numQuality));
-            }
-        })
-            .catch(reject);
-    });
-};
-export default compressImage;
+class ConcurrencyController {
+    maxConcurrency;
+    runningCount;
+    queue;
+    isPaused;
+    constructor(maxConcurrency = 2) {
+        this.maxConcurrency = Math.max(maxConcurrency, 1);
+        this.runningCount = 0;
+        this.queue = [];
+        this.isPaused = false;
+    }
+    /**
+     * 加入队列
+     *
+     * @param {Function} task 异步任务函数。
+     * @returns 任务的 Promise 对象。
+     */
+    add(task) {
+        return new Promise((resolve, reject) => {
+            this.queue.push({ task, resolve, reject });
+            this._run();
+        });
+    }
+    /**
+     * 运行队列中的任务
+     *
+     * @private
+     */
+    _run() {
+        if (this.isPaused)
+            return;
+        while (this.runningCount &lt; this.maxConcurrency &amp;&amp; this.queue.length > 0) {
+            const { task, resolve, reject } = this.queue.shift();
+            this.runningCount++;
+            task()
+                .then(resolve)
+                .catch(reject)
+                .finally(() => {
+                this.runningCount--;
+                this._run();
+            });
+        }
+    }
+    /**
+     * 获取状态
+     */
+    getStatus() {
+        return {
+            running: this.runningCount,
+            waiting: this.queue.length,
+            maxConcurrency: this.maxConcurrency,
+            paused: this.isPaused
+        };
+    }
+    /**
+     * 设置最大并发数量，并立即运行队列中的任务。
+     *
+     * @param {number} maxConcurrency 最大并发数量。不能小于 `1`。
+     */
+    setMaxConcurrency(maxConcurrency) {
+        this.maxConcurrency = Math.max(maxConcurrency, 1);
+        this._run();
+    }
+    /**
+     * 暂停队列
+     */
+    pause() {
+        this.isPaused = true;
+    }
+    /**
+     * 恢复队列
+     */
+    resume() {
+        this.isPaused = false;
+        this._run();
+    }
+}
+export default ConcurrencyController;
 </code></pre>
         </article>
     </section>

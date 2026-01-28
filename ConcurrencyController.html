@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://doly-dev.github.io/favicon.png" />
-    <title>compressImage.js - util-helpers </title>
+    <title>ConcurrencyController - util-helpers </title>
     
     <meta name="description" content="一个基于业务场景的工具方法库" />
     
@@ -61,164 +61,772 @@
 
 <div id="main">
     
-    <h1 class="page-title">compressImage.js</h1>
+    <h1 class="page-title">ConcurrencyController</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { toNumber } from 'ut2';
-import loadImageWithBlob from './loadImageWithBlob';
-import { nativeUndefined } from './utils/native';
-/**
- * canvas 导出 blob 对象
- *
- * @private
- * @param canvas 画布元素
- * @param type 导出图片类型
- * @param quality 图像质量
- * @returns {Promise&lt;Blob>}
- */
-function canvasToBlob(canvas, type, quality) {
-    return new Promise((resolve) => {
-        canvas.toBlob((blob) => {
-            resolve(blob);
-        }, type, quality);
-    });
-}
-/**
- * 压缩图片。
- *
- * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
- *
- * &lt;em style="font-weight: bold;">如果是半透明图片并且导出 `image/png` 格式，建议将背景变成透明 `background=transparent`，避免出现白边。注意正常图片压缩导出 `image/png` 格式后文件可能会比原图大。&lt;/em>
- *
- * @function
- * @alias module:Browser.compressImage
- * @since 4.20.0
- * @see {@link https://sytpwg.csb.app/ 在线示例}
- * @param {string | Blob} img 图片地址或 blob 对象
- * @param {Object} [options] 配置项
- * @param {number} [options.width] 自定义图片宽度，默认图片自身宽度
- * @param {number} [options.height] 自定义图片高度，默认图片自身高度
- * @param {number} [options.rotate] 旋转
- * @param {Array | function} [options.offset=[0, 0]] x,y轴偏移值，默认`[0, 0]`
- * @param {string} [options.background=#fff] 背景颜色，默认`#fff`
- * @param {number | function} [options.canvasWidth] 画布宽度，默认图片宽度
- * @param {number | function} [options.canvasHeight] 画布高度，默认图片高度
- * @param {'blob' | 'dataURL'} [options.format='blob'] 导出格式，默认`blob`
- * @param {string} [options.type='image/jpeg'] 图片类型，默认`image/jpeg`
- * @param {number} [options.quality=0.8] 图片质量，默认`0.8`
- * @param {function} [options.beforeCompress] 图片加载完成，画布创建之前调用
- * @param {function} [options.beforeDraw] 图片载入画布之前调用
- * @param {function} [options.afterDraw] 图片载入画布之后调用
- * @param {AjaxOptions} [options.ajaxOptions] ajax 请求配置项，当传入图片地址时才会触发ajax请求。
- * @returns {Promise&lt;Blob | string>} blob 对象 或 data url 图片
- * @example
- *
- * // 默认返回压缩后的 blob 对象
- * compressImage(file).then(blob=>{
- *    // do something
- *    // 转为文件对象 new File([blob], file.name, { type: file.type })
- * });
- *
- * // 设置返回格式 data url
- * compressImage(file, { format: 'dataURL' }).then(url=>{
- *    // do something
- * });
- *
- * // 自定义配置
- * compressImage('https://dummyimage.com/200x300', {
- *  width: 100,
- *  height: 100,
- *  quality: 0.5,
- *  beforeCompress({ image, blob }){},
- *  beforeDraw({ image, blob, canvas, context }){}
- *  afterDraw({ image, blob, canvas, context }){}
- * }).then(blob=>{
- *   // do something
- * });
- *
- * // 支持不同形式的图片文件
- * compressImage('data:image/png;base64,PGEgaWQ9ImEiPjxiIGlkPSJiIj5oZXkhPC9iPjwvYT4=').then(blob=>{
- *   // do something
- * });
- *
- */
-const compressImage = function (img, options = {}) {
-    return new Promise((resolve, reject) => {
-        const { width, height, rotate, offset = [0, 0], background = '#fff', canvasWidth, canvasHeight, format = 'blob', type = 'image/jpeg', quality = 0.8, beforeCompress, beforeDraw, afterDraw, ajaxOptions } = options;
-        // 加载图片
-        loadImageWithBlob(img, ajaxOptions)
-            .then(({ image, blob }) => {
-            const numWidth = toNumber(width);
-            const numHeight = toNumber(height);
-            const numQuality = toNumber(quality);
-            // 自定义图片宽高
-            if (numWidth) {
-                image.width = numWidth;
-            }
-            if (numHeight) {
-                image.height = numHeight;
-            }
-            beforeCompress?.({ image, blob }, options);
-            // 创建 canvas
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const info = { image, blob, canvas, context: ctx };
-            // 设置 canvas 宽高
-            const numCanvasWidth = toNumber(typeof canvasWidth === 'function' ? canvasWidth(info, options) : canvasWidth);
-            const numCanvasHeight = toNumber(typeof canvasHeight === 'function' ? canvasHeight(info, options) : canvasHeight);
-            canvas.width = numCanvasWidth || image.width;
-            canvas.height = numCanvasHeight || image.height;
-            const bgIsTransparent = background === 'none' || background === 'transparent';
-            // 填充背景色
-            if (bgIsTransparent) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-            else {
-                ctx.fillStyle = background;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            // 旋转/变换/偏移
-            // 如果设置了旋转，自动将原点设置为图片中心，并调整偏移值。
-            let internalOffset = [0, 0];
-            if (rotate !== nativeUndefined) {
-                ctx.translate(image.width / 2, image.height / 2);
-                internalOffset = [-image.width / 2, -image.height / 2];
-                ctx.rotate((rotate * Math.PI) / 180);
-            }
-            const outOffset = typeof offset === 'function' ? offset(info, options) : offset;
-            beforeDraw?.(info, options);
-            // 将图像载入 canvas 中
-            const dx = internalOffset[0] + toNumber(outOffset[0]);
-            const dy = internalOffset[1] + toNumber(outOffset[1]);
-            ctx.drawImage(image, dx, dy, image.width, image.height);
-            // 处理png图片透明背景
-            if (type === 'image/png' &amp;&amp; bgIsTransparent) {
-                ctx.globalCompositeOperation = 'destination-in';
-                ctx.drawImage(image, dx, dy, image.width, image.height);
-            }
-            afterDraw?.(info, options);
-            // 导出压缩后的图片
-            if (format === 'blob') {
-                canvasToBlob(canvas, type, numQuality).then(resolve).catch(reject);
-            }
-            else {
-                resolve(canvas.toDataURL(type, numQuality));
-            }
-        })
-            .catch(reject);
-    });
-};
-export default compressImage;
-</code></pre>
-        </article>
-    </section>
+        <h2>
+        
+            ConcurrencyController
+        
+        </h2>
+        
+            <div class="class-description usertext"><p>并发控制器</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="ConcurrencyController"><span class="type-signature"></span>new ConcurrencyController<span class="signature">(maxConcurrency<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>// 最多同时运行 3 个异步任务
+const controller = new ConcurrencyController(3);
+
+const urls = ['/api/1', '/api/2', '/api/3', '/api/4', '/api/5', '/api/6'];
+const results = await Promise.all(urls.map(url => controller.add(() => fetch(url))));
+
+// 获取状态
+controller.getStatus();
+
+// 暂停队列
+controller.pause();
+
+// 恢复队列
+controller.resume();
+
+// 设置最大并发数量，并立即运行队列中的任务。
+controller.setMaxConcurrency(4);</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxConcurrency</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>2</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>最大并发数量。默认 <code>2</code>。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(task)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>加入队列</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>task</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>异步任务函数。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>任务的 Promise 对象。</p>
+</div>
+
+
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getStatus"><span class="type-signature"></span>getStatus<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>获取状态</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="pause"><span class="type-signature"></span>pause<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>暂停队列</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line92">line 92</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="resume"><span class="type-signature"></span>resume<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>恢复队列</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setMaxConcurrency"><span class="type-signature"></span>setMaxConcurrency<span class="signature">(maxConcurrency)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>设置最大并发数量，并立即运行队列中的任务。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ConcurrencyController.js.html">ConcurrencyController.js</a>, <a href="ConcurrencyController.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>maxConcurrency</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>最大并发数量。不能小于 <code>1</code>。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
