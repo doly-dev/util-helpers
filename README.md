@@ -6,7 +6,7 @@
 
 ## 使用
 
-### `es` 或 `node` 开发环境
+### es/cjs
 
 安装依赖
 
@@ -22,7 +22,7 @@ yarn add util-helpers
 pnpm add util-helpers
 ```
 
-### 浏览器引入
+### browser
 
 如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
 
