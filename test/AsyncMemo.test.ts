@@ -1,12 +1,11 @@
-import { sleep } from 'ut2';
 import { AsyncMemo } from '../src';
 
 describe('AsyncMemo', () => {
   function mock() {
     let counter = 0;
     const asyncFn = jest.fn(async () => {
-      await sleep();
-      return ++counter;
+      // 使用 Promise.resolve() 替代 sleep() 以加快测试速度
+      return Promise.resolve().then(() => ++counter);
     });
     return { counter, asyncFn };
   }
@@ -91,8 +90,8 @@ describe('AsyncMemo', () => {
 
   it('异步方法异常', async () => {
     const errorFn = async () => {
-      await sleep();
-      return Promise.reject('some error');
+      // 使用 Promise.resolve() 替代 sleep() 以加快测试速度
+      return Promise.resolve().then(() => Promise.reject('some error'));
     };
     const cb = jest.fn();
     const asyncMemo = new AsyncMemo({ prefix: 'test6' });

@@ -9,9 +9,9 @@
   "sideEffects": false,
   "types": "types/index.d.ts",
   "scripts": {
-    "test": "jest --verbose",
-    "test:coverage": "jest --coverage",
-    "test:coverage:local": "cross-env COVERAGE_LOCAL=1 jest --coverage && open ./coverage/lcov-report/index.html",
+    "test": "jest --verbose --maxWorkers=50%",
+    "test:coverage": "jest --coverage --maxWorkers=50%",
+    "test:coverage:local": "cross-env COVERAGE_LOCAL=1 jest --coverage --maxWorkers=50% && open ./coverage/lcov-report/index.html",
     "build": "rm -rf esm lib dist && rollup -c && npm run build:types",
     "build:types": "rm -rf types && tsc -p tsconfig.build.json -d --outDir types --emitDeclarationOnly",
     "build:doc": "npm run doc",
