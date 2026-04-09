@@ -5,7 +5,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
-import pkg from './package.json' assert { type: 'json' };
+import fs from 'fs';
+import path from 'path';
+
+const pkg = JSON.parse(fs.readFileSync(path.resolve('./package.json'), 'utf8'));
 
 const globalName = camelCase(pkg.name);
 const outputDirConfig = {
