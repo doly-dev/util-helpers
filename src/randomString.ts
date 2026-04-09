@@ -24,8 +24,9 @@ function internalRandomString(len: number, pool: string, prefix = ''): string {
 }
 
 interface RandomString {
-  (len: number, poll: 'number' | 'lower' | 'upper'): string;
+  <T extends keyof typeof chars>(len: number, poll: T): string;
   (len: number, poll?: string): string;
+  <T extends keyof typeof chars>(len: number, poll: Array<T>): string;
 }
 
 /**
@@ -35,7 +36,7 @@ interface RandomString {
  * @alias module:Other.randomString
  * @since 4.8.0
  * @param {number} [len=0] 长度，默认`0`
- * @param {'number' | 'lower' | 'upper' | string} [pool='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 字符池，默认为数字和大小写字母。支持设置类型`number` `lower` `upper` 或字符串。
+ * @param {'number' | 'lower' | 'upper' | string | Array<'number' | 'lower' | 'upper'>} [pool='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'] 字符池，默认为数字和大小写字母。支持设置类型`number` `lower` `upper` 或字符串，也支持数组组合。
  * @returns {string} 随机字符串
  * @example
  *
@@ -46,11 +47,17 @@ interface RandomString {
  * randomString(5, 'abc'); // ccbcb
  * randomString(8, 'abcefg'); // bcgcfabg
  *
+ * // 使用数组组合
+ * randomString(5, ['number', 'lower']); // 1a2b3
+ * randomString(8, ['upper', 'number']); // A1B2C3D4
+ *
  */
-const randomString: RandomString = function (len = 0, pool?: string) {
+const randomString: RandomString = function (len = 0, pool?: string | Array<keyof typeof chars>) {
   let _pool: string;
 
-  if (typeof pool !== 'string') {
+  if (Array.isArray(pool)) {
+    _pool = pool.map((p) => chars[p]).join('');
+  } else if (typeof pool !== 'string') {
     _pool = allChars;
   } else if (chars[pool as keyof typeof chars]) {
     _pool = chars[pool as keyof typeof chars];

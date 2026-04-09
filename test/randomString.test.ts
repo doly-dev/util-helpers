@@ -49,4 +49,22 @@ describe('randomString', () => {
     // @ts-ignore
     expect(randomString(null)).toBe('');
   });
+
+  it('array chars', () => {
+    const rs1 = randomString(5, ['number', 'lower']);
+    const reg1 = /^[0-9a-z]*$/;
+    expect(reg1.test(rs1)).toBe(true);
+
+    const rs2 = randomString(5, ['upper', 'number']);
+    const reg2 = /^[A-Z0-9]*$/;
+    expect(reg2.test(rs2)).toBe(true);
+
+    const rs3 = randomString(5, ['lower', 'upper']);
+    const reg3 = /^[a-zA-Z]*$/;
+    expect(reg3.test(rs3)).toBe(true);
+
+    const rs4 = randomString(5, ['number', 'lower', 'upper']);
+    const reg4 = /^[0-9a-zA-Z]*$/;
+    expect(reg4.test(rs4)).toBe(true);
+  });
 });
