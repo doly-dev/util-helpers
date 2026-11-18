@@ -48,6 +48,70 @@ function formatInt(intStr: string, thousand: string) {
 }
 
 /**
+ * 不带符号的整数字符串加一
+ *
+ * @private
+ * @param {string} intStr 整数字符串
+ * @returns 加一后的整数字符串
+ */
+function incrementIntStr(intStr: string) {
+  const digits = intStr.split('');
+  let i = digits.length - 1;
+
+  while (i >= 0 && digits[i] === '9') {
+    digits[i] = '0';
+    i--;
+  }
+
+  if (i < 0) {
+    digits.unshift('1');
+  } else {
+    digits[i] = String(Number(digits[i]) + 1);
+  }
+
+  return digits.join('');
+}
+
+/**
+ * 按精度对数字字符串四舍五入，小数部分进位累加到整数部分。
+ * 在字符串域处理，避免大数字符串转 number 丢失精度
+ *
+ * @private
+ * @param {string} strNum 数字字符串
+ * @param {number} precision 保留小数位数
+ * @returns 四舍五入后的数字字符串
+ */
+function roundNumberString(strNum: string, precision: number) {
+  const negativeSymbol = strNum[0] === '-' ? '-' : '';
+  let unsigned = negativeSymbol ? strNum.substring(1) : strNum;
+  unsigned = unsigned[0] === '+' ? unsigned.substring(1) : unsigned; // 去掉+符号
+  const [intStr, decStr] = unsigned.split('.');
+
+  // 无小数部分或非法小数（如科学计数法）不做处理
+  if (!decStr || !/^\d+$/.test(decStr)) {
+    return strNum;
+  }
+
+  let newIntStr = intStr;
+  let newDecStr = decStr.substring(0, precision);
+
+  // 第 precision+1 位小数 >= 5 时进位
+  if (Number(decStr[precision]) >= 5) {
+    const incremented = incrementIntStr(newDecStr.padEnd(precision, '0'));
+
+    if (incremented.length > precision) {
+      // 小数部分溢出（如 0.99 -> 1.00），向整数部分进位
+      newIntStr = incrementIntStr(intStr);
+      newDecStr = incremented.substring(1);
+    } else {
+      newDecStr = incremented;
+    }
+  }
+
+  return negativeSymbol + newIntStr + (precision > 0 ? '.' + newDecStr : '');
+}
+
+/**
  * 格式化小数部分，如果使用 toFixed，超大额数字会自动被截断
  *
  * @private
@@ -150,8 +214,8 @@ const formatMoney = (num?: string | number, options: Options = {}) => {
   thousand = typeof thousand === 'string' ? thousand : ',';
   decimal = typeof decimal === 'string' ? decimal : '.';
 
-  // 转换数字字符串
-  const strNum = transformEffectiveNumber(num) + '';
+  // 转换数字字符串，按精度四舍五入（小数进位累加到整数部分）
+  const strNum = roundNumberString(transformEffectiveNumber(num) + '', precision);
   // 整数和小数部分
   const [intStr, decStr] = strNum.split('.');
 

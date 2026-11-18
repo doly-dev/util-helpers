@@ -51,11 +51,42 @@ describe('formatMoney', () => {
     expect(formatMoney('1500.2', { precision: 0 })).toBe('1,500');
   });
 
+  it('小数部分四舍五入进位', () => {
+    // https://github.com/doly-dev/util-helpers/issues/6
+    expect(formatMoney(0.999)).toBe('1.00');
+    expect(formatMoney(1.999)).toBe('2.00');
+    expect(formatMoney(9.999)).toBe('10.00');
+    expect(formatMoney(-1.999)).toBe('-2.00');
+    expect(formatMoney('999.999')).toBe('1,000.00');
+    expect(formatMoney(1.96, { precision: 1 })).toBe('2.0');
+    expect(formatMoney(1.5, { precision: 0 })).toBe('2');
+    expect(formatMoney(1.006)).toBe('1.01');
+    expect(formatMoney('0.999')).toBe('1.00');
+    expect(formatMoney('-0.999')).toBe('-1.00');
+    expect(formatMoney(99.999)).toBe('100.00');
+    expect(formatMoney(9.995, { precision: 2 })).toBe('10.00');
+    expect(formatMoney('999999.999999', { precision: 4 })).toBe('1,000,000.0000');
+    expect(formatMoney(0.5, { precision: 0 })).toBe('1');
+    expect(formatMoney(-0.5, { precision: 0 })).toBe('-1');
+    expect(formatMoney(0.4, { precision: 0 })).toBe('0');
+    // 带+符号、无整数部分、大数进位
+    expect(formatMoney('+1.999')).toBe('2.00');
+    expect(formatMoney('+9.999')).toBe('10.00');
+    expect(formatMoney('+99.99', { precision: 1 })).toBe('100.0');
+    expect(formatMoney('-.999')).toBe('-1.00');
+    expect(formatMoney('99999999999999999999.999')).toBe('100,000,000,000,000,000,000.00');
+    // 大数字符串精度不受影响
+    expect(formatMoney('9007199254740991')).toBe('9,007,199,254,740,991.00');
+    expect(formatMoney('40833293563290239918163922168323157340193394658892337376669999999999999951662')).toBe('40,833,293,563,290,239,918,163,922,168,323,157,340,193,394,658,892,337,376,669,999,999,999,999,951,662.00');
+  });
+
   it('输入金额类型测试', () => {
     expect(formatMoney(+1000.0)).toBe('1,000.00');
     expect(formatMoney(-1000)).toBe('-1,000.00');
     expect(formatMoney(-1000, { precision: 2 })).toBe('-1,000.00');
     expect(formatMoney('+1000.000')).toBe('1,000.00');
+    expect(formatMoney('+1000')).toBe('1,000.00');
+    expect(formatMoney('+01000')).toBe('1,000.00');
     expect(formatMoney('-1000')).toBe('-1,000.00');
     expect(formatMoney('-1000', { precision: 2 })).toBe('-1,000.00');
   });
