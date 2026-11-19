@@ -126,7 +126,7 @@ function formatDec(decStr: string, precision: number, decimal: string) {
   }
 
   const zero = 0;
-  let ret = '';
+  let ret: string;
 
   if (decStr && Number(decStr) > 0) {
     const tmpNum = parseFloat('0.' + decStr);

@@ -23,7 +23,7 @@ let unitSection: string[];
  * @returns {string} 转化的数字
  */
 function sectionToChinese(section: number) {
-  let str = '';
+  let str: string;
   let chnstr = '';
   let zero = false; //zero为是否进行补零， 第一次进行取余由于为个位数，默认不补零
   let unitPos = 0;
@@ -63,7 +63,7 @@ function convertInteger(num: number) {
   let numInt = Math.floor(num);
 
   let unitPos = 0;
-  let strIns = '';
+  let strIns: string;
   let chnStr = '';
   let needZero = false;
 
